@@ -81,7 +81,7 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
 
 
 ** 配置预选定义的插件
-*** 添活cmake mode
+*** 激活cmake mode
 #+begin_src emacs-lisp
 
 (setq auto-mode-alist
