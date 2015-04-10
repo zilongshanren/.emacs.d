@@ -36,7 +36,47 @@
     (package-initialize)
     (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
     )
+  (require 'cl)
+#+end_src
 
+
+*** 定义默认要安装的package
+#+begin_src emacs-lisp
+  (defvar guanghui/packages '(
+                            company
+                            monokai-theme
+                            cmake-mode
+                            cmake-font-lock
+                            exec-path-from-shell
+                )
+    "Default packages")
+#+end_src
+
+*** 安装默认的package
+#+begin_src emacs-lisp
+  (defun guanghui/packages-installed-p ()
+    (loop for pkg in guanghui/packages
+          when (not (package-installed-p pkg)) do (return nil)
+          finally (return t)))
+
+  (unless (guanghui/packages-installed-p)
+    (message "%s" "Refreshing package database...")
+    (package-refresh-contents)
+    (dolist (pkg guanghui/packages)
+      (when (not (package-installed-p pkg))
+        (package-install pkg))))
+#+end_src
+
+
+** 让mac系统下面的命令行程序可见
+http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does-not-find-executable
+安装exec-path-from-shell插件，否则很多需要调用命令行的插件都不起作用。
+
+注意：这个插件的配置最好放在其它插件配置的前面。
+
+#+begin_src emacs-lisp
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 #+end_src
 
 ** TODO 我要安装一个主题
@@ -76,10 +116,5 @@
      ))
 #+end_src
 
-*** 让mac系统下面的命令行程序可见
-安装exec-path-from-shell插件，否则很多需要调用命令行的插件都不起作用。
-#+begin_src emacs-lisp
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
-#+end_src
+
 
