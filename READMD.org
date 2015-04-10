@@ -1,0 +1,7 @@
+* 安装配置
+
+#+begin_src shell
+git clone https://github.com/andyque/Learning-Emacs.git ~/.emacs
+#+end_src
+
+然后打开Emacs，此时会安装预先定义的package，安装完以后，关闭Emacs再启动就可以了。

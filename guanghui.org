@@ -8,27 +8,27 @@
 
 * 我的Emacs配置
 
-** TODO 设置外观
-*** DONE 关掉工具栏
+**  设置外观
+*** 关掉工具栏
 #+begin_src emacs-lisp
   (tool-bar-mode -1);; turn off tool bar
 #+end_src
-*** DONE 关掉启动画面和scratch buffer里面的内容
+*** 关掉启动画面和scratch buffer里面的内容
 这里面setq 就是为一个变量定义一个值。 t表示true.
 #+begin_src emacs-lisp
  (setq inhibit-splash-screen t)
 (setq initial-scratch-message nil)
 #+end_src
-*** DONE 改变光标的样式
+*** 改变光标的样式
 #+begin_src emacs-lisp
    (setq-default cursor-type 'bar)
 #+end_src
-*** DONE 启动Emacs的时候全屏显示
+*** 启动Emacs的时候全屏显示
 #+begin_src emacs-lisp
      (setq  initial-frame-alist (quote ((fullscreen . maximized))))
 #+end_src
 
-** TODO 我要配置包管理器
+**  配置包管理器
 这里面推荐使用melpa和mamalade,我这里只配置melpa
 #+begin_src emacs-lisp
   (when (>= emacs-major-version 24)
@@ -48,8 +48,8 @@
                             cmake-mode
                             cmake-font-lock
                             exec-path-from-shell
-                )
-    "Default packages")
+                            smex
+                )  "Default packages")
 #+end_src
 
 *** 安装默认的package
@@ -68,7 +68,7 @@
 #+end_src
 
 
-** 让mac系统下面的命令行程序可见
+*** 让mac系统下面的命令行程序可见
 http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does-not-find-executable
 安装exec-path-from-shell插件，否则很多需要调用命令行的插件都不起作用。
 
@@ -79,12 +79,9 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   (exec-path-from-shell-initialize))
 #+end_src
 
-** TODO 我要安装一个主题
-安装monokai，让emacs启动的时候就加载monokai主题。
-#+begin_src emacs-lisp
-  (load-theme 'monokai t)
-#+end_src
-** 添活cmake mode
+
+** 配置预选定义的插件
+*** 添活cmake mode
 #+begin_src emacs-lisp
 
 (setq auto-mode-alist
@@ -93,10 +90,10 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
 	   '(("\\.cmake\\'" . cmake-mode))
 	   auto-mode-alist))
 #+end_src
+   
 
-** 在任何buffer里面都激活company mode
 
-** DONE 安装一个代码补全插件company
+**  安装一个代码补全插件company
 输入M-x package-list-packages, 按C-s并输入company搜索到company，记住选melpa，这个比较新。
 *** 在任何buffer里面都激活company mode
 #+begin_src emacs-lisp
@@ -118,3 +115,35 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
 
 
 
+** 辅助工具
+ 让Emacs的命令和提示更好用
+***  激活ido mode
+让c-x c-f提示更友好。
+#+begin_src emacs-lisp
+  (ido-mode t)
+#+end_src
+
+*** 激活smex，让M-x更好用
+#+begin_src emacs-lisp
+(setq smex-save-file (expand-file-name ".smex-items" user-emacs-directory))
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+#+end_src
+
+
+** server模式
+#+begin_src emacs-lisp
+  ;;----------------------------------------------------------------------------
+  ;; Allow access from emacsclient
+  ;;----------------------------------------------------------------------------
+  (require 'server)
+  (unless (server-running-p)
+    (server-start))
+#+end_src
+
+**  主题
+   安装monokai，让emacs启动的时候就加载monokai主题。
+#+begin_src emacs-lisp
+  (load-theme 'monokai t)
+#+end_src
