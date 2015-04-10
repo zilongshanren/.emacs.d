@@ -1,0 +1,85 @@
+#+TITLE: 我的Emacs配置
+#+AUTHOR: 屈光辉
+#+EMAIL: guanghui.qu@cocos2d-x.org
+#+OPTIONS: toc:3 num:nil
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="http://thomasf.github.io/solarized-css/solarized-light.min.css" />
+#+STARTUP: showall
+
+
+* 我的Emacs配置
+
+** TODO 设置外观
+*** DONE 关掉工具栏
+#+begin_src emacs-lisp
+  (tool-bar-mode -1);; turn off tool bar
+#+end_src
+*** DONE 关掉启动画面和scratch buffer里面的内容
+这里面setq 就是为一个变量定义一个值。 t表示true.
+#+begin_src emacs-lisp
+ (setq inhibit-splash-screen t)
+(setq initial-scratch-message nil)
+#+end_src
+*** DONE 改变光标的样式
+#+begin_src emacs-lisp
+   (setq-default cursor-type 'bar)
+#+end_src
+*** DONE 启动Emacs的时候全屏显示
+#+begin_src emacs-lisp
+     (setq  initial-frame-alist (quote ((fullscreen . maximized))))
+#+end_src
+
+** TODO 我要配置包管理器
+这里面推荐使用melpa和mamalade,我这里只配置melpa
+#+begin_src emacs-lisp
+  (when (>= emacs-major-version 24)
+    (require 'package)
+    (package-initialize)
+    (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
+    )
+
+#+end_src
+
+** TODO 我要安装一个主题
+安装monokai，让emacs启动的时候就加载monokai主题。
+#+begin_src emacs-lisp
+  (load-theme 'monokai t)
+#+end_src
+** 添活cmake mode
+#+begin_src emacs-lisp
+
+(setq auto-mode-alist
+	  (append
+	   '(("CMakeLists\\.txt\\'" . cmake-mode))
+	   '(("\\.cmake\\'" . cmake-mode))
+	   auto-mode-alist))
+#+end_src
+
+** 在任何buffer里面都激活company mode
+
+** DONE 安装一个代码补全插件company
+输入M-x package-list-packages, 按C-s并输入company搜索到company，记住选melpa，这个比较新。
+*** 在任何buffer里面都激活company mode
+#+begin_src emacs-lisp
+  (global-company-mode 1)
+#+end_src
+*** 添加一些默认的company配置
+#+begin_src emacs-lisp
+   (eval-after-load 'company
+  '(progn
+     (setq company-echo-delay 0)
+     (setq company-idle-delay 0.08)
+     (setq company-auto-complete nil)
+     (setq company-show-numbers t)
+     (setq company-begin-commands '(self-insert-command))
+     (setq company-tooltip-limit 10)
+     (setq company-minimum-prefix-length 1)
+     ))
+#+end_src
+
+*** 让mac系统下面的命令行程序可见
+安装exec-path-from-shell插件，否则很多需要调用命令行的插件都不起作用。
+#+begin_src emacs-lisp
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+#+end_src
+
