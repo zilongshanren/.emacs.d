@@ -216,6 +216,7 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   ;;config for popwin, use c-g to quit window
   (require 'popwin)
   (popwin-mode t)
+  (push "*flycheck-errors*" popwin:special-display-config)
 
   ;; add helm everywhere
   (global-set-key (kbd "M-x") 'helm-M-x)
