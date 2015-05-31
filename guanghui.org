@@ -216,6 +216,19 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   ;;config for popwin, use c-g to quit window
   (require 'popwin)
   (popwin-mode t)
+
+  ;; add helm everywhere
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-x C-m") 'helm-M-x)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+  (global-set-key (kbd "C-x b") 'helm-mini)
+  (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "C-h f") 'helm-apropos)
+  (global-set-key (kbd "C-h r") 'helm-info-emacs)
+  (global-set-key (kbd "C-h C-l") 'helm-locate-library)
+  (global-set-key (kbd "C-c f") 'helm-recentf)
+
 #+end_src
 
 
