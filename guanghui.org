@@ -196,10 +196,11 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   (require 'guide-key)
   (guide-key-mode t)
   (setq guide-key/idle-delay 0.4)
-  (setq guide-key/guide-key-sequence '("C-c"))
-  (setq guide-key/guide-key-sequence '("C-x"))
-  (setq guide-key/guide-key-sequence '("C-c s"))
-  (setq guide-key/guide-key-sequence '("C-c e"))
+  (setq guide-key/guide-key-sequence `("C-c"
+                                       "C-x"
+                                       "C-c s"
+                                       "C-c e"))
+  (setq guide-key/recursive-key-sequence-flag t)
   (global-set-key (kbd "s-i") 'helm-semantic-or-imenu)
   (require 'helm-ls-git)
   (global-set-key (kbd "s-t") 'helm-ls-git-ls)
