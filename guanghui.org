@@ -11,7 +11,7 @@
 **  Better Defaults
 *** 关掉工具栏
 #+begin_src emacs-lisp
-  (tool-bar-mode -1);; turn off tool bar
+  (tool-bar-mode -1);; turn off tool barq
 #+end_src
 *** 关掉启动画面和scratch buffer里面的内容
 这里面setq 就是为一个变量定义一个值。 t表示true.
@@ -33,8 +33,10 @@
 #+end_src
 *** 禁止生成备份文件
 #+begin_src emacs-lisp
-  (setq backup-files nil)
-  (setq auto-save-files nil)
+  ;disable backup
+  (setq backup-inhibited t)
+  ;disable auto save
+  (setq auto-save-default nil)
 #+end_src
 *** 当外部文件修改时，自动加载文件文件
 #+begin_src emacs-lisp
@@ -44,6 +46,12 @@
 #+begin_src emacs-lisp
 (setq large-file-warning-threshold 100000000)
 #+end_src
+*** misc
+#+begin_src emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (global-hl-line-mode t)
+#+end_src
+
 
 
 ** 安装插件
@@ -68,7 +76,19 @@
                             cmake-font-lock
                             exec-path-from-shell
                             smex
-                            yasnippet                      
+                            yasnippet
+                            swiper
+                            helm
+                            projectile
+                            avy
+                            helm-ls-git
+                            anaconda-mode
+                            company-anaconda
+                            cython-mode
+                            flycheck
+                            smartparens
+                            guide-key
+                            popwin
                 )  "Default packages")
 #+end_src
 
@@ -111,6 +131,12 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
 	   auto-mode-alist))
 #+end_src
    
+*** 配置yasnippet插件
+#+begin_src emacs-lisp
+  (require 'yasnippet)
+  (yas-global-mode t)
+#+end_src
+
 
 
 ***  配置company插件
@@ -138,6 +164,58 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
       ))
 #+end_src
 
+
+
+*** 配置python环境
+#+begin_src emacs-lisp
+  (require 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (require 'cython-mode)
+  (add-hook 'python-mode-hook 'eldoc-mode)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil)
+  (require 'flycheck)
+  (add-hook 'python-mode-hook 'flycheck-mode)
+  (require 'company-anaconda)
+  (eval-after-load 'anaconda-mode
+    '(push 'company-anaconda company-backends))
+  (global-set-key (kbd "s-.") 'anaconda-mode-goto-definitions)
+  (global-set-key (kbd "s-,") 'anaconda-nav-pop-marker)
+  (global-set-key (kbd "s-d") 'anaconda-mode-view-doc)
+  (global-set-key (kbd "s-r") 'anaconda-mode-usages)
+  (global-set-key (kbd "s-b") 'backward-word)
+  (global-set-key (kbd "s-f") 'forward-word)
+#+end_src
+
+*** 配置其它插件
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-s") 'swiper)
+  (require 'smartparens-config)
+  (smartparens-global-mode t)
+  (global-set-key (kbd "C-'") 'avy-goto-char-2)
+  (require 'guide-key)
+  (guide-key-mode t)
+  (setq guide-key/idle-delay 0.4)
+  (setq guide-key/guide-key-sequence '("C-c"))
+  (setq guide-key/guide-key-sequence '("C-x"))
+  (setq guide-key/guide-key-sequence '("C-c s"))
+  (setq guide-key/guide-key-sequence '("C-c e"))
+  (global-set-key (kbd "s-i") 'helm-semantic-or-imenu)
+  (require 'helm-ls-git)
+  (global-set-key (kbd "s-t") 'helm-ls-git-ls)
+  ;;config for REPL
+  (global-set-key (kbd "C-c si") 'python-shell-switch-to-shell)
+  (global-set-key (kbd "C-c sf") 'python-shell-send-defun)
+  (global-set-key (kbd "C-c sr") 'python-shell-send-region)
+  ;;config for flycheck
+  (global-set-key (kbd "C-c el") 'flycheck-list-errors)
+  (global-set-key (kbd "C-c en") 'flycheck-next-error)
+  (global-set-key (kbd "C-c ep") 'flycheck-previous-error)
+
+  ;;config for popwin, use c-g to quit window
+  (require 'popwin)
+  (popwin-mode t)
+#+end_src
 
 
 ** 辅助工具
