@@ -8,7 +8,7 @@
 
 * 我的Emacs配置
 
-**  设置外观
+**  Better Defaults
 *** 关掉工具栏
 #+begin_src emacs-lisp
   (tool-bar-mode -1);; turn off tool bar
@@ -27,8 +27,27 @@
 #+begin_src emacs-lisp
      (setq  initial-frame-alist (quote ((fullscreen . maximized))))
 #+end_src
+*** 粘贴删除选中区域
+#+begin_src emacs-lisp
+  (delete-selection-mode t)
+#+end_src
+*** 禁止生成备份文件
+#+begin_src emacs-lisp
+  (setq backup-files nil)
+  (setq auto-save-files nil)
+#+end_src
+*** 当外部文件修改时，自动加载文件文件
+#+begin_src emacs-lisp
+  (global-auto-revert-mode t)
+#+end_src
+*** 修改打开的最大文件警告阈值
+#+begin_src emacs-lisp
+(setq large-file-warning-threshold 100000000)
+#+end_src
 
-**  配置包管理器
+
+** 安装插件
+***  配置包管理器
 这里面推荐使用melpa和mamalade,我这里只配置melpa
 #+begin_src emacs-lisp
   (when (>= emacs-major-version 24)
@@ -49,6 +68,7 @@
                             cmake-font-lock
                             exec-path-from-shell
                             smex
+                            yasnippet                      
                 )  "Default packages")
 #+end_src
 
@@ -93,13 +113,13 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
    
 
 
-**  安装一个代码补全插件company
+***  配置company插件
 输入M-x package-list-packages, 按C-s并输入company搜索到company，记住选melpa，这个比较新。
-*** 在任何buffer里面都激活company mode
+**** 在任何buffer里面都激活company mode
 #+begin_src emacs-lisp
   (global-company-mode 1)
 #+end_src
-*** 添加一些默认的company配置
+**** 添加一些默认的company配置
 #+begin_src emacs-lisp
    (eval-after-load 'company
   '(progn
@@ -110,7 +130,12 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
      (setq company-begin-commands '(self-insert-command))
      (setq company-tooltip-limit 10)
      (setq company-minimum-prefix-length 1)
-     ))
+      (let ((map company-active-map))
+          (define-key map (kbd "C-d") 'company-show-doc-buffer)
+          (define-key map (kbd "C-n") 'company-select-next)
+          (define-key map (kbd "C-p") 'company-select-previous)
+          (define-key map (kbd "C-l") 'company-complete-selection))
+      ))
 #+end_src
 
 
