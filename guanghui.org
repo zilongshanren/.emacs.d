@@ -179,10 +179,11 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   (require 'company-anaconda)
   (eval-after-load 'anaconda-mode
     '(push 'company-anaconda company-backends))
-  (global-set-key (kbd "s-.") 'anaconda-mode-goto-definitions)
-  (global-set-key (kbd "s-,") 'anaconda-nav-pop-marker)
-  (global-set-key (kbd "s-d") 'anaconda-mode-view-doc)
-  (global-set-key (kbd "s-r") 'anaconda-mode-usages)
+  (define-key anaconda-mode-map (kbd "s-.") 'anaconda-mode-goto-definitions)
+  (define-key anaconda-mode-map (kbd "s-,") 'anaconda-nav-pop-marker)
+  (define-key anaconda-mode-map (kbd "s-d") 'anaconda-mode-view-doc)
+  (define-key anaconda-mode-map (kbd "s-r") 'anaconda-mode-usages)
+  (global-set-key (kbd "C-w") 'backward-kill-word)
   (global-set-key (kbd "s-b") 'backward-word)
   (global-set-key (kbd "s-f") 'forward-word)
 #+end_src
@@ -199,7 +200,8 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   (setq guide-key/guide-key-sequence `("C-c"
                                        "C-x"
                                        "C-c s"
-                                       "C-c e"))
+                                       "C-c e"
+                                       ))
   (setq guide-key/recursive-key-sequence-flag t)
   (global-set-key (kbd "s-i") 'helm-semantic-or-imenu)
   (require 'helm-ls-git)
@@ -216,7 +218,7 @@ http://stackoverflow.com/questions/8606954/path-and-exec-path-set-but-emacs-does
   ;;config for popwin, use c-g to quit window
   (require 'popwin)
   (popwin-mode t)
-  (push "*flycheck-errors*" popwin:special-display-config)
+  (push "*Flycheck errors*" popwin:special-display-config)
 
   ;; add helm everywhere
   (global-set-key (kbd "M-x") 'helm-M-x)
