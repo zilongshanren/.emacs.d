@@ -47,7 +47,7 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-
+(global-auto-revert-mode t)
 (global-hungry-delete-mode)
 
 (require 'smartparens-config)
@@ -88,6 +88,7 @@
 (setq-default cursor-type 'bar)
 
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 
 (require 'org)
