@@ -29,7 +29,8 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("8zl" "zilongshanren" nil 1)
+    ("8ms" "Macrosoft" nil 1)
+    ("8zl" "zilongshanren" nil 2)
    ))
 
 (define-abbrev-table 'help-mode-abbrev-table '())
@@ -59,6 +60,8 @@
 (define-abbrev-table 'select-tags-table-mode-abbrev-table '())
 
 (define-abbrev-table 'special-mode-abbrev-table '())
+
+(define-abbrev-table 'speedbar-mode-abbrev-table '())
 
 (define-abbrev-table 'tabulated-list-mode-abbrev-table '())
 
