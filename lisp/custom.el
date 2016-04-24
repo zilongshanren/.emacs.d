@@ -8,6 +8,7 @@
  '(custom-safe-themes
    (quote
     ("6c62b1cd715d26eb5aa53843ed9a54fc2b0d7c5e0f5118d4efafa13d7715c56e" default)))
+ '(org-pomodoro-long-break-length 40)
  '(popwin:popup-window-position (quote right))
  '(popwin:popup-window-width 90))
 (custom-set-faces

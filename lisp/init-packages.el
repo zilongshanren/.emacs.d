@@ -21,6 +21,7 @@
                  js2-refactor
                  expand-region
                  iedit
+		 org-pomodoro
                  )  "Default packages")
 
 (setq package-selected-packages zilongshanren/packages)
@@ -89,13 +90,10 @@
 
   (setq indent-tabs-mode nil))
 
-(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
 
 ;; config for js2-refactor
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
-(js2r-add-keybindings-with-prefix "C-c C-m")
 
-(global-set-key (kbd "M-s i") 'counsel-imenu)
 
 (defun js2-imenu-make-index ()
   (interactive)
@@ -122,7 +120,7 @@
 (popwin-mode t)
 
 
-(global-set-key (kbd "C-=") 'er/expand-region)
 
+(require 'org-pomodoro)
 
 (provide 'init-packages)

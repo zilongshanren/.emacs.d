@@ -1,0 +1,10 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-capture-last-stored"
+ (filename . "~/org-notes/notes.org")
+ (front-context-string . "** TODO [#C] tes")
+ (rear-context-string . "-24 Sun 16:15]\n\n")
+ (position . 63658))
+)
