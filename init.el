@@ -10,6 +10,7 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+
 ;; add more personal func
 ;; new init-func.el 
 
