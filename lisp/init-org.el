@@ -14,7 +14,5 @@
   )
 
 
-;; r aka remember
-(global-set-key (kbd "C-c r") 'org-capture)
 
 (provide 'init-org)

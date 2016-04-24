@@ -2,6 +2,7 @@
 
 ** TODO [#B]  录制 Spacemacs Rocks 第二季第六天的视频
    SCHEDULED: <2016-04-24 Sun 15:50>
+   CLOCK: [2016-04-24 Sun 16:16]
    CLOCK: [2016-04-24 Sun 16:09]
 
 ** TODO [#B] Clean up our Emacs configs
