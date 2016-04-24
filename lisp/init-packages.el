@@ -6,31 +6,33 @@
 
 ;;add whatever packages you want here
 (defvar zilongshanren/packages '(
-                 company
-                 monokai-theme
-                 hungry-delete
-                 swiper
-                 counsel
-                 smartparens
-                 js2-mode
-                 nodejs-repl
-                 exec-path-from-shell
-                 popwin
-                 reveal-in-osx-finder
-                 web-mode
-                 js2-refactor
-                 expand-region
-                 iedit
-		 org-pomodoro
-		 helm-ag
-                 )  "Default packages")
+				 company
+				 monokai-theme
+				 hungry-delete
+				 swiper
+				 counsel
+				 smartparens
+				 js2-mode
+				 nodejs-repl
+				 exec-path-from-shell
+				 popwin
+				 reveal-in-osx-finder
+				 web-mode
+				 js2-refactor
+				 expand-region
+				 iedit
+				 org-pomodoro
+				 helm-ag
+				 flycheck
+				 auto-yasnippet
+				 )  "Default packages")
 
 (setq package-selected-packages zilongshanren/packages)
 
 (defun zilongshanren/packages-installed-p ()
   (loop for pkg in zilongshanren/packages
-    when (not (package-installed-p pkg)) do (return nil)
-    finally (return t)))
+	when (not (package-installed-p pkg)) do (return nil)
+	finally (return t)))
 
 (unless (zilongshanren/packages-installed-p)
   (message "%s" "Refreshing package database...")
@@ -48,7 +50,10 @@
 
 ;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
+
 (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
+
 
 
 (ivy-mode 1)
@@ -59,7 +64,7 @@
 (setq auto-mode-alist
       (append
        '(("\\.js\\'" . js2-mode)
-     ("\\.html\\'" . web-mode))
+	 ("\\.html\\'" . web-mode))
        auto-mode-alist))
 
 (global-company-mode t)
@@ -79,13 +84,13 @@
   ;; web development
   (if (or (eq major-mode 'js-mode) (eq major-mode 'js2-mode))
       (progn
-    (setq js-indent-level (if (= js-indent-level 2) 4 2))
-    (setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
+	(setq js-indent-level (if (= js-indent-level 2) 4 2))
+	(setq js2-basic-offset (if (= js2-basic-offset 2) 4 2))))
 
   (if (eq major-mode 'web-mode)
       (progn (setq web-mode-markup-indent-offset (if (= web-mode-markup-indent-offset 2) 4 2))
-         (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
-         (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
+	     (setq web-mode-css-indent-offset (if (= web-mode-css-indent-offset 2) 4 2))
+	     (setq web-mode-code-indent-offset (if (= web-mode-code-indent-offset 2) 4 2))))
   (if (eq major-mode 'css-mode)
       (setq css-indent-offset (if (= css-indent-offset 2) 4 2)))
 
@@ -101,19 +106,19 @@
   (save-excursion
     ;; (setq imenu-generic-expression '((nil "describe\\(\"\\(.+\\)\"" 1)))
     (imenu--generic-function '(("describe" "\\s-*describe\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                   ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                   ("test" "\\s-*test\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                   ("before" "\\s-*before\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                   ("after" "\\s-*after\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
-                   ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
-                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
-                   ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
-                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
-                   ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
-                   ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
+			       ("it" "\\s-*it\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("test" "\\s-*test\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("before" "\\s-*before\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("after" "\\s-*after\\s-*(\\s-*[\"']\\(.+\\)[\"']\\s-*,.*" 1)
+			       ("Function" "function[ \t]+\\([a-zA-Z0-9_$.]+\\)[ \t]*(" 1)
+			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+			       ("Function" "^var[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*=[ \t]*function[ \t]*(" 1)
+			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*()[ \t]*{" 1)
+			       ("Function" "^[ \t]*\\([a-zA-Z0-9_$.]+\\)[ \t]*:[ \t]*function[ \t]*(" 1)
+			       ("Task" "[. \t]task([ \t]*['\"]\\([^'\"]+\\)" 1)))))
 (add-hook 'js2-mode-hook
-      (lambda ()
-        (setq imenu-create-index-function 'js2-imenu-make-index)))
+	  (lambda ()
+	    (setq imenu-create-index-function 'js2-imenu-make-index)))
 
 (load-theme 'monokai t)
 
@@ -123,5 +128,11 @@
 
 
 (require 'org-pomodoro)
+
+(add-hook 'js2-mode-hook 'flycheck-mode)
+
+(require 'yasnippet)
+(yas-reload-all)
+(add-hook 'prog-mode-hook #'yas-minor-mode)
 
 (provide 'init-packages)
