@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
-(global-set-key (kbd "C-c p f") 'counsel-git)
+;;(global-set-key (kbd "C-c p f") 'counsel-git)
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 
@@ -46,5 +46,7 @@
   (define-key company-active-map (kbd "C-n") #'company-select-next)
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
-(global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
+;;(global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
+(global-set-key (kbd "C-w") 'backward-kill-word)
+
 (provide 'init-keybindings)
