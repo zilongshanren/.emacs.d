@@ -25,6 +25,7 @@
 				 helm-ag
 				 flycheck
 				 auto-yasnippet
+				 moe-theme
 				 evil
 				 evil-leader
 				 window-numbering
@@ -126,7 +127,7 @@
 	  (lambda ()
 	    (setq imenu-create-index-function 'js2-imenu-make-index)))
 
-(load-theme 'monokai t)
+;(load-theme 'monokai t)
 
 (require 'popwin)    ;;when require, wh(setq company-minimum-prefix-length 1)en not require
 (popwin-mode t)

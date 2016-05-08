@@ -23,7 +23,7 @@
 
 (setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
 
-
+(moe-dark)
 
 (load-file custom-file)
 
