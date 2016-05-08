@@ -7,7 +7,6 @@
 ;;add whatever packages you want here
 (defvar zilongshanren/packages '(
 				 company
-				 monokai-theme
 				 hungry-delete
 				 swiper
 				 counsel
@@ -25,7 +24,7 @@
 				 helm-ag
 				 flycheck
 				 auto-yasnippet
-				 moe-theme
+				 solarized-theme
 				 evil
 				 evil-leader
 				 window-numbering
@@ -194,6 +193,9 @@
 
 (which-key-mode 1)
 (setq which-key-side-window-location 'right)
+
+
+(load-theme 'solarized-dark t)
 
 
 (provide 'init-packages)
