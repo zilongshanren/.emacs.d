@@ -1,4 +1,3 @@
-
 (setq ring-bell-function 'ignore)
 
 
@@ -27,9 +26,9 @@
 (define-advice show-paren-function (:around (fn) fix-show-paren-function)
   "Highlight enclosing parens."
   (cond ((looking-at-p "\\s(") (funcall fn))
-        (t (save-excursion
-             (ignore-errors (backward-up-list))
-             (funcall fn)))))
+	(t (save-excursion
+	     (ignore-errors (backward-up-list))
+	     (funcall fn)))))
 
 (add-hook 'emacs-lisp-mode-hook 'show-paren-mode)
 
@@ -53,15 +52,15 @@
 	(message "Indented buffer.")))))
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers
-                                         try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially
-                                         try-complete-file-name
-                                         try-expand-all-abbrevs
-                                         try-expand-list
-                                         try-expand-line
-                                         try-complete-lisp-symbol-partially
-                                         try-complete-lisp-symbol))
+					 try-expand-dabbrev-all-buffers
+					 try-expand-dabbrev-from-kill
+					 try-complete-file-name-partially
+					 try-complete-file-name
+					 try-expand-all-abbrevs
+					 try-expand-list
+					 try-expand-line
+					 try-complete-lisp-symbol-partially
+					 try-complete-lisp-symbol))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -88,18 +87,18 @@
 
 
 ;; dwin = do what i mean.
-  (defun occur-dwim ()
-    "Call `occur' with a sane default."
-    (interactive)
-    (push (if (region-active-p)
-              (buffer-substring-no-properties
-               (region-beginning)
-               (region-end))
-            (let ((sym (thing-at-point 'symbol)))
-              (when (stringp sym)
-                (regexp-quote sym))))
-          regexp-history)
-    (call-interactively 'occur))
+(defun occur-dwim ()
+  "Call `occur' with a sane default."
+  (interactive)
+  (push (if (region-active-p)
+	    (buffer-substring-no-properties
+	     (region-beginning)
+	     (region-end))
+	  (let ((sym (thing-at-point 'symbol)))
+	    (when (stringp sym)
+	      (regexp-quote sym))))
+	regexp-history)
+  (call-interactively 'occur))
 
 (global-set-key (kbd "M-s o") 'occur-dwim)
 
@@ -114,18 +113,18 @@
 (defun zilongshanren/retrieve-chrome-current-tab-url()
   "Get the URL of the active tab of the first window"
   (interactive)
-      (let ((result (do-applescript
-                     (concat
-                      "set frontmostApplication to path to frontmost application\n"
-                      "tell application \"Google Chrome\"\n"
-                      "	set theUrl to get URL of active tab of first window\n"
-                      "	set theResult to (get theUrl) \n"
-                      "end tell\n"
-                      "activate application (frontmostApplication as text)\n"
-                      "set links to {}\n"
-                      "copy theResult to the end of links\n"
-                      "return links as string\n"))))
-        (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
+  (let ((result (do-applescript
+		 (concat
+		  "set frontmostApplication to path to frontmost application\n"
+		  "tell application \"Google Chrome\"\n"
+		  "	set theUrl to get URL of active tab of first window\n"
+		  "	set theResult to (get theUrl) \n"
+		  "end tell\n"
+		  "activate application (frontmostApplication as text)\n"
+		  "set links to {}\n"
+		  "copy theResult to the end of links\n"
+		  "return links as string\n"))))
+    (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
 
 
 

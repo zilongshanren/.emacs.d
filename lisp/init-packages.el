@@ -1,7 +1,7 @@
 (require 'cl)
 
 (when (>= emacs-major-version 24)
-  (setq package-archives '(("popkit" . "http://elpa.popkit.org/packages/")))
+  (setq package-archives '(("melpa" . "http://elpa.zilongshanren.com/melpa/")))
   )
 
 ;;add whatever packages you want here
@@ -158,11 +158,14 @@
   "1" 'select-window-1
   "2" 'select-window-2
   "3" 'select-window-3
+  "fj" 'dired-jump
   "w/" 'split-window-right
   "w-" 'split-window-below
   ":" 'counsel-M-x
   "wm" 'delete-other-windows
-  "qq" 'save-buffers-kill-terminal)
+  "qq" 'save-buffers-kill-terminal
+  "sj" 'counsel-imenu
+  )
 
 (window-numbering-mode 1)
 
@@ -174,22 +177,22 @@
 
 (evilnc-default-hotkeys)
 
- (dolist (mode '(ag-mode
-                  flycheck-error-list-mode
-		  occur-mode
-                  git-rebase-mode))
-    (add-to-list 'evil-emacs-state-modes mode))
+(dolist (mode '(ag-mode
+		flycheck-error-list-mode
+		occur-mode
+		git-rebase-mode))
+  (add-to-list 'evil-emacs-state-modes mode))
 
 
-  (add-hook 'occur-mode-hook
-            (lambda ()
-              (evil-add-hjkl-bindings occur-mode-map 'emacs
-                (kbd "/")       'evil-search-forward
-                (kbd "n")       'evil-search-next
-                (kbd "N")       'evil-search-previous
-                (kbd "C-d")     'evil-scroll-down
-                (kbd "C-u")     'evil-scroll-up
-                )))
+(add-hook 'occur-mode-hook
+	  (lambda ()
+	    (evil-add-hjkl-bindings occur-mode-map 'emacs
+	      (kbd "/")       'evil-search-forward
+	      (kbd "n")       'evil-search-next
+	      (kbd "N")       'evil-search-previous
+	      (kbd "C-d")     'evil-scroll-down
+	      (kbd "C-u")     'evil-scroll-up
+	      )))
 
 (which-key-mode 1)
 (setq which-key-side-window-location 'right)
