@@ -1,8 +1,5 @@
 (require 'cl)
 
-(when (>= emacs-major-version 24)
-  (setq package-archives '(("melpa" . "http://elpa.zilongshanren.com/melpa/")))
-  )
 
 ;;add whatever packages you want here
 (defvar zilongshanren/packages '(
