@@ -1,49 +1,3 @@
-(require 'cl)
-
-
-;;add whatever packages you want here
-(defvar zilongshanren/packages '(
-				 company
-				 hungry-delete
-				 swiper
-				 counsel
-				 smartparens
-				 js2-mode
-				 nodejs-repl
-				 exec-path-from-shell
-				 popwin
-				 reveal-in-osx-finder
-				 web-mode
-				 js2-refactor
-				 expand-region
-				 iedit
-				 org-pomodoro
-				 helm-ag
-				 flycheck
-				 auto-yasnippet
-				 solarized-theme
-				 evil
-				 evil-leader
-				 window-numbering
-				 evil-surround
-				 evil-nerd-commenter
-				 which-key
-				 )  "Default packages")
-
-(setq package-selected-packages zilongshanren/packages)
-
-(defun zilongshanren/packages-installed-p ()
-  (loop for pkg in zilongshanren/packages
-	when (not (package-installed-p pkg)) do (return nil)
-	finally (return t)))
-
-(unless (zilongshanren/packages-installed-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg zilongshanren/packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
-
 ;; let emacs could find the execuable
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
@@ -138,6 +92,7 @@
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
+;; (require 'evil)
 (evil-mode 1)
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map [escape] 'evil-normal-state)
@@ -162,6 +117,7 @@
   "wm" 'delete-other-windows
   "qq" 'save-buffers-kill-terminal
   "sj" 'counsel-imenu
+  "sp" 'counsel-git-grep
   )
 
 (window-numbering-mode 1)
@@ -195,7 +151,7 @@
 (setq which-key-side-window-location 'right)
 
 
-(load-theme 'solarized-dark t)
+(load-theme 'monokai t)
 
 
 (provide 'init-packages)

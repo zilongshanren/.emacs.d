@@ -14,7 +14,7 @@
  '(org-pomodoro-long-break-length 40)
  '(package-selected-packages
    (quote
-    (package-build shut-up epl git commander f dash s which-key powerline-evil evil-nerd-commenter evil-surround powerline window-numbering evil company monokai-theme hungry-delete swiper counsel smartparens js2-mode nodejs-repl exec-path-from-shell popwin reveal-in-osx-finder web-mode js2-refactor expand-region iedit org-pomodoro helm-ag flycheck auto-yasnippet)))
+    (abc-mode mwe-log-commands monokai-theme 2048-game auto-yasnippet counsel evil-leader evil-nerd-commenter evil-surround exec-path-from-shell expand-region flycheck goto-chg helm-ag helm-core hungry-delete iedit js2-refactor multiple-cursors nodejs-repl org-pomodoro pkg-info popup popwin reveal-in-osx-finder smartparens solarized-theme swiper undo-tree web-mode which-key window-numbering yasnippet pallet company evil package-build shut-up epl git commander f dash s)))
  '(popwin:popup-window-position (quote right))
  '(popwin:popup-window-width 90)
  '(which-key-frame-max-height 60))
