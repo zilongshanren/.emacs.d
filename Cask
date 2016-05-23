@@ -1,8 +1,6 @@
-(source "melpa" "http://elpa.zilongshanren.com/melpa/")
 (source "gnu" "http://elpa.zilongshanren.com/gnu/")
+(source "melpa" "http://elpa.zilongshanren.com/melpa/")
 
-(depends-on "2048-game")
-(depends-on "abc-mode")
 (depends-on "alert")
 (depends-on "async")
 (depends-on "auto-yasnippet")
@@ -47,6 +45,7 @@
 (depends-on "solarized-theme")
 (depends-on "swiper")
 (depends-on "undo-tree")
+(depends-on "use-package")
 (depends-on "web-mode")
 (depends-on "which-key")
 (depends-on "window-numbering")

@@ -9,6 +9,7 @@
 (smartparens-global-mode t)
 
 (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
+(sp-local-pair 'emacs-lisp-mode "`" nil :actions nil)
 (sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
 
 
@@ -122,7 +123,16 @@
 
 (window-numbering-mode 1)
 
-(require 'evil-surround)
+					;(require 'evil-surround)
+;; (use-package evil-surround
+;;   :commands (evil-surround-block)
+;;   :init
+;;   (setq my-var "hello")
+;;   :defer t
+;;   :config
+;;   (setq my-var2 "world"))
+
+
 (global-evil-surround-mode 1)
 
 (define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
