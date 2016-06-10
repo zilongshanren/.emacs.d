@@ -1,5 +1,5 @@
 ;; (package-initialize)
-
+;;nimei
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
@@ -21,5 +21,8 @@
 (require 'init-keybindings)
 
 (setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
+
+(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
 (load-file custom-file)

@@ -1,7 +1,19 @@
 ;; let emacs could find the execuable
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
 
+(use-package exec-path-from-shell
+  :if (and (eq system-type 'darwin) (display-graphic-p))
+  :ensure t
+  :pin melpa-stable
+  :config
+  (progn
+     (when (string-match-p "/zsh$" (getenv "SHELL"))
+      ;; Use a non-interactive login shell.  A login shell, because my
+      ;; environment variables are mostly set in `.zprofile'.
+       (setq exec-path-from-shell-arguments '("-l")))
+
+     (exec-path-from-shell-initialize)
+    )
+  )
 
 (global-hungry-delete-mode)
 
@@ -150,6 +162,11 @@
 
 (which-key-mode 1)
 (setq which-key-side-window-location 'right)
+
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook
+	  (lambda()
+	    (set (make-local-variable 'company-backends)  '((company-anaconda company-dabbrev-code) company-dabbrev))))
 
 
 (load-theme 'monokai t)
