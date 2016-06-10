@@ -123,15 +123,6 @@
 
 (window-numbering-mode 1)
 
-					;(require 'evil-surround)
-;; (use-package evil-surround
-;;   :commands (evil-surround-block)
-;;   :init
-;;   (setq my-var "hello")
-;;   :defer t
-;;   :config
-;;   (setq my-var2 "world"))
-
 
 (global-evil-surround-mode 1)
 

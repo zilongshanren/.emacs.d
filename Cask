@@ -1,5 +1,5 @@
-(source "gnu" "http://elpa.zilongshanren.com/gnu/")
-(source "melpa" "http://elpa.zilongshanren.com/melpa/")
+(source "gnu" "https://elpa.zilongshanren.com/gnu/")
+(source "melpa" "https://elpa.zilongshanren.com/melpa/")
 
 (depends-on "alert")
 (depends-on "async")
