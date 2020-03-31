@@ -11,7 +11,7 @@
 					    ;; signature
 					    ("8zl" "zilongshanren")
 					    ;; Microsoft
-					    ("8ms" "Macrosoft")
+					    ("8ms" "Microsoft")
 					    ))
 
 (setq make-backup-files nil)
