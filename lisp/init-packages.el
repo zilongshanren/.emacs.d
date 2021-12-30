@@ -3,7 +3,6 @@
 (use-package exec-path-from-shell
   :if (and (eq system-type 'darwin) (display-graphic-p))
   :ensure t
-  :pin melpa-stable
   :config
   (progn
      (when (string-match-p "/zsh$" (getenv "SHELL"))
