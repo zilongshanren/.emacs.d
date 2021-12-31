@@ -1,5 +1,17 @@
 ;; (package-initialize)
 
+;; time the loading of the .emacs
+;; keep this on top of your .emacs
+(defvar *emacs-load-start* (current-time))
+
+(defun anarcat/time-to-ms (time)
+  (+ (* (+ (* (car time) (expt 2 16)) (car (cdr time))) 1000000) (car (cdr (cdr time)))))
+  
+(defun anarcat/display-timing ()
+  (message ".emacs loaded in %fms" (/ (- (anarcat/time-to-ms (current-time)) (anarcat/time-to-ms *emacs-load-start*)) 1000000.0)))
+
+(add-hook 'after-init-hook 'anarcat/display-timing t)
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -64,7 +76,11 @@
        (when (not (package-installed-p pkg))
 	 (package-install pkg))))
 	 
-	 
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))	 
 
 (defun open-my-init-file()
   (interactive)
@@ -83,3 +99,5 @@
       "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
 (load-file custom-file)
+
+
