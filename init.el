@@ -13,8 +13,12 @@
 (add-hook 'after-init-hook 'anarcat/display-timing t)
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+;; (add-to-list 'package-archives
+;;              '("melpa" . "https://melpa.org/packages/") t)
+
+(setq package-archives
+      '(("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")
+	("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")))
 			 
 
 (unless package--initialized (package-initialize))
@@ -42,8 +46,11 @@
 		swiper
 		counsel
 		smartparens
+		lispy
+		lispyville
 		;; --- Major Mode ---
 		js2-mode
+		consult
 		;; --- Minor Mode ---
 		nodejs-repl
 		exec-path-from-shell

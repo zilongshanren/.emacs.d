@@ -24,9 +24,46 @@
 (sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
 
 
+(use-package ivy
+  :defer t
+  :config
+  (progn
+    (setq ivy-dynamic-exhibit-delay-ms 300)
 
-(ivy-mode 1)
-(setq ivy-use-virtual-buffers t)
+    (defun ivy-call-and-recenter ()
+      "Call action and recenter window according to the selected candidate."
+      (interactive)
+      (ivy-call)
+      (with-ivy-window
+	(evil-scroll-line-to-center (line-number-at-pos))))
+
+    (ivy-set-actions
+     t
+     '(("f" my-find-file-in-git-repo "find files")
+       ("!" my-open-file-in-external-app "Open file in external app")
+       ("I" ivy-insert-action "insert")
+       ("C" ivy-kill-new-action "copy")
+       ("d" ivy--kill-buffer-action)
+       ("k" ivy--kill-buffer-action "kill")
+       ("r" ivy--rename-buffer-action "rename")
+       ("S" ivy-ff-checksum-action "Checksum")))
+
+
+    (setq ivy-initial-inputs-alist nil)
+    (setq ivy-wrap t)
+    (setq confirm-nonexistent-file-or-buffer t)
+    (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-previous-line)
+    (define-key ivy-switch-buffer-map (kbd "C-d") 'ivy-switch-buffer-kill)
+
+    (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
+    (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
+    (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done-hydra)
+    (define-key ivy-minibuffer-map (kbd "C-c C-e") 'spacemacs//counsel-edit)
+    (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-call-and-recenter)
+    (define-key ivy-minibuffer-map (kbd "<f3>") 'ivy-occur)
+    (define-key ivy-minibuffer-map (kbd "C-c d") 'ivy-immediate-done)
+    (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
+    (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
 
 ;; config js2-mode for js files
@@ -96,7 +133,7 @@
 
 
 
-(require 'org-pomodoro)
+
 
 (add-hook 'js2-mode-hook 'flycheck-mode)
 
@@ -111,13 +148,39 @@
 
 (global-evil-leader-mode)
 
+(defun spacemacs/alternate-buffer (&optional window)
+  "Switch back and forth between current and last buffer in the
+current window.
+If `spacemacs-layouts-restrict-spc-tab' is `t' then this only switches between
+the current layouts buffers."
+  (interactive)
+  (cl-destructuring-bind (buf start pos)
+      (if (bound-and-true-p spacemacs-layouts-restrict-spc-tab)
+          (let ((buffer-list (persp-buffer-list))
+                (my-buffer (window-buffer window)))
+            ;; find buffer of the same persp in window
+            (seq-find (lambda (it) ;; predicate
+                        (and (not (eq (car it) my-buffer))
+                             (member (car it) buffer-list)))
+                      (window-prev-buffers)
+                      ;; default if found none
+                      (list nil nil nil)))
+        (or (cl-find (window-buffer window) (window-prev-buffers)
+                     :key #'car :test-not #'eq)
+            (list (other-buffer) nil nil)))
+    (if (not buf)
+        (message "Last buffer not found.")
+      (set-window-buffer-start-and-point window buf start pos))))
+
 (evil-leader/set-key
+  "SPC" 'counsel-M-x
   "ff" 'find-file
   "fr" 'recentf-open-files
+  "fs" 'save-buffer
   "bb" 'switch-to-buffer
   "bk" 'kill-buffer
   "pf" 'counsel-git
-  "ps" 'helm-do-ag-project-root
+  "ps" 'counsel-rg
   "0" 'select-window-0
   "1" 'select-window-1
   "2" 'select-window-2
@@ -129,8 +192,14 @@
   "wm" 'delete-other-windows
   "qq" 'save-buffers-kill-terminal
   "sj" 'counsel-imenu
-  "sp" 'counsel-git-grep
+  "sp" 'counsel-rg
+  "TAB" 'spacemacs/alternate-buffer
+  "hdf" 'describe-function
+  "hdv" 'describe-variable
+  "hdk" 'describe-key
   )
+
+(add-hook 'emacs-lisp-mode-hook 'lispy-mode)
 
 (window-numbering-mode 1)
 

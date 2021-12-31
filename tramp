@@ -1,0 +1,6 @@
+;; -*- emacs-lisp -*- <21/12/31 16:33:24 c:/Users/lionqu/.emacs.d/tramp>
+;; Tramp connection history.  Don't change this file.
+;; Run `M-x tramp-cleanup-all-connections' instead.
+
+(((tramp-file-name "ssh" nil nil "android" nil nil nil)
+  nil))

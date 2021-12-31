@@ -1,5 +1,7 @@
 (with-eval-after-load 'org
-  (setq org-agenda-files '("~/.emacs.d"))
+  (setq org-agenda-files '("~/.emacs.d")
+	(add-hook 'org-mode-hook 'org-pomodoro)
+	)
 
 (setq org-src-fontify-natively t)
 
@@ -12,6 +14,7 @@
                :empty-lines 1)
 	))
   )
+
 
 
 
