@@ -48,6 +48,7 @@
 		smartparens
 		lispy
 		lispyville
+		magit
 		;; --- Major Mode ---
 		js2-mode
 		consult
@@ -93,6 +94,7 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(ivy-mode 1)
 
 (require 'init-packages)
 (require 'init-ui)
@@ -108,3 +110,20 @@
 (load-file custom-file)
 
 
+(defvar my-mode-line-coding-format
+      '(:eval
+        (let* ((code (symbol-name buffer-file-coding-system))
+               (eol-type (coding-system-eol-type buffer-file-coding-system))
+               (eol (if (eq 0 eol-type) "UNIX"
+                      (if (eq 1 eol-type) "DOS"
+                        (if (eq 2 eol-type) "MAC"
+                          "???")))))
+          (concat code " " eol " "))))
+
+(put 'my-mode-line-coding-format 'risky-local-variable t)
+
+(require 'cl-lib)
+(setq-default mode-line-format (cl-substitute
+                                'my-mode-line-coding-format
+                                'mode-line-mule-info
+                                mode-line-format)) 

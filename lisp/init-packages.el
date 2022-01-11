@@ -197,6 +197,7 @@ the current layouts buffers."
   "hdf" 'describe-function
   "hdv" 'describe-variable
   "hdk" 'describe-key
+  "gs" 'magit-status
   )
 
 (add-hook 'emacs-lisp-mode-hook 'lispy-mode)
