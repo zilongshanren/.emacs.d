@@ -35,7 +35,7 @@
 (setq use-package-always-ensure t)
 		 
 
-(add-to-list 'load-path "~/.emacs.d/lisp/")
+(add-to-list 'load-path (concat user-emacs-directory "lisp")) 
 
 (require 'cl-lib)
 

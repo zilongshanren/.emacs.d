@@ -243,7 +243,7 @@ the current layouts buffers."
 
 (load-theme 'monokai t)
 
-(setq completion-styles '(substring))
+(setq completion-styles '(orderless partial-completion ))
 (require 'consult)
 (require 'vertico)
 (vertico-mode)
