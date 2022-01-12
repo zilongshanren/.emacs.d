@@ -197,6 +197,7 @@ the current layouts buffers."
   "sj" 'counsel-imenu
   "sp" 'consult-ripgrep
   "TAB" 'spacemacs/alternate-buffer
+  "fed" 'open-my-init-file
   "hdf" 'describe-function
   "hdv" 'describe-variable
   "hdk" 'describe-key
