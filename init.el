@@ -70,6 +70,7 @@
 		evil-nerd-commenter
 		which-key
 		js2-refactor
+		lsp-mode
 		;; solarized-theme
 		) "Default packages")
 
