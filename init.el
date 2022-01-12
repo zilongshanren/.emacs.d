@@ -91,7 +91,7 @@
 
 (defun open-my-init-file()
   (interactive)
-  (find-file "~/.emacs.d/init.el"))
+  (find-file (expand-file-name "init.el" user-emacs-directory )))
 
 ;; not compatable with consult
 ;; (ivy-mode 1)
