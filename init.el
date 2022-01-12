@@ -17,6 +17,7 @@
 ;; (add-to-list 'package-archives
 ;;              '("melpa" . "https://melpa.org/packages/") t)
 
+(setq create-lockfiles nil)
 (setq package-archives
       '(("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")
 	("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")))
@@ -71,6 +72,7 @@
 		which-key
 		js2-refactor
 		lsp-mode
+		csharp-mode
 		;; solarized-theme
 		) "Default packages")
 
