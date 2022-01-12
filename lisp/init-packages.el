@@ -1,4 +1,5 @@
-;; let emacs could find the execuable
+;;;;  -*- lexical-binding: t; -*-
+; let emacs could find the execuable
 
 (use-package exec-path-from-shell
   :if (and (eq system-type 'darwin) (display-graphic-p))
@@ -172,15 +173,17 @@ the current layouts buffers."
         (message "Last buffer not found.")
       (set-window-buffer-start-and-point window buf start pos))))
 
+(use-package consult-projectile)
+
 (evil-leader/set-key
   "SPC" 'counsel-M-x
   "ff" 'find-file
-  "fr" 'recentf-open-files
+  "fr" 'consult-recent-file
   "fs" 'save-buffer
   "bb" 'switch-to-buffer
   "bk" 'kill-buffer
   "pf" 'counsel-git
-  "ps" 'counsel-rg
+  "ps" 'consult-ripgrep
   "0" 'select-window-0
   "1" 'select-window-1
   "2" 'select-window-2
@@ -192,13 +195,13 @@ the current layouts buffers."
   "wm" 'delete-other-windows
   "qq" 'save-buffers-kill-terminal
   "sj" 'counsel-imenu
-  "sp" 'counsel-rg
+  "sp" 'consult-ripgrep
   "TAB" 'spacemacs/alternate-buffer
   "hdf" 'describe-function
   "hdv" 'describe-variable
   "hdk" 'describe-key
-  "gs" 'magit-status
-  )
+  "pb" 'consult-buffer
+  "gs" 'magit-status)
 
 (add-hook 'emacs-lisp-mode-hook 'lispy-mode)
 
@@ -240,5 +243,9 @@ the current layouts buffers."
 
 (load-theme 'monokai t)
 
+(setq completion-styles '(substring))
+(require 'consult)
+(require 'vertico)
+(vertico-mode)
 
 (provide 'init-packages)

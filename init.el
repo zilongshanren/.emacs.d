@@ -1,3 +1,4 @@
+;;;;  -*- lexical-binding: t; -*-
 ;; (package-initialize)
 
 ;; time the loading of the .emacs
@@ -61,6 +62,8 @@
 		org-pomodoro
 		yasnippet
 		evil
+		vertico
+		consult-projectile
 		evil-leader
 		window-numbering
 		evil-surround
@@ -94,7 +97,8 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
-(ivy-mode 1)
+;; not compatable with consult
+;; (ivy-mode 1)
 
 (require 'init-packages)
 (require 'init-ui)

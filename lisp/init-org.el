@@ -1,3 +1,4 @@
+;;;;  -*- lexical-binding: t; -*-
 (with-eval-after-load 'org
   (setq org-agenda-files '("~/.emacs.d")
 	(add-hook 'org-mode-hook 'org-pomodoro)
