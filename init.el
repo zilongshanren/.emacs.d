@@ -5,6 +5,10 @@
 ;; keep this on top of your .emacs
 (defvar *emacs-load-start* (current-time))
 
+(setq package-native-compile t)
+
+
+
 (defun anarcat/time-to-ms (time)
   (+ (* (+ (* (car time) (expt 2 16)) (car (cdr time))) 1000000) (car (cdr (cdr time)))))
   
@@ -19,7 +23,7 @@
 
 (setq create-lockfiles nil)
 (setq package-archives
-      '(("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/")
+      '(("gnu-cn"   . "https://elpa.zilongshanren.com/gnu/") 
 	("melpa-cn" . "https://elpa.zilongshanren.com/melpa/")))
 			 
 
@@ -58,6 +62,7 @@
 		nodejs-repl
 		exec-path-from-shell
 		;; --- Themes ---
+		citre
 		monokai-theme
 		popwin
 		org-pomodoro
@@ -73,6 +78,7 @@
 		js2-refactor
 		lsp-mode
 		csharp-mode
+		eglot
 		;; solarized-theme
 		) "Default packages")
 
@@ -130,3 +136,72 @@
                                 'my-mode-line-coding-format
                                 'mode-line-mule-info
                                 mode-line-format)) 
+
+;; (use-package eglot
+;;   :commands (eglot eglot-ensure)
+;;   :hook ((python-mode . eglot-ensure)
+;;          (csharp-mode . eglot-ensure))
+;;   :config
+;;   (progn
+;;     (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
+;;     (define-key eglot-mode-map (kbd "C-c e f") 'eglot-format)
+;;     (define-key eglot-mode-map (kbd "C-c e h") 'eglot-help-at-point)
+;;     (add-to-list 'eglot-server-programs
+;;                  `(csharp-mode . ("c:/Users/lionqu/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp.exe" "-lsp")))))
+;; (require 'nox)
+
+;; (dolist (hook (list
+;;                'js-mode-hook
+;;                'rust-mode-hook
+;;                'python-mode-hook
+;;                'ruby-mode-hook
+;;                'java-mode-hook
+;;                'sh-mode-hook
+;;                'php-mode-hook
+;;                'c-mode-common-hook
+;;                'c-mode-hook
+;;                'csharp-mode-hook
+;;                'c++-mode-hook
+;;                'haskell-mode-hook
+;;                ))
+;;   (add-hook hook '(lambda () (nox-ensure))))
+
+;; (add-to-list 'nox-server-programs
+;;                  `(csharp-mode . ("c:/Users/lionqu/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp.exe" "-lsp")))
+;; (require 'nox)
+
+;; (dolist (hook (list
+;;                'js-mode-hook
+;;                'rust-mode-hook
+;;                'python-mode-hook
+;;                'ruby-mode-hook
+;;                'java-mode-hook
+;;                'sh-mode-hook
+;;                'php-mode-hook
+;;                'c-mode-common-hook
+;;                'c-mode-hook
+;;                'csharp-mode-hook
+;;                'c++-mode-hook
+;;                'haskell-mode-hook
+;;                ))
+;;   (add-hook hook '(lambda () (nox-ensure))))
+
+;; (add-to-list 'nox-server-programs
+;;                  `(csharp-mode . ("c:/Users/lionqu/.emacs.d/.cache/lsp/omnisharp-roslyn/latest/omnisharp-roslyn/OmniSharp.exe" "-lsp")))
+
+(require 'citre)
+(require 'citre-config)
+;; (setq orderless-component-separator "[ &]")
+;; 此处配置省略...
+
+
+;; 此处配置省略...
+
+(setq completion-styles '(orderless partial-completion))
+
+(with-eval-after-load 'company
+  (company-flx-mode +1))
+
+(require 'general)
+(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
+(define-key company-mode-map [remap completion-at-point] #'consult-company)

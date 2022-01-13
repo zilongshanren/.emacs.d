@@ -12,9 +12,10 @@
  '(evil-want-C-u-scroll t)
  '(org-pomodoro-long-break-length 40)
  '(package-selected-packages
-   '(csharp-mode lsp-mode consult-projectile vertico orderless magit consult lispyville lispy abc-mode mwe-log-commands monokai-theme 2048-game auto-yasnippet counsel evil-leader evil-nerd-commenter evil-surround exec-path-from-shell expand-region flycheck goto-chg helm-ag helm-core hungry-delete iedit js2-refactor multiple-cursors nodejs-repl org-pomodoro pkg-info popup popwin reveal-in-osx-finder smartparens solarized-theme swiper undo-tree web-mode which-key window-numbering yasnippet pallet company evil package-build shut-up epl git commander f dash s))
+   '(posframe consult-company general company-flx citre-config citre eglot csharp-mode lsp-mode consult-projectile vertico orderless magit consult lispyville lispy abc-mode mwe-log-commands monokai-theme 2048-game auto-yasnippet counsel evil-leader evil-nerd-commenter evil-surround exec-path-from-shell expand-region flycheck goto-chg helm-ag helm-core hungry-delete iedit js2-refactor multiple-cursors nodejs-repl org-pomodoro pkg-info popup popwin reveal-in-osx-finder smartparens solarized-theme swiper undo-tree web-mode which-key window-numbering yasnippet pallet company evil package-build shut-up epl git commander f dash s))
  '(popwin:popup-window-position 'right)
  '(popwin:popup-window-width 90)
+ '(warning-suppress-types '((comp)))
  '(which-key-frame-max-height 60))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

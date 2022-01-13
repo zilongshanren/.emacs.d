@@ -202,7 +202,9 @@ the current layouts buffers."
   "hdv" 'describe-variable
   "hdk" 'describe-key
   "pb" 'consult-buffer
-  "gs" 'magit-status)
+  "gs" 'magit-status
+  "gg" 'citre-jump
+  "gr" 'citre-peek)
 
 (add-hook 'emacs-lisp-mode-hook 'lispy-mode)
 
@@ -244,7 +246,6 @@ the current layouts buffers."
 
 (load-theme 'monokai t)
 
-(setq completion-styles '(orderless partial-completion ))
 (require 'consult)
 (require 'vertico)
 (vertico-mode)
