@@ -89,12 +89,13 @@
 
 ;; Preferences
 (require 'init-basic)
-
 (require 'init-packages)
+(require 'init-completion)
 
 (require 'init-ui)
 (require 'init-better-defaults)
 (require 'init-org)
+
 (require 'init-keybindings)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

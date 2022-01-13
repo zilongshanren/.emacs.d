@@ -35,7 +35,6 @@
 		       smartparens
 		       lispy
 		       lispyville
-		       magit
 		       ;; --- Major Mode ---
 		       js2-mode
 		       consult
@@ -293,9 +292,6 @@ the current layouts buffers."
 (which-key-mode 1)
 (setq which-key-side-window-location 'right)
 
-(require 'consult)
-(require 'vertico)
-(vertico-mode)
 
 
 (add-hook 'c-mode-hook 'lsp)
@@ -334,6 +330,10 @@ the current layouts buffers."
 ;	)
 
 
+(use-package magit
+  :config
+  (evil-add-hjkl-bindings magit-status-mode-map
+    'emacs))
 
 (use-package json-mode
   :init

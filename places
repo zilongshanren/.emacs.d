@@ -1,12 +1,15 @@
 ;;; -*- coding: utf-8 -*-
-(("/Users/lionqu/.emacs.default/lisp/init-basic.el" . 12466)
+(("/Users/lionqu/.emacs.default/init.el" . 3296)
+ ("/Users/lionqu/.emacs.default/lisp/init-completion.el" . 2317)
+ ("/Users/lionqu/.emacs.d/init.el" . 435)
+ ("/Users/lionqu/.emacs.default/lisp/init-packages.el" . 9369)
+ ("/Users/lionqu/.emacs.default/lisp/init-funcs.el" . 1078)
+ ("/Users/lionqu/.emacs.default/lisp/"
+  (dired-filename . "/Users/lionqu/.emacs.default/lisp/init-completion.el"))
+ ("/Users/lionqu/.emacs.default/lisp/init-basic.el" . 12466)
  ("/usr/local/Cellar/emacs-mac/emacs-27.2-mac-8.3/share/emacs/27.2/lisp/emacs-lisp/package.el.gz" . 79623)
  ("/Users/lionqu/.emacs.default/lisp/init-package.el" . 1976)
  ("/Users/lionqu/.emacs.default/lisp/init-custom.el" . 62)
  ("/Users/lionqu/.emacs.default/lisp/init-keybindings.el" . 2377)
- ("/Users/lionqu/.emacs.default/lisp/init-packages.el" . 8569)
- ("/Users/lionqu/.emacs.default/lisp/"
-  (dired-filename . "/Users/lionqu/.emacs.default/lisp/init-funcs.el"))
- ("/Users/lionqu/.emacs.default/init.el" . 3212)
  ("/Users/lionqu/.emacs.default/lisp/init-ui.el" . 1151)
  ("/Users/lionqu/.emacs.default/lisp/init-const.el" . 3))

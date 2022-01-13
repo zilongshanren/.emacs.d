@@ -36,6 +36,13 @@
 (require 'init-const)
 (require 'init-custom)
 
+(defmacro pushnew! (place &rest values)
+  "Push VALUES sequentially into PLACE, if they aren't already present.
+This is a variadic `cl-pushnew'."
+  (let ((var (make-symbol "result")))
+    `(dolist (,var (list ,@values) (with-no-warnings ,place))
+       (cl-pushnew ,var ,place :test #'equal))))
+
 
 (unless (fboundp 'caadr)
   (defalias 'caadr #'cl-caadr))
@@ -390,6 +397,8 @@ This issue has been addressed in 28."
 		  "copy theResult to the end of links\n"
 		  "return links as string\n"))))
     (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
+
+
 
 (provide 'init-funcs)
 
