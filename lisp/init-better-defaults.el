@@ -15,12 +15,8 @@
 					    ("8ms" "Macrosoft")
 					    ))
 
-(setq make-backup-files nil)
 
-(setq auto-save-default nil)
-
-
-(recentf-mode 1)			
+(recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
 (defadvice show-paren-function (around fix-show-paren-function activate)

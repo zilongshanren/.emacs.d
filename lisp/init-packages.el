@@ -1,6 +1,67 @@
 ;;;;  -*- lexical-binding: t; -*-
 ; let emacs could find the execuable
 
+(require 'cl-lib)
+
+ (defvar my/packages '(
+		       ;; --- Auto-completion ---
+		       company
+		       ;; --- Better Editor ---
+		       hungry-delete
+		       swiper
+		       counsel
+		       smartparens
+		       lispy
+		       lispyville
+		       magit
+		       ;; --- Major Mode ---
+		       js2-mode
+		       consult
+		       ;; --- Minor Mode ---
+		       nodejs-repl
+		       exec-path-from-shell
+		       ;; --- Themes ---
+		       citre
+		       monokai-theme
+		       popwin
+		       org-pomodoro
+		       yasnippet
+		       evil
+		       vertico
+		       consult-projectile
+		       evil-leader
+		       window-numbering
+		       evil-surround
+		       evil-nerd-commenter
+		       which-key
+		       js2-refactor
+		       lsp-mode
+		       csharp-mode
+			   company-flx
+		       json-mode
+		       flycheck
+
+		       ;; solarized-theme
+		       ) "Default packages")
+
+ (setq package-selected-packages my/packages)
+
+     (dolist (pkg my/packages)
+       (when (not (package-installed-p pkg))
+	 (package-install pkg)))
+
+(use-package benchmark-init
+  :ensure t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+(defun open-my-init-file()
+  (interactive)
+  (find-file (expand-file-name "init.el" user-emacs-directory )))
+
+;; not compatable with consult
+;; (ivy-mode 1)
 (use-package exec-path-from-shell
   :if (and (eq system-type 'darwin) (display-graphic-p))
   :ensure t
@@ -147,7 +208,7 @@
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map [escape] 'evil-normal-state)
 
-(global-evil-leader-mode)
+(global-evil-leader-mode t)
 
 (defun spacemacs/alternate-buffer (&optional window)
   "Switch back and forth between current and last buffer in the
@@ -173,7 +234,7 @@ the current layouts buffers."
         (message "Last buffer not found.")
       (set-window-buffer-start-and-point window buf start pos))))
 
-(use-package consult-projectile)
+
 
 (evil-leader/set-key
   "SPC" 'counsel-M-x
@@ -244,13 +305,13 @@ the current layouts buffers."
 	    (set (make-local-variable 'company-backends)  '((company-anaconda company-dabbrev-code) company-dabbrev))))
 
 
-(load-theme 'monokai t)
+;; (load-theme 'monokai t)
 
 (require 'consult)
 (require 'vertico)
 (vertico-mode)
 
-(which-key-mode)
+
 (add-hook 'c-mode-hook 'lsp)
 (add-hook 'c++-mode-hook 'lsp)
 ;; (add-hook 'csharp-mode-hook 'lsp)
@@ -265,5 +326,49 @@ the current layouts buffers."
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (yas-global-mode))
+
+(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
+(defvar my-mode-line-coding-format
+      '(:eval
+        (let* ((code (symbol-name buffer-file-coding-system))
+               (eol-type (coding-system-eol-type buffer-file-coding-system))
+               (eol (if (eq 0 eol-type) "UNIX"
+                      (if (eq 1 eol-type) "DOS"
+                        (if (eq 2 eol-type) "MAC"
+                          "???")))))
+          (concat code " " eol " "))))
+
+(put 'my-mode-line-coding-format 'risky-local-variable t)
+
+
+
+(require 'citre)
+(require 'citre-config)
+;; (setq orderless-component-separator "[ &]")
+;; 此处配置省略...
+
+
+;; 此处配置省略...
+
+(setq completion-styles '(orderless partial-completion))
+
+(with-eval-after-load 'company
+  (company-flx-mode +1))
+
+;(use-package general
+;	:init
+;	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
+;	)
+
+
+
+
+(use-package json-mode
+  :init
+  (add-to-list 'auto-mode-alist '("Puffer" . json-mode))
+  :hook (json-mode . flycheck-mode)
+  :config)
 
 (provide 'init-packages)
