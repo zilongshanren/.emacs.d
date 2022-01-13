@@ -1,10 +1,45 @@
-;;;;  -*- lexical-binding: t; -*-
+;;; init.el -*- lexical-binding: t no-byte-compile: t -*-
+
+;; Copyright (C) 2021-2022 zilongshanren
+
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/emacs.d
+
+
+;; This file is not part of GNU Emacs.
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;;
+
+(setq evil-want-C-u-scroll t)
+
+(use-package evil
+  :init
+  (evil-mode)
+  (setcdr evil-insert-state-map nil)
+(define-key evil-insert-state-map [escape] 'evil-normal-state)
+
+  )
+
+(use-package evil-leader
+  :init
+(evil-leader/set-leader "<SPC>")
+  (global-evil-leader-mode t))
 (global-set-key "\C-s" 'consult-line)
-;; (global-set-key (kbd "C-c C-r") 'ivy-resume)
-;; (global-set-key (kbd "M-x") 'counsel-M-x)
-;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;; (global-set-key (kbd "C-h f") 'counsel-describe-function)
-;; (global-set-key (kbd "C-h v") 'counsel-describe-variable)
+
 
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
@@ -15,7 +50,6 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 
-;;(global-set-key (kbd "C-c p f") 'counsel-git)
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 
@@ -34,7 +68,6 @@
 
 (js2r-add-keybindings-with-prefix "C-c C-m")
 
-;; (global-set-key (kbd "M-s i") 'counsel-imenu)
 
 (global-set-key (kbd "M-s e") 'iedit-mode)
 
@@ -46,8 +79,41 @@
   (define-key company-active-map (kbd "C-j") #'company-select-next)
   (define-key company-active-map (kbd "C-k") #'company-select-previous))
 
-;;(global-set-key (kbd "C-c p s") 'helm-do-ag-project-root)
 (global-set-key (kbd "C-w") 'backward-kill-word)
 
+
+
+
+
+(evil-leader/set-key
+  "SPC" 'counsel-M-x
+  "ff" 'find-file
+  "fr" 'consult-recent-file
+  "fs" 'save-buffer
+  "bb" 'switch-to-buffer
+  "bk" 'kill-buffer
+  "pf" 'counsel-git
+  "ps" 'consult-ripgrep
+  "0" 'select-window-0
+  "1" 'select-window-1
+  "2" 'select-window-2
+  "3" 'select-window-3
+  "fj" 'dired-jump
+  "w/" 'split-window-right
+  "w-" 'split-window-below
+  ":" 'counsel-M-x
+  "wm" 'delete-other-windows
+  "qq" 'save-buffers-kill-terminal
+  "sj" 'counsel-imenu
+  "sp" 'consult-ripgrep
+  "TAB" 'spacemacs/alternate-buffer
+  "fed" 'open-my-init-file
+  "hdf" 'describe-function
+  "hdv" 'describe-variable
+  "hdk" 'describe-key
+  "pb" 'consult-buffer
+  "gs" 'magit-status
+  "gg" 'citre-jump
+  "gr" 'citre-peek)
 
 (provide 'init-keybindings)

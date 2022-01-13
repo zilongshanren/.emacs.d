@@ -1,15 +1,16 @@
-;; init-funcs.el --- Define functions.	-*- lexical-binding: t -*-
+;;; init-funcs.el -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Copyright (C) 2018-2021 Vincent Zhang
+;; Copyright (C) 2021-2022 zilongshanren
 
-;; Author: Vincent Zhang <seagle0128@gmail.com>
-;; URL: https://github.com/seagle0128/.emacs.d
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/emacs.d
+
 
 ;; This file is not part of GNU Emacs.
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
-;; published by the Free Software Foundation; either version 2, or
+;; published by the Free Software Foundation; either version 3, or
 ;; (at your option) any later version.
 ;;
 ;; This program is distributed in the hope that it will be useful,
@@ -35,26 +36,10 @@
 (require 'init-const)
 (require 'init-custom)
 
-;; Suppress warnings
-(defvar circadian-themes)
-(defvar socks-noproxy)
-(defvar socks-server)
-
-(declare-function async-inject-variables 'async)
-(declare-function chart-bar-quickie 'chart)
-(declare-function flycheck-buffer 'flycheck)
-(declare-function flymake-start 'flymake)
-(declare-function upgrade-packages 'init-package)
 
 (unless (fboundp 'caadr)
   (defalias 'caadr #'cl-caadr))
 
-
-
-;; Font
-(defun font-installed-p (font-name)
-  "Check if font with FONT-NAME is available."
-  (find-font (font-spec :name font-name)))
 
 ;; Dos2Unix/Unix2Dos
 (defun dos2unix ()
@@ -246,20 +231,6 @@ Save to `custom-file' if NO-SAVE is nil."
       (write-region nil nil custom-file)
       (message "Saved %s (%s) to %s" variable value custom-file))))
 
-(define-minor-mode centaur-read-mode
-  "Minor Mode for better reading experience."
-  :init-value nil
-  :group centaur
-  (if centaur-read-mode
-      (progn
-        (and (fboundp 'olivetti-mode) (olivetti-mode 1))
-        (and (fboundp 'mixed-pitch-mode) (mixed-pitch-mode 1))
-        (text-scale-set +2))
-    (progn
-      (and (fboundp 'olivetti-mode) (olivetti-mode -1))
-      (and (fboundp 'mixed-pitch-mode) (mixed-pitch-mode -1))
-      (text-scale-set 0))))
-(global-set-key (kbd "M-<f7>") #'centaur-read-mode)
 
 ;; Pakcage repository (ELPA)
 (defun set-package-archives (archives &optional refresh async no-save)
@@ -337,134 +308,8 @@ This issue has been addressed in 28."
        (bound-and-true-p ns-use-native-fullscreen)
        (setq ns-use-native-fullscreen nil)))
 
-
 
-;; Update
-(defun update-config ()
-  "Update Centaur Emacs configurations to the latest version."
-  (interactive)
-  (let ((temp-dir (expand-file-name user-emacs-directory)))
-    (if (file-exists-p temp-dir)
-        (progn
-          (message "Updating configurations...")
-          (cd temp-dir)
-          (shell-command "git pull")
-          (message "Updating configurations...done"))
-      (message "\"%s\" doesn't exist" temp-dir))))
-(defalias 'centaur-update-config #'update-config)
 
-(defvar centaur--updating-packages nil)
-(defun update-packages (&optional force sync)
-  "Refresh package contents and update all packages.
-
-If FORCE is non-nil, the updating process will be restarted by force.
-If SYNC is non-nil, the updating process is synchronous."
-  (interactive "P")
-
-  (if (process-live-p centaur--updating-packages)
-      (when force
-        (kill-process centaur--updating-packages)
-        (setq centaur--updating-packages nil))
-    (setq centaur--updating-packages nil))
-
-  (when centaur--updating-packages
-    (user-error "Still updating packages..."))
-
-  (message "Updating packages...")
-  (if (and (not sync)
-           (require 'async nil t))
-      (setq centaur--updating-packages
-            (async-start
-             `(lambda ()
-                ,(async-inject-variables "\\`\\(load-path\\)\\'")
-                (require 'init-funcs)
-                (require 'init-package)
-                (upgrade-packages)
-                (with-current-buffer auto-package-update-buffer-name
-                  (buffer-string)))
-             (lambda (result)
-               (setq centaur--updating-packages nil)
-               (message "%s" result)
-               (message "Updating packages...done"))))
-    (upgrade-packages)
-    (message "Updating packages...done")))
-(defalias 'centaur-update-packages #'update-packages)
-
-(defvar centaur--updating nil)
-(defun update-config-and-packages(&optional force sync)
-  "Update confgiurations and packages.
-
-If FORCE is non-nil, the updating process will be restarted by force.
-If SYNC is non-nil, the updating process is synchronous."
-  (interactive "P")
-
-  (if (process-live-p centaur--updating)
-      (when force
-        (kill-process centaur--updating)
-        (setq centaur--updating nil))
-    (setq centaur--updating nil))
-
-  (when centaur--updating
-    (user-error "Centaur Emacs is still updating..."))
-
-  (message "This will update Centaur Emacs to the latest")
-  (if (and (not sync)
-           (require 'async nil t))
-      (setq centaur--updating
-            (async-start
-             `(lambda ()
-                ,(async-inject-variables "\\`\\(load-path\\)\\'")
-                (require 'init-funcs)
-                (require 'init-package)
-                (update-config)
-                (update-packages nil t)
-                (with-current-buffer auto-package-update-buffer-name
-                  (buffer-string)))
-             (lambda (result)
-               (setq centaur--updating nil)
-               (message "%s" result)
-               (message "Done. Restart to complete process"))))
-    (update-config)
-    (update-packages nil t)
-    (message "Done. Restart to complete process")))
-(defalias 'centaur-update #'update-config-and-packages)
-
-(defun update-all()
-  "Update dotfiles, org files, Emacs confgiurations and packages to the latest versions."
-  (interactive)
-  (update-org)
-  (update-dotfiles)
-  (update-config-and-packages))
-(defalias 'centaur-update-all #'update-all)
-
-(defun update-dotfiles ()
-  "Update the dotfiles to the latest version."
-  (interactive)
-  (let ((dir (or (getenv "DOTFILES")
-                 (expand-file-name "~/.dotfiles/"))))
-    (if (file-exists-p dir)
-        (progn
-          (message "Updating dotfiles...")
-          (cd dir)
-          (shell-command "git pull")
-          (message "Updating dotfiles...done"))
-      (message "\"%s\" doesn't exist" dir))))
-(defalias 'centaur-update-dotfiles #'update-dotfiles)
-
-(defun update-org ()
-  "Update Org files to the latest version."
-  (interactive)
-  (let ((dir (expand-file-name "~/org/")))
-    (if (file-exists-p dir)
-        (progn
-          (message "Updating org files...")
-          (cd dir)
-          (shell-command "git pull")
-          (message "Updating org files...done"))
-      (message "\"%s\" doesn't exist" dir))))
-(defalias 'centaur-update-org #'update-org)
-
-
 ;; Fonts
 (defun centaur-install-fonts ()
   "Install necessary fonts."
@@ -524,170 +369,27 @@ If SYNC is non-nil, the updating process is synchronous."
 
 
 
-;; UI
-(defvar after-load-theme-hook nil
-  "Hook run after a color theme is loaded using `load-theme'.")
-(defun run-after-load-theme-hook (&rest _)
-  "Run `after-load-theme-hook'."
-  (run-hooks 'after-load-theme-hook))
-(advice-add #'load-theme :after #'run-after-load-theme-hook)
 
-(defun childframe-workable-p ()
-  "Test whether childframe is workable."
-  (and emacs/>=26p
-       (eq centaur-completion-style 'childframe)
-       (not (or noninteractive
-                emacs-basic-display
-                (not (display-graphic-p))))))
-
-(defun centaur--theme-name (theme)
-  "Return internal THEME name."
-  (or (alist-get theme centaur-theme-alist) theme 'doom-one))
-
-(defun centaur-compatible-theme-p (theme)
-  "Check if the THEME is compatible. THEME is a symbol."
-  (or (memq theme '(auto random system))
-      (string-prefix-p "doom" (symbol-name (centaur--theme-name theme)))))
-
-(defun centaur-dark-theme-p ()
-  "Check if the current theme is a dark theme."
-  (eq (frame-parameter nil 'background-mode) 'dark))
-
-(defun centaur-theme-enable-p (theme)
-  "The THEME is enabled or not."
-  (and theme
-       (not (memq centaur-theme '(auto random system)))
-       (memq (centaur--theme-name theme) custom-enabled-themes)))
-
-(defun centaur--load-theme (theme)
-  "Disable others and enable new one."
-  (when theme
-    (mapc #'disable-theme custom-enabled-themes)
-    (load-theme theme t)
-    (message "Loaded theme `%s'" theme)))
-
-(defun centaur--load-system-theme (appearance)
-  "Load theme, taking current system APPEARANCE into consideration."
-  (mapc #'disable-theme custom-enabled-themes)
-  (centaur--load-theme (centaur--theme-name
-                        (pcase appearance
-                          ('light (cdr (assoc 'light centaur-system-themes)))
-                          ('dark (cdr (assoc 'dark centaur-system-themes)))
-                          (_ centaur-theme)))))
-
-(defun centaur-load-random-theme ()
-  "Load the random theme."
+(defun zilongshanren/insert-chrome-current-tab-url()
+  "Get the URL of the active tab of the first window"
   (interactive)
-  (let* ((themes (mapcar #'cdr centaur-theme-alist))
-         (theme (nth (random (length themes)) themes)))
-    (if theme
-        (centaur--load-theme theme)
-      (user-error "Failed to load `random' theme"))))
+  (insert (zilongshanren/retrieve-chrome-current-tab-url)))
 
-(defun centaur-load-theme (theme &optional no-save)
-  "Load color THEME. Save to `custom-file' if NO-SAVE is nil."
-  (interactive
-   (list (intern (completing-read
-                  "Load theme: "
-                  `(auto
-                    random
-                    ,(if (bound-and-true-p ns-system-appearance) 'system "")
-                    ,@(mapcar #'car centaur-theme-alist))))))
-  ;; Set option
-  (centaur-set-variable 'centaur-theme theme no-save)
-
-  ;; Disable system theme
-  (remove-hook 'ns-system-appearance-change-functions #'centaur--load-system-theme)
-
-  (pcase centaur-theme
-    ('auto
-     ;; Time-switching themes
-     (use-package circadian
-       :functions circadian-setup
-       :custom (circadian-themes centaur-auto-themes)
-       :init (circadian-setup)))
-    ('system
-     ;; System-appearance themes
-     (if (bound-and-true-p ns-system-appearance)
-         (progn
-           (centaur--load-system-theme ns-system-appearance)
-           (add-hook 'ns-system-appearance-change-functions #'centaur--load-system-theme))
-       (progn
-         (message "The `system' theme is unavailable on this platform. Using `default' theme...")
-         (centaur--load-theme (centaur--theme-name 'default)))))
-    ('random (centaur-load-random-theme))
-    (_ (centaur--load-theme (centaur--theme-name theme)))))
-(global-set-key (kbd "C-c T") #'centaur-load-theme)
-
-
-
-;; Network Proxy
-(defun proxy-http-show ()
-  "Show HTTP/HTTPS proxy."
+(defun zilongshanren/retrieve-chrome-current-tab-url()
+  "Get the URL of the active tab of the first window"
   (interactive)
-  (if url-proxy-services
-      (message "Current HTTP proxy is `%s'" centaur-proxy)
-    (message "No HTTP proxy")))
-
-(defun proxy-http-enable ()
-  "Enable HTTP/HTTPS proxy."
-  (interactive)
-  (setq url-proxy-services
-        `(("http" . ,centaur-proxy)
-          ("https" . ,centaur-proxy)
-          ("no_proxy" . "^\\(localhost\\|192.168.*\\|10.*\\)")))
-  (proxy-http-show))
-
-(defun proxy-http-disable ()
-  "Disable HTTP/HTTPS proxy."
-  (interactive)
-  (setq url-proxy-services nil)
-  (proxy-http-show))
-
-(defun proxy-http-toggle ()
-  "Toggle HTTP/HTTPS proxy."
-  (interactive)
-  (if (bound-and-true-p url-proxy-services)
-      (proxy-http-disable)
-    (proxy-http-enable)))
-
-(defun proxy-socks-show ()
-  "Show SOCKS proxy."
-  (interactive)
-  (when (fboundp 'cadddr)                ; defined 25.2+
-    (if (bound-and-true-p socks-noproxy)
-        (message "Current SOCKS%d proxy is %s:%s"
-                 (cadddr socks-server) (cadr socks-server) (caddr socks-server))
-      (message "No SOCKS proxy"))))
-
-(defun proxy-socks-enable ()
-  "Enable SOCKS proxy."
-  (interactive)
-  (require 'socks)
-  (setq url-gateway-method 'socks
-        socks-noproxy '("localhost"))
-  (let* ((proxy (split-string centaur-socks-proxy ":"))
-         (host (car proxy))
-         (port (cadr  proxy)))
-    (setq socks-server `("Default server" ,host ,port 5)))
-  (setenv "all_proxy" (concat "socks5://" centaur-socks-proxy))
-  (proxy-socks-show))
-
-(defun proxy-socks-disable ()
-  "Disable SOCKS proxy."
-  (interactive)
-  (setq url-gateway-method 'native
-        socks-noproxy nil
-        socks-server nil)
-  (setenv "all_proxy" "")
-  (proxy-socks-show))
-
-(defun proxy-socks-toggle ()
-  "Toggle SOCKS proxy."
-  (interactive)
-  (if (bound-and-true-p socks-noproxy)
-      (proxy-socks-disable)
-    (proxy-socks-enable)))
+  (let ((result (do-applescript
+		 (concat
+		  "set frontmostApplication to path to frontmost application\n"
+		  "tell application \"Google Chrome\"\n"
+		  "	set theUrl to get URL of active tab of first window\n"
+		  "	set theResult to (get theUrl) \n"
+		  "end tell\n"
+		  "activate application (frontmostApplication as text)\n"
+		  "set links to {}\n"
+		  "copy theResult to the end of links\n"
+		  "return links as string\n"))))
+    (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
 
 (provide 'init-funcs)
 

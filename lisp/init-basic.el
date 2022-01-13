@@ -1,15 +1,16 @@
-;; init-basic.el --- Better default configurations.	-*- lexical-binding: t -*-
+;;; init.el -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Copyright (C) 2006-2021 Vincent Zhang
+;; Copyright (C) 2021-2022 zilongshanren
 
-;; Author: Vincent Zhang <seagle0128@gmail.com>
-;; URL: https://github.com/seagle0128/.emacs.d
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/emacs.d
+
 
 ;; This file is not part of GNU Emacs.
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
-;; published by the Free Software Foundation; either version 2, or
+;; published by the Free Software Foundation; either version 3, or
 ;; (at your option) any later version.
 ;;
 ;; This program is distributed in the hope that it will be useful,
@@ -25,7 +26,7 @@
 
 ;;; Commentary:
 ;;
-;; Better defaults.
+;; todo
 ;;
 
 ;;; Code:
@@ -304,6 +305,14 @@ Also, delete any process that is exited or signaled."
              ("S-s-<return>" . toggle-frame-fullscreen)
              ("M-S-<return>" . toggle-frame-fullscreen)))
 
+(require 'dired-x)
+(abbrev-mode t)
+(define-abbrev-table 'global-abbrev-table '(
+					    ;; signature
+					    ("8zl" "zilongshanren")
+					    ;; Microsoft
+					    ("8ms" "Macrosoft")
+					    ))
 (provide 'init-basic)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

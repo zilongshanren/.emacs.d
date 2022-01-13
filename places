@@ -1,11 +1,12 @@
-;;; -*- coding: utf-8; mode: lisp-data -*-
-(("c:/Users/lionqu/.emacs.d/init.el" . 1188)
- ("c:/Users/lionqu/.emacs.d/lisp/init-keybindings.el" . 690)
- ("c:/Users/lionqu/.emacs.d/lisp/init-better-defaults.el" . 2633)
- ("c:/Users/lionqu/.emacs.d/lisp/init-ui.el" . 68)
- ("c:/Users/lionqu/.emacs.d/lisp/init-packages.el" . 10818)
- ("c:/Users/lionqu/.emacs.d/lisp/init-custom.el" . 1311)
- ("c:/Users/lionqu/.emacs.d/lisp/init-const.el" . 1693)
- ("c:/Users/lionqu/.emacs.d/lisp/init-package.el" . 1141)
- ("c:/Users/lionqu/.emacs.d/lisp/init-funcs.el" . 23788)
- ("f:/workspace/Configuration/Mobile/Live/全版本_3.0/Puffer" . 655))
+;;; -*- coding: utf-8 -*-
+(("/Users/lionqu/.emacs.default/lisp/init-basic.el" . 12466)
+ ("/usr/local/Cellar/emacs-mac/emacs-27.2-mac-8.3/share/emacs/27.2/lisp/emacs-lisp/package.el.gz" . 79623)
+ ("/Users/lionqu/.emacs.default/lisp/init-package.el" . 1976)
+ ("/Users/lionqu/.emacs.default/lisp/init-custom.el" . 62)
+ ("/Users/lionqu/.emacs.default/lisp/init-keybindings.el" . 2377)
+ ("/Users/lionqu/.emacs.default/lisp/init-packages.el" . 8569)
+ ("/Users/lionqu/.emacs.default/lisp/"
+  (dired-filename . "/Users/lionqu/.emacs.default/lisp/init-funcs.el"))
+ ("/Users/lionqu/.emacs.default/init.el" . 3212)
+ ("/Users/lionqu/.emacs.default/lisp/init-ui.el" . 1151)
+ ("/Users/lionqu/.emacs.default/lisp/init-const.el" . 3))

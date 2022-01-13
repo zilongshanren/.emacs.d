@@ -1,15 +1,16 @@
-;; init-custom.el --- Define customizations.	-*- lexical-binding: t -*-
+;;; init-ui.el -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Copyright (C) 2006-2021 Vincent Zhang
+;; Copyright (C) 2021-2022 zilongshanren
 
-;; Author: Vincent Zhang <seagle0128@gmail.com>
-;; URL: https://github.com/seagle0128/.emacs.d
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/emacs.d
+
 
 ;; This file is not part of GNU Emacs.
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
-;; published by the Free Software Foundation; either version 2, or
+;; published by the Free Software Foundation; either version 3, or
 ;; (at your option) any later version.
 ;;
 ;; This program is distributed in the hope that it will be useful,

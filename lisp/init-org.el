@@ -1,22 +1,28 @@
-;;;;  -*- lexical-binding: t; -*-
-(with-eval-after-load 'org
-  (setq org-agenda-files '("~/.emacs.d")
-	(add-hook 'org-mode-hook 'org-pomodoro)
-	)
+;;; init-org.el -*- lexical-binding: t no-byte-compile: t -*-
 
-(setq org-src-fontify-natively t)
+;; Copyright (C) 2021-2022 zilongshanren
 
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/.emacs.d/gtd.org" "工作安排")
-	 "* TODO [#B] %?\n  %i\n"
-	 :empty-lines 1)
-	("c" "Chrome" entry (file+headline "~/.emacs.d/gtd.org" "Quick notes")
-               "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
-               :empty-lines 1)
-	))
-  )
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/emacs.d
 
 
+;; This file is not part of GNU Emacs.
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;;
 
 
 (provide 'init-org)

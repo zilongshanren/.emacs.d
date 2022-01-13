@@ -1,6 +1,28 @@
-;;;;  -*- lexical-binding: t; -*-
-; let emacs could find the execuable
+;;; init-packages.el -*- lexical-binding: t no-byte-compile: t -*-
 
+;; Copyright (C) 2021-2022 zilongshanren
+
+;; Author: zilongshanren <guanghui8827@gmail.com>
+;; URL: https://github.com/zilongshanren/emacs.d
+
+
+;; This file is not part of GNU Emacs.
+;;
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program; see the file COPYING.  If not, write to
+;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
+;; Floor, Boston, MA 02110-1301, USA.
+;;
 (require 'cl-lib)
 
  (defvar my/packages '(
@@ -203,7 +225,8 @@
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
-;; (require 'evil)
+(setq evil-want-C-u-scroll t)
+
 (evil-mode 1)
 (setcdr evil-insert-state-map nil)
 (define-key evil-insert-state-map [escape] 'evil-normal-state)
@@ -236,38 +259,9 @@ the current layouts buffers."
 
 
 
-(evil-leader/set-key
-  "SPC" 'counsel-M-x
-  "ff" 'find-file
-  "fr" 'consult-recent-file
-  "fs" 'save-buffer
-  "bb" 'switch-to-buffer
-  "bk" 'kill-buffer
-  "pf" 'counsel-git
-  "ps" 'consult-ripgrep
-  "0" 'select-window-0
-  "1" 'select-window-1
-  "2" 'select-window-2
-  "3" 'select-window-3
-  "fj" 'dired-jump
-  "w/" 'split-window-right
-  "w-" 'split-window-below
-  ":" 'counsel-M-x
-  "wm" 'delete-other-windows
-  "qq" 'save-buffers-kill-terminal
-  "sj" 'counsel-imenu
-  "sp" 'consult-ripgrep
-  "TAB" 'spacemacs/alternate-buffer
-  "fed" 'open-my-init-file
-  "hdf" 'describe-function
-  "hdv" 'describe-variable
-  "hdk" 'describe-key
-  "pb" 'consult-buffer
-  "gs" 'magit-status
-  "gg" 'citre-jump
-  "gr" 'citre-peek)
+(use-package lispy
+  :hook (emacs-lisp-mode . lispy-mode))
 
-(add-hook 'emacs-lisp-mode-hook 'lispy-mode)
 
 (window-numbering-mode 1)
 
@@ -299,14 +293,6 @@ the current layouts buffers."
 (which-key-mode 1)
 (setq which-key-side-window-location 'right)
 
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook
-	  (lambda()
-	    (set (make-local-variable 'company-backends)  '((company-anaconda company-dabbrev-code) company-dabbrev))))
-
-
-;; (load-theme 'monokai t)
-
 (require 'consult)
 (require 'vertico)
 (vertico-mode)
@@ -327,26 +313,11 @@ the current layouts buffers."
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (yas-global-mode))
 
-(setq tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-
-(defvar my-mode-line-coding-format
-      '(:eval
-        (let* ((code (symbol-name buffer-file-coding-system))
-               (eol-type (coding-system-eol-type buffer-file-coding-system))
-               (eol (if (eq 0 eol-type) "UNIX"
-                      (if (eq 1 eol-type) "DOS"
-                        (if (eq 2 eol-type) "MAC"
-                          "???")))))
-          (concat code " " eol " "))))
-
-(put 'my-mode-line-coding-format 'risky-local-variable t)
 
 
 
 (require 'citre)
 (require 'citre-config)
-;; (setq orderless-component-separator "[ &]")
 ;; 此处配置省略...
 
 
@@ -361,7 +332,6 @@ the current layouts buffers."
 ;	:init
 ;	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
 ;	)
-
 
 
 

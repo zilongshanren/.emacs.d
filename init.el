@@ -20,6 +20,8 @@
 ;;
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program; see the file COPYING.  If not, write to
+;; This buffer is for text that is not saved, and for Lisp evaluation.
+;; To create a file, visit it with \ f f and enter text in its buffer.
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
@@ -84,8 +86,6 @@
 ;; Packages
 ;; Without this comment Emacs25 adds (package-initialize) here
 (require 'init-package)
-
-
 
 ;; Preferences
 (require 'init-basic)
