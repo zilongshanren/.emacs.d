@@ -27,7 +27,6 @@
 
  (defvar my/packages '(
 		       ;; --- Auto-completion ---
-		       company
 		       ;; --- Better Editor ---
 		       hungry-delete
 		       smartparens
@@ -35,28 +34,18 @@
 		       lispyville
 		       ;; --- Major Mode ---
 		       js2-mode
-		       consult
 		       ;; --- Minor Mode ---
 		       nodejs-repl
 		       exec-path-from-shell
 		       ;; --- Themes ---
 		       citre
-		       monokai-theme
-		       popwin
 		       org-pomodoro
 		       yasnippet
-		       evil
-		       vertico
+
 		       consult-projectile
-		       evil-leader
-		       window-numbering
-		       evil-surround
-		       evil-nerd-commenter
-		       which-key
 		       js2-refactor
 		       lsp-mode
 		       csharp-mode
-			   company-flx
 		       json-mode
 		       flycheck
 
@@ -75,11 +64,7 @@
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-(defun open-my-init-file()
-  (interactive)
-  (find-file (expand-file-name "init.el" user-emacs-directory )))
 
-;; not compatable with consult
 (use-package exec-path-from-shell
   :if (and (eq system-type 'darwin) (display-graphic-p))
   :ensure t
@@ -96,7 +81,6 @@
 
 (global-hungry-delete-mode)
 
-;;(add-hook 'emacs-lisp-mode-hook 'smartparens-mode)
 (smartparens-global-mode t)
 
 (sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
@@ -112,7 +96,6 @@
 	 ("\\.html\\'" . web-mode))
        auto-mode-alist))
 
-(global-company-mode t)
 
 ;; config for web mode
 (defun my-web-mode-indent-setup ()
@@ -165,11 +148,6 @@
 	  (lambda ()
 	    (setq imenu-create-index-function 'js2-imenu-make-index)))
 
-;(load-theme 'monokai t)
-
-
-
-
 
 
 (add-hook 'js2-mode-hook 'flycheck-mode)
@@ -178,89 +156,9 @@
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
-(setq evil-want-C-u-scroll t)
-
-(evil-mode 1)
-(setcdr evil-insert-state-map nil)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
-
-(global-evil-leader-mode t)
-
-(defun spacemacs/alternate-buffer (&optional window)
-  "Switch back and forth between current and last buffer in the
-current window.
-If `spacemacs-layouts-restrict-spc-tab' is `t' then this only switches between
-the current layouts buffers."
-  (interactive)
-  (cl-destructuring-bind (buf start pos)
-      (if (bound-and-true-p spacemacs-layouts-restrict-spc-tab)
-          (let ((buffer-list (persp-buffer-list))
-                (my-buffer (window-buffer window)))
-            ;; find buffer of the same persp in window
-            (seq-find (lambda (it) ;; predicate
-                        (and (not (eq (car it) my-buffer))
-                             (member (car it) buffer-list)))
-                      (window-prev-buffers)
-                      ;; default if found none
-                      (list nil nil nil)))
-        (or (cl-find (window-buffer window) (window-prev-buffers)
-                     :key #'car :test-not #'eq)
-            (list (other-buffer) nil nil)))
-    (if (not buf)
-        (message "Last buffer not found.")
-      (set-window-buffer-start-and-point window buf start pos))))
-
-
 
 (use-package lispy
   :hook (emacs-lisp-mode . lispy-mode))
-
-
-(window-numbering-mode 1)
-
-
-(global-evil-surround-mode 1)
-
-(define-key evil-normal-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
-(define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
-
-(evilnc-default-hotkeys)
-
-(dolist (mode '(ag-mode
-		flycheck-error-list-mode
-		occur-mode
-        occur-edit-mode
-		git-rebase-mode))
-  (add-to-list 'evil-emacs-state-modes mode))
-
-(dolist (mode '(
-        occur-edit-mode
-		))
-  (add-to-list 'evil-normal-state-modes mode))
-
-
-(add-hook 'occur-mode-hook
-	  (lambda ()
-	    (evil-add-hjkl-bindings occur-mode-map 'emacs
-	      (kbd "/")       'evil-search-forward
-	      (kbd "n")       'evil-search-next
-	      (kbd "N")       'evil-search-previous
-	      (kbd "C-d")     'evil-scroll-down
-	      (kbd "C-u")     'evil-scroll-up
-	      )))
-
-(add-hook 'occur-edit-mode-hook
-	  (lambda ()
-	    (evil-add-hjkl-bindings occur-edit-mode-map 'normal
-	      (kbd "/")       'evil-search-forward
-	      (kbd "n")       'evil-search-next
-	      (kbd "N")       'evil-search-previous
-	      (kbd "C-d")     'evil-scroll-down
-	      (kbd "C-u")     'evil-scroll-up)))
-
-(which-key-mode 1)
-(setq which-key-side-window-location 'right)
-
 
 
 (add-hook 'c-mode-hook 'lsp)
@@ -283,21 +181,8 @@ the current layouts buffers."
 
 (require 'citre)
 (require 'citre-config)
-;; 此处配置省略...
 
 
-;; 此处配置省略...
-
-(setq completion-styles '(orderless partial-completion))
-
-(with-eval-after-load 'company
-  (company-flx-mode +1))
-
-(use-package general
-	:init
-	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
-    (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
-	)
 
 
 (use-package magit

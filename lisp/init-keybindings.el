@@ -24,20 +24,18 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-(setq evil-want-C-u-scroll t)
 
-(use-package evil
+
+
+(use-package which-key
+  :hook (after-init . which-key-mode)
+  :ensure t
   :init
-  (evil-mode)
-  (setcdr evil-insert-state-map nil)
-(define-key evil-insert-state-map [escape] 'evil-normal-state)
+  (setq which-key-side-window-location 'bottom))
 
-  )
 
-(use-package evil-leader
-  :init
-(evil-leader/set-leader "<SPC>")
-  (global-evil-leader-mode t))
+
+
 (global-set-key "\C-s" 'consult-line)
 
 
@@ -52,7 +50,7 @@
 (global-set-key (kbd "s-1") 'lispy-describe-inline)
 
 ;; mimic macos keybindgs
-(when sys/win32p
+(when (or sys/win32p sys/mac-x-p)
     (progn
       (global-set-key (kbd "s-x") 'kill-region)
       (global-set-key (kbd "s-c") 'kill-ring-save)
@@ -100,38 +98,12 @@
 
 
 
-(evil-leader/set-key
-  "SPC" 'execute-extended-command
-  "ff" 'find-file
-  "fr" 'consult-recent-file
-  "fs" 'save-buffer
-  "bb" 'switch-to-buffer
-  "bk" 'kill-buffer
-  "pf" 'consult-buffer
-  "ps" 'consult-ripgrep
-  "0" 'select-window-0
-  "1" 'select-window-1
-  "2" 'select-window-2
-  "3" 'select-window-3
-  "fj" 'dired-jump
-  "w/" 'split-window-right
-  "w-" 'split-window-below
-  ":" 'execute-extended-command
-  "'" 'vertico-repeat
-  "wm" 'delete-other-windows
-  "qq" 'save-buffers-kill-terminal
-  "sj" 'imenu
-  "bd" 'kill-this-buffer
-  "ts" 'flycheck-mode
-  "sp" 'consult-ripgrep
-  "TAB" 'spacemacs/alternate-buffer
-  "fed" 'open-my-init-file
-  "hdf" 'describe-function
-  "hdv" 'describe-variable
-  "hdk" 'describe-key
-  "pb" 'consult-buffer
-  "gs" 'magit-status
-  "gg" 'citre-jump
-  "gr" 'citre-peek)
+
+
+(use-package general
+	:init
+	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
+    (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
+	)
 
 (provide 'init-keybindings)

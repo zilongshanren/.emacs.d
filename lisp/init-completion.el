@@ -4,6 +4,16 @@
 ;;
 ;;; Packages
 
+(use-package company
+  :init
+  (global-company-mode t))
+
+(use-package company-flx
+  :after (company)
+  :init
+  (company-flx-mode 1))
+
+
 (use-package vertico
   :hook (after-init . vertico-mode)
   :config
@@ -112,10 +122,10 @@
       (push '(special-mode :position right :width 400) popwin:special-display-config)))
 
 
+  :config
   (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
   (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)
   (define-key minibuffer-mode-map (kbd "C-c C-e") '+vertico/embark-export-write)
-  :config
   (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
   (global-set-key (kbd "C-;") 'embark-act)
   ;; list all the keybindings in this buffer

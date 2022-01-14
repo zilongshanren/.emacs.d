@@ -92,6 +92,8 @@
 (require 'init-packages)
 (require 'init-completion)
 
+(require 'init-evil)
+
 (require 'init-ui)
 (require 'init-better-defaults)
 (require 'init-org)

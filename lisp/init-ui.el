@@ -37,4 +37,8 @@
   :init
   (popwin-mode t))
 
+(use-package window-numbering
+  :init
+  (window-numbering-mode 1))
+
 (provide 'init-ui)
