@@ -30,8 +30,6 @@
 		       ;; --- Better Editor ---
 		       hungry-delete
 		       smartparens
-		       lispy
-		       lispyville
 		       ;; --- Major Mode ---
 		       js2-mode
 		       ;; --- Minor Mode ---
@@ -156,9 +154,6 @@
 (yas-reload-all)
 (add-hook 'prog-mode-hook #'yas-minor-mode)
 
-
-(use-package lispy
-  :hook (emacs-lisp-mode . lispy-mode))
 
 
 (add-hook 'c-mode-hook 'lsp)

@@ -39,8 +39,7 @@
 
 
 (use-package orderless
-  :config
-
+  :init
   (setq completion-styles '(orderless)
         orderless-component-separator "[ &]")
   ;; ...otherwise find-file gets different highlighting than other commands

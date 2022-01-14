@@ -98,6 +98,8 @@
 (require 'init-better-defaults)
 (require 'init-org)
 
+(require 'init-lisp)
+
 (require 'init-keybindings)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
