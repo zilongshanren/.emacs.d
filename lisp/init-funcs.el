@@ -36,13 +36,6 @@
 (require 'init-const)
 (require 'init-custom)
 
-(defmacro pushnew! (place &rest values)
-  "Push VALUES sequentially into PLACE, if they aren't already present.
-This is a variadic `cl-pushnew'."
-  (let ((var (make-symbol "result")))
-    `(dolist (,var (list ,@values) (with-no-warnings ,place))
-       (cl-pushnew ,var ,place :test #'equal))))
-
 
 (unless (fboundp 'caadr)
   (defalias 'caadr #'cl-caadr))
@@ -86,7 +79,6 @@ Same as `replace-string C-q C-m RET RET'."
                              (file-name-nondirectory buffer-file-name)))
     (delete-file (buffer-file-name))
     (kill-this-buffer)))
-(global-set-key (kbd "C-x K") #'delete-this-file)
 
 (defun rename-this-file (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
@@ -149,19 +141,6 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   (- (elt (window-pixel-edges) 3)
      (elt (window-inside-pixel-edges) 3)))
 
-;; Reload configurations
-(defun reload-init-file ()
-  "Reload Emacs configurations."
-  (interactive)
-  (load user-init-file))
-(defalias 'centaur-reload-init-file #'reload-init-file)
-(global-set-key (kbd "C-c C-l") #'reload-init-file)
-
-;; Browse the homepage
-(defun browse-homepage ()
-  "Browse the Github page of Centaur Emacs."
-  (interactive)
-  (browse-url centaur-homepage))
 
 ;; Open custom file
 (defun open-custom-file()
