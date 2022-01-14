@@ -100,13 +100,13 @@
 
 
 (evil-leader/set-key
-  "SPC" 'counsel-M-x
+  "SPC" 'execute-extended-command
   "ff" 'find-file
   "fr" 'consult-recent-file
   "fs" 'save-buffer
   "bb" 'switch-to-buffer
   "bk" 'kill-buffer
-  "pf" 'counsel-git
+  "pf" 'consult-buffer
   "ps" 'consult-ripgrep
   "0" 'select-window-0
   "1" 'select-window-1
@@ -115,10 +115,11 @@
   "fj" 'dired-jump
   "w/" 'split-window-right
   "w-" 'split-window-below
-  ":" 'counsel-M-x
+  ":" 'execute-extended-command
+  "'" 'vertico-repeat
   "wm" 'delete-other-windows
   "qq" 'save-buffers-kill-terminal
-  "sj" 'counsel-imenu
+  "sj" 'imenu
   "bd" 'kill-this-buffer
   "ts" 'flycheck-mode
   "sp" 'consult-ripgrep

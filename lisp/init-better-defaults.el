@@ -39,10 +39,8 @@
                                  "gr" 'revert-buffer
                                  "z" 'dired-get-size
                                  "c" 'dired-copy-file-here
-                                 "J" 'counsel-find-file
-                                 "f" 'zilongshanren/open-file-with-projectile-or-counsel-git
-                                 ")" 'dired-omit-mode
-      )
+                                 "f" 'consult-buffer
+                                 ")" 'dired-omit-mode)
 
     (define-key dired-mode-map "e" 'ora-ediff-files))
 

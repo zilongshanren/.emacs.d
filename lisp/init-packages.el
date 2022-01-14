@@ -30,8 +30,6 @@
 		       company
 		       ;; --- Better Editor ---
 		       hungry-delete
-		       swiper
-		       counsel
 		       smartparens
 		       lispy
 		       lispyville
@@ -82,7 +80,6 @@
   (find-file (expand-file-name "init.el" user-emacs-directory )))
 
 ;; not compatable with consult
-;; (ivy-mode 1)
 (use-package exec-path-from-shell
   :if (and (eq system-type 'darwin) (display-graphic-p))
   :ensure t
@@ -106,47 +103,6 @@
 (sp-local-pair 'emacs-lisp-mode "`" nil :actions nil)
 (sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
 
-
-(use-package ivy
-  :defer t
-  :config
-  (progn
-    (setq ivy-dynamic-exhibit-delay-ms 300)
-
-    (defun ivy-call-and-recenter ()
-      "Call action and recenter window according to the selected candidate."
-      (interactive)
-      (ivy-call)
-      (with-ivy-window
-	(evil-scroll-line-to-center (line-number-at-pos))))
-
-    (ivy-set-actions
-     t
-     '(("f" my-find-file-in-git-repo "find files")
-       ("!" my-open-file-in-external-app "Open file in external app")
-       ("I" ivy-insert-action "insert")
-       ("C" ivy-kill-new-action "copy")
-       ("d" ivy--kill-buffer-action)
-       ("k" ivy--kill-buffer-action "kill")
-       ("r" ivy--rename-buffer-action "rename")
-       ("S" ivy-ff-checksum-action "Checksum")))
-
-
-    (setq ivy-initial-inputs-alist nil)
-    (setq ivy-wrap t)
-    (setq confirm-nonexistent-file-or-buffer t)
-    (define-key ivy-switch-buffer-map (kbd "C-k") 'ivy-previous-line)
-    (define-key ivy-switch-buffer-map (kbd "C-d") 'ivy-switch-buffer-kill)
-
-    (define-key ivy-minibuffer-map (kbd "C-c o") 'ivy-occur)
-    (define-key ivy-minibuffer-map (kbd "C-c s") 'ivy-ff-checksum)
-    (define-key ivy-minibuffer-map (kbd "s-o") 'ivy-dispatching-done-hydra)
-    (define-key ivy-minibuffer-map (kbd "C-c C-e") 'spacemacs//counsel-edit)
-    (define-key ivy-minibuffer-map (kbd "C-l") 'ivy-call-and-recenter)
-    (define-key ivy-minibuffer-map (kbd "<f3>") 'ivy-occur)
-    (define-key ivy-minibuffer-map (kbd "C-c d") 'ivy-immediate-done)
-    (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-next-line)
-    (define-key ivy-minibuffer-map (kbd "C-k") 'ivy-previous-line)))
 
 
 ;; config js2-mode for js files
@@ -337,10 +293,11 @@ the current layouts buffers."
 (with-eval-after-load 'company
   (company-flx-mode +1))
 
-;(use-package general
-;	:init
-;	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
-;	)
+(use-package general
+	:init
+	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
+    (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
+	)
 
 
 (use-package magit
