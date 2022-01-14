@@ -415,7 +415,7 @@ This issue has been addressed in 28."
                       (setq ediff-after-quit-hook-internal nil)
                       (set-window-configuration wnd))))
       (error "no more than 2 files should be marked"))))
-	  
+
 (defun indent-buffer()
   (interactive)
   (indent-region (point-min) (point-max)))
@@ -577,7 +577,19 @@ open and unsaved."
 (dakra-define-up/downcase-dwim "capitalize")
 
 
+(defun zilongshanren/consult-line (consult-line-function &rest rest)
+  "Advising function around `CONSULT-LINE-FUNCTION'.
 
+When there's an active region, use that as the first parameter
+for `CONSULT-LINE-FUNCTION'.  Otherwise, use the current word as
+the first parameter.  This function handles the `REST' of the
+parameters."
+  (interactive)
+  (if (use-region-p)
+      (apply consult-line-function
+        (buffer-substring (region-beginning) (region-end)) rest)
+      (apply consult-line-function
+        (thing-at-point 'word) rest)))
 
 (provide 'init-funcs)
 

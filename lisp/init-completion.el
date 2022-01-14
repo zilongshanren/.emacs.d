@@ -41,6 +41,10 @@
   :init
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   (advice-add #'multi-occur :override #'consult-multi-occur)
+  (advice-add #'consult-line
+              :around
+              #'zilongshanren/consult-line
+              '((name . "wrapper")))
 
   :config
   (global-set-key (kbd "M-y") 'consult-yank-pop)
