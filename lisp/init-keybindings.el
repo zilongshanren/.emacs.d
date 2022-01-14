@@ -59,6 +59,7 @@
       (global-set-key (kbd "s-v") 'yank)
       (global-set-key (kbd "s-z") 'undo)
       (global-set-key (kbd "s-l") 'goto-line)
+      (global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
       (global-set-key (kbd "s-a") 'mark-whole-buffer)
       (global-set-key (kbd "s-s") 'save-buffer)))
 
