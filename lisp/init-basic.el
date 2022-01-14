@@ -224,7 +224,7 @@
 					    ;; signature
 					    ("8zl" "zilongshanren")
 					    ;; Microsoft
-					    ("8ms" "Macrosoft")
+					    ("8ms" "Microsoft")
 					    ))
 
 (setq-default split-height-threshold nil)
