@@ -211,8 +211,6 @@
 
 ;(load-theme 'monokai t)
 
-(require 'popwin)    ;;when require, wh(setq company-minimum-prefix-length 1)en not require
-(popwin-mode t)
 
 
 

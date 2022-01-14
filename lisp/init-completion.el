@@ -99,11 +99,18 @@
         ;; press C-h after a prefix key, it shows all the possible key bindings and let you choose what you want
         prefix-help-command #'embark-prefix-help-command)
 
- (setq
-  embark-verbose-indicator-display-action
-  '((display-buffer-at-bottom)
-    (window-parameters (mode-line-format . none))
-    (window-height . fit-window-to-buffer)))
+  (setq
+   embark-verbose-indicator-display-action
+   '((display-buffer-at-bottom)
+     (window-parameters (mode-line-format . none))
+     (window-height . fit-window-to-buffer)))
+
+  (with-eval-after-load 'popwin
+    (progn
+      (push '(occur-mode :position right :width 450) popwin:special-display-config)
+      (push '(grep-mode :position right :width 450) popwin:special-display-config)
+      (push '(special-mode :position right :width 400) popwin:special-display-config)))
+
 
   (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
   (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)

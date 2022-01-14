@@ -31,4 +31,10 @@
 
 (global-hl-line-mode t)
 
+
+(use-package popwin
+  :ensure t
+  :init
+  (popwin-mode t))
+
 (provide 'init-ui)
