@@ -28,19 +28,15 @@
  (defvar my/packages '(
 		       ;; --- Auto-completion ---
 		       ;; --- Better Editor ---
-		       hungry-delete
-		       smartparens
+
 		       ;; --- Major Mode ---
 		       js2-mode
 		       ;; --- Minor Mode ---
 		       nodejs-repl
 		       exec-path-from-shell
 		       ;; --- Themes ---
-		       citre
-		       org-pomodoro
 		       yasnippet
 
-		       consult-projectile
 		       js2-refactor
 		       lsp-mode
 		       csharp-mode
@@ -61,30 +57,6 @@
   :config
   ;; To disable collection of benchmark data after init is done.
   (add-hook 'after-init-hook 'benchmark-init/deactivate))
-
-
-(use-package exec-path-from-shell
-  :if (and (eq system-type 'darwin) (display-graphic-p))
-  :ensure t
-  :config
-  (progn
-     (when (string-match-p "/zsh$" (getenv "SHELL"))
-      ;; Use a non-interactive login shell.  A login shell, because my
-      ;; environment variables are mostly set in `.zprofile'.
-       (setq exec-path-from-shell-arguments '("-l")))
-
-     (exec-path-from-shell-initialize)
-    )
-  )
-
-(global-hungry-delete-mode)
-
-(smartparens-global-mode t)
-
-(sp-local-pair 'emacs-lisp-mode "'" nil :actions nil)
-(sp-local-pair 'emacs-lisp-mode "`" nil :actions nil)
-(sp-local-pair 'lisp-interaction-mode "'" nil :actions nil)
-
 
 
 ;; config js2-mode for js files
@@ -174,8 +146,6 @@
 
 
 
-(require 'citre)
-(require 'citre-config)
 
 
 

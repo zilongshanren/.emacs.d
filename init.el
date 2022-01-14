@@ -86,19 +86,23 @@
 ;; Packages
 ;; Without this comment Emacs25 adds (package-initialize) here
 (require 'init-package)
-(require 'init-evil)
 
 ;; Preferences
 (require 'init-basic)
 (require 'init-packages)
 (require 'init-completion)
+(require 'init-evil)
 
+(require 'init-git)
+(require 'init-ctags)
+(require 'init-flycheck)
 
 (require 'init-ui)
 (require 'init-better-defaults)
 (require 'init-org)
 
 (require 'init-lisp)
+(require 'init-csharp)
 
 (require 'init-keybindings)
 
