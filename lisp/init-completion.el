@@ -23,6 +23,7 @@
   (define-key vertico-map (kbd "C-j") 'vertico-next)
   (define-key vertico-map (kbd "C-k") 'vertico-previous)
   (define-key vertico-map [backspace] #'vertico-directory-delete-char)
+  (define-key vertico-map (kbd "s-SPC") #'+vertico/embark-preview)
 
   )
 
@@ -99,6 +100,7 @@
         prefix-help-command #'embark-prefix-help-command)
   (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
   (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)
+  (define-key minibuffer-mode-map (kbd "C-c C-e") '+vertico/embark-export-write)
   :config
   (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
   (global-set-key (kbd "C-;") 'embark-act)
