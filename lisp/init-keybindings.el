@@ -50,7 +50,17 @@
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
 (global-set-key (kbd "s-1") 'lispy-describe-inline)
-(global-set-key (kbd "s-x") 'kill-region)
+
+;; mimic macos keybindgs
+(when sys/win32p
+    (progn
+      (global-set-key (kbd "s-x") 'kill-region)
+      (global-set-key (kbd "s-c") 'kill-ring-save)
+      (global-set-key (kbd "s-v") 'yank)
+      (global-set-key (kbd "s-z") 'undo)
+      (global-set-key (kbd "s-l") 'goto-line)
+      (global-set-key (kbd "s-a") 'mark-whole-buffer)
+      (global-set-key (kbd "s-s") 'save-buffer)))
 
 
 
