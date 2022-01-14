@@ -98,6 +98,13 @@
   (setq which-key-use-C-h-commands nil
         ;; press C-h after a prefix key, it shows all the possible key bindings and let you choose what you want
         prefix-help-command #'embark-prefix-help-command)
+
+ (setq
+  embark-verbose-indicator-display-action
+  '((display-buffer-at-bottom)
+    (window-parameters (mode-line-format . none))
+    (window-height . fit-window-to-buffer)))
+
   (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
   (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)
   (define-key minibuffer-mode-map (kbd "C-c C-e") '+vertico/embark-export-write)
