@@ -589,7 +589,7 @@ parameters."
       (apply consult-line-function
         (buffer-substring (region-beginning) (region-end)) rest)
       (apply consult-line-function
-        (thing-at-point 'word) rest)))
+             rest)))
 
 (defun +vertico/embark-export-write ()
   "Export the current vertico results to a writable buffer if possible.

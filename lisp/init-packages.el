@@ -275,8 +275,14 @@ the current layouts buffers."
 (dolist (mode '(ag-mode
 		flycheck-error-list-mode
 		occur-mode
+        occur-edit-mode
 		git-rebase-mode))
   (add-to-list 'evil-emacs-state-modes mode))
+
+(dolist (mode '(
+        occur-edit-mode
+		))
+  (add-to-list 'evil-normal-state-modes mode))
 
 
 (add-hook 'occur-mode-hook
@@ -288,6 +294,15 @@ the current layouts buffers."
 	      (kbd "C-d")     'evil-scroll-down
 	      (kbd "C-u")     'evil-scroll-up
 	      )))
+
+(add-hook 'occur-edit-mode-hook
+	  (lambda ()
+	    (evil-add-hjkl-bindings occur-edit-mode-map 'normal
+	      (kbd "/")       'evil-search-forward
+	      (kbd "n")       'evil-search-next
+	      (kbd "N")       'evil-search-previous
+	      (kbd "C-d")     'evil-scroll-down
+	      (kbd "C-u")     'evil-scroll-up)))
 
 (which-key-mode 1)
 (setq which-key-side-window-location 'right)
