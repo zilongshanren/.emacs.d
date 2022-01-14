@@ -124,10 +124,10 @@
       (push '(grep-mode :position right :width 100) popwin:special-display-config)
       (push '(special-mode :position right :width 100) popwin:special-display-config)))
 
+  (global-set-key (kbd "C-;") 'embark-act)
 
   :config
   (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
-  (global-set-key (kbd "C-;") 'embark-act)
   ;; list all the keybindings in this buffer
   (global-set-key (kbd "C-h B") 'embark-bindings)
   ;; add the package! target finder before the file target finder,

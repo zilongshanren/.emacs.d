@@ -27,6 +27,9 @@
 (use-package magit
   :config
   (evil-add-hjkl-bindings magit-status-mode-map
-    'emacs))
+    'emacs
+    (kbd "C-u") 'evil-scroll-up
+    (kbd "C-d") 'evil-scroll-down
+    (kbd "K") 'magit-discard))
 
 (provide 'init-git)

@@ -87,10 +87,12 @@
 (require 'init-basic)
 (require 'init-completion)
 (require 'init-evil)
+;; todo: expand region, iedit
 
 ;; uis
 (require 'init-ui)
 (require 'init-better-defaults)
+;; todo: mode-line
 
 ;; Tools
 (require 'init-org)
@@ -99,20 +101,23 @@
 (require 'init-flycheck)
 (require 'init-snippets)
 
-(require 'lsp)
+(require 'init-lsp)
 
 ;; Frameworks
+;; todo: yaml
 (require 'init-web)
+;; todo: layout, project
+
 
 ;; Languages
+;; todo: clojure
 (require 'init-lisp)
 (require 'init-csharp)
+;; todo: typescript
 (require 'init-javascript)
+;;todo: c/c++, rust, python, shell
 
 ;; personal
 (require 'init-keybindings)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
-;;;;  -*- lexical-binding: t; -*-
-(put 'dired-find-alternate-file 'disabled nil)

@@ -24,7 +24,7 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-(use-package lsp
+(use-package lsp-mode
   :hook ((c-mode c++-mode) . lsp)
   :init
   (setq gc-cons-threshold (* 100 1024 1024)

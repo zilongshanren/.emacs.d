@@ -1,41 +1,54 @@
 ;;; init-evil.el -*- lexical-binding: t no-byte-compile: t -*-
 
+
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t)
-  (evil-mode 1)
+  (evil-mode)
+
+  (with-eval-after-load 'evil
+    (general-add-hook 'after-init-hook
+                      (lambda (&rest _)
+                        (when-let ((messages-buffer (get-buffer "*Messages*")))
+                          (with-current-buffer messages-buffer
+                            (evil-normalize-keymaps)
+                            (evil-leader-mode t)
+                            )))
+                      nil
+                      nil
+                      t))
   (setcdr evil-insert-state-map nil)
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   :config
-    (dolist (mode '(ag-mode
-                    flycheck-error-list-mode
-                    occur-mode
-                    occur-edit-mode
-                    git-rebase-mode))
-      (add-to-list 'evil-emacs-state-modes mode))
+  (dolist (mode '(ag-mode
+                  flycheck-error-list-mode
+                  occur-mode
+                  occur-edit-mode
+                  git-rebase-mode))
+    (add-to-list 'evil-emacs-state-modes mode))
 
-    (dolist (mode '(
-                    occur-edit-mode))
-      (add-to-list 'evil-normal-state-modes mode))
+  (dolist (mode '(
+                  occur-edit-mode))
+    (add-to-list 'evil-normal-state-modes mode))
 
 
-    (add-hook 'occur-mode-hook
-              (lambda ()
-                (evil-add-hjkl-bindings occur-mode-map 'emacs
-                  (kbd "/") 'evil-search-forward
-                  (kbd "n") 'evil-search-next
-                  (kbd "N") 'evil-search-previous
-                  (kbd "C-d") 'evil-scroll-down
-                  (kbd "C-u") 'evil-scroll-up)))
+  (add-hook 'occur-mode-hook
+            (lambda ()
+              (evil-add-hjkl-bindings occur-mode-map 'emacs
+                (kbd "/") 'evil-search-forward
+                (kbd "n") 'evil-search-next
+                (kbd "N") 'evil-search-previous
+                (kbd "C-d") 'evil-scroll-down
+                (kbd "C-u") 'evil-scroll-up)))
 
-    (add-hook 'occur-edit-mode-hook
-              (lambda ()
-                (evil-add-hjkl-bindings occur-edit-mode-map 'normal
-                  (kbd "/") 'evil-search-forward
-                  (kbd "n") 'evil-search-next
-                  (kbd "N") 'evil-search-previous
-                  (kbd "C-d") 'evil-scroll-down
-                  (kbd "C-u") 'evil-scroll-up))))
+  (add-hook 'occur-edit-mode-hook
+            (lambda ()
+              (evil-add-hjkl-bindings occur-edit-mode-map 'normal
+                (kbd "/") 'evil-search-forward
+                (kbd "n") 'evil-search-next
+                (kbd "N") 'evil-search-previous
+                (kbd "C-d") 'evil-scroll-down
+                (kbd "C-u") 'evil-scroll-up))))
 
 (use-package undo-tree
   :init
@@ -47,6 +60,8 @@
   :init
   (global-evil-leader-mode t)
   (evil-leader/set-leader "<SPC>")
+
+
   (evil-leader/set-key
     "SPC" 'execute-extended-command
     "ff" 'find-file
@@ -79,8 +94,7 @@
     "pb" 'consult-buffer
     "gs" 'magit-status
     "gg" 'citre-jump
-    "gr" 'citre-peek)
-  )
+    "gr" 'citre-peek))
 
 (use-package evil-surround
   :ensure t
