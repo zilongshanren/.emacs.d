@@ -49,6 +49,7 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
+(global-set-key (kbd "H-1") 'lispy-describe-inline)
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
@@ -105,6 +106,8 @@
   "wm" 'delete-other-windows
   "qq" 'save-buffers-kill-terminal
   "sj" 'counsel-imenu
+  "bd" 'kill-this-buffer
+  "ts" 'flycheck-mode
   "sp" 'consult-ripgrep
   "TAB" 'spacemacs/alternate-buffer
   "fed" 'open-my-init-file

@@ -1,60 +1,6 @@
 ;;;;  -*- lexical-binding: t; -*-
 (require 'init-funcs)
 
-(defun doom-enlist (exp)
-  "Return EXP wrapped in a list, or as-is if already a list."
-  (declare (pure t) (side-effect-free t))
-  (if (proper-list-p exp) exp (list exp)))
-
-;;; Definers
-(defmacro defadvice! (symbol arglist &optional docstring &rest body)
-  "Define an advice called SYMBOL and add it to PLACES.
-
-ARGLIST is as in `defun'. WHERE is a keyword as passed to `advice-add', and
-PLACE is the function to which to add the advice, like in `advice-add'.
-DOCSTRING and BODY are as in `defun'.
-
-\(fn SYMBOL ARGLIST &optional DOCSTRING &rest [WHERE PLACES...] BODY\)"
-  (declare (doc-string 3) (indent defun))
-  (unless (stringp docstring)
-    (push docstring body)
-    (setq docstring nil))
-  (let (where-alist)
-    (while (keywordp (car body))
-      (push `(cons ,(pop body) (doom-enlist ,(pop body)))
-            where-alist))
-    `(progn
-       (defun ,symbol ,arglist ,docstring ,@body)
-       (dolist (targets (list ,@(nreverse where-alist)))
-         (dolist (target (cdr targets))
-           (advice-add target (car targets) #',symbol))))))
-
-(defmacro undefadvice! (symbol _arglist &optional docstring &rest body)
-  "Undefine an advice called SYMBOL.
-
-This has the same signature as `defadvice!' an exists as an easy undefiner when
-testing advice (when combined with `rotate-text').
-
-\(fn SYMBOL ARGLIST &optional DOCSTRING &rest [WHERE PLACES...] BODY\)"
-  (declare (doc-string 3) (indent defun))
-  (let (where-alist)
-    (unless (stringp docstring)
-      (push docstring body))
-    (while (keywordp (car body))
-      (push `(cons ,(pop body) (doom-enlist ,(pop body)))
-            where-alist))
-    `(dolist (targets (list ,@(nreverse where-alist)))
-       (dolist (target (cdr targets))
-         (advice-remove target #',symbol)))))
-
-
-(defvar +vertico-company-completion-styles '(basic partial-completion orderless)
-  "Completion styles for company to use.
-
-The completion/vertico module uses the orderless completion style by default,
-but this returns too broad a candidate set for company completion. This variable
-overrides `completion-styles' during company completion sessions.")
-
 ;;
 ;;; Packages
 
@@ -76,53 +22,15 @@ overrides `completion-styles' during company completion sessions.")
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save)
   (define-key vertico-map (kbd "C-j") 'vertico-next)
   (define-key vertico-map (kbd "C-k") 'vertico-previous)
+  (define-key vertico-map [backspace] #'vertico-directory-delete-char)
   ;; (map! :map vertico-map [backspace] #'vertico-directory-delete-char)
   )
 
 
 (use-package orderless
   :config
-  (defadvice! +vertico--company-capf--candidates-a (fn &rest args)
-    "Highlight company matches correctly, and try default completion styles before
-orderless."
-    :around #'company-capf--candidates
-    (let ((orderless-match-faces [completions-common-part])
-          (completion-styles +vertico-company-completion-styles))
-      (apply fn args)))
 
-  (defun +vertico-orderless-dispatch (pattern _index _total)
-    (cond
-     ;; Ensure $ works with Consult commands, which add disambiguation suffixes
-     ((string-suffix-p "$" pattern)
-      `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
-     ;; Ignore single !
-     ((string= "!" pattern) `(orderless-literal . ""))
-     ;; Without literal
-     ((string-prefix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 1)))
-     ;; Character folding
-     ((string-prefix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 1)))
-     ((string-suffix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 0 -1)))
-     ;; Initialism matching
-     ((string-prefix-p "`" pattern) `(orderless-initialism . ,(substring pattern 1)))
-     ((string-suffix-p "`" pattern) `(orderless-initialism . ,(substring pattern 0 -1)))
-     ;; Literal matching
-     ((string-prefix-p "=" pattern) `(orderless-literal . ,(substring pattern 1)))
-     ((string-suffix-p "=" pattern) `(orderless-literal . ,(substring pattern 0 -1)))
-     ;; Flex matching
-     ((string-prefix-p "~" pattern) `(orderless-flex . ,(substring pattern 1)))
-     ((string-suffix-p "~" pattern) `(orderless-flex . ,(substring pattern 0 -1)))))
-  (add-to-list
-   'completion-styles-alist
-   '(+vertico-basic-remote
-     +vertico-basic-remote-try-completion
-     +vertico-basic-remote-all-completions
-     "Use basic completion on remote files only"))
   (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        ;; note that despite override in the name orderless can still be used in
-        ;; find-file etc.
-        completion-category-overrides '((file (styles +vertico-basic-remote orderless partial-completion)))
-        orderless-style-dispatchers '(+vertico-orderless-dispatch)
         orderless-component-separator "[ &]")
   ;; ...otherwise find-file gets different highlighting than other commands
   (set-face-attribute 'completions-first-difference nil :inherit nil))
@@ -135,10 +43,6 @@ orderless."
   (advice-add #'multi-occur :override #'consult-multi-occur)
 
   :config
-  (defadvice! +vertico--consult-recent-file-a (&rest _args)
-    "`consult-recent-file' needs to have `recentf-mode' on to work correctly"
-    :before #'consult-recent-file
-    (recentf-mode +1))
 
   (setq ;; consult-project-root-function #'doom-project-root
         consult-narrow-key "<"

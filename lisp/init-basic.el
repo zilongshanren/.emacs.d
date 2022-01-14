@@ -122,7 +122,9 @@
 ;; History
 (use-package saveplace
   :ensure nil
-  :hook (after-init . save-place-mode))
+  :hook (after-init . save-place-mode)
+  :init
+  (setq save-place-file (expand-file-name ".cache/places" user-emacs-directory)))
 
 (use-package recentf
   :ensure nil
@@ -144,6 +146,7 @@
   :hook (after-init . savehist-mode)
   :init (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
               history-length 1000
+              savehist-file (expand-file-name ".cache/history" user-emacs-directory)
               savehist-additional-variables '(mark-ring
                                               global-mark-ring
                                               search-ring
