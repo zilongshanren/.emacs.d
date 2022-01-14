@@ -24,5 +24,7 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package flycheck
+  :ensure t)
 
 (provide 'init-flycheck)

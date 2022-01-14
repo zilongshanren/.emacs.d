@@ -1,4 +1,4 @@
-;;; init-snippets.el -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-lsp.el -*- lexical-binding: t no-byte-compile: t -*-
 
 ;; Copyright (C) 2021-2022 zilongshanren
 
@@ -24,10 +24,18 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package lsp
+  :hook ((c-mode c++-mode) . lsp)
+  :init
+  (setq gc-cons-threshold (* 100 1024 1024)
+        read-process-output-max (* 1024 1024)
+        treemacs-space-between-root-nodes nil
+        company-idle-delay 0.0
+        company-minimum-prefix-length 1
+        lsp-idle-delay 0.1)
+  :config
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (yas-global-mode)
+  )
 
-(use-package yasnippet
-  :ensure t
-  :hook (prog-mode . yas-minor-mode)
-  :config)
-
-(provide 'init-snippets)
+(provide 'init-lsp)

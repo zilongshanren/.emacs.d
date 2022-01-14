@@ -24,5 +24,9 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package magit
+  :config
+  (evil-add-hjkl-bindings magit-status-mode-map
+    'emacs))
 
 (provide 'init-git)

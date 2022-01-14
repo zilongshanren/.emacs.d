@@ -26,11 +26,6 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-;;; Commentary:
-;;
-;; todo
-;;
-
 
 ;;; Code:
 
@@ -89,7 +84,6 @@
 
 ;; Core
 (require 'init-basic)
-(require 'init-packages)
 (require 'init-completion)
 (require 'init-evil)
 
@@ -104,14 +98,17 @@
 (require 'init-flycheck)
 (require 'init-snippets)
 
+(require 'lsp)
+
+;; Frameworks
+(require 'init-web)
+
 ;; Languages
 (require 'init-lisp)
 (require 'init-csharp)
 (require 'init-javascript)
 
-;; Frameworks
-(require 'init-web)
-
+;; personal
 (require 'init-keybindings)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
