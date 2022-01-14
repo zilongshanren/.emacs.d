@@ -39,6 +39,7 @@
 (global-set-key "\C-s" 'consult-line)
 
 
+(global-set-key (kbd "s-/") 'hippie-expand)
 (global-set-key (kbd "<f2>") 'open-my-init-file)
 
 
