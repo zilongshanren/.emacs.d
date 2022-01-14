@@ -91,15 +91,20 @@
   :defer t
   :init
   (setq which-key-use-C-h-commands nil
+        ;; press C-h after a prefix key, it shows all the possible key bindings and let you choose what you want
         prefix-help-command #'embark-prefix-help-command)
   (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
   (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)
   :config
   (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
   (global-set-key (kbd "C-;") 'embark-act)
+  ;; list all the keybindings in this buffer
+  (global-set-key (kbd "C-h B") 'embark-bindings)
   ;; add the package! target finder before the file target finder,
   ;; so we don't get a false positive match.
-
+  :config
+  (define-key embark-identifier-map "R" #'consult-ripgrep)
+  (define-key embark-identifier-map (kbd "C-s") #'consult-line)
 
 
   ;; (map! (:map embark-file-map
@@ -108,7 +113,7 @@
   ;;         :desc "Open magit-status of target" "g"   #'+vertico/embark-magit-status)
   ;;        (:when (featurep! :ui workspaces)
   ;;         :desc "Open in new workspace" "TAB" #'+vertico/embark-open-in-new-workspace)))
-)
+  )
 
 
 (use-package marginalia
