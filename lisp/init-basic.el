@@ -305,14 +305,25 @@ Also, delete any process that is exited or signaled."
              ("S-s-<return>" . toggle-frame-fullscreen)
              ("M-S-<return>" . toggle-frame-fullscreen)))
 
-(require 'dired-x)
-(abbrev-mode t)
+(setq save-abbrevs nil)
+
+;; turn on abbrev mode globally
+(setq-default abbrev-mode t)
+
 (define-abbrev-table 'global-abbrev-table '(
 					    ;; signature
 					    ("8zl" "zilongshanren")
 					    ;; Microsoft
 					    ("8ms" "Macrosoft")
 					    ))
+
+(setq-default split-height-threshold nil)
+;; prevent dired window split 3 columns
+(setq-default split-width-threshold 300)
+
+(setq recenter-positions '(top middle bottom))
+
+
 (provide 'init-basic)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -101,3 +101,4 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
 ;;;;  -*- lexical-binding: t; -*-
+(put 'dired-find-alternate-file 'disabled nil)

@@ -201,26 +201,13 @@ orderless."
   :config
   ;(set-popup-rule! "^\\*Embark Export Grep" :size 0.35 :ttl 0 :quit nil)
 
-  (defadvice! +vertico--embark-which-key-prompt-a (fn &rest args)
-    "Hide the which-key indicator immediately when using the completing-read prompter."
-    :around #'embark-completing-read-prompter
-    (which-key--hide-popup-ignore-command)
-    (let ((embark-indicators
-           (remq #'embark-which-key-indicator embark-indicators)))
-      (apply fn args)))
-  (cl-nsubstitute #'+vertico-embark-which-key-indicator #'embark-mixed-indicator embark-indicators)
+  (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
+
   ;; add the package! target finder before the file target finder,
   ;; so we don't get a false positive match.
-  (let ((pos (or (cl-position
-                  'embark-target-file-at-point
-                  embark-target-finders)
-                 (length embark-target-finders))))
-    (cl-callf2
-        cons
-        '+vertico-embark-target-package-fn
-        (nthcdr pos embark-target-finders)))
 
-  (setf (alist-get 'package embark-keymap-alist) #'+vertico/embark-doom-package-map)
+
+
   ;; (map! (:map embark-file-map
   ;;        :desc "Open target with sudo" "s" #'doom/sudo-find-file
   ;;        (:when (featurep! :tools magit)
@@ -231,28 +218,30 @@ orderless."
 
 
 (use-package marginalia
-  :hook (doom-first-input . marginalia-mode)
+  :hook (after-init . marginalia-mode)
   :init
   :config
-  (advice-add #'marginalia--project-root :override #'doom-project-root)
-  (pushnew! marginalia-command-categories
-            '(+default/find-file-under-here. file)
-            '(doom/find-file-in-emacsd . project-file)
-            '(doom/find-file-in-other-project . project-file)
-            '(doom/find-file-in-private-config . file)
-            '(doom/describe-active-minor-mode . minor-mode)
-            '(flycheck-error-list-set-filter . builtin)
-            '(persp-switch-to-buffer . buffer)
-            '(projectile-find-file . project-file)
-            '(projectile-recentf . project-file)
-            '(projectile-switch-to-buffer . buffer)
-            '(projectile-switch-project . project-file)))
+  ;; (advice-add #'marginalia--project-root :override #'doom-project-root)
+  ;; (pushnew! marginalia-command-categories
+  ;;           '(+default/find-file-under-here. file)
+  ;;           '(doom/find-file-in-emacsd . project-file)
+  ;;           '(doom/find-file-in-other-project . project-file)
+  ;;           '(doom/find-file-in-private-config . file)
+  ;;           '(doom/describe-active-minor-mode . minor-mode)
+  ;;           '(flycheck-error-list-set-filter . builtin)
+  ;;           '(persp-switch-to-buffer . buffer)
+  ;;           '(projectile-find-file . project-file)
+  ;;           '(projectile-recentf . project-file)
+  ;;           '(projectile-switch-to-buffer . buffer)
+  ;;           '(projectile-switch-project . project-file))
+  )
 
 
 (use-package embark-consult
   :after (embark consult)
   :config
-  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
+  )
 
 
 (use-package wgrep
