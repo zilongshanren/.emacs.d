@@ -7,8 +7,6 @@
   (setcdr evil-insert-state-map nil)
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
   :config
-  (progn
-
     (dolist (mode '(ag-mode
                     flycheck-error-list-mode
                     occur-mode
@@ -37,17 +35,13 @@
                   (kbd "n") 'evil-search-next
                   (kbd "N") 'evil-search-previous
                   (kbd "C-d") 'evil-scroll-down
-                  (kbd "C-u") 'evil-scroll-up)))))
+                  (kbd "C-u") 'evil-scroll-up))))
 
-(with-eval-after-load 'evil
-  (general-add-hook 'after-init-hook
-                    (lambda (&rest _)
-                      (when-let ((messages-buffer (get-buffer "*Messages*")))
-                        (with-current-buffer messages-buffer
-                          (evil-normalize-keymaps))))
-                    nil
-                    nil
-                    t))
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode 1)
+  (evil-set-undo-system 'undo-tree))
+
 
 (use-package evil-leader
   :init

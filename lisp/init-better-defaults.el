@@ -3,9 +3,9 @@
 (require 'init-funcs)
 
 
+(require 'dired-x)
 (with-eval-after-load 'dired
   (progn
-    (require 'dired-x)
     (require 'dired-aux)
 
     (setq dired-listing-switches "-alh")
