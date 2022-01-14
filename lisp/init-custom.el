@@ -31,50 +31,9 @@
 
 ;;; Code:
 
-(defgroup centaur nil
-  "Centaur Emacs customization."
-  :group 'convenience
-  :link '(url-link :tag "Homepage" "https://github.com/seagle0128/.emacs.d"))
-
-(defcustom centaur-logo (expand-file-name
-                         (if (display-graphic-p) "logo.png" "banner.txt")
-                         user-emacs-directory)
-  "Set Centaur logo. nil means official logo."
-  :group 'centaur
-  :type 'string)
-
-(defcustom centaur-full-name user-full-name
-  "Set user full name."
-  :group 'centaur
-  :type 'string)
-
-(defcustom centaur-mail-address user-mail-address
-  "Set user email address."
-  :group 'centaur
-  :type 'string)
-
-(defcustom centaur-org-directory (expand-file-name "~/org/")
-  "Set org directory."
-  :group 'centaur
-  :type 'string)
-
-(defcustom centaur-proxy "127.0.0.1:1087"
-  "Set HTTP/HTTPS proxy."
-  :group 'centaur
-  :type 'string)
-
-(defcustom centaur-socks-proxy "127.0.0.1:1086"
-  "Set SOCKS proxy."
-  :group 'centaur
-  :type 'string)
 
 (defcustom centaur-server t
   "Enable `server-mode' or not."
-  :group 'centaur
-  :type 'boolean)
-
-(defcustom centaur-icon (or (display-graphic-p) (daemonp))
-  "Display icons or not."
   :group 'centaur
   :type 'boolean)
 
@@ -154,73 +113,6 @@ For example:
   :type '(alist :key-type (string :tag "Time")
                 :value-type (symbol :tag "Theme")))
 
-(when (boundp 'ns-system-appearance)
-  (defcustom centaur-system-themes '((light . doom-one-light)
-				                     (dark  . doom-one))
-    "List of themes related the system appearance. It's only available on macOS."
-    :group 'centaur
-    :type '(alist :key-type (symbol :tag "Appearance")
-                  :value-type (symbol :tag "Theme"))))
-
-(defcustom centaur-theme 'default
-  "The color theme."
-  :group 'centaur
-  :type `(choice (const :tag "Auto" auto)
-                 (const :tag "Random" random)
-                 ,(if (boundp 'ns-system-appearance)
-                      '(const :tag "System" system)
-                    "")
-                 ,@(mapcar
-                    (lambda (item)
-                      (let ((name (car item)))
-                        (list 'const
-                              :tag (capitalize (symbol-name name))
-                              name)))
-                    centaur-theme-alist)
-                 symbol))
-
-(defcustom centaur-completion-style 'childframe
-  "Completion display style."
-  :group 'centaur
-  :type '(choice (const :tag "Minibuffer" minibuffer)
-                 (const :tag "Child Frame" childframe)))
-
-(defcustom centaur-dashboard (not (daemonp))
-  "Use dashboard at startup or not.
-If Non-nil, use dashboard, otherwise will restore previous session."
-  :group 'centaur
-  :type 'boolean)
-
-(defcustom centaur-restore-frame-geometry t
-  "Restore the frame's geometry at startup.
-If Non-nil, save and restore the frame's geometry."
-  :group 'centaur
-  :type 'boolean)
-
-(defcustom centaur-lsp 'lsp-mode
-  "Set language server.
-
-`lsp-mode': See https://github.com/emacs-lsp/lsp-mode.
-`eglot': See https://github.com/joaotavora/eglot.
-tags: Use tags file instead of language server. See https://github.com/universal-ctags/citre.
-nil means disabled."
-  :group 'centaur
-  :type '(choice (const :tag "LSP Mode" lsp-mode)
-                 (const :tag "Eglot" eglot)
-                 (const :tag "Disable" nil)))
-
-(defcustom centaur-lsp-format-on-save-ignore-modes
-  '(c-mode c++-mode python-mode)
-  "The modes that don't auto format and organize imports while saving the buffers.
-`prog-mode' means ignoring all derived modes.
-"
-  :group 'centaur
-  :type '(repeat (symbol :tag "Major-Mode")))
-
-(defcustom centaur-chinese-calendar nil
-  "Use Chinese calendar or not."
-  :group 'centaur
-  :type 'boolean)
 
 (defcustom centaur-prettify-symbols-alist
   '(("lambda" . ?λ)

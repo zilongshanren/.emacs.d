@@ -27,6 +27,7 @@
 ;;
 
 
+;; part of the code are from Centaur emacs
 ;;; Code:
 
 
