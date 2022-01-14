@@ -23,7 +23,7 @@
   (define-key vertico-map (kbd "C-j") 'vertico-next)
   (define-key vertico-map (kbd "C-k") 'vertico-previous)
   (define-key vertico-map [backspace] #'vertico-directory-delete-char)
-  ;; (map! :map vertico-map [backspace] #'vertico-directory-delete-char)
+
   )
 
 
@@ -43,7 +43,7 @@
   (advice-add #'multi-occur :override #'consult-multi-occur)
 
   :config
-
+  (global-set-key (kbd "M-y") 'consult-yank-pop)
   (setq ;; consult-project-root-function #'doom-project-root
         consult-narrow-key "<"
         consult-line-numbers-widen t
@@ -81,8 +81,7 @@
 (use-package consult-dir
   :bind (([remap list-directory] . consult-dir)
          :map vertico-map
-         ("C-x C-d" . consult-dir)
-         ("C-x C-j" . consult-dir-jump-file)))
+         ("s-d" . consult-dir)))
 
 (use-package consult-flycheck
   :after (consult flycheck))
@@ -93,20 +92,11 @@
   :init
   (setq which-key-use-C-h-commands nil
         prefix-help-command #'embark-prefix-help-command)
-  ;; (map! [remap describe-bindings] #'embark-bindings
-  ;;       "C-;"               #'embark-act  ; to be moved to :config default if accepted
-  ;;       (:map minibuffer-local-map
-  ;;        "C-;"               #'embark-act
-  ;;        "C-c C-;"           #'embark-export
-  ;;        :desc "Export to writable buffer" "C-c C-e" #'+vertico/embark-export-write)
-  ;;       (:leader
-  ;;        :desc "Actions" "a" #'embark-act))
-                                        ; to be moved to :config default if accepted
+  (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
+  (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)
   :config
-  ;(set-popup-rule! "^\\*Embark Export Grep" :size 0.35 :ttl 0 :quit nil)
-
   (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
-
+  (global-set-key (kbd "C-;") 'embark-act)
   ;; add the package! target finder before the file target finder,
   ;; so we don't get a false positive match.
 
@@ -118,7 +108,7 @@
   ;;         :desc "Open magit-status of target" "g"   #'+vertico/embark-magit-status)
   ;;        (:when (featurep! :ui workspaces)
   ;;         :desc "Open in new workspace" "TAB" #'+vertico/embark-open-in-new-workspace)))
-  )
+)
 
 
 (use-package marginalia
@@ -141,11 +131,15 @@
   )
 
 
+;; (with-eval-after-load 'consult
+;;   (with-eval-after-load 'embark
+;;     (require 'embark-consult)))
 (use-package embark-consult
+  :ensure t
   :after (embark consult)
+  :demand
   :config
-  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode)
-  )
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
 
 (use-package wgrep

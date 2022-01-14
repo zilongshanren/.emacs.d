@@ -49,7 +49,10 @@
 (global-set-key (kbd "C-h C-f") 'find-function)
 (global-set-key (kbd "C-h C-v") 'find-variable)
 (global-set-key (kbd "C-h C-k") 'find-function-on-key)
-(global-set-key (kbd "H-1") 'lispy-describe-inline)
+(global-set-key (kbd "s-1") 'lispy-describe-inline)
+(global-set-key (kbd "s-x") 'kill-region)
+
+
 
 
 (global-set-key (kbd "C-c a") 'org-agenda)
