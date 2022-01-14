@@ -6,11 +6,6 @@
   (evil-mode 1)
   (setcdr evil-insert-state-map nil)
   (define-key evil-insert-state-map [escape] 'evil-normal-state)
-  (add-hook 'after-init-hook
-            (lambda (&rest _)
-              (when-let ((messages-buffer (get-buffer "*Messages*")))
-                (with-current-buffer messages-buffer
-                  (evil-normalize-keymaps)))))
   :config
   (progn
 
@@ -44,43 +39,53 @@
                   (kbd "C-d") 'evil-scroll-down
                   (kbd "C-u") 'evil-scroll-up)))))
 
+(with-eval-after-load 'evil
+  (general-add-hook 'after-init-hook
+                    (lambda (&rest _)
+                      (when-let ((messages-buffer (get-buffer "*Messages*")))
+                        (with-current-buffer messages-buffer
+                          (evil-normalize-keymaps))))
+                    nil
+                    nil
+                    t))
+
 (use-package evil-leader
   :init
   (global-evil-leader-mode t)
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-  "SPC" 'execute-extended-command
-  "ff" 'find-file
-  "fr" 'consult-recent-file
-  "fs" 'save-buffer
-  "bb" 'switch-to-buffer
-  "bk" 'kill-buffer
-  "pf" 'consult-buffer
-  "ps" 'consult-ripgrep
-  "0" 'select-window-0
-  "1" 'select-window-1
-  "2" 'select-window-2
-  "3" 'select-window-3
-  "fj" 'dired-jump
-  "w/" 'split-window-right
-  "w-" 'split-window-below
-  ":" 'execute-extended-command
-  "'" 'vertico-repeat
-  "wm" 'delete-other-windows
-  "qq" 'save-buffers-kill-terminal
-  "sj" 'imenu
-  "bd" 'kill-this-buffer
-  "ts" 'flycheck-mode
-  "sp" 'consult-ripgrep
-  "TAB" 'spacemacs/alternate-buffer
-  "fed" 'open-my-init-file
-  "hdf" 'describe-function
-  "hdv" 'describe-variable
-  "hdk" 'describe-key
-  "pb" 'consult-buffer
-  "gs" 'magit-status
-  "gg" 'citre-jump
-  "gr" 'citre-peek)
+    "SPC" 'execute-extended-command
+    "ff" 'find-file
+    "fr" 'consult-recent-file
+    "fs" 'save-buffer
+    "bb" 'switch-to-buffer
+    "bk" 'kill-buffer
+    "pf" 'consult-buffer
+    "ps" 'consult-ripgrep
+    "0" 'select-window-0
+    "1" 'select-window-1
+    "2" 'select-window-2
+    "3" 'select-window-3
+    "fj" 'dired-jump
+    "w/" 'split-window-right
+    "w-" 'split-window-below
+    ":" 'execute-extended-command
+    "'" 'vertico-repeat
+    "wm" 'delete-other-windows
+    "qq" 'save-buffers-kill-terminal
+    "sj" 'imenu
+    "bd" 'kill-this-buffer
+    "ts" 'flycheck-mode
+    "sp" 'consult-ripgrep
+    "TAB" 'spacemacs/alternate-buffer
+    "fed" 'open-my-init-file
+    "hdf" 'describe-function
+    "hdv" 'describe-variable
+    "hdk" 'describe-key
+    "pb" 'consult-buffer
+    "gs" 'magit-status
+    "gg" 'citre-jump
+    "gr" 'citre-peek)
   )
 
 (use-package evil-surround

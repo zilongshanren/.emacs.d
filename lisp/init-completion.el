@@ -114,17 +114,18 @@
      (window-parameters (mode-line-format . none))
      (window-height . fit-window-to-buffer)))
 
+  (define-key minibuffer-local-map (kbd "C-;") 'embark-act)
+  (define-key minibuffer-local-map (kbd "C-c C-;") 'embark-export)
+  (define-key minibuffer-local-map (kbd "C-c C-e") '+vertico/embark-export-write)
+
   (with-eval-after-load 'popwin
     (progn
-      (push '(occur-mode :position right :width 450) popwin:special-display-config)
-      (push '(grep-mode :position right :width 450) popwin:special-display-config)
-      (push '(special-mode :position right :width 400) popwin:special-display-config)))
+      (push '(occur-mode :position right :width 100) popwin:special-display-config)
+      (push '(grep-mode :position right :width 100) popwin:special-display-config)
+      (push '(special-mode :position right :width 100) popwin:special-display-config)))
 
 
   :config
-  (define-key minibuffer-mode-map (kbd "C-;") 'embark-act)
-  (define-key minibuffer-mode-map (kbd "C-c C-;") 'embark-export)
-  (define-key minibuffer-mode-map (kbd "C-c C-e") '+vertico/embark-export-write)
   (define-key minibuffer-local-map (kbd "C-'") #'embark-become)
   (global-set-key (kbd "C-;") 'embark-act)
   ;; list all the keybindings in this buffer
