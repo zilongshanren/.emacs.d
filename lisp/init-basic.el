@@ -116,7 +116,7 @@
 ;; Start server
 (use-package server
   :ensure nil
-  :if centaur-server
+  :if zilongshanren-server
   :hook (after-init . server-mode))
 
 ;; History

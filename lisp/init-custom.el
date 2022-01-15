@@ -32,14 +32,14 @@
 ;;; Code:
 
 
-(defcustom centaur-server t
+(defcustom zilongshanren-server t
   "Enable `server-mode' or not."
-  :group 'centaur
+  :group 'zilongshanren
   :type 'boolean)
 
 ;; Emacs Lisp Package Archive (ELPA)
 ;; @see https://github.com/melpa/melpa and https://elpa.emacs-china.org/.
-(defcustom centaur-package-archives-alist
+(defcustom zilongshanren-package-archives-alist
   (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                       (not (gnutls-available-p))))
          (proto (if no-ssl "http" "https")))
@@ -50,8 +50,8 @@
              `(,(cons "gnu"   (concat proto "://mirrors.bfsu.edu.cn/elpa/gnu/"))
                ,(cons "melpa" (concat proto "://mirrors.bfsu.edu.cn/elpa/melpa/"))))
       ,(cons 'emacs-china
-             `(,(cons "gnu"   (concat proto "://elpa.emacs-china.org/gnu/"))
-               ,(cons "melpa" (concat proto "://elpa.emacs-china.org/melpa/"))))
+             `(,(cons "gnu"   (concat proto "://elpa.zilongshanren/gnu/"))
+               ,(cons "melpa" (concat proto "://elpa.zilongshanren/melpa/"))))
       ,(cons 'netease
              `(,(cons "gnu"   (concat proto "://mirrors.163.com/elpa/gnu/"))
                ,(cons "melpa" (concat proto "://mirrors.163.com/elpa/melpa/"))))
@@ -65,18 +65,18 @@
              `(,(cons "gnu"   (concat proto "://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
                ,(cons "melpa" (concat proto "://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"))))))
   "The package archives group list."
-  :group 'centaur
+  :group 'zilongshanren
   :type '(alist :key-type (symbol :tag "Archive group name")
                 :value-type (alist :key-type (string :tag "Archive name")
                                    :value-type (string :tag "URL or directory name"))))
 
-(defcustom centaur-package-archives 'melpa
+(defcustom zilongshanren-package-archives 'emacs-china
   "Set package archives from which to fetch."
-  :group 'centaur
+  :group 'zilongshanren
   :set (lambda (symbol value)
          (set symbol value)
          (setq package-archives
-               (or (alist-get value centaur-package-archives-alist)
+               (or (alist-get value zilongshanren-package-archives-alist)
                    (error "Unknown package archives: `%s'" value))))
   :type `(choice ,@(mapcar
                     (lambda (item)
@@ -84,9 +84,9 @@
                         (list 'const
                               :tag (capitalize (symbol-name name))
                               name)))
-                    centaur-package-archives-alist)))
+                    zilongshanren-package-archives-alist)))
 
-(defcustom centaur-theme-alist
+(defcustom zilongshanren-theme-alist
   '((default . doom-one)
     (pro     . doom-monokai-pro)
     (dark    . doom-dark+)
@@ -96,11 +96,11 @@
     (day     . doom-tomorrow-day)
     (night   . doom-tomorrow-night))
   "List of themes mapped to internal themes."
-  :group 'centaur
+  :group 'zilongshanren
   :type '(alist :key-type (symbol :tag "Theme")
                 :value-type (symbol :tag "Internal theme")))
 
-(defcustom centaur-auto-themes '(("8:00"  . doom-one-light)
+(defcustom zilongshanren-auto-themes '(("8:00"  . doom-one-light)
 				                 ("19:00" . doom-one))
   "List of themes mapped to the time they should be loaded.
 
@@ -109,12 +109,12 @@ if `calendar-latitude' and `calendar-longitude' are set.
 For example:
   '((:sunrise . doom-one-light)
     (:sunset  . doom-one))"
-  :group 'centaur
+  :group 'zilongshanren
   :type '(alist :key-type (string :tag "Time")
                 :value-type (symbol :tag "Theme")))
 
 
-(defcustom centaur-prettify-symbols-alist
+(defcustom zilongshanren-prettify-symbols-alist
   '(("lambda" . ?λ)
     ("<-" . ?←)
     ("->" . ?→)
@@ -135,10 +135,10 @@ For example:
     ("not" . ?¬))
   "Alist of symbol prettifications.
 Nil to use font supports ligatures."
-  :group 'centaur
+  :group 'zilongshanren
   :type '(alist :key-type string :value-type (choice character sexp)))
 
-(defcustom centaur-prettify-org-symbols-alist
+(defcustom zilongshanren-prettify-org-symbols-alist
   '(("[ ]" . ?☐)
     ("[X]" . ?☑)
     ("[-]" . ?⛝)
@@ -161,7 +161,7 @@ Nil to use font supports ligatures."
     ("#+HEADERS" . ?☰)
     ("#+RESULTS:" . ?💻))
   "Alist of symbol prettifications for `org-mode'."
-  :group 'centaur
+  :group 'zilongshanren
   :type '(alist :key-type string :value-type (choice character sexp)))
 
 ;; Load `custom-file'

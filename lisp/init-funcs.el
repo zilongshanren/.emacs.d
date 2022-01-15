@@ -114,7 +114,7 @@ Same as `replace-string C-q C-m RET RET'."
     (warn "Current buffer is not attached to a file!")))
 
 ;; Browse URL
-(defun centaur-webkit-browse-url (url &optional pop-buffer new-session)
+(defun zilongshanren-webkit-browse-url (url &optional pop-buffer new-session)
   "Browse url with webkit and switch or pop to the buffer.
 POP-BUFFER specifies whether to pop to the buffer.
 NEW-SESSION specifies whether to create a new xwidget-webkit session."
@@ -147,11 +147,11 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
   "Open or create `custom-file'."
   (interactive)
   (unless (file-exists-p custom-file)
-    (if (file-exists-p centaur-custom-example-file)
-        (copy-file centaur-custom-example-file custom-file)
-      (user-error "The file `%s' doesn't exist" centaur-custom-example-file)))
+    (if (file-exists-p zilongshanren-custom-example-file)
+        (copy-file zilongshanren-custom-example-file custom-file)
+      (user-error "The file `%s' doesn't exist" zilongshanren-custom-example-file)))
   (find-file custom-file)
-  (find-file-other-window centaur-custom-post-file))
+  (find-file-other-window zilongshanren-custom-post-file))
 
 ;; Misc
 (defun create-scratch-buffer ()
@@ -189,11 +189,11 @@ NEW-SESSION specifies whether to create a new xwidget-webkit session."
 
 (defun icons-displayable-p ()
   "Return non-nil if `all-the-icons' is displayable."
-  (and centaur-icon
+  (and zilongshanren-icon
        (display-graphic-p)
        (require 'all-the-icons nil t)))
 
-(defun centaur-set-variable (variable value &optional no-save)
+(defun zilongshanren-set-variable (variable value &optional no-save)
   "Set the VARIABLE to VALUE, and return VALUE.
 
 Save to `custom-file' if NO-SAVE is nil."
@@ -221,15 +221,15 @@ Save to `custom-file' if NO-SAVE is nil."
   (interactive
    (list
     (intern (completing-read "Select package archives: "
-                             (mapcar #'car centaur-package-archives-alist)))))
+                             (mapcar #'car zilongshanren-package-archives-alist)))))
   ;; Set option
-  (centaur-set-variable 'centaur-package-archives archives no-save)
+  (zilongshanren-set-variable 'zilongshanren-package-archives archives no-save)
 
   ;; Refresh if need
   (and refresh (package-refresh-contents async))
 
   (message "Set package archives to `%s'" archives))
-(defalias 'centaur-set-package-archives #'set-package-archives)
+(defalias 'zilongshanren-set-package-archives #'set-package-archives)
 
 
 ;; WORKAROUND: fix blank screen issue on macOS.
@@ -245,12 +245,12 @@ This issue has been addressed in 28."
 
 
 ;; Fonts
-(defun centaur-install-fonts ()
+(defun zilongshanren-install-fonts ()
   "Install necessary fonts."
   (interactive)
 
   (let* ((url-format "https://raw.githubusercontent.com/domtronn/all-the-icons.el/master/fonts/%s")
-         (url (concat centaur-homepage "/files/6135060/symbola.zip"))
+         (url (concat zilongshanren-homepage "/files/6135060/symbola.zip"))
          (font-dest (cond
                      ;; Default Linux install directories
                      ((member system-type '(gnu gnu/linux gnu/kfreebsd))

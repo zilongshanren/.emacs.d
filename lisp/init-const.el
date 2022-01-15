@@ -31,18 +31,18 @@
 
 ;;; Code:
 
-(defconst centaur-homepage
+(defconst zilongshanren-homepage
   "https://github.com/zilongshanren/emacs.d"
-  "The Github page of Centaur Emacs.")
+  "The Github page of Zilongshanren Emacs.")
 
 
-(defconst centaur-custom-post-file
+(defconst zilongshanren-custom-post-file
   (expand-file-name "custom-post.el" user-emacs-directory)
   "Custom file after startup.
 
 Put private configurations to override defaults here.")
 
-(defconst centaur-custom-post-org-file
+(defconst zilongshanren-custom-post-org-file
   (expand-file-name "custom-post.org" user-emacs-directory)
   "Custom org file after startup.
 

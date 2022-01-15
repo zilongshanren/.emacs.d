@@ -94,7 +94,7 @@
   (define-key company-active-map (kbd "C-k") #'company-select-previous))
 
 (global-set-key (kbd "C-w") 'backward-kill-word)
-
+(global-set-key (kbd "C-h a") 'apropos)
 
 
 
@@ -105,6 +105,7 @@
 	:init
 	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
     (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
+    (general-emacs-define-key 'global [remap apropos] 'consult-apropos)
 	)
 
 (provide 'init-keybindings)

@@ -47,7 +47,7 @@
 (advice-add 'package--save-selected-packages :override #'my-save-selected-packages)
 
 ;; Set ELPA packages
-(set-package-archives centaur-package-archives nil nil t)
+(set-package-archives zilongshanren-package-archives nil nil t)
 
 ;; Initialize packages
 (unless (bound-and-true-p package--initialized) ; To avoid warnings in 27
@@ -76,23 +76,6 @@
 ;; Update GPG keyring for GNU ELPA
 (use-package gnu-elpa-keyring-update)
 
-;; A modern Packages Menu
-(use-package paradox
-  :hook (after-init . paradox-enable)
-  :init (setq paradox-execute-asynchronously t
-              paradox-github-token t
-              paradox-display-star-count nil)
-  :config
-  (when (fboundp 'page-break-lines-mode)
-    (add-hook 'paradox-after-execute-functions
-              (lambda (&rest _)
-                "Display `page-break-lines' in \"*Paradox Report*\"."
-                (let ((buf (get-buffer "*Paradox Report*"))
-                      (inhibit-read-only t))
-                  (when (buffer-live-p buf)
-                    (with-current-buffer buf
-                      (page-break-lines-mode 1)))))
-              t)))
 
 
 (provide 'init-package)
