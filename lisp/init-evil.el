@@ -164,9 +164,11 @@
 
   :config
   (progn
+
     (evil-leader/set-key
       "f" 'my/file-command
       "b" 'my/buffer-command
+      "u" 'universal-argument
       "p" 'my/project-command
       "0" 'select-window-0
       "1" 'select-window-1
@@ -183,8 +185,8 @@
       "tn" 'my-toggle-line-numbber
       "sp" 'consult-ripgrep
       "TAB" 'spacemacs/alternate-buffer
-      "fed" 'open-my-init-file
       "hdf" 'describe-function
+      "v" #'er/expand-region
       "hdv" 'describe-variable
       "hdk" 'describe-key
       "gs" 'magit-status
@@ -199,6 +201,7 @@
       [["Find"
         ("f" "find-file" find-file)
         ("r" "find recent file" consult-recent-file)
+        ("ed" "find recent file" open-my-init-file)
         ]
        ["CRUD"
         ("s" "Save" save-buffer)

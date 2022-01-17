@@ -6,4 +6,6 @@
   ("-n256" "--decorate"))
  (magit-pull nil)
  (magit-push nil)
+ (my/buffer-command nil)
+ (my/file-command nil)
  (my/project-command nil))

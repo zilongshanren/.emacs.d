@@ -24,5 +24,65 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package quelpa)
+
+(unless (package-installed-p 'quelpa-use-package)
+  (quelpa
+   '(quelpa-use-package
+     :fetcher git
+     :url "https://github.com/quelpa/quelpa-use-package.git")))
+
+(setq quelpa-use-package-inhibit-loading-quelpa t)
+(use-package quelpa-use-package
+  :demand t)
+
+(use-package highlight-global
+  :demand t
+  :quelpa (highlight-global :fetcher github :repo "glen-dai/highlight-global"))
+
+(use-package symbol-overlay)
+(use-package discover-my-major)
+(use-package visual-regexp)
+(use-package visual-regexp-steroids)
+(use-package youdao-dictionary)
+(use-package cal-china-x)
+(use-package org-super-agenda)
+;; (use-package rime)
+
+
+(use-package expand-region
+  :config
+  (defadvice er/prepare-for-more-expansions-internal
+      (around helm-ag/prepare-for-more-expansions-internal activate)
+    ad-do-it
+    (let ((new-msg (concat (car ad-return-value)
+                           ", H to highlight in buffers"
+                           ", / to search in project, "
+                           "f to search in files, "
+                           "b to search in opened buffers"))
+          (new-bindings (cdr ad-return-value)))
+      (cl-pushnew
+       '("H" (lambda ()
+               (call-interactively
+                'zilongshanren/highlight-dwim)))
+       new-bindings)
+      (cl-pushnew
+       '("/" (lambda ()
+               (call-interactively
+                'my/search-project-for-symbol-at-point)))
+       new-bindings)
+      (cl-pushnew
+       '("f" (lambda ()
+               (call-interactively
+                'find-file)))
+       new-bindings)
+      (cl-pushnew
+       '("b" (lambda ()
+               (call-interactively
+                'consult-line)))
+       new-bindings)
+      (setq ad-return-value (cons new-msg new-bindings))))
+
+  )
 
 (provide 'init-tools)
