@@ -161,7 +161,7 @@
          ((prog-mode markdown-mode conf-mode) . enable-trailing-whitespace))
   :init
   (setq column-number-mode t
-        line-number-mode t
+        line-number-mode nil
         ;; kill-whole-line t               ; Kill line including '\n'
         line-move-visual nil
         track-eol t                     ; Keep cursor at end of lines. Require line-move-visual is nil.

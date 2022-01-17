@@ -573,6 +573,12 @@ the current layouts buffers."
   (interactive)
   (find-file (expand-file-name "init.el" user-emacs-directory )))
 
+(defun my-toggle-line-numbber ()
+  (interactive)
+  (if global-display-line-numbers-mode
+      (global-display-line-numbers-mode -1)
+    (global-display-line-numbers-mode 1)))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

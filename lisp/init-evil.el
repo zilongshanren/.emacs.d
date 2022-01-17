@@ -12,7 +12,7 @@
                         (when-let ((messages-buffer (get-buffer "*Messages*")))
                           (with-current-buffer messages-buffer
                             (evil-normalize-keymaps)
-                            (evil-leader-mode t)
+                            (evil-leader-mode 1)
                             )))
                       nil
                       nil
@@ -85,6 +85,7 @@
     "sj" 'imenu
     "bd" 'kill-this-buffer
     "ts" 'flycheck-mode
+    "tn" 'my-toggle-line-numbber
     "sp" 'consult-ripgrep
     "TAB" 'spacemacs/alternate-buffer
     "fed" 'open-my-init-file

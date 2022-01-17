@@ -31,6 +31,7 @@
 
 (global-hl-line-mode t)
 
+;; (global-display-line-numbers-mode t)
 
 (use-package popwin
   :ensure t
