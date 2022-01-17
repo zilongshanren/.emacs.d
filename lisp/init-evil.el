@@ -63,13 +63,15 @@
 
 
   (evil-leader/set-key
-    "SPC" 'execute-extended-command
+    "<SPC>" 'execute-extended-command)
+
+  (evil-leader/set-key
     "ff" 'find-file
     "fr" 'consult-recent-file
     "fs" 'save-buffer
     "bb" 'switch-to-buffer
     "bk" 'kill-buffer
-    "pf" 'consult-buffer
+    "pf" 'project-find-file
     "ps" 'consult-ripgrep
     "0" 'select-window-0
     "1" 'select-window-1
@@ -95,7 +97,8 @@
     "pb" 'consult-buffer
     "gs" 'magit-status
     "gg" 'citre-jump
-    "gr" 'citre-peek))
+    "gr" 'citre-peek)
+  )
 
 (use-package evil-surround
   :ensure t
