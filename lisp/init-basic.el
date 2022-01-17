@@ -229,7 +229,7 @@
 
 (setq-default split-height-threshold nil)
 ;; prevent dired window split 3 columns
-(setq-default split-width-threshold 300)
+(setq-default split-width-threshold (* 2 (window-width)))
 
 (setq recenter-positions '(top middle bottom))
 

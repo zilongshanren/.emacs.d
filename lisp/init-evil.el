@@ -31,10 +31,25 @@
     (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
     (define-key evil-insert-state-map (kbd "C-;") 'flyspell-correct-previous)
 
-    (evil-set-initial-state 'minibufffer-inactive-mode 'emacs)
-    (evil-set-initial-state 'makey-key-mode 'emacs)
-    (evil-set-initial-state 'prodigy-mode 'emacs)
-    (evil-set-initial-state 'org-agenda-mode 'normal)
+    ;; set evil init states
+    (dolist (m '(minibuffer-inactive-mode
+                 makey-key-mode
+                 prodigy-mode
+                 ag-mode
+                 flycheck-error-list-mode
+                 occur-mode
+                 occur-edit-mode
+                 git-rebase-mode))
+      (add-to-list 'evil-emacs-state-modes m))
+
+    (dolist (m '(wdired-mode
+                 occur-edit-mode
+                 ))
+      (add-to-list 'evil-normal-state-modes m))
+
+    (dolist (m '(eww-mode))
+      (add-to-list 'evil-motion-state-modes m))
+
 
     ;;mimic "nzz" behaviou in vim
     (defadvice evil-search-next (after advice-for-evil-search-next activate)
@@ -109,37 +124,28 @@
           evil-visual-state-tag   (propertize "[V]" 'face '((:background "gray" :foreground "black")))
           evil-operator-state-tag (propertize "[O]" 'face '((:background "purple"))))
     (setq evil-insert-state-cursor '("chartreuse3" bar))
-    (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state))
-
-  (dolist (mode '(ag-mode
-                  flycheck-error-list-mode
-                  occur-mode
-                  occur-edit-mode
-                  git-rebase-mode))
-    (add-to-list 'evil-emacs-state-modes mode))
-
-  (dolist (mode '(
-                  occur-edit-mode))
-    (add-to-list 'evil-normal-state-modes mode))
+    (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
 
 
-  (add-hook 'occur-mode-hook
-            (lambda ()
-              (evil-add-hjkl-bindings occur-mode-map 'emacs
-                (kbd "/") 'evil-search-forward
-                (kbd "n") 'evil-search-next
-                (kbd "N") 'evil-search-previous
-                (kbd "C-d") 'evil-scroll-down
-                (kbd "C-u") 'evil-scroll-up)))
 
-  (add-hook 'occur-edit-mode-hook
-            (lambda ()
-              (evil-add-hjkl-bindings occur-edit-mode-map 'normal
-                (kbd "/") 'evil-search-forward
-                (kbd "n") 'evil-search-next
-                (kbd "N") 'evil-search-previous
-                (kbd "C-d") 'evil-scroll-down
-                (kbd "C-u") 'evil-scroll-up))))
+    (add-hook 'occur-mode-hook
+              (lambda ()
+                (evil-add-hjkl-bindings occur-mode-map 'emacs
+                  (kbd "/") 'evil-search-forward
+                  (kbd "n") 'evil-search-next
+                  (kbd "N") 'evil-search-previous
+                  (kbd "C-d") 'evil-scroll-down
+                  (kbd "C-u") 'evil-scroll-up)))
+
+    (add-hook 'occur-edit-mode-hook
+              (lambda ()
+                (evil-add-hjkl-bindings occur-edit-mode-map 'normal
+                  (kbd "/") 'evil-search-forward
+                  (kbd "n") 'evil-search-next
+                  (kbd "N") 'evil-search-previous
+                  (kbd "C-d") 'evil-scroll-down
+                  (kbd "C-u") 'evil-scroll-up)))))
+
 
 (use-package undo-tree
   :init
@@ -148,48 +154,48 @@
 
 
 (use-package evil-leader
-  :init
-  (global-evil-leader-mode t)
-  (evil-leader/set-leader "<SPC>")
+:init
+(global-evil-leader-mode t)
+(evil-leader/set-leader "<SPC>")
 
 
-  (evil-leader/set-key
-    "<SPC>" 'execute-extended-command)
+(evil-leader/set-key
+  "<SPC>" 'execute-extended-command)
 
-  (evil-leader/set-key
-    "ff" 'find-file
-    "fr" 'consult-recent-file
-    "fs" 'save-buffer
-    "bb" 'switch-to-buffer
-    "bk" 'kill-buffer
-    "pf" 'project-find-file
-    "ps" 'consult-ripgrep
-    "0" 'select-window-0
-    "1" 'select-window-1
-    "2" 'select-window-2
-    "3" 'select-window-3
-    "fj" 'dired-jump
-    "w/" 'split-window-right
-    "w-" 'split-window-below
-    ":" 'execute-extended-command
-    "'" 'vertico-repeat
-    "wm" 'delete-other-windows
-    "qq" 'save-buffers-kill-terminal
-    "sj" 'imenu
-    "bd" 'kill-this-buffer
-    "ts" 'flycheck-mode
-    "tn" 'my-toggle-line-numbber
-    "sp" 'consult-ripgrep
-    "TAB" 'spacemacs/alternate-buffer
-    "fed" 'open-my-init-file
-    "hdf" 'describe-function
-    "hdv" 'describe-variable
-    "hdk" 'describe-key
-    "pb" 'consult-buffer
-    "gs" 'magit-status
-    "gg" 'citre-jump
-    "gr" 'citre-peek)
-  )
+(evil-leader/set-key
+  "ff" 'find-file
+  "fr" 'consult-recent-file
+  "fs" 'save-buffer
+  "bb" 'switch-to-buffer
+  "bk" 'kill-buffer
+  "pf" 'project-find-file
+  "ps" 'consult-ripgrep
+  "0" 'select-window-0
+  "1" 'select-window-1
+  "2" 'select-window-2
+  "3" 'select-window-3
+  "fj" 'dired-jump
+  "w/" 'split-window-right
+  "w-" 'split-window-below
+  ":" 'execute-extended-command
+  "'" 'vertico-repeat
+  "wm" 'delete-other-windows
+  "qq" 'save-buffers-kill-terminal
+  "sj" 'imenu
+  "bd" 'kill-this-buffer
+  "ts" 'flycheck-mode
+  "tn" 'my-toggle-line-numbber
+  "sp" 'consult-ripgrep
+  "TAB" 'spacemacs/alternate-buffer
+  "fed" 'open-my-init-file
+  "hdf" 'describe-function
+  "hdv" 'describe-variable
+  "hdk" 'describe-key
+  "pb" 'consult-buffer
+  "gs" 'magit-status
+  "gg" 'citre-jump
+  "gr" 'citre-peek)
+)
 
 (use-package evil-surround
   :ensure t
@@ -202,5 +208,7 @@
   (define-key evil-visual-state-map (kbd ",/") 'evilnc-comment-or-uncomment-lines)
 
   (evilnc-default-hotkeys))
+
+
 
 (provide 'init-evil)

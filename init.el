@@ -100,6 +100,7 @@
 (require 'init-ctags)
 (require 'init-flycheck)
 (require 'init-snippets)
+(require 'init-tools)
 
 (require 'init-lsp)
 
