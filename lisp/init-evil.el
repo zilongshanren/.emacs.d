@@ -154,48 +154,102 @@
 
 
 (use-package evil-leader
-:init
-(global-evil-leader-mode t)
-(evil-leader/set-leader "<SPC>")
+  :init
+  (global-evil-leader-mode t)
+  (evil-leader/set-leader "<SPC>")
 
 
-(evil-leader/set-key
-  "<SPC>" 'execute-extended-command)
+  (evil-leader/set-key
+    "<SPC>" 'execute-extended-command)
 
-(evil-leader/set-key
-  "ff" 'find-file
-  "fr" 'consult-recent-file
-  "fs" 'save-buffer
-  "bb" 'switch-to-buffer
-  "bk" 'kill-buffer
-  "pf" 'project-find-file
-  "ps" 'consult-ripgrep
-  "0" 'select-window-0
-  "1" 'select-window-1
-  "2" 'select-window-2
-  "3" 'select-window-3
-  "fj" 'dired-jump
-  "w/" 'split-window-right
-  "w-" 'split-window-below
-  ":" 'execute-extended-command
-  "'" 'vertico-repeat
-  "wm" 'delete-other-windows
-  "qq" 'save-buffers-kill-terminal
-  "sj" 'imenu
-  "bd" 'kill-this-buffer
-  "ts" 'flycheck-mode
-  "tn" 'my-toggle-line-numbber
-  "sp" 'consult-ripgrep
-  "TAB" 'spacemacs/alternate-buffer
-  "fed" 'open-my-init-file
-  "hdf" 'describe-function
-  "hdv" 'describe-variable
-  "hdk" 'describe-key
-  "pb" 'consult-buffer
-  "gs" 'magit-status
-  "gg" 'citre-jump
-  "gr" 'citre-peek)
-)
+  :config
+  (progn
+    (evil-leader/set-key
+      "f" 'my/file-command
+      "b" 'my/buffer-command
+      "p" 'my/project-command
+      "0" 'select-window-0
+      "1" 'select-window-1
+      "2" 'select-window-2
+      "3" 'select-window-3
+      "w/" 'split-window-right
+      "w-" 'split-window-below
+      ":" 'execute-extended-command
+      "'" 'vertico-repeat
+      "wm" 'delete-other-windows
+      "qq" 'save-buffers-kill-terminal
+      "sj" 'imenu
+      "ts" 'flycheck-mode
+      "tn" 'my-toggle-line-numbber
+      "sp" 'consult-ripgrep
+      "TAB" 'spacemacs/alternate-buffer
+      "fed" 'open-my-init-file
+      "hdf" 'describe-function
+      "hdv" 'describe-variable
+      "hdk" 'describe-key
+      "gs" 'magit-status
+      "gg" 'citre-jump
+      "gr" 'citre-peek)
+
+
+    (require 'transient)
+    ;; file keymaps
+    (transient-define-prefix my/file-command
+      "Files"
+      [["Find"
+        ("f" "find-file" find-file)
+        ("r" "find recent file" consult-recent-file)
+        ]
+       ["CRUD"
+        ("s" "Save" save-buffer)
+        ("j" "Dired jump" dired-jump)
+        ;; ("y" "Copy Filename" my/copy-current-filename-to-clipboard)
+        ;; ("r" "Rename" my/rename-current-buffer-file)
+        ;; ("k" "Delete" my/delete-file-and-buffer)
+        ;; ("e" "Exec shell" my/exec-shell-on-buffer)
+        ]])
+
+    ;; buffer keymap
+    (transient-define-prefix my/buffer-command
+      "Buffer"
+      [["Find"
+        ("b" "switch buffer" switch-to-buffer)
+        ]
+       ["CRUD"
+        ("k" "kill buffer" kill-buffer)
+        ("d" "kill this buffer" kill-this-buffer)]])
+    ;; workspace keymaps
+
+    ;; window keymaps
+
+    ;; toggle keymaps
+
+    ;; git keymaps
+
+    ;; search keymaps
+
+    ;; project keymaps
+    (transient-define-prefix my/project-command
+      "Project"
+      [["Find"
+        ("f" "File" project-find-file)
+        ("r" "Recentf" consult-recent-file)
+        ("s" "Search" consult-ripgrep)
+        ("d" "Dired" project-dired)
+        ("b" "buffer" consult-buffer)]
+       ["Progn"
+        ("e" "Eshell" project-eshell)
+        ;; ("m" "Makefile" my/project-run-makefile-target)
+        ("c" "Compile" project-compile)
+        ;; ("t" "ciTre" my/project-citre)
+        ]
+       ["Manage"
+        ("p" "Project" project-switch-project)
+        ;; ("i" "Info" my/project-info)
+        ;; ("a" "Add" my/project-add)
+        ;; ("n" "New" my/project-new-root)
+        ("x" "Xelete" project-forget-project)
+        ]])))
 
 (use-package evil-surround
   :ensure t
