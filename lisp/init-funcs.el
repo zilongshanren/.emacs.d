@@ -579,6 +579,26 @@ the current layouts buffers."
       (global-display-line-numbers-mode -1)
     (global-display-line-numbers-mode 1)))
 
+(defun doom/escape (&optional interactive)
+  "Run `doom-escape-hook'."
+  (interactive (list 'interactive))
+  (cond ((minibuffer-window-active-p (minibuffer-window))
+         ;; quit the minibuffer if open.
+         (when interactive
+           (setq this-command 'abort-recursive-edit))
+         (abort-recursive-edit))
+        ;; don't abort macros
+        ((or defining-kbd-macro executing-kbd-macro) nil)
+        ;; Back to the default
+        ((unwind-protect (keyboard-quit)
+           (when interactive
+             (setq this-command 'keyboard-quit))))))
+
+(global-set-key [remap keyboard-quit] #'doom/escape)
+
+(with-eval-after-load 'eldoc
+  (eldoc-add-command 'doom/escape))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
