@@ -233,6 +233,7 @@
 
 (setq recenter-positions '(top middle bottom))
 
+(show-paren-mode t)
 
 (provide 'init-basic)
 
