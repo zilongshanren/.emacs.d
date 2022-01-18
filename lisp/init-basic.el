@@ -51,15 +51,7 @@
    (sys/mac-port-p
     ;; Compatible with Emacs Mac port
     (setq mac-option-modifier 'meta
-          mac-command-modifier 'super)
-    (bind-keys ([(super a)] . mark-whole-buffer)
-               ([(super c)] . kill-ring-save)
-               ([(super l)] . goto-line)
-               ([(super q)] . save-buffers-kill-emacs)
-               ([(super s)] . save-buffer)
-               ([(super v)] . yank)
-               ([(super w)] . delete-frame)
-               ([(super z)] . undo))))
+          mac-command-modifier 'super)))
 
   ;; Optimization
   (when sys/win32p

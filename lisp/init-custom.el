@@ -114,55 +114,6 @@ For example:
                 :value-type (symbol :tag "Theme")))
 
 
-(defcustom zilongshanren-prettify-symbols-alist
-  '(("lambda" . ?λ)
-    ("<-" . ?←)
-    ("->" . ?→)
-    ("->>" . ?↠)
-    ("=>" . ?⇒)
-    ("map" . ?↦)
-    ("/=" . ?≠)
-    ("!=" . ?≠)
-    ("==" . ?≡)
-    ("<=" . ?≤)
-    (">=" . ?≥)
-    ("=<<" . (?= (Br . Bl) ?≪))
-    (">>=" . (?≫ (Br . Bl) ?=))
-    ("<=<" . ?↢)
-    (">=>" . ?↣)
-    ("&&" . ?∧)
-    ("||" . ?∨)
-    ("not" . ?¬))
-  "Alist of symbol prettifications.
-Nil to use font supports ligatures."
-  :group 'zilongshanren
-  :type '(alist :key-type string :value-type (choice character sexp)))
-
-(defcustom zilongshanren-prettify-org-symbols-alist
-  '(("[ ]" . ?☐)
-    ("[X]" . ?☑)
-    ("[-]" . ?⛝)
-
-    ("#+ARCHIVE:" . ?📦)
-    ("#+AUTHOR:" . ?👤)
-    ("#+CREATOR:" . ?💁)
-    ("#+DATE:" . ?📆)
-    ("#+DESCRIPTION:" . ?⸙)
-    ("#+EMAIL:" . ?📧)
-    ("#+OPTIONS:" . ?⛭)
-    ("#+SETUPFILE:" . ?⛮)
-    ("#+TAGS:" . ?🏷)
-    ("#+TITLE:" . ?📓)
-
-    ("#+BEGIN_SRC" . ?✎)
-    ("#+END_SRC" . ?□)
-    ("#+BEGIN_QUOTE" . ?»)
-    ("#+END_QUOTE" . ?«)
-    ("#+HEADERS" . ?☰)
-    ("#+RESULTS:" . ?💻))
-  "Alist of symbol prettifications for `org-mode'."
-  :group 'zilongshanren
-  :type '(alist :key-type string :value-type (choice character sexp)))
 
 ;; Load `custom-file'
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
