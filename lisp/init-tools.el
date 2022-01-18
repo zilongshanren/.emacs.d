@@ -107,4 +107,52 @@
 
   )
 
+(use-package prodigy
+  :init
+  (progn
+
+    ;; define service
+    (prodigy-define-service
+      :name "Hugo Server"
+      :command "hugo"
+      :args '("server" "-D" "--navigateToChanged" "-t" "even")
+      :cwd blog-admin-dir
+      :tags '(hugo server)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)
+
+    (prodigy-define-service
+      :name "hugo Deploy"
+      :command "bash"
+      :args '("./deploy.sh")
+      :cwd blog-admin-dir
+      :tags '(hugo deploy)
+      :kill-signal 'sigkill
+      :kill-process-buffer-on-stop t)))
+
+(use-package pyim)
+
+
+(use-package rime
+  :init
+  (setq default-input-method "rime")
+  :config
+  (progn (set-face-attribute 'rime-default-face nil :foreground "#839496" :background "#073642")
+         (setq rime-librime-root (expand-file-name "librime/dist" "~/.emacs.default"))
+         (setq rime-show-candidate 'posframe)
+         (setq rime-share-data-dir "~/Library/Rime")
+         (setq rime-user-data-dir "~/Library/Rime")
+         (setq rime-posframe-properties
+               (list :background-color "#073642"
+                     :foreground-color "#839496"
+                     :internal-border-width 1))))
+
+;;
+
+
+(advice-add 'ispell-lookup-words :around
+            (lambda (orig &rest args)
+              (shut-up (apply orig args))))
+
+
 (provide 'init-tools)

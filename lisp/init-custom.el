@@ -113,6 +113,14 @@ For example:
   :type '(alist :key-type (string :tag "Time")
                 :value-type (symbol :tag "Theme")))
 
+(defvar blog-admin-dir ""
+      "blog-admin files location")
+
+(if sys/win32p
+    (setq
+     blog-admin-dir "d:/zilongshanren.com")
+  (setq
+   blog-admin-dir "~/zilongshanren.com"))
 
 
 ;; Load `custom-file'
