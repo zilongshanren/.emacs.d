@@ -109,7 +109,10 @@
 (use-package server
   :ensure nil
   :if zilongshanren-server
-  :hook (after-init . server-mode))
+  :hook (after-init . (lambda ()
+                        (server-force-delete)
+                        (server-mode)))
+  )
 
 ;; History
 (use-package saveplace
