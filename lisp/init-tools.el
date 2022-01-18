@@ -38,10 +38,31 @@
 
 
 (use-package symbol-overlay)
-(use-package discover-my-major)
-(use-package visual-regexp)
-(use-package visual-regexp-steroids)
-(use-package youdao-dictionary)
+
+
+(use-package visual-regexp
+  :defer
+  :commands (vr/replace vr/query-replace))
+
+(use-package visual-regexp-steroids
+  :defer
+  :commands (vr/select-replace vr/select-query-replace)
+  :init
+  (progn
+    (define-key global-map (kbd "C-c r") 'vr/replace)
+    (define-key global-map (kbd "C-c q") 'vr/query-replace)))
+
+(use-package discover-my-major
+  :defer t
+    :init
+    )
+
+
+(use-package youdao-dictionary
+  :commands (youdao-dictionary-search-at-point+)
+  :init
+  (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+))
+
 (use-package cal-china-x)
 (use-package org-super-agenda)
 ;; (use-package rime)
