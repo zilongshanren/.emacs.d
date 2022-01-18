@@ -40,7 +40,9 @@
       "z" 'dired-get-size
       "c" 'dired-copy-file-here
       "f" 'consult-buffer
-      ")" 'dired-omit-mode)
+      ")" 'dired-omit-mode
+      "<" 'beginning-of-buffer
+      ">" 'end-of-buffer)
 
     (define-key dired-mode-map "e" 'ora-ediff-files)))
 
