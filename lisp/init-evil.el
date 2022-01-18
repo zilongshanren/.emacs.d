@@ -180,6 +180,8 @@
       "'" 'vertico-repeat
       "wm" 'delete-other-windows
       "qq" 'save-buffers-kill-terminal
+       "hh" 'zilongshanren/highlight-dwim
+       "hc" 'zilongshanren/clearn-highlight
       "sj" 'imenu
       "ts" 'flycheck-mode
       "tn" 'my-toggle-line-numbber

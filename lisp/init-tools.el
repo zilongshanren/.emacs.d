@@ -26,7 +26,15 @@
 
 
 (use-package highlight-global
-  :quelpa (highlight-global :fetcher github :repo "glen-dai/highlight-global"))
+  :commands (highlight-frame-toggle)
+  :quelpa (highlight-global :fetcher github :repo "glen-dai/highlight-global")
+  :config
+  (progn
+    (setq-default highlight-faces
+                  '(('hi-red-b . 0)
+                    ('hi-aquamarine . 0)
+                    ('hi-pink . 0)
+                    ('hi-blue-b . 0)))))
 
 
 (use-package symbol-overlay)

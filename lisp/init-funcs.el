@@ -635,6 +635,9 @@ the current layouts buffers."
                     (revert-buffer nil t))
                  'follow-link t)))))))))
 
+(advice-add 'describe-function-1 :after #'chunyang-advice-remove-button)
+
+
 ;; http://emacs.stackexchange.com/questions/13970/fixing-double-capitals-as-i-type
 ;;;###autoload
 (defun dcaps-to-scaps ()
@@ -934,6 +937,7 @@ e.g. Sunday, September 17, 2000."
     reload active tab of winref
   end tell
 " )))
+
 
 
 (provide 'init-funcs)
