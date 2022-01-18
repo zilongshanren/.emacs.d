@@ -183,6 +183,9 @@
       "sj" 'imenu
       "ts" 'flycheck-mode
       "tn" 'my-toggle-line-numbber
+      "en" 'flycheck-next-error
+      "ep" 'flycheck-previous-error
+      "el" 'flycheck-list-errors
       "sp" 'consult-ripgrep
       "TAB" 'spacemacs/alternate-buffer
       "hdf" 'describe-function
@@ -201,7 +204,7 @@
       [["Find"
         ("f" "find-file" find-file)
         ("r" "find recent file" consult-recent-file)
-        ("ed" "find recent file" open-my-init-file)
+        ("ed" "find emacs init file" open-my-init-file)
         ]
        ["CRUD"
         ("s" "Save" save-buffer)

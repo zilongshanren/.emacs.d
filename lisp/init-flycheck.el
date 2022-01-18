@@ -25,6 +25,27 @@
 ;;
 
 (use-package flycheck
-  :ensure t)
+  :ensure t
+  :config
+
+  ;; install json link with commands:  npm install -g mwks-jsonlint --force
+  ;; don't use original jsonlint which doesn't respect comments in json
+  (flycheck-define-checker json-jsonlint
+    "A JSON syntax and style checker using jsonlint.
+
+See URL `https://github.com/zaach/jsonlint'."
+    ;; We can't use standard input for jsonlint, because it doesn't output errors
+    ;; anymore when using -c -q with standard input :/
+    :command ("jsonlint" "-c" "-C" "-q" source)
+    :error-patterns
+    ((error line-start
+            (file-name)
+            ": line " line
+            ", col " column ", "
+            (message) line-end))
+    :error-filter
+    (lambda (errors)
+      (flycheck-sanitize-errors (flycheck-increment-error-columns errors)))
+    :modes json-mode))
 
 (provide 'init-flycheck)
