@@ -32,13 +32,14 @@
      :fetcher git
      :url "https://github.com/quelpa/quelpa-use-package.git")))
 
-(setq quelpa-use-package-inhibit-loading-quelpa t)
 (use-package quelpa-use-package
+  :init
+  (setq quelpa-use-package-inhibit-loading-quelpa t)
   :demand t)
 
 (use-package highlight-global
-  :demand t
   :quelpa (highlight-global :fetcher github :repo "glen-dai/highlight-global"))
+
 
 (use-package symbol-overlay)
 (use-package discover-my-major)
