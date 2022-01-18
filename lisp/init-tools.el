@@ -52,21 +52,25 @@
           (new-bindings (cdr ad-return-value)))
       (cl-pushnew
        '("H" (lambda ()
+               (interactive)
                (call-interactively
                 'zilongshanren/highlight-dwim)))
        new-bindings)
       (cl-pushnew
        '("/" (lambda ()
+               (interactive)
                (call-interactively
                 'my/search-project-for-symbol-at-point)))
        new-bindings)
       (cl-pushnew
        '("f" (lambda ()
+               (interactive)
                (call-interactively
                 'find-file)))
        new-bindings)
       (cl-pushnew
        '("b" (lambda ()
+               (interactive)
                (call-interactively
                 'consult-line)))
        new-bindings)

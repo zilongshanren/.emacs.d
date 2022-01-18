@@ -820,12 +820,13 @@ open and unsaved."
         (deactivate-mark))
     (symbol-overlay-put)))
 
-(defun my/search-project-for-symbol-at-point (beginning end)
-  (interactive "r")
+;;;###autoload
+(defun my/search-project-for-symbol-at-point ()
+  (interactive)
   (if (use-region-p)
       (progn
         (consult-ripgrep (project-root (project-current))
-                         (buffer-substring beginning end)))))
+                         (buffer-substring (region-beginning) (region-end))))))
 
 ;;;###autoload
 (defun zilongshanren/clearn-highlight ()
