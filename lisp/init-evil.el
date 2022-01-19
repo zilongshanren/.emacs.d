@@ -189,6 +189,7 @@
       "ep" 'flycheck-previous-error
       "el" 'flycheck-list-errors
       "sp" 'consult-ripgrep
+      "oy" 'youdao-dictionary-search-at-point+
       "TAB" 'spacemacs/alternate-buffer
       "hdf" 'describe-function
       "v" #'er/expand-region

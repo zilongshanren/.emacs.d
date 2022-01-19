@@ -68,7 +68,7 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 (global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
-
+(define-key global-map (kbd "s-e") 'rime-inline-ascii)
 (global-set-key (kbd "s-/") 'hippie-expand)
 
 (with-eval-after-load 'dired
