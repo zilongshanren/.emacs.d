@@ -45,8 +45,8 @@
    (sys/win32p
     ;; make PC keyboard's Win key or other to type Super or Hyper
     ;; (setq w32-pass-lwindow-to-system nil)
-    (setq w32-lwindow-modifier 'super     ; Left Windows key
-          w32-apps-modifier 'super)       ; Menu/App key
+    (setq w32-lwindow-modifier 'super   ; Left Windows key
+          w32-apps-modifier 'super)     ; Menu/App key
     (w32-register-hot-key [s-t]))
    (sys/mac-port-p
     ;; Compatible with Emacs Mac port
@@ -64,10 +64,28 @@
     (setq command-line-x-option-alist nil))
 
   ;; Increase how much is read from processes in a single chunk (default is 4kb)
-  (setq read-process-output-max #x10000)  ; 64kb
+  (setq read-process-output-max #x10000) ; 64kb
 
   ;; Don't ping things that look like domain names.
   (setq ffap-machine-p-known 'reject)
+
+  (if sys/win32p
+      (progn
+        (defvar emax-root (concat (expand-file-name "~") "/emax"))
+        (defvar emax-bin (concat emax-root "/bin"))
+        (defvar emax-bin64 (concat emax-root "/bin64"))
+
+        (setq exec-path (cons emax-bin exec-path))
+        (setenv "PATH" (concat emax-bin ";" (getenv "PATH")))
+
+        (setq exec-path (cons emax-bin64 exec-path))
+        (setenv "PATH" (concat emax-bin64 ";" (getenv "PATH")))
+
+        (setenv "PATH" (concat "C:\\msys64\\usr\\bin;C:\\msys64\\mingw64\\bin;" (getenv "PATH")))
+
+        ;; (dolist (dir '("~/emax/" "~/emax/bin/" "~/emax/bin64/" "~/emax/lisp/" "~/emax/elpa/"))
+        ;;   (add-to-list 'load-path dir))
+        ))
 
   ;; Garbage Collector Magic Hack
   (use-package gcmh

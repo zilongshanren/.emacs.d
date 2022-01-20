@@ -65,7 +65,6 @@
 
 (use-package cal-china-x)
 (use-package org-super-agenda)
-;; (use-package rime)
 
 
 (use-package expand-region
@@ -138,10 +137,15 @@
   (setq default-input-method "rime")
   :config
   (progn (set-face-attribute 'rime-default-face nil :foreground "#839496" :background "#073642")
-         (setq rime-librime-root (expand-file-name "librime/dist" "~/.emacs.default"))
+         (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
          (setq rime-show-candidate 'posframe)
          (setq rime-share-data-dir "~/Library/Rime")
          (setq rime-user-data-dir "~/Library/Rime")
+         (if sys/win32p
+             (progn
+               (setq rime-share-data-dir "C:\\Users\\lionqu\\AppData\\Roaming\\Rime")
+               (setq rime-user-data-dir "C:\\Users\\lionqu\\AppData\\Roaming\\Rime")
+               ))
          (setq rime-posframe-properties
                (list :background-color "#073642"
                      :foreground-color "#839496"
@@ -153,6 +157,8 @@
 (advice-add 'ispell-lookup-words :around
             (lambda (orig &rest args)
               (shut-up (apply orig args))))
+
+
 
 
 (provide 'init-tools)
