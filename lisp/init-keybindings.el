@@ -80,7 +80,7 @@
 
 (global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
 
-(js2r-add-keybindings-with-prefix "C-c C-m")
+
 
 
 (global-set-key (kbd "M-s e") 'iedit-mode)
