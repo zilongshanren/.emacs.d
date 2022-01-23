@@ -44,6 +44,8 @@
 
 (use-package doom-themes
   :init
-  (load-theme 'doom-tomorrow-night))
+  (if (display-graphic-p)
+      (load-theme 'doom-one)
+    (load-theme 'doom-tomorrow-night)))
 
 (provide 'init-ui)
