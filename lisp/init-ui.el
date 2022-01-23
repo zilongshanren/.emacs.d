@@ -42,4 +42,8 @@
   :init
   (window-numbering-mode 1))
 
+(use-package doom-themes
+  :init
+  (load-theme 'doom-tomorrow-night))
+
 (provide 'init-ui)
