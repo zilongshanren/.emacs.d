@@ -7,6 +7,7 @@
   (evil-mode)
 
   (with-eval-after-load 'evil
+    (require 'general)
     (general-add-hook 'after-init-hook
                       (lambda (&rest _)
                         (when-let ((messages-buffer (get-buffer "*Messages*")))
@@ -37,8 +38,6 @@
                  prodigy-mode
                  ag-mode
                  flycheck-error-list-mode
-                 occur-mode
-                 occur-edit-mode
                  git-rebase-mode))
       (add-to-list 'evil-emacs-state-modes m))
 
