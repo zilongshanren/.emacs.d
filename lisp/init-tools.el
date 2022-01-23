@@ -129,7 +129,23 @@
       :kill-signal 'sigkill
       :kill-process-buffer-on-stop t)))
 
-(use-package pyim)
+(use-package pyim
+  :demand t
+  :init
+  (defun eh-orderless-regexp (orig_func component)
+    (let ((result (funcall orig_func component)))
+      (pyim-cregexp-build result)))
+
+
+  (defun toggle-chinese-search ()
+    (interactive)
+    (if (not (advice-member-p #'eh-orderless-regexp 'orderless-regexp))
+        (advice-add 'orderless-regexp :around #'eh-orderless-regexp)
+      (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
+
+  (global-set-key (kbd "s-p") 'toggle-chinese-search)
+  ;; use #$#pyim to search chinese and also es.exe locate
+  )
 
 
 (use-package rime
