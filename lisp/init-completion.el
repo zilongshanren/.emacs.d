@@ -7,7 +7,7 @@
 (when (not (display-graphic-p))
   (use-package company
     :init
-    (setq company-prefix-length 1)
+    (setq company-minimum-prefix-length 1)
     (setq company-idle-delay 0)
     (global-company-mode t))
 
