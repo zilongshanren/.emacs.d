@@ -187,7 +187,7 @@
   ;; 4. (setq completion-styles '(substring orderless basic))
   ;; Combine substring, orderless and basic.
   ;;
-  (setq completion-styles '(orderless-flex partial-completion)
+  (setq completion-styles '(orderless partial-completion)
         completion-category-defaults nil
 ;;; Enable partial-completion for files.
 ;;; Either give orderless precedence or partial-completion.
