@@ -24,4 +24,9 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package c++-mode
+  :ensure nil
+  :init
+  (setq-default c-basic-offset 4))
+
 (provide 'init-c)
