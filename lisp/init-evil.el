@@ -6,18 +6,7 @@
   (setq evil-want-C-u-scroll t)
   (evil-mode)
 
-  (with-eval-after-load 'evil
-    (require 'general)
-    (general-add-hook 'after-init-hook
-                      (lambda (&rest _)
-                        (when-let ((messages-buffer (get-buffer "*Messages*")))
-                          (with-current-buffer messages-buffer
-                            (evil-normalize-keymaps)
-                            (evil-leader-mode 1)
-                            )))
-                      nil
-                      nil
-                      t))
+
   :config
   (progn
     (setcdr evil-insert-state-map nil)
