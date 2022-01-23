@@ -75,6 +75,7 @@
     (let ((new-msg (concat (car ad-return-value)
                            ", H to highlight in buffers"
                            ", / to search in project, "
+                           "e iedit mode in functions"
                            "f to search in files, "
                            "b to search in opened buffers"))
           (new-bindings (cdr ad-return-value)))
@@ -89,6 +90,12 @@
                (interactive)
                (call-interactively
                 'my/search-project-for-symbol-at-point)))
+       new-bindings)
+      (cl-pushnew
+       '("e" (lambda ()
+               (interactive)
+               (call-interactively
+                'iedit-mode)))
        new-bindings)
       (cl-pushnew
        '("f" (lambda ()
