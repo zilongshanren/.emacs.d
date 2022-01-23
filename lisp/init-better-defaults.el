@@ -30,21 +30,7 @@
     (setq dired-recursive-deletes 'always)
     (setq dired-recursive-copies 'always)
 
-    (with-eval-after-load 'evil
-      (evil-define-key 'normal dired-mode-map
-        (kbd "C-k") 'zilongshanren/dired-up-directory
-        "<RET>" 'dired-find-alternate-file
-        "E" 'dired-toggle-read-only
-        "C" 'dired-do-copy
-        "<mouse-2>" 'my-dired-find-file
-        "`" 'dired-open-term
-        "gr" 'revert-buffer
-        "z" 'dired-get-size
-        "c" 'dired-copy-file-here
-        "f" 'consult-buffer
-        ")" 'dired-omit-mode
-        "<" 'beginning-of-buffer
-        ">" 'end-of-buffer))
+
 
     (define-key dired-mode-map "e" 'ora-ediff-files)))
 
