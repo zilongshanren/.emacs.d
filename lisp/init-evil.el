@@ -217,8 +217,8 @@
       [["Find"
         ("f" "find-file" find-file)
         ("r" "find recent file" consult-recent-file)
-        ("ed" "find emacs init file" open-my-init-file)
-        ]
+        ("L" "locate file" consult-locate)
+        ("ed" "find emacs init file" open-my-init-file)]
        ["CRUD"
         ("s" "Save" save-buffer)
         ("j" "Dired jump" dired-jump)
