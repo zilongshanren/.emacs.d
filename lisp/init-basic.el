@@ -81,6 +81,10 @@
         (setq exec-path (cons emax-bin64 exec-path))
         (setenv "PATH" (concat emax-bin64 ";" (getenv "PATH")))
 
+        (setq emacsd-bin (concat user-emacs-directory "bin"))
+        (setq exec-path (cons  emacsd-bin exec-path))
+        (setenv "PATH" (concat emacsd-bin  ";" (getenv "PATH")))
+
         (setenv "PATH" (concat "C:\\msys64\\usr\\bin;C:\\msys64\\mingw64\\bin;" (getenv "PATH")))
 
         ;; (dolist (dir '("~/emax/" "~/emax/bin/" "~/emax/bin64/" "~/emax/lisp/" "~/emax/elpa/"))
