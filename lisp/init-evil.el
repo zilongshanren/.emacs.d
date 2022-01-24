@@ -47,6 +47,7 @@
 
     (dolist (m '(wdired-mode
                  occur-edit-mode
+                 xref--xref-buffer-mode
                  ))
       (add-to-list 'evil-normal-state-modes m))
 
@@ -130,6 +131,12 @@
     (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
 
 
+
+    (add-hook 'xref--xref-buffer-mode-hook
+              (lambda ()
+                (evil-add-hjkl-bindings xref--xref-buffer-mode-map 'normal
+                  (kbd "RET") 'xref-goto-xref
+                  (kbd "q") 'quit-window)))
 
     (add-hook 'occur-mode-hook
               (lambda ()
