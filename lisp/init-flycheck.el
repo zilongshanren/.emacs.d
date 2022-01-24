@@ -27,7 +27,7 @@
 (use-package flycheck
   :ensure t
   :config
-
+  (setq flycheck-check-syntax-automatically '(save))
   ;; install json link with commands:  npm install -g mwks-jsonlint --force
   ;; don't use original jsonlint which doesn't respect comments in json
   (flycheck-define-checker json-jsonlint
