@@ -16,7 +16,7 @@
 
     (evil-define-key 'normal dired-mode-map
       (kbd "C-k") 'zilongshanren/dired-up-directory
-      "<RET>" 'dired-find-alternate-file
+      ;; "<RET>" 'dired-find-alternate-file
       "E" 'dired-toggle-read-only
       "C" 'dired-do-copy
       "<mouse-2>" 'my-dired-find-file
