@@ -150,8 +150,15 @@
         (advice-add 'orderless-regexp :around #'eh-orderless-regexp)
       (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
 
+  (defun disable-py-search (&optional args)
+    (if (advice-member-p #'eh-orderless-regexp 'orderless-regexp)
+        (advice-remove 'orderless-regexp #'eh-orderless-regexp)))
+
+  ;; (advice-add 'exit-minibuffer :after #'disable-py-search)
+  (add-hook 'minibuffer-exit-hook 'disable-py-search)
+
   (global-set-key (kbd "s-p") 'toggle-chinese-search)
-  ;; use #$#pyim to search chinese and also es.exe locate
+  ;; use #$#pyim to search chinese and also es.exe locate 子龙
   )
 
 

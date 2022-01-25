@@ -296,7 +296,7 @@
   (define-key embark-identifier-map "R" #'consult-ripgrep)
   (define-key embark-identifier-map (kbd "C-s") #'consult-line)
 
-
+  (define-key embark-file-map (kbd "E") #'consult-directory-externally)
   ;; (map! (:map embark-file-map
   ;;        :desc "Open target with sudo" "s" #'doom/sudo-find-file
   ;;        (:when (featurep! :tools magit)
