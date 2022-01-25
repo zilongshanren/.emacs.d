@@ -208,6 +208,7 @@
   (if sys/win32p
       (progn
         (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
+        (add-to-list 'process-coding-system-alist '("explorer" gbk . gbk))
         (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))))
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   (advice-add #'multi-occur :override #'consult-multi-occur)

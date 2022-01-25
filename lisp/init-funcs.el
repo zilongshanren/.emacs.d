@@ -960,13 +960,16 @@ e.g. Sunday, September 17, 2000."
   (interactive "fOpen externally: ")
   (if (and (eq system-type 'windows-nt)
            (fboundp 'w32-shell-execute))
-      (shell-command-to-string (replace-regexp-in-string "/" "\\\\" (format "explorer.exe %s" (file-name-directory (expand-file-name file)))))
+      (shell-command-to-string (encode-coding-string (replace-regexp-in-string "/" "\\\\" (format "explorer.exe %s" (file-name-directory (expand-file-name file)))) 'gbk))
     (call-process (pcase system-type
                     ('darwin "open")
                     ('cygwin "cygstart")
                     (_ "xdg-open"))
                   nil 0 nil
                   (file-name-directory (expand-file-name file)))))
+
+;; (shell-command-to-string (encode-coding-string (replace-regexp-in-string "/" "\\\\" (format "explorer.exe %s" (file-name-directory "F:\\workspace\\Configuration\\Mobile\\Live\\全版本_3.0\\Puffer"))) 'gbk))
+;; (shell-command-to-string (encode-coding-string (replace-regexp-in-string "/" "\\\\" (format "explorer.exe %s" (file-name-directory file))) 'gbk))
 
 (provide 'init-funcs)
 
