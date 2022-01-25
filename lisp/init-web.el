@@ -62,6 +62,8 @@
 
 (use-package yaml-mode)
 
+(use-package dtrt-indent
+  :hook (prog-mode . dtrt-indent-mode))
 
 
 (provide 'init-web)
