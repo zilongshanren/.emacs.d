@@ -218,6 +218,7 @@
         ("f" "find-file" find-file)
         ("r" "find recent file" consult-recent-file)
         ("L" "locate file" consult-locate)
+        ("d" "open directory" my-open-current-directory)
         ("ed" "find emacs init file" open-my-init-file)]
        ["CRUD"
         ("s" "Save" save-buffer)

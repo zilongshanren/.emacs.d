@@ -954,6 +954,10 @@ e.g. Sunday, September 17, 2000."
 " )))
 
 
+(defun my-open-current-directory ()
+  (interactive)
+  (consult-directory-externally default-directory))
+
 
 (defun consult-directory-externally (file)
   "Open FILE externally using the default application of the system."
