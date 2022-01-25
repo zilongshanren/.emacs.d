@@ -199,6 +199,7 @@
       "ep" 'flycheck-previous-error
       "el" 'flycheck-list-errors
       "sp" 'consult-ripgrep
+      "=" 'indent-buffer
       "oy" 'youdao-dictionary-search-at-point+
       "TAB" 'spacemacs/alternate-buffer
       "hdf" 'describe-function
@@ -206,8 +207,9 @@
       "hdv" 'describe-variable
       "hdk" 'describe-key
       "gs" 'magit-status
-      "gg" 'citre-jump
-      "gr" 'citre-peek)
+      "gd" 'vc-diff
+      "gg" 'xref-find-definitions
+      "gr" 'xref-find-references)
 
 
     (require 'transient)
