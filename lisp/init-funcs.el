@@ -228,7 +228,8 @@ Save to `custom-file' if NO-SAVE is nil."
   ;; Refresh if need
   (and refresh (package-refresh-contents async))
 
-  (message "Set package archives to `%s'" archives))
+  ;; (message "Set package archives to `%s'" archives)
+  )
 (defalias 'zilongshanren-set-package-archives #'set-package-archives)
 
 

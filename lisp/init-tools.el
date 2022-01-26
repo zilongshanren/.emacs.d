@@ -114,7 +114,9 @@
   )
 
 (use-package prodigy
-  :init
+  :commands (prodigy)
+  :defer 1
+  :config
   (progn
 
     ;; define service
@@ -183,10 +185,12 @@
 
 ;;
 
-
-(advice-add 'ispell-lookup-words :around
-            (lambda (orig &rest args)
-              (shut-up (apply orig args))))
+(use-package ispell-minor-mode
+  :ensure nil
+  :config
+  (advice-add 'ispell-lookup-words :around
+              (lambda (orig &rest args)
+                (shut-up (apply orig args)))))
 
 
 
