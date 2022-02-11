@@ -51,4 +51,6 @@
   :init
   (global-hungry-delete-mode))
 
+(global-auto-revert-mode t)
+
 (provide 'init-better-defaults)
