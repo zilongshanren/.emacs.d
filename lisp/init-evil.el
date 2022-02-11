@@ -236,7 +236,7 @@
       "Buffer"
       [["Find"
         ("b" "switch buffer" switch-to-buffer)
-        ]
+        ("s" "switch to scratch buffer" create-scratch-buffer)]
        ["CRUD"
         ("k" "kill buffer" kill-buffer)
         ("d" "kill this buffer" kill-this-buffer)]])
