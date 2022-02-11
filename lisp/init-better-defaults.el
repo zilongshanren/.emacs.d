@@ -8,6 +8,8 @@
   (progn
     (require 'dired-aux)
 
+    (setq dired-dwim-target t)
+
     (setq dired-listing-switches "-alh")
     (setq dired-guess-shell-alist-user
           '(("\\.pdf\\'" "open")
