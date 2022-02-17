@@ -48,4 +48,6 @@
       (load-theme 'doom-one)
     (load-theme 'doom-tomorrow-night)))
 
+(set-face-attribute 'default nil :height 140)
+
 (provide 'init-ui)
