@@ -193,6 +193,8 @@
                 (shut-up (apply orig args)))))
 
 
+(use-package protobuf-mode
+  :ensure t)
 
 
 (provide 'init-tools)
