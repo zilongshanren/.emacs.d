@@ -24,6 +24,8 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package helm
+  :ensure t)
 
 (use-package highlight-global
   :commands (highlight-frame-toggle)
