@@ -88,6 +88,7 @@
 (require 'init-completion)
 ;; todo: expand region, iedit
 
+(require 'init-evil)
 ;; uis
 (require 'init-ui)
 (require 'init-better-defaults)
@@ -118,7 +119,6 @@
 ;;todo: c/c++, rust, python, shell
 
 ;; personal
-(require 'init-evil)
 (require 'init-keybindings)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here

@@ -237,19 +237,6 @@
   (consult-customize
    consult-theme
    :preview-key (list (kbd "C-SPC") :debounce 0.5 'any))
-
-  ;; (after! org
-  ;;         (defvar +vertico--consult-org-source
-  ;;           `(:name     "Org"
-  ;;                       :narrow   ?o
-  ;;                       :hidden t
-  ;;                       :category buffer
-  ;;                       :state    ,#'consult--buffer-state
-  ;;                       :items    ,(lambda () (mapcar #'buffer-name (org-buffer-list)))))
-  ;;         (add-to-list 'consult-buffer-sources '+vertico--consult-org-source 'append))
-  ;; (map! :map consult-crm-map
-  ;;       :desc "Select candidate" "TAB" #'+vertico/crm-select
-  ;;       :desc "Enter candidates" "RET" #'+vertico/crm-exit)
   )
 
 
@@ -298,12 +285,6 @@
   (define-key embark-identifier-map (kbd "C-s") #'consult-line)
 
   (define-key embark-file-map (kbd "E") #'consult-directory-externally)
-  ;; (map! (:map embark-file-map
-  ;;        :desc "Open target with sudo" "s" #'doom/sudo-find-file
-  ;;        (:when (featurep! :tools magit)
-  ;;         :desc "Open magit-status of target" "g"   #'+vertico/embark-magit-status)
-  ;;        (:when (featurep! :ui workspaces)
-  ;;         :desc "Open in new workspace" "TAB" #'+vertico/embark-open-in-new-workspace)))
   )
 
 
@@ -311,25 +292,9 @@
   :hook (after-init . marginalia-mode)
   :init
   :config
-  ;; (advice-add #'marginalia--project-root :override #'doom-project-root)
-  ;; (pushnew! marginalia-command-categories
-  ;;           '(+default/find-file-under-here. file)
-  ;;           '(doom/find-file-in-emacsd . project-file)
-  ;;           '(doom/find-file-in-other-project . project-file)
-  ;;           '(doom/find-file-in-private-config . file)
-  ;;           '(doom/describe-active-minor-mode . minor-mode)
-  ;;           '(flycheck-error-list-set-filter . builtin)
-  ;;           '(persp-switch-to-buffer . buffer)
-  ;;           '(projectile-find-file . project-file)
-  ;;           '(projectile-recentf . project-file)
-  ;;           '(projectile-switch-to-buffer . buffer)
-  ;;           '(projectile-switch-project . project-file))
   )
 
 
-;; (with-eval-after-load 'consult
-;;   (with-eval-after-load 'embark
-;;     (require 'embark-consult)))
 (use-package embark-consult
   :ensure t
   :after (embark consult)

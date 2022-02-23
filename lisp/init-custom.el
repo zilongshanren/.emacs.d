@@ -123,6 +123,7 @@ For example:
    blog-admin-dir "~/zilongshanren.com"))
 
 
+
 ;; Load `custom-file'
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
