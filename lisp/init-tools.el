@@ -25,7 +25,10 @@
 ;;
 
 (use-package helm
-  :ensure t)
+  :ensure t
+  :commands (helm)
+  :config
+  (setq helm-debug nil))
 
 (use-package highlight-global
   :commands (highlight-frame-toggle)
