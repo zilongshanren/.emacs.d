@@ -42,7 +42,7 @@
 (defcustom zilongshanren-package-archives-alist
   (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                       (not (gnutls-available-p))))
-         (proto (if no-ssl "http" "https")))
+         (proto (if no-ssl "http" "http")))
     `(,(cons 'melpa
              `(,(cons "gnu"   (concat proto "://elpa.gnu.org/packages/"))
                ,(cons "melpa" (concat proto "://melpa.org/packages/"))))

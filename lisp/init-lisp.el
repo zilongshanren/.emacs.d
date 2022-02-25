@@ -8,4 +8,7 @@
   :ensure t
   :hook (lispy-mode . lispyville-mode))
 
+(use-package macrostep
+  :ensure t)
+
 (provide 'init-lisp)
