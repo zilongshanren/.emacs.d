@@ -92,7 +92,6 @@
 ;; uis
 (require 'init-ui)
 (require 'init-better-defaults)
-;; todo: mode-line
 
 ;; Tools
 (require 'init-org)
