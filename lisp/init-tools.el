@@ -201,5 +201,5 @@
 (use-package protobuf-mode
   :ensure t)
 
-
+(setq tramp-adb-program "~/Downloads/platform-tools/adb")
 (provide 'init-tools)

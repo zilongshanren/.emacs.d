@@ -1,6 +1,11 @@
-;; -*- emacs-lisp -*- <21/12/31 16:33:24 c:/Users/lionqu/.emacs.d/tramp>
+;; -*- emacs-lisp -*- <22/03/01 09:17:19 /Users/lionqu/.emacs.default/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
-(((tramp-file-name "ssh" nil nil "android" nil nil nil)
-  nil))
+(((tramp-file-name "adb" nil nil "" nil nil nil)
+  ("getprop" "SM-G9860 11")
+  ("ls" "ls -1")
+  ("case-insensitive" t)
+  ("test" t)
+  ("remote-path"
+   ("/product/bin" "/apex/com.android.runtime/bin" "/apex/com.android.art/bin" "/system_ext/bin" "/system/bin" "/system/xbin" "/odm/bin" "/vendor/bin" "/vendor/xbin"))))

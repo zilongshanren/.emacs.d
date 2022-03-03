@@ -1163,6 +1163,12 @@ org-files and bookmarks"
     (candidate-number-limit)
     (action . (("Open" . (lambda (x) (funcall x)))))))
 
+(defun kill-other-buffers ()
+    "Kill all other buffers."
+    (interactive)
+    (mapc 'kill-buffer
+          (delq (current-buffer)
+                (cl-remove-if-not 'buffer-file-name (buffer-list)))))
 
 
 (provide 'init-funcs)

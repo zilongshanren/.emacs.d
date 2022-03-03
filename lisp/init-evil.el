@@ -237,9 +237,12 @@
       "Buffer"
       [["Find"
         ("b" "switch buffer" switch-to-buffer)
-        ("s" "switch to scratch buffer" create-scratch-buffer)]
+        ("s" "switch to scratch buffer" create-scratch-buffer)
+        ("i" "switch to ibuffer" ibuffer)
+        ]
        ["CRUD"
         ("k" "kill buffer" kill-buffer)
+        ("K" "kill all other buffer" kill-other-buffers)
         ("d" "kill this buffer" kill-this-buffer)]])
     ;; workspace keymaps
 
