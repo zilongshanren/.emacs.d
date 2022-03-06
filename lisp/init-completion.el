@@ -93,6 +93,7 @@
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-tex)
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+    (setq cape-dabbrev-check-other-buffers nil)
     (add-to-list 'completion-at-point-functions #'cape-keyword)))
 
 
