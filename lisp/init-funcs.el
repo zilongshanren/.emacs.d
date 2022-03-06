@@ -1170,6 +1170,13 @@ org-files and bookmarks"
           (delq (current-buffer)
                 (cl-remove-if-not 'buffer-file-name (buffer-list)))))
 
+(defun timestamp-to-date (seconds)
+  (interactive "n")
+  (message (kill-new (format-time-string "%Y-%m-%d-%H-%M-%S" (seconds-to-time seconds)))))
+
+(defun date-to-timestamp (date)
+  (interactive "s")
+  (message (kill-new (format-time-string "%s" (seconds-to-time (org-time-string-to-time date))))))
 
 (provide 'init-funcs)
 

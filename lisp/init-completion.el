@@ -40,7 +40,7 @@
     (setq corfu-quit-at-boundary t)
     (setq corfu-quit-no-match t)
     (setq corfu-preview-current nil)
-    (setq corfu-auto-delay 0)
+    (setq corfu-auto-delay 0.3)
     (setq corfu-auto-prefix 2)
     (corfu-global-mode)
     :hook (prog-mode-hook . nasy/setup-corfu)
