@@ -931,14 +931,14 @@ With PREFIX, cd to project root."
 (defun zilongshanren/now ()
   "Insert string for the current time formatted like '2:34 PM'."
   (interactive)                 ; permit invocation in minibuffer
-  (insert (format-time-string "%D %-I:%M %p")))
+  (insert (format-time-string "%H:%M:%S" (current-time))))
 
 ;;;###autoload
 (defun zilongshanren/today ()
   "Insert string for today's date nicely formatted in American style,
 e.g. Sunday, September 17, 2000."
   (interactive)                 ; permit invocation in minibuffer
-  (insert (format-time-string "%A, %B %e, %Y")))
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S" (current-time))))
 
 ;; https://github.com/syohex/emacs-browser-refresh/blob/master/browser-refresh.el
 ;;;###autoload
