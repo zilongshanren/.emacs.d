@@ -32,6 +32,9 @@
 (global-hl-line-mode t)
 
 ;; (global-display-line-numbers-mode t)
+(setq frame-title-format
+      `((buffer-file-name "%f" "%b")
+        ,(format " - GNU Emacs %s" emacs-version)))
 
 (use-package popwin
   :ensure t

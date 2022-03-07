@@ -1174,8 +1174,9 @@ org-files and bookmarks"
   (interactive "n")
   (message (kill-new (format-time-string "%Y-%m-%d-%H-%M-%S" (seconds-to-time seconds)))))
 
+
 (defun date-to-timestamp (date)
-  (interactive "s")
+  (interactive (list (read-from-minibuffer "" (format-time-string "%Y-%m-%d %H:%M:%S" (current-time)))))
   (message (kill-new (format-time-string "%s" (seconds-to-time (org-time-string-to-time date))))))
 
 (defun switch-to-scratch-buffer ()
