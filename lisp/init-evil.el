@@ -198,6 +198,7 @@
       "en" 'flycheck-next-error
       "ep" 'flycheck-previous-error
       "el" 'flycheck-list-errors
+      "x" 'switch-to-scratch-buffer
       "sp" 'consult-ripgrep
       "=" 'indent-buffer
       "oy" 'youdao-dictionary-search-at-point+

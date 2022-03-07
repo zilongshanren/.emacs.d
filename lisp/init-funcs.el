@@ -1178,6 +1178,10 @@ org-files and bookmarks"
   (interactive "s")
   (message (kill-new (format-time-string "%s" (seconds-to-time (org-time-string-to-time date))))))
 
+(defun switch-to-scratch-buffer ()
+  (interactive)
+  (switch-to-buffer (startup--get-buffer-create-scratch)))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

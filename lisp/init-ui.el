@@ -36,7 +36,8 @@
 (use-package popwin
   :ensure t
   :init
-  (popwin-mode t))
+  (popwin-mode t)
+  (push "*lispy-help*" popwin:special-display-config))
 
 (use-package window-numbering
   :init
