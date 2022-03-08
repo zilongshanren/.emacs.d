@@ -31,6 +31,7 @@
   (setq helm-debug nil))
 
 (use-package highlight-global
+  :ensure nil
   :commands (highlight-frame-toggle)
   :quelpa (highlight-global :fetcher github :repo "glen-dai/highlight-global")
   :config
