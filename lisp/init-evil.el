@@ -41,6 +41,8 @@
                  makey-key-mode
                  prodigy-mode
                  ag-mode
+                 diff-mode
+                 vc-svn-log-view-mode-map
                  flycheck-error-list-mode
                  git-rebase-mode))
       (add-to-list 'evil-emacs-state-modes m))
@@ -72,16 +74,16 @@
     (define-key evil-visual-state-map (kbd "y") 'my-evil-yank)
 
     (define-key evil-normal-state-map
-      (kbd "Y") 'zilongshanren/yank-to-end-of-line)
+                (kbd "Y") 'zilongshanren/yank-to-end-of-line)
 
     (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
     (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
     (define-key evil-normal-state-map (kbd "g[")
-      (lambda () (interactive) (beginning-of-defun)))
+                (lambda () (interactive) (beginning-of-defun)))
 
     (define-key evil-normal-state-map (kbd "g]")
-      (lambda () (interactive) (end-of-defun)))
+                (lambda () (interactive) (end-of-defun)))
 
     (define-key evil-normal-state-map (kbd "[ b") 'previous-buffer)
     (define-key evil-normal-state-map (kbd "] b") 'next-buffer)
@@ -113,6 +115,8 @@
     ;; in spacemacs, we always use evilify miscro state
     (evil-add-hjkl-bindings prodigy-mode-map 'emacs)
     (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
+    (evil-add-hjkl-bindings vc-svn-log-view-mode-map 'emacs)
+    (evil-add-hjkl-bindings diff-mode-map 'emacs)
     ;; Don't move back the cursor one position when exiting insert mode
     (setq evil-move-cursor-back nil)
 

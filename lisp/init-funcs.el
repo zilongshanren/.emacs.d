@@ -1183,6 +1183,42 @@ org-files and bookmarks"
   (interactive)
   (switch-to-buffer (startup--get-buffer-create-scratch)))
 
+(defun vc-print-log-internal (backend files working-revision
+                                      &optional is-start-revision limit)
+  "For specified BACKEND and FILES, show the VC log.
+Leave point at WORKING-REVISION, if it is non-nil.
+If IS-START-REVISION is non-nil, start the log from WORKING-REVISION
+\(not all backends support this); i.e., show only WORKING-REVISION and
+earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
+  ;; As of 2013/04 the only thing that passes IS-START-REVISION non-nil
+  ;; is vc-annotate-show-log-revision-at-line, which sets LIMIT = 1.
+
+  ;; Don't switch to the output buffer before running the command,
+  ;; so that any buffer-local settings in the vc-controlled
+  ;; buffer can be accessed by the command.
+  (let* ((dir-present (cl-some #'file-directory-p files))
+         (shortlog (not (null (memq (if dir-present 'directory 'file)
+                                    vc-log-short-style))))
+         (buffer-name "*vc-change-log*")
+         (type (if shortlog 'short 'long))
+         (coding-system-for-read 'gbk)) ;; 读取的是GBK编码
+    (vc-log-internal-common
+     backend buffer-name files type
+     (lambda (bk buf _type-arg files-arg)
+       (vc-call-backend bk 'print-log files-arg buf shortlog
+                        (when is-start-revision working-revision) limit))
+     (lambda (_bk _files-arg ret)
+       (vc-print-log-setup-buttons working-revision
+                                   is-start-revision limit ret))
+     ;; When it's nil, point really shouldn't move (bug#15322).
+     (when working-revision
+       (lambda (bk)
+         (vc-call-backend bk 'show-log-entry working-revision)))
+     (lambda (_ignore-auto _noconfirm)
+       (vc-print-log-internal backend files working-revision
+                              is-start-revision limit)))))
+
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
