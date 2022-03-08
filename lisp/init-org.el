@@ -24,6 +24,7 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+
 (use-package ox-hugo
   :ensure t   ;Auto-install the package from Melpa
   :pin melpa  ;`package-archives' should already have ("melpa" . "https://melpa.org/packages/")
@@ -61,6 +62,8 @@
 
 (with-eval-after-load 'org
   (progn
+    (setf evil-org-key-theme '(navigation insert textobjects additional todo))
+    (add-hook 'org-mode-hook 'evil-org-mode)
     ;; If you intend to use org, it is recommended you change this!
     (setq org-directory "~/org-notes/")
 
@@ -501,7 +504,7 @@ object (e.g., within a comment).  In these case, you need to use
              "* %U %:annotation\n\n%:initial\n\n%?")
             ("p" "Protocol" entry (file+headline org-agenda-file-note "Inbox")
              "* %^{Title}\nSource: %u, %c\n #+BEGIN_QUOTE\n%i\n#+END_QUOTE\n\n\n%?")
-	    ("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
+	        ("L" "Protocol Link" entry (file+headline org-agenda-file-note "Inbox")
              "* %? [[%:link][%:description]] \nCaptured On: %U")
             ("c" "Chrome" entry (file+headline org-agenda-file-note "Quick notes")
              "* TODO [#C] %?\n %(zilongshanren/retrieve-chrome-current-tab-url)\n %i\n %U"
@@ -696,5 +699,7 @@ holding contextual information."
                       (if (eq (org-element-type first-content) 'section) contents
                         (concat (org-html-section first-content "" info) contents))
                       (org-html--container headline info)))))))))
+
+
 
 (provide 'init-org)

@@ -78,8 +78,6 @@
 ;; r aka remember
 (global-set-key (kbd "C-c r") 'org-capture)
 
-(global-set-key (kbd "C-c t i") 'my-toggle-web-indent)
-
 
 
 

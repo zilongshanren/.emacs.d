@@ -305,5 +305,11 @@
   )
 
 
+(use-package evil-org
+  :ensure t
+  :after org
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (provide 'init-evil)
