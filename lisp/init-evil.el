@@ -51,6 +51,7 @@
     (dolist (m '(wdired-mode
                  occur-edit-mode
                  xref--xref-buffer-mode
+                 org-agenda-mode
                  ))
       (add-to-list 'evil-normal-state-modes m))
 
