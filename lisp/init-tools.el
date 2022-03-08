@@ -68,7 +68,6 @@
   :init
   (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+))
 
-(use-package cal-china-x)
 (use-package org-super-agenda)
 
 

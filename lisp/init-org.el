@@ -452,7 +452,10 @@ object (e.g., within a comment).  In these case, you need to use
     ;;    (ditaa . t)))
 
     (progn
-      (require 'cal-china-x)
+
+      (use-package cal-china-x
+        :ensure t
+        :demand t)
       (setq mark-holidays-in-calendar t)
       (setq cal-china-x-important-holidays cal-china-x-chinese-holidays)
       (setq cal-china-x-general-holidays '((holiday-lunar 1 15 "元宵节")))

@@ -203,8 +203,8 @@
       "'" 'vertico-repeat
       "wm" 'delete-other-windows
       "qq" 'save-buffers-kill-terminal
-       "hh" 'zilongshanren/highlight-dwim
-       "hc" 'zilongshanren/clearn-highlight
+      "hh" 'zilongshanren/highlight-dwim
+      "hc" 'zilongshanren/clearn-highlight
       "sj" 'imenu
       "ts" 'flycheck-mode
       "tn" 'my-toggle-line-numbber
@@ -226,8 +226,9 @@
       "gg" 'xref-find-definitions
       "gr" 'xref-find-references)
 
-
-    (require 'transient)
+    (use-package transient
+      :ensure t
+      :demand t)
     ;; file keymaps
     (transient-define-prefix my/file-command
       "Files"
@@ -289,7 +290,9 @@
         ;; ("a" "Add" my/project-add)
         ;; ("n" "New" my/project-new-root)
         ("x" "Xelete" project-forget-project)
-        ]])))
+        ]])
+
+    ))
 
 (use-package evil-surround
   :ensure t

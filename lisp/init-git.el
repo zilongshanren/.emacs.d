@@ -25,6 +25,7 @@
 ;;
 
 (use-package magit
+  :commands (magit-status)
   :config
   (with-eval-after-load 'evil
     (evil-add-hjkl-bindings magit-status-mode-map
@@ -36,5 +37,6 @@
       (kbd "K") 'magit-discard
       (kbd "s-1") 'magit-jump-to-unstaged
       (kbd "s-2") 'magit-jump-to-untracked)))
+
 
 (provide 'init-git)
