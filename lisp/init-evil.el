@@ -40,6 +40,7 @@
     (dolist (m '(minibuffer-inactive-mode
                  makey-key-mode
                  prodigy-mode
+                 profiler-report-mode
                  ag-mode
                  diff-mode
                  vc-svn-log-view-mode-map
@@ -53,7 +54,8 @@
                  ))
       (add-to-list 'evil-normal-state-modes m))
 
-    (dolist (m '(eww-mode))
+    (dolist (m '(eww-mode
+                 ))
       (add-to-list 'evil-motion-state-modes m))
 
 
@@ -141,6 +143,12 @@
                 (evil-add-hjkl-bindings xref--xref-buffer-mode-map 'normal
                   (kbd "RET") 'xref-goto-xref
                   (kbd "q") 'quit-window)))
+
+    (add-hook 'profiler-report-mode-hook
+              (lambda ()
+                (evil-add-hjkl-bindings profiler-report-mode-map 'emacs
+                  (kbd "RET") 'profiler-report-find-entry
+                  (kbd "C-w") 'evil-window-map)))
 
     (add-hook 'occur-mode-hook
               (lambda ()
