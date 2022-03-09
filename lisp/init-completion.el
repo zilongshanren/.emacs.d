@@ -40,14 +40,26 @@
     (setq corfu-quit-at-boundary t)
     (setq corfu-quit-no-match t)
     (setq corfu-preview-current nil)
-    (setq corfu-auto-delay 0.3)
-    (setq corfu-auto-prefix 2)
+    (setq corfu-min-width 80)
+    (setq corfu-max-width 100)
+    (setq corfu-auto-delay 0.1)
+    (setq corfu-auto-prefix 1)
     (corfu-global-mode)
     :hook (prog-mode-hook . nasy/setup-corfu)
     :config
     (define-key corfu-map (kbd "C-j") 'corfu-next)
     (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
+;; elisp requires emacs28
+;; (use-package kind-icon
+;;   :ensure t
+;;   :demand t
+;;   :after corfu
+;;   :custom
+;;   (kind-icon-default-face 'corfu-default)
+;;   :config
+;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+;;   )
 
   ;; Use dabbrev with Corfu!
   (use-package dabbrev
