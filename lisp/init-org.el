@@ -31,26 +31,29 @@
   :after ox)
 
 
+(use-package org-pomodoro
+  :ensure t)
+
 (use-package org-super-agenda
   :init
   (require 'org-agenda)
   (define-key org-agenda-keymap "j" #'org-agenda-next-line)
   (define-key org-agenda-mode-map "j" #'org-agenda-next-line)
- ; (define-key org-super-agenda-header-map "j" #'org-agenda-next-line)
+                                        ; (define-key org-super-agenda-header-map "j" #'org-agenda-next-line)
   (define-key org-agenda-keymap "k" #'org-agenda-previous-line)
   (define-key org-agenda-mode-map "k" #'org-agenda-previous-line)
-;  (define-key org-super-agenda-header-map "k" #'org-agenda-previous-line)
+                                        ;  (define-key org-super-agenda-header-map "k" #'org-agenda-previous-line)
 
 
   (setq org-super-agenda-groups
         '((:name "Important"
-           :priority "A")
+                 :priority "A")
           (:name "Quick Picks"
-           :effort< "0:30")
+                 :effort< "0:30")
           (:name "Next Items"
-           :tag ("NEXT" "outbox"))
+                 :tag ("NEXT" "outbox"))
           (:priority<= "B"
-           :scheduled future)))
+                       :scheduled future)))
   :config
   (org-super-agenda-mode))
 
@@ -302,7 +305,8 @@ object (e.g., within a comment).  In these case, you need to use
 
     (add-hook 'org-mode-hook '(lambda ()
                                 ;; keybinding for editing source code blocks
-                                (company-mode -1)
+                                (when (featurep 'company)
+                                  (company-mode -1))
                                 ;; keybinding for inserting code blocks
                                 (local-set-key (kbd "C-c i s")
                                                'zilongshanren/org-insert-src-block)))
