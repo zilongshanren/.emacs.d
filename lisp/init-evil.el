@@ -307,6 +307,21 @@
   ;; (evilnc-default-hotkeys)
   )
 
+(use-package bind-map
+  :ensure t)
+
+(use-package spaceleader
+  :ensure nil
+  :ensure t
+  :quelpa (spaceleader :fetcher github :repo "mohkale/spaceleader")
+  :init
+  (progn
+    ;; (require 'spaceleader)
+    (leader-set-keys-for-major-mode 'org-mode
+      "p" 'org-pomodoro
+      "t" 'org-todo)
+    ))
+
 
 (use-package evil-org
   :ensure t
