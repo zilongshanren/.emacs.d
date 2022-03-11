@@ -267,6 +267,41 @@ object (e.g., within a comment).  In these case, you need to use
     ;; (但是子項目還是會被加密喔)
     (setq org-tags-exclude-from-inheritance (quote ("secret")))
 
+    (setq org-columns-default-format "%60ITEM(Task) %6Effort(Estim){:}")
+
+    ;; 在agenda里面显示efforts
+    (require 'cl-lib)
+
+	(defun my/org-agenda-calculate-efforts (limit)
+      "Sum the efforts of scheduled entries up to LIMIT in the
+        agenda buffer."
+      (let (total)
+        (save-excursion
+          (while (< (point) limit)
+            (when (member (org-get-at-bol 'type) '("scheduled" "past-scheduled"))
+              (push (org-entry-get (org-get-at-bol 'org-hd-marker) "Effort") total))
+            (forward-line)))
+        (org-duration-from-minutes
+         (cl-reduce #'+
+                    (mapcar #'org-duration-to-minutes
+                            (cl-remove-if-not 'identity total))))))
+
+	(defun my/org-agenda-insert-efforts ()
+      "Insert the efforts for each day inside the agenda buffer."
+      (save-excursion
+        (let (pos)
+          (while (setq pos (text-property-any
+                            (point) (point-max) 'org-agenda-date-header t))
+            (goto-char pos)
+            (end-of-line)
+            (insert-and-inherit (concat " ("
+                                        (my/org-agenda-calculate-efforts
+                                         (next-single-property-change (point) 'day))
+                                        ")"))
+            (forward-line)))))
+
+    (add-hook 'org-agenda-finalize-hook 'my/org-agenda-insert-efforts)
+
     ;; 用於加密的 GPG 金鑰
     ;; 可以設定任何 ID 或是設成 nil 來使用對稱式加密 (symmetric encryption)
     (setq org-crypt-key nil)

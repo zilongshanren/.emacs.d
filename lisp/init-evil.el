@@ -52,7 +52,7 @@
                  occur-edit-mode
                  xref--xref-buffer-mode
                  org-agenda-mode
-                 ))
+                 org-super-agenda-mode))
       (add-to-list 'evil-normal-state-modes m))
 
     (dolist (m '(eww-mode
