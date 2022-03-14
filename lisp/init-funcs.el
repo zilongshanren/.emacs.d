@@ -1218,6 +1218,9 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
        (vc-print-log-internal backend files working-revision
                               is-start-revision limit)))))
 
+(defun terminal-notifier (title msg)
+  (call-process "terminal-notifier" nil 0 nil "-group" "Emacs" "-title" title "-activate" "org.gnu.Emacs" "-message" msg))
+
 
 (provide 'init-funcs)
 

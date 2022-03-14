@@ -319,15 +319,14 @@
     ;; (require 'spaceleader)
     (leader-set-keys-for-major-mode 'org-mode
       "p" 'org-pomodoro
-      "t" 'org-todo)
-    ))
+      "t" 'org-todo
+      "e" 'org-set-effort
+      "T" 'org-set-tags
+      "I" 'org-clock-in
+      "O" 'org-clock-out
+      "P" 'org-set-property
+      "s" 'org-schedule)))
 
 
-(use-package evil-org
-  :ensure t
-  :after org
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
 
 (provide 'init-evil)
