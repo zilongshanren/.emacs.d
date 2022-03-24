@@ -310,17 +310,17 @@
 (use-package bind-map
   :ensure t)
 
+(if (not sys/win32p)
 (use-package spaceleader
   :ensure nil
-  :ensure t
   :quelpa (spaceleader :fetcher github :repo "mohkale/spaceleader")
   :init
   (progn
-    ;; (require 'spaceleader)
+    (require 'spaceleader)
     (leader-set-keys-for-major-mode 'org-mode
       "p" 'org-pomodoro
       "t" 'org-todo)
-    ))
+    )))
 
 
 (use-package evil-org
