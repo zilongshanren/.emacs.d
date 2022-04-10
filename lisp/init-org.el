@@ -34,16 +34,17 @@
 (use-package org-pomodoro
   :ensure t)
 
-(use-package org-clock-watch
-  :ensure nil
-  :quelpa (org-clock-watch :fetcher git
-                           :url "https://github.com/wztdream/org-clock-watch.git"
-                           :branch "master" :files (:defaults "resources"))
-  :init
-  (require 'org-clock-watch)
-  (setq org-clock-watch-work-plan-file-path "~/org-notes/gtd.org")
-  (setq org-clock-watch-play-sound-command-str "/usr/local/bin/mplayer")
-  (org-clock-watch-toggle 'on))
+;; (use-package org-clock-watch
+;;   :ensure nil
+;;   :quelpa (org-clock-watch :fetcher git
+;;                            :url "https://github.com/wztdream/org-clock-watch.git"
+;;                            :branch "master" :files (:defaults "resources"))
+;;   :init
+;;   (require 'org-clock-watch)
+;;   (setq org-clock-watch-work-plan-file-path "~/org-notes/gtd.org")
+;;   (setq org-clock-watch-play-sound-command-str "/usr/local/bin/mplayer")
+;;   (setq org-clock-watch-idle-threshold-minutes "25min")
+;;   (org-clock-watch-toggle 'on))
 
 (use-package org-super-agenda
   :init

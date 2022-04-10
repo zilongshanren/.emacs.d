@@ -1221,6 +1221,11 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
 (defun terminal-notifier (title msg)
   (call-process "terminal-notifier" nil 0 nil "-group" "Emacs" "-title" title "-activate" "org.gnu.Emacs" "-message" msg))
 
+(defun disable-curly-bracket-electric-pair ()
+  (setq-local electric-pair-inhibit-predicate
+              `(lambda (c)
+                 (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c)))))
+
 
 (provide 'init-funcs)
 
