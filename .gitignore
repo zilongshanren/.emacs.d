@@ -12,3 +12,4 @@ eln-cache
 projects
 /quelpa/
 librime
+transient/history.el

@@ -178,9 +178,11 @@
 
 (use-package evil-leader
   :init
+  (setq evil-leader/in-all-states t)
   (global-evil-leader-mode t)
+  (setq evil-leader/non-normal-prefix "C-")
   (setq evil-leader/no-prefix-mode-rx '("magit-.*-mode" "gnus-.*-mode"))
-  (evil-leader/set-leader "<SPC>")
+  (evil-leader/set-leader "SPC")
 
 
   (evil-leader/set-key
