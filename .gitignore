@@ -13,3 +13,6 @@ projects
 /quelpa/
 librime
 transient/history.el
+/.mc-lists.el
+/semanticdb/
+/url/
