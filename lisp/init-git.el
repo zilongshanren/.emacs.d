@@ -32,6 +32,7 @@
       'emacs
       (kbd "l") 'nil
       (kbd "h") 'nil
+      (kbd "SPC") 'nil
       (kbd "C-u") 'evil-scroll-up
       (kbd "C-d") 'evil-scroll-down
       (kbd "K") 'magit-discard
