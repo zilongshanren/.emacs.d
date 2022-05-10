@@ -257,7 +257,7 @@
         ("b" "switch buffer" switch-to-buffer)
         ("s" "switch to scratch buffer" create-scratch-buffer)
         ("i" "switch to ibuffer" ibuffer)
-        ]
+        ("f" "switch to finder" my-open-current-directory)]
        ["CRUD"
         ("k" "kill buffer" kill-buffer)
         ("K" "kill all other buffer" kill-other-buffers)
