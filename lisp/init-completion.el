@@ -46,6 +46,7 @@
   (and (eq index 0) 'orderless-flex))
 
 (defun nasy/setup-corfu ()
+  (interactive)
   "Setup corfu."
   (setq-local orderless-matching-styles '(orderless-flex)
               orderless-style-dispatchers nil)
@@ -65,7 +66,7 @@
     (setq corfu-auto-delay 0.1)
     (setq corfu-auto-prefix 1)
     (global-corfu-mode)
-    :hook (prog-mode-hook . nasy/setup-corfu)
+    :hook (prog-mode . nasy/setup-corfu)
     :config
     (define-key corfu-map (kbd "C-j") 'corfu-next)
     (define-key corfu-map (kbd "C-k") 'corfu-previous))
