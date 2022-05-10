@@ -1,9 +1,9 @@
-;; -*- emacs-lisp -*- <22/04/10 11:17:24 /Users/lionqu/.emacs.default/tramp>
+;; -*- emacs-lisp -*- <22/05/08 21:28:22 /Users/lionqu/.emacs.default/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; Run `M-x tramp-cleanup-all-connections' instead.
 
 (((tramp-file-name "adb" nil nil "" nil nil nil)
-  ("getprop" "SM-G9860 12")
+  ("getprop" "MI 6 8.0.0")
   ("ls" "ls -1")
   ("case-insensitive" nil)
   ("test" t)))
