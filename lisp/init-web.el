@@ -35,7 +35,8 @@
 ;;   :ensure t)
 
 (use-package web-mode
-  :ensure t)
+  :ensure t
+  )
 
 ;; config for web mode
 (defun my-web-mode-indent-setup ()
