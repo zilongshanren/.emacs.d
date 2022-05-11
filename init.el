@@ -86,7 +86,6 @@
 ;; Core
 (require 'init-basic)
 (require 'init-completion)
-;; todo: expand region, iedit
 
 (require 'init-tools)
 

@@ -68,7 +68,7 @@
   (genehack-vue-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
-  (add-to-list 'eglot-server-programs '(web-mode . ,(eglot-alternatives '(("vscode-html-language-server" "--stdio") ("html-languageserver" "--stdio")))))
+  (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
 
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
