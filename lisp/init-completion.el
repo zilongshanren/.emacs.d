@@ -4,6 +4,35 @@
 ;;
 ;;; Packages
 
+(use-package all-the-icons
+  :ensure t)
+
+(add-to-list 'load-path "~/Github/lsp-bridge")
+
+(require 'lsp-bridge)
+(setq lsp-bridge-python-command "/usr/local/bin/python3")
+
+
+(use-package typescript-mode
+  :ensure t)
+
+
+;; For python and pyright
+(dolist (hook (list
+               'python-mode-hook
+               'ruby-mode-hook
+               'c-mode-hook
+               'c++-mode-hook
+               'js2-mode-hook
+               'typescript-mode-hook
+               ))
+  (add-hook hook (lambda ()
+                   (lsp-bridge-mode))))
+
+
+
+
+
 (when (not (display-graphic-p))
   (use-package company
     :init
@@ -44,22 +73,32 @@
     (setq corfu-max-width 100)
     (setq corfu-auto-delay 0.1)
     (setq corfu-auto-prefix 1)
-    (corfu-global-mode)
-    :hook (prog-mode-hook . nasy/setup-corfu)
+    (global-corfu-mode)
+    :hook (prog-mode . nasy/setup-corfu)
     :config
     (define-key corfu-map (kbd "C-j") 'corfu-next)
     (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
-;; elisp requires emacs28
-;; (use-package kind-icon
-;;   :ensure t
-;;   :demand t
-;;   :after corfu
-;;   :custom
-;;   (kind-icon-default-face 'corfu-default)
-;;   :config
-;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-;;   )
+  (use-package corfu-doc
+    :init
+    (add-hook 'corfu-mode-hook #'corfu-doc-mode)
+
+    :config
+    (define-key corfu-map (kbd "s-d") #'corfu-doc-toggle)
+    (define-key corfu-map (kbd "s-p") #'corfu-doc-scroll-down) ;; corfu-next
+    (define-key corfu-map (kbd "s-n") #'corfu-doc-scroll-up)   ;; corfu-previous
+    )
+
+  ;; elisp requires emacs28
+  ;; (use-package kind-icon
+  ;;   :ensure t
+  ;;   :demand t
+  ;;   :after corfu
+  ;;   :custom
+  ;;   (kind-icon-default-face 'corfu-default)
+  ;;   :config
+  ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  ;;   )
 
   ;; Use dabbrev with Corfu!
   (use-package dabbrev
@@ -106,7 +145,8 @@
     (add-to-list 'completion-at-point-functions #'cape-tex)
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (setq cape-dabbrev-check-other-buffers nil)
-    (add-to-list 'completion-at-point-functions #'cape-keyword)))
+    (add-to-list 'completion-at-point-functions #'cape-keyword)
+    ))
 
 
 
@@ -318,6 +358,8 @@
 (use-package wgrep
   :commands wgrep-change-to-wgrep-mode
   :config (setq wgrep-auto-save-buffer t))
+
+
 
 
 

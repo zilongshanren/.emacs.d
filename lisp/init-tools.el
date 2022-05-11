@@ -199,7 +199,9 @@
 
 
 (use-package protobuf-mode
-  :ensure t)
+  :ensure t
+  :hook (protobuf-mode . disable-curly-bracket-electric-pair))
+
 
 (setq tramp-adb-program "~/Downloads/platform-tools/adb")
 (provide 'init-tools)

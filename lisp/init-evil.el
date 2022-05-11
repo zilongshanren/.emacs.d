@@ -178,8 +178,11 @@
 
 (use-package evil-leader
   :init
+  (setq evil-leader/in-all-states t)
   (global-evil-leader-mode t)
-  (evil-leader/set-leader "<SPC>")
+  (setq evil-leader/non-normal-prefix "C-")
+  (setq evil-leader/no-prefix-mode-rx '("magit-.*-mode" "gnus-.*-mode"))
+  (evil-leader/set-leader "SPC")
 
 
   (evil-leader/set-key
@@ -255,7 +258,7 @@
         ("b" "switch buffer" switch-to-buffer)
         ("s" "switch to scratch buffer" create-scratch-buffer)
         ("i" "switch to ibuffer" ibuffer)
-        ]
+        ("f" "switch to finder" my-open-current-directory)]
        ["CRUD"
         ("k" "kill buffer" kill-buffer)
         ("K" "kill all other buffer" kill-other-buffers)
@@ -320,15 +323,15 @@
     (require 'spaceleader)
     (leader-set-keys-for-major-mode 'org-mode
       "p" 'org-pomodoro
-      "t" 'org-todo)
-    )))
+      "t" 'org-todo
+      "e" 'org-set-effort
+      "T" 'org-set-tags
+      "I" 'org-clock-in
+      "O" 'org-clock-out
+      "P" 'org-set-property
+      "s" 'org-schedule))))
 
 
-(use-package evil-org
-  :ensure t
-  :after org
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+
 
 (provide 'init-evil)

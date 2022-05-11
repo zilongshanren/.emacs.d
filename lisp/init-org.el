@@ -34,6 +34,18 @@
 (use-package org-pomodoro
   :ensure t)
 
+;; (use-package org-clock-watch
+;;   :ensure nil
+;;   :quelpa (org-clock-watch :fetcher git
+;;                            :url "https://github.com/wztdream/org-clock-watch.git"
+;;                            :branch "master" :files (:defaults "resources"))
+;;   :init
+;;   (require 'org-clock-watch)
+;;   (setq org-clock-watch-work-plan-file-path "~/org-notes/gtd.org")
+;;   (setq org-clock-watch-play-sound-command-str "/usr/local/bin/mplayer")
+;;   (setq org-clock-watch-idle-threshold-minutes "25min")
+;;   (org-clock-watch-toggle 'on))
+
 (use-package org-super-agenda
   :init
   (require 'org-agenda)
@@ -65,8 +77,6 @@
 
 (with-eval-after-load 'org
   (progn
-    (setf evil-org-key-theme '(navigation insert textobjects additional todo))
-    (add-hook 'org-mode-hook 'evil-org-mode)
     ;; If you intend to use org, it is recommended you change this!
     (setq org-directory "~/org-notes/")
 
