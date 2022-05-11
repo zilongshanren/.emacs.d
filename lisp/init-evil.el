@@ -258,7 +258,7 @@
     (transient-define-prefix my/buffer-command
       "Buffer"
       [["Find"
-        ("b" "switch buffer" switch-to-buffer)
+        ("b" "switch buffer" consult-buffer)
         ("s" "switch to scratch buffer" create-scratch-buffer)
         ("i" "switch to ibuffer" ibuffer)
         ("f" "switch to finder" my-open-current-directory)]
