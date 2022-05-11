@@ -4,7 +4,7 @@
   :ensure t
   :hook (emacs-lisp-mode . lispy-mode)
   :config
-  (define-key lispy-mode-map (kbd "e") 'eval-last-sexp))
+  )
 
 (use-package lispyville
   :ensure t
