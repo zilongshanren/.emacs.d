@@ -28,10 +28,14 @@
 ;; config js2-mode for js files
 (setq auto-mode-alist
       (append
-       '(("\\.js\\'" . js2-mode)
-	     ("\\.html\\'" . web-mode))
+       '(("\\.js\\'" . js2-mode))
        auto-mode-alist))
 
+;; (use-package vue-mode
+;;   :ensure t)
+
+(use-package web-mode
+  :ensure t)
 
 ;; config for web mode
 (defun my-web-mode-indent-setup ()

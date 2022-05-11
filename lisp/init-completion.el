@@ -7,27 +7,27 @@
 (use-package all-the-icons
   :ensure t)
 
-(add-to-list 'load-path "f:/Github/lsp-bridge")
+;; (add-to-list 'load-path "~/Github/lsp-bridge")
 
-(require 'lsp-bridge)
-(setq lsp-bridge-python-command "/usr/local/bin/python3")
+;; (require 'lsp-bridge)
+;; (setq lsp-bridge-python-command "/usr/local/bin/python3")
 
+;; (dolist (hook (list
+;;                'python-mode-hook
+;;                'ruby-mode-hook
+;;                'c-mode-hook
+;;                'c++-mode-hook
+;;                'js2-mode-hook
+;;                'typescript-mode-hook
+;;                ))
+;;   (add-hook hook (lambda ()
+;;                    (lsp-bridge-mode))))
 
 (use-package typescript-mode
   :ensure t)
 
 
 ;; For python and pyright
-(dolist (hook (list
-               'python-mode-hook
-               'ruby-mode-hook
-               'c-mode-hook
-               'c++-mode-hook
-               'js2-mode-hook
-               'typescript-mode-hook
-               ))
-  (add-hook hook (lambda ()
-                   (lsp-bridge-mode))))
 
 
 

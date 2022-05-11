@@ -49,7 +49,7 @@
 (use-package doom-themes
   :init
   (if (display-graphic-p)
-      (load-theme 'doom-one)
+      (load-theme 'doom-solarized-light)
     (load-theme 'doom-tomorrow-night)))
 
 (set-face-attribute 'default nil :height 140)
