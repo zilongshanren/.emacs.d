@@ -30,7 +30,8 @@
   (setq auto-mode-alist
         (append
          '(("\\.shader\\'" . shader-mode))
-         auto-mode-alist)))
+         auto-mode-alist))
+  )
 
 
 (provide 'init-gpu)
