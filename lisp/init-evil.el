@@ -231,6 +231,7 @@
       "gg" 'xref-find-definitions
       "gr" 'xref-find-references)
 
+
     (use-package transient
       :ensure t
       :demand t)
@@ -245,6 +246,7 @@
         ("ed" "find emacs init file" open-my-init-file)]
        ["CRUD"
         ("s" "Save" save-buffer)
+        ("S" "save all files" save-some-buffers)
         ("j" "Dired jump" dired-jump)
         ;; ("y" "Copy Filename" my/copy-current-filename-to-clipboard)
         ;; ("r" "Rename" my/rename-current-buffer-file)
