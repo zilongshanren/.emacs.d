@@ -4,25 +4,34 @@
 ;;
 ;;; Packages
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :ensure t)
 
 (add-to-list 'load-path "~/Github/lsp-bridge")
 
-
 (require 'lsp-bridge)
+(setq lsp-bridge-python-command "/usr/local/bin/python3")
+
+
+(use-package typescript-mode
+  :ensure t)
+
 
 ;; For python and pyright
 (dolist (hook (list
                'python-mode-hook
                'ruby-mode-hook
                'c-mode-hook
-               'c++-mode-hook))
+               'c++-mode-hook
+               'js2-mode-hook
+               'typescript-mode-hook
+               ))
   (add-hook hook (lambda ()
-                   (lsp-bridge-enable)
-                   )))
+                   (lsp-bridge-mode))))
 
 
-(setq lsp-bridge-python-command "/usr/local/bin/python3")
+
+
 
 (when (not (display-graphic-p))
   (use-package company
@@ -46,7 +55,6 @@
   (and (eq index 0) 'orderless-flex))
 
 (defun nasy/setup-corfu ()
-  (interactive)
   "Setup corfu."
   (setq-local orderless-matching-styles '(orderless-flex)
               orderless-style-dispatchers nil)
@@ -71,16 +79,26 @@
     (define-key corfu-map (kbd "C-j") 'corfu-next)
     (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
-;; elisp requires emacs28
-;; (use-package kind-icon
-;;   :ensure t
-;;   :demand t
-;;   :after corfu
-;;   :custom
-;;   (kind-icon-default-face 'corfu-default)
-;;   :config
-;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
-;;   )
+  (use-package corfu-doc
+    :init
+    (add-hook 'corfu-mode-hook #'corfu-doc-mode)
+
+    :config
+    (define-key corfu-map (kbd "s-d") #'corfu-doc-toggle)
+    (define-key corfu-map (kbd "s-p") #'corfu-doc-scroll-down) ;; corfu-next
+    (define-key corfu-map (kbd "s-n") #'corfu-doc-scroll-up)   ;; corfu-previous
+    )
+
+  ;; elisp requires emacs28
+  ;; (use-package kind-icon
+  ;;   :ensure t
+  ;;   :demand t
+  ;;   :after corfu
+  ;;   :custom
+  ;;   (kind-icon-default-face 'corfu-default)
+  ;;   :config
+  ;;   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter)
+  ;;   )
 
   ;; Use dabbrev with Corfu!
   (use-package dabbrev
@@ -342,8 +360,6 @@
   :config (setq wgrep-auto-save-buffer t))
 
 
-(require 'corfu-history)
-(corfu-history-mode t)
 
 
 
