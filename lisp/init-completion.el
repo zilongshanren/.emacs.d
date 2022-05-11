@@ -261,6 +261,8 @@
         (add-to-list 'process-coding-system-alist '("es" gbk . gbk))
         (add-to-list 'process-coding-system-alist '("explorer" gbk . gbk))
         (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))))
+
+
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   (advice-add #'multi-occur :override #'consult-multi-occur)
   (advice-add #'consult-line
@@ -271,12 +273,12 @@
   :config
   (global-set-key (kbd "M-y") 'consult-yank-pop)
   (setq ;; consult-project-root-function #'doom-project-root
-        consult-narrow-key "<"
-        consult-line-numbers-widen t
-        consult-async-min-input 2
-        consult-async-refresh-delay  0.15
-        consult-async-input-throttle 0.2
-        consult-async-input-debounce 0.1)
+   consult-narrow-key "<"
+   consult-line-numbers-widen t
+   consult-async-min-input 2
+   consult-async-refresh-delay  0.15
+   consult-async-input-throttle 0.2
+   consult-async-input-debounce 0.1)
 
 
   (consult-customize
@@ -286,8 +288,7 @@
 
   (consult-customize
    consult-theme
-   :preview-key (list (kbd "C-SPC") :debounce 0.5 'any))
-  )
+   :preview-key (list (kbd "C-SPC") :debounce 0.5 'any)))
 
 
 (use-package consult-dir

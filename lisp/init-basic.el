@@ -255,6 +255,9 @@
 
 (setq recenter-positions '(top middle bottom))
 
+
+(setq project-find-functions '(my/project-try-local project-try-vc))
+
 (show-paren-mode t)
 
 (provide 'init-basic)

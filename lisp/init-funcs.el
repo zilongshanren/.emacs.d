@@ -1226,6 +1226,75 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
               `(lambda (c)
                  (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c)))))
 
+(defun my/project-try-local (dir)
+  "Determine if DIR is a non-Git project."
+  (catch 'ret
+    (let ((pr-flags '((".project")
+                      ("go.mod" "Cargo.toml" "project.clj" "pom.xml" "package.json") ;; higher priority
+                      ("Makefile" "README.org" "README.md"))))
+      (dolist (current-level pr-flags)
+        (dolist (f current-level)
+          (when-let ((root (locate-dominating-file dir f)))
+            (throw 'ret (cons 'local root))))))))
+
+(defun my/project-files-in-directory (dir)
+  "Use `fd' to list files in DIR."
+  (let* ((default-directory dir)
+         (localdir (file-local-name (expand-file-name dir)))
+         (command (format "fd -H -t f -0 . %s" localdir)))
+    (project--remote-file-names
+     (sort (split-string (shell-command-to-string command) "\0" t)
+           #'string<))))
+
+(cl-defmethod project-files ((project (head local)) &optional dirs)
+  "Override `project-files' to use `fd' in local projects."
+  (mapcan #'my/project-files-in-directory
+          (or dirs (list (project-root project)))))
+
+(cl-defmethod project-root ((project (head local)))
+  (cdr project))
+
+(defun my/add-dot-project ()
+  (interactive)
+  (let* ((root-dir (read-directory-name "Root: "))
+         (f (expand-file-name ".project" root-dir)))
+    (message "Create %s..." f)
+    (make-empty-file f)))
+
+(defun my/project-info ()
+  (interactive)
+  (message "%s" (project-current t)))
+
+(defun my/makefile-targets (dir)
+  "Find Makefile targets in dir. https://stackoverflow.com/a/58316463/2163429"
+  (let* ((default-directory dir))
+	(with-temp-buffer
+	  (insert (shell-command-to-string "make -qp"))
+	  (goto-char (point-min))
+	  (let ((targets '()))
+		(while (re-search-forward "^\\([a-zA-Z0-9][^$#\\/\\t=]*\\):[^=|$]" nil t)
+		  (let ((target (match-string 1)))
+			(unless (member target '("Makefile" "make" "makefile" "GNUmakefile"))
+			  (push target targets))))
+		(sort targets 'string-lessp)))))
+
+(defun my/project-run-makefile-target ()
+  (interactive)
+  (let* ((pr (project-current t))
+		 (default-directory (project-root pr))
+		 (target (completing-read "Target: " (my/makefile-targets default-directory)))
+         (buf-name "*Async Makefile Target*"))
+    (when-let (b (get-buffer buf-name))
+      (kill-buffer b))
+	(async-shell-command (concat "make " (shell-quote-argument target)) buf-name)))
+
+(defun my/project-citre ()
+  (interactive)
+  (let ((default-directory (project-root (project-current t))))
+    (citre-create-tags-file)
+    (add-dir-local-variable 'prog-mode 'eval '(citre-mode))))
+
+
 
 (provide 'init-funcs)
 

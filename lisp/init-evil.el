@@ -284,20 +284,18 @@
         ("r" "Recentf" consult-recent-file)
         ("s" "Search" consult-ripgrep)
         ("d" "Dired" project-dired)
-        ("b" "buffer" consult-buffer)]
+        ("b" "buffer" consult-project-buffer)]
        ["Progn"
         ("e" "Eshell" project-eshell)
-        ;; ("m" "Makefile" my/project-run-makefile-target)
+        ("m" "Makefile" my/project-run-makefile-target)
         ("c" "Compile" project-compile)
-        ;; ("t" "ciTre" my/project-citre)
+        ("t" "ciTre" my/project-citre)
         ]
        ["Manage"
         ("p" "Project" project-switch-project)
-        ;; ("i" "Info" my/project-info)
-        ;; ("a" "Add" my/project-add)
-        ;; ("n" "New" my/project-new-root)
-        ("x" "Xelete" project-forget-project)
-        ]])
+        ("i" "Info" my/project-info)
+        ("a" "Add" project-remember-projects-under)
+        ("x" "Xelete" project-forget-project)]])
 
     ))
 
