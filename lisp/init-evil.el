@@ -209,6 +209,7 @@
       "ts" 'flycheck-mode
       "tn" 'my-toggle-line-numbber
       "en" 'flycheck-next-error
+      "ry" 'consult-yank-pop
       "ep" 'flycheck-previous-error
       "el" 'flycheck-list-errors
       "x" 'switch-to-scratch-buffer
