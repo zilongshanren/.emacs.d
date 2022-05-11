@@ -109,6 +109,7 @@
 (require 'init-web)
 ;; todo: layout, project
 
+(require 'init-gpu)
 
 ;; Languages
 ;; todo: clojure

@@ -7,7 +7,7 @@
 (use-package all-the-icons
   :ensure t)
 
-(add-to-list 'load-path "~/Github/lsp-bridge")
+(add-to-list 'load-path "f:/Github/lsp-bridge")
 
 (require 'lsp-bridge)
 (setq lsp-bridge-python-command "/usr/local/bin/python3")
@@ -81,9 +81,7 @@
 
   (use-package corfu-doc
     :init
-    (add-hook 'corfu-mode-hook #'corfu-doc-mode)
-
-    :config
+    ;; (add-hook 'corfu-mode-hook #'corfu-doc-mode)
     (define-key corfu-map (kbd "s-d") #'corfu-doc-toggle)
     (define-key corfu-map (kbd "s-p") #'corfu-doc-scroll-down) ;; corfu-next
     (define-key corfu-map (kbd "s-n") #'corfu-doc-scroll-up)   ;; corfu-previous

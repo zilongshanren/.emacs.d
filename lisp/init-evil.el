@@ -173,6 +173,7 @@
 (use-package undo-tree
   :init
   (global-undo-tree-mode 1)
+  (setq undo-tree-auto-save-history nil)
   (evil-set-undo-system 'undo-tree))
 
 
