@@ -1,5 +1,6 @@
 ;;; init-evil.el -*- lexical-binding: t no-byte-compile: t -*-
 
+(require 'init-funcs)
 
 (use-package evil
   :init
