@@ -258,6 +258,8 @@
 
 (setq project-find-functions '(my/project-try-local project-try-vc))
 
+(setq create-lockfiles nil)
+
 (show-paren-mode t)
 
 (provide 'init-basic)
