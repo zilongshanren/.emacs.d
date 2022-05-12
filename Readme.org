@@ -6,6 +6,12 @@
 - 如果能写一个function解决，则不引用package
 - 使用vim快捷键和操作方式
 - 全面拥抱lsp（language server protocol），本项目目前使用eglot（后续准备切到lsp-bridge，由懒猫开发的多线程lsp前端）
+  
+** 安装外部依赖
+- fd (https://github.com/sharkdp/fd)  very fast!!
+- ripgrep (https://github.com/BurntSushi/ripgrep)  very very very fast!!!
+- everything (windows only ) fatest file search program!!
+- emacs-rime (https://github.com/DogLooksGood/emacs-rime)
 
 ** 目前支持的lsp功能
 *** python
