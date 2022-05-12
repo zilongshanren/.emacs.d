@@ -71,7 +71,7 @@
     (setq corfu-preview-current nil)
     (setq corfu-min-width 80)
     (setq corfu-max-width 100)
-    (setq corfu-auto-delay 0.1)
+    (setq corfu-auto-delay 0.4)
     (setq corfu-auto-prefix 1)
     (global-corfu-mode)
     :hook (prog-mode . nasy/setup-corfu)
