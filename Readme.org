@@ -43,3 +43,7 @@ https://github.com/npm/cli/issues/4234
 解决方法可以安装 node 16.13.2,我这边之前安装 16.15 LTS有问题。
 
 
+** 其他配置
+- [[https://github.com/seagle0128/.emacs.d][Centuar Emacs]]
+- [[https://github.com/purcell/emacs.d][purcell]]
+- [[https://github.com/condy0919/.emacs.d][condy]]
