@@ -26,6 +26,7 @@
 npm install -g vls
 #+end_src
 
+*** Web开发
 - 安装html，css，json language server
 #+begin_src js
 npm i -g vscode-langservers-extracted.
@@ -42,8 +43,14 @@ https://github.com/npm/cli/issues/4234
 
 解决方法可以安装 node 16.13.2,我这边之前安装 16.15 LTS有问题。
 
+*** TODO React
+
+*** TODO C/C++
+
+*** 功能介绍（建设中。。。）
 
 ** 其他配置
 - [[https://github.com/seagle0128/.emacs.d][Centuar Emacs]]
 - [[https://github.com/purcell/emacs.d][purcell]]
 - [[https://github.com/condy0919/.emacs.d][condy]]
+- [[https://github.com/redguardtoo/emacs.d][chen bin]]
