@@ -4,7 +4,7 @@
 
 - 尽可能不引入多余的package，尽量使用Emacs内置的package
 - 如果能写一个function解决，则不引用package
-- 不尝试配置c#，java等重型语言，这些工业级语言使用IDE大多数时候会更省事
+- 使用vim快捷键和操作方式
 - 全面拥抱lsp（language server protocol），本项目目前使用eglot（后续准备切到lsp-bridge，由懒猫开发的多线程lsp前端）
 
 ** 目前支持的lsp功能
