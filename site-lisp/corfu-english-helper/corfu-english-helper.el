@@ -6,7 +6,6 @@
 ;;
 
 ;;; Require
-(require 'cl)
 (require 'cl-lib)
 (require 'corfu-english-helper-data)
 
