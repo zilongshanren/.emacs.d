@@ -251,7 +251,7 @@
         ("y" "Copy Filename" copy-file-name)
         ("R" "Rename" my/rename-current-buffer-file)
         ("k" "Delete" my/delete-file-and-buffer)
-        ("e" "Exec shell" my/exec-shell-on-buffer)
+        ("!" "Exec shell" my/exec-shell-on-buffer)
         ]])
 
     ;; buffer keymap
