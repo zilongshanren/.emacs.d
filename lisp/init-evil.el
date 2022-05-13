@@ -249,10 +249,10 @@
         ("s" "Save" save-buffer)
         ("S" "save all files" save-some-buffers)
         ("j" "Dired jump" dired-jump)
-        ;; ("y" "Copy Filename" my/copy-current-filename-to-clipboard)
-        ;; ("r" "Rename" my/rename-current-buffer-file)
-        ;; ("k" "Delete" my/delete-file-and-buffer)
-        ;; ("e" "Exec shell" my/exec-shell-on-buffer)
+        ("y" "Copy Filename" copy-file-name)
+        ("R" "Rename" my/rename-current-buffer-file)
+        ("k" "Delete" my/delete-file-and-buffer)
+        ("e" "Exec shell" my/exec-shell-on-buffer)
         ]])
 
     ;; buffer keymap
