@@ -85,10 +85,35 @@
     (setq org-directory "~/org-notes/")
 
     (setq org-startup-indented t
-      org-pretty-entities t
-      org-hide-emphasis-markers t
-      org-startup-with-inline-images t
-      org-image-actual-width '(300))
+          org-pretty-entities t
+          org-hide-emphasis-markers t
+          org-startup-with-inline-images t
+          org-image-actual-width '(300))
+
+    (setq org-emphasis-alist
+          '(("*" my-org-emphasis-bold)
+            ("/" my-org-emphasis-italic)
+            ("_" underline)
+            ("=" org-verbatim verbatim)
+            ("~" org-code verbatim)
+            ("+" (:strike-through t))))
+
+    (defface my-org-emphasis-bold
+      '((default :inherit bold)
+        (((class color) (min-colors 88) (background light))
+         :foreground "#a60000")
+        (((class color) (min-colors 88) (background dark))
+         :foreground "#ff8059"))
+      "My bold emphasis for Org.")
+
+    (defface my-org-emphasis-italic
+      '((default :inherit italic)
+        (((class color) (min-colors 55) (background light))
+         :foreground "#972500")
+        (((class color) (min-colors 55) (background dark))
+         :foreground "#ef8b50"))
+      "My italic emphasis for Org.")
+
 
     (defvar org-agenda-dir ""
       "gtd org files location")
