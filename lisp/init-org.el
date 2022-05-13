@@ -348,7 +348,7 @@ object (e.g., within a comment).  In these case, you need to use
 
     (setq org-tags-match-list-sublevels nil)
 
-    (add-hook 'org-mode-hook '(lambda ()
+    (add-hook 'org-mode-hook (lambda ()
                                 ;; keybinding for editing source code blocks
                                 (when (featurep 'company)
                                   (company-mode -1))
