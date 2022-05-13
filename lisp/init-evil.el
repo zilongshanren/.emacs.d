@@ -211,7 +211,7 @@
       "qq" 'save-buffers-kill-terminal
       "hh" 'zilongshanren/highlight-dwim
       "hc" 'zilongshanren/clearn-highlight
-      "sj" 'imenu
+      "sj" 'my/imenu
       "en" 'flycheck-next-error
       "ry" 'consult-yank-pop
       "ep" 'flycheck-previous-error

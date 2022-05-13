@@ -72,6 +72,12 @@
   (setq org-appear-trigger 'manual)
   (add-hook 'org-mode-hook 'org-apperance-evil-hack))
 
+(use-package org-superstar
+  :ensure t
+  :config
+  (setq org-superstar-special-todo-items t)
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-superstar-mode 1))))
 
 (with-eval-after-load 'org
   (progn

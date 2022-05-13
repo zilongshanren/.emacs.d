@@ -1341,6 +1341,12 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
     (interactive "MShell command: ")
     (shell-command (format "%s %s" shell-command-text (shell-quote-argument buffer-file-name))))
 
+(defun my/imenu ()
+  (interactive)
+  (if (eq major-mode #'org-mode)
+      (call-interactively #'consult-org-heading)
+    (call-interactively #'imenu)))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
