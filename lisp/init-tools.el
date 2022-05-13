@@ -213,12 +213,23 @@
               (lambda (orig &rest args)
                 (shut-up (apply orig args)))))
 
+(use-package flyspell-correct
+  :ensure t
+  :init
+
+  )
+
+(use-package ispell
+  :ensure nil
+  :init
+  (ispell-change-dictionary "american" t))
 
 (use-package protobuf-mode
   :ensure t
   :hook (protobuf-mode . disable-curly-bracket-electric-pair))
 
 (require 'corfu-english-helper)
+
 
 
 

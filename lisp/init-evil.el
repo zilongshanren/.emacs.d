@@ -277,12 +277,11 @@
       "Toggle"
       [["Tools"
         ("s" "syntax checher" flycheck-mode)
+        ("S" "spell checher" flyspell-prog-mode)
         ("e" "corfu english helper" toggle-corfu-english-helper)
-        ("n" "line number" my-toggle-line-numbber)
-        ]
-       ])
+        ("n" "line number" my-toggle-line-numbber)]])
 
-    ;; git keymaps
+    ;; git keymaps stduent
 
     ;; search keymaps
 
