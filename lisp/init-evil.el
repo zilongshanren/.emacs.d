@@ -243,7 +243,7 @@
         ("f" "find-file" find-file)
         ("r" "find recent file" consult-recent-file)
         ("L" "locate file" consult-locate)
-        ("d" "open directory" my-open-current-directory)
+        ("d" "open directory" consult-dir)
         ("ed" "find emacs init file" open-my-init-file)]
        ["CRUD"
         ("s" "Save" save-buffer)
@@ -262,10 +262,11 @@
         ("b" "switch buffer" switch-to-buffer)
         ("s" "switch to scratch buffer" create-scratch-buffer)
         ("i" "switch to ibuffer" ibuffer)
-        ("f" "switch to finder" my-open-current-directory)]
+        ("f" "open current buffer directory" my-open-current-directory)]
        ["CRUD"
         ("k" "kill buffer" kill-buffer)
         ("K" "kill all other buffer" kill-other-buffers)
+        ("r" "revert buffer" revert-buffer)
         ("d" "kill this buffer" kill-this-buffer)]])
     ;; workspace keymaps
 

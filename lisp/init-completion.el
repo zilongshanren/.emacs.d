@@ -336,6 +336,7 @@
   (define-key embark-identifier-map (kbd "C-s") #'consult-line)
 
   (define-key embark-file-map (kbd "E") #'consult-directory-externally)
+  (define-key embark-file-map (kbd "U") #'consult-snv-unlock)
   )
 
 

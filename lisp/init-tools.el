@@ -200,7 +200,7 @@
   (define-key prog-mode-map (kbd "C-c '") #'separedit)
   (define-key minibuffer-local-map (kbd "C-c '") #'separedit)
   (define-key help-mode-map (kbd "C-c '") #'separedit)
-  (define-key helpful-mode-map (kbd "C-c '") #'separedit)
+;  (define-key helpful-mode-map (kbd "C-c '") #'separedit)
 
   ;; Default major-mode for edit buffer
   ;; can also be other mode e.g. ‘org-mode’.

@@ -960,6 +960,13 @@ e.g. Sunday, September 17, 2000."
   (consult-directory-externally default-directory))
 
 
+(defun consult-snv-unlock (file)
+  "unlock svn file lock forcelly"
+  (interactive "fOpen file: ")
+  (if (and (eq system-type 'windows-nt)
+           (fboundp 'w32-shell-execute))
+      (shell-command-to-string (encode-coding-string (replace-regexp-in-string "/" "\\\\" (format "svn unlock --force %s" (expand-file-name file))) 'gbk))))
+
 (defun consult-directory-externally (file)
   "Open FILE externally using the default application of the system."
   (interactive "fOpen externally: ")
@@ -1241,7 +1248,7 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
   "Use `fd' to list files in DIR."
   (let* ((default-directory dir)
          (localdir (file-local-name (expand-file-name dir)))
-         (command (format "fd -H -t f -0 . %s -E .git" localdir)))
+         (command (format "fd -H -t f -0 . %s -E .git -E *.meta -E StreamingAssets" localdir)))
     (project--remote-file-names
      (sort (split-string (shell-command-to-string command) "\0" t)
            #'string<))))
