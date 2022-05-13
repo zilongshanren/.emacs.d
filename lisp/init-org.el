@@ -34,27 +34,14 @@
 (use-package org-pomodoro
   :ensure t)
 
-;; (use-package org-clock-watch
-;;   :ensure nil
-;;   :quelpa (org-clock-watch :fetcher git
-;;                            :url "https://github.com/wztdream/org-clock-watch.git"
-;;                            :branch "master" :files (:defaults "resources"))
-;;   :init
-;;   (require 'org-clock-watch)
-;;   (setq org-clock-watch-work-plan-file-path "~/org-notes/gtd.org")
-;;   (setq org-clock-watch-play-sound-command-str "/usr/local/bin/mplayer")
-;;   (setq org-clock-watch-idle-threshold-minutes "25min")
-;;   (org-clock-watch-toggle 'on))
 
 (use-package org-super-agenda
   :init
   (require 'org-agenda)
   (define-key org-agenda-keymap "j" #'org-agenda-next-line)
   (define-key org-agenda-mode-map "j" #'org-agenda-next-line)
-                                        ; (define-key org-super-agenda-header-map "j" #'org-agenda-next-line)
   (define-key org-agenda-keymap "k" #'org-agenda-previous-line)
   (define-key org-agenda-mode-map "k" #'org-agenda-previous-line)
-                                        ;  (define-key org-super-agenda-header-map "k" #'org-agenda-previous-line)
 
 
   (setq org-super-agenda-groups
@@ -123,31 +110,6 @@ unwanted space when exporting org-mode to hugo markdown."
 
     (setq org-agenda-log-mode-items '(clock closed state))
 
-    ;; 当操作org agenda的buffer的时候自动保存，也可以直接在agenda buffer按save
-    ;; 会有bug, 导致org 报错
-    ;; (advice-add 'org-agenda-clock-in :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-agenda-clock-out :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-agenda-todo :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-agenda-schedule :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-store-log-note :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-pomodoro :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-agenda-deadline :after 'org-save-all-org-buffers)
-    ;; (advice-add 'org-agenda-priority :after 'org-save-all-org-buffers)
-
-    ;; (defun th/org-outline-context-p ()
-    ;;   (re-search-backward org-outline-regexp))
-    ;; ;; Some usages
-    ;; (th/define-context-key org-mode
-    ;;                        (kbd "RET")
-    ;;                        (when (th/outline-context-p)
-    ;;                          'org-insert-heading-respect-content))
-
-    ;; Jump out of a TeX macro when pressing TAB twice.
-    ;; (th/define-context-key TeX-mode-map (kbd "TAB")
-    ;;                        (when (and (= 1 (length (this-command-keys-vector)))
-    ;;                                   (equal last-command-event (elt (this-command-keys-vector) 0))
-    ;;                                   (TeX-current-macro))
-    ;;                          #'th/TeX-goto-macro-end)))
 
     (defun zilong/org-return (&optional indent)
       "Goto next table row or insert a newline.
@@ -240,7 +202,6 @@ object (e.g., within a comment).  In these case, you need to use
 
     (require 'org-compat)
     (require 'org)
-    ;; (add-to-list 'org-modules "org-habit")
     (add-to-list 'org-modules 'org-habit)
     (require 'org-habit)
 
