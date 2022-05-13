@@ -242,7 +242,6 @@
         (setq consult-locate-args (encode-coding-string "es.exe -i -p -r" 'gbk))))
 
 
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   (advice-add #'multi-occur :override #'consult-multi-occur)
   (advice-add #'consult-line
               :around
