@@ -3,7 +3,9 @@
 (use-package lispy
   :ensure t
   :hook (emacs-lisp-mode . lispy-mode)
+  :init
   :config
+  (lispy-define-key lispy-mode-map "e" 'eval-last-sexp)
   )
 
 (use-package lispyville

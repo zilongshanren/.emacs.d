@@ -61,11 +61,28 @@
  (evil-make-overriding-map org-agenda-mode-map 'normal)
 )
 
+(defun org-apperance-evil-hack ()
+  (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
+  (add-hook 'evil-insert-state-exit-hook #'org-appear-manual-stop nil t))
+
+(use-package org-appear
+  :ensure t
+  :hook (org-mode . org-appear-mode)
+  :init
+  (setq org-appear-trigger 'manual)
+  (add-hook 'org-mode-hook 'org-apperance-evil-hack))
+
 
 (with-eval-after-load 'org
   (progn
     ;; If you intend to use org, it is recommended you change this!
     (setq org-directory "~/org-notes/")
+
+    (setq org-startup-indented t
+      org-pretty-entities t
+      org-hide-emphasis-markers t
+      org-startup-with-inline-images t
+      org-image-actual-width '(300))
 
     (defvar org-agenda-dir ""
       "gtd org files location")
@@ -310,12 +327,12 @@ object (e.g., within a comment).  In these case, you need to use
     (setq org-tags-match-list-sublevels nil)
 
     (add-hook 'org-mode-hook (lambda ()
-                                ;; keybinding for editing source code blocks
-                                (when (featurep 'company)
-                                  (company-mode -1))
-                                ;; keybinding for inserting code blocks
-                                (local-set-key (kbd "C-c i s")
-                                               'zilongshanren/org-insert-src-block)))
+                               ;; keybinding for editing source code blocks
+                               (when (featurep 'company)
+                                 (company-mode -1))
+                               ;; keybinding for inserting code blocks
+                               (local-set-key (kbd "C-c i s")
+                                              'zilongshanren/org-insert-src-block)))
     (require 'ox-publish)
     (add-to-list 'org-latex-classes '("ctexart" "\\documentclass[11pt]{ctexart}
                                         [NO-DEFAULT-PACKAGES]
