@@ -64,7 +64,9 @@
   :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
   (css-mode . eglot-ensure)
   (js2-mode . eglot-ensure)
+  (js-mode . eglot-ensure)
   (web-mode . eglot-ensure)
+  (python-mode . eglot-ensure)
   (genehack-vue-mode . eglot-ensure)
   :config
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))

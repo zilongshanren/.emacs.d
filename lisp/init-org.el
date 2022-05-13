@@ -672,6 +672,7 @@ See `org-capture-templates' for more information."
     (define-key org-mode-map (kbd "s-p") 'org-priority)
 
     (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
+    (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
 
     ;; hack for org headline toc
     (defun org-html-headline (headline contents info)

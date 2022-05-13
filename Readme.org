@@ -1,1 +1,56 @@
-* My personal Emacs config with battery included
+* 简介
+
+** 配置理念
+
+- 尽可能不引入多余的package，尽量使用Emacs内置的package
+- 如果能写一个function解决，则不引用package
+- 使用vim快捷键和操作方式
+- 全面拥抱lsp（language server protocol），本项目目前使用eglot（后续准备切到lsp-bridge，由懒猫开发的多线程lsp前端）
+  
+** 安装外部依赖
+- fd (https://github.com/sharkdp/fd)  very fast!!
+- ripgrep (https://github.com/BurntSushi/ripgrep)  very very very fast!!!
+- everything (windows only ) fatest file search program!!
+- emacs-rime (https://github.com/DogLooksGood/emacs-rime)
+
+** 目前支持的lsp功能
+*** python
+使用lsp server为 pyright，安装方法如下：
+#+begin_src python
+  pip install pyright
+#+end_src
+
+*** Vue开发
+- 安装 vls
+#+begin_src js
+npm install -g vls
+#+end_src
+
+*** Web开发
+- 安装html，css，json language server
+#+begin_src js
+npm i -g vscode-langservers-extracted.
+#+end_src
+
+- 安装js和typescript的language server
+#+begin_src js
+npm install -g typescript-language-server typescript
+#+end_src
+
+注意，windows 平台nodejs版本，如果nvm版本小于1.19可能会有问题。
+npm ERR! Unexpected token '.' with with nvm-windows <= 1.1.7 #4234
+https://github.com/npm/cli/issues/4234
+
+解决方法可以安装 node 16.13.2,我这边之前安装 16.15 LTS有问题。
+
+*** TODO React
+
+*** TODO C/C++
+
+*** 功能介绍（建设中。。。）
+
+** 其他配置
+- [[https://github.com/seagle0128/.emacs.d][Centuar Emacs]]
+- [[https://github.com/purcell/emacs.d][purcell]]
+- [[https://github.com/condy0919/.emacs.d][condy]]
+- [[https://github.com/redguardtoo/emacs.d][chen bin]]
