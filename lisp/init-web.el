@@ -28,9 +28,15 @@
 ;; config js2-mode for js files
 (setq auto-mode-alist
       (append
-       '(("\\.js\\'" . js-mode))
+       '(
+         ("\\.js\\'" . js-mode)
+         ("\\.vue\\'" . web-mode)
+         ("\\.html\\'" . web-mode)
+         )
        auto-mode-alist))
 
+(use-package typescript-mode
+  :ensure t)
 ;; (use-package vue-mode
 ;;   :ensure t)
 

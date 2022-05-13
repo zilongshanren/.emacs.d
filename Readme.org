@@ -23,7 +23,8 @@
 *** Vue开发
 - 安装 vls
 #+begin_src js
-npm install -g vls
+  npm install -g vls
+    npm install -g @volar/vue-language-server
 #+end_src
 
 *** Web开发

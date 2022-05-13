@@ -206,13 +206,12 @@
       "w-" 'split-window-below
       ":" 'execute-extended-command
       "'" 'vertico-repeat
+      "t" 'my/toggle-command
       "wm" 'delete-other-windows
       "qq" 'save-buffers-kill-terminal
       "hh" 'zilongshanren/highlight-dwim
       "hc" 'zilongshanren/clearn-highlight
       "sj" 'imenu
-      "ts" 'flycheck-mode
-      "tn" 'my-toggle-line-numbber
       "en" 'flycheck-next-error
       "ry" 'consult-yank-pop
       "ep" 'flycheck-previous-error
@@ -273,6 +272,15 @@
     ;; window keymaps
 
     ;; toggle keymaps
+
+    (transient-define-prefix my/toggle-command
+      "Toggle"
+      [["Tools"
+        ("s" "syntax checher" flycheck-mode)
+        ("e" "corfu english helper" toggle-corfu-english-helper)
+        ("n" "line number" my-toggle-line-numbber)
+        ]
+       ])
 
     ;; git keymaps
 

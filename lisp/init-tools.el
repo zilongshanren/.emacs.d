@@ -218,6 +218,10 @@
   :ensure t
   :hook (protobuf-mode . disable-curly-bracket-electric-pair))
 
+(add-to-list 'load-path (expand-file-name "site-lisp/corfu-english-helper/" user-emacs-directory))
+(require 'corfu-english-helper)
+
+
 
 
 

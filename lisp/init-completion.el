@@ -7,27 +7,6 @@
 (use-package all-the-icons
   :ensure t)
 
-;; (add-to-list 'load-path "~/Github/lsp-bridge")
-
-;; (require 'lsp-bridge)
-;; (setq lsp-bridge-python-command "/usr/local/bin/python3")
-
-;; (dolist (hook (list
-;;                'python-mode-hook
-;;                'ruby-mode-hook
-;;                'c-mode-hook
-;;                'c++-mode-hook
-;;                'js2-mode-hook
-;;                'typescript-mode-hook
-;;                ))
-;;   (add-hook hook (lambda ()
-;;                    (lsp-bridge-mode))))
-
-(use-package typescript-mode
-  :ensure t)
-
-
-;; For python and pyright
 
 
 
@@ -71,7 +50,7 @@
     (setq corfu-preview-current nil)
     (setq corfu-min-width 80)
     (setq corfu-max-width 100)
-    (setq corfu-auto-delay 0.4)
+    (setq corfu-auto-delay 0.2)
     (setq corfu-auto-prefix 1)
     (global-corfu-mode)
     :hook (prog-mode . nasy/setup-corfu)

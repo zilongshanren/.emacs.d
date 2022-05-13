@@ -51,29 +51,76 @@
 (define-derived-mode genehack-vue-mode web-mode "ghVue"
     "A major mode derived from web-mode, for editing .vue files with LSP support.")
 
-(use-package eglot
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
-  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  :bind (:map eglot-mode-map
-              ("C-c l a" . eglot-code-actions)
-              ("C-c l r" . eglot-rename)
-              ("C-c l f" . eglot-format)
-              ("C-c l d" . eldoc))
-  :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
-  (css-mode . eglot-ensure)
-  (js2-mode . eglot-ensure)
-  (js-mode . eglot-ensure)
-  (web-mode . eglot-ensure)
-  (python-mode . eglot-ensure)
-  (genehack-vue-mode . eglot-ensure)
-  :config
-  (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
-  (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
+;; (use-package eglot
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
+;;   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;;   :bind (:map eglot-mode-map
+;;               ("C-c l a" . eglot-code-actions)
+;;               ("C-c l r" . eglot-rename)
+;;               ("C-c l f" . eglot-format)
+;;               ("C-c l d" . eldoc))
+;;   :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
+;;   (css-mode . eglot-ensure)
+;;   (js2-mode . eglot-ensure)
+;;   (js-mode . eglot-ensure)
+;;   (web-mode . eglot-ensure)
+;;   (python-mode . eglot-ensure)
+;;   (genehack-vue-mode . eglot-ensure)
+;;   :config
+;;   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
+;;   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
 
-  (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities)
-  (setq eldoc-echo-area-use-multiline-p nil))
+;;   (setq read-process-output-max (* 1024 1024))
+;;   (push :documentHighlightProvider eglot-ignored-server-capabilities)
+;;   (setq eldoc-echo-area-use-multiline-p nil))
 
+
+(when sys/macp
+  (add-to-list 'load-path "~/Github/lsp-bridge")
+  (setq lsp-bridge-python-command "/usr/local/bin/python3")
+
+  (require 'lsp-bridge)
+
+  (setq lsp-bridge-enable-log t)
+
+  (dolist (hook (list
+                 'c-mode-hook
+                 'c++-mode-hook
+                 'java-mode-hook
+                 'python-mode-hook
+                 'ruby-mode-hook
+                 'rust-mode-hook
+                 'elixir-mode-hook
+                 'go-mode-hook
+                 'haskell-mode-hook
+                 'haskell-literate-mode-hook
+                 'dart-mode-hook
+                 'scala-mode-hook
+                 'typescript-mode-hook
+                 'typescript-tsx-mode-hook
+                 'js2-mode-hook
+                 'js-mode-hook
+                 'rjsx-mode-hook
+                 'tuareg-mode-hook
+                 'latex-mode-hook
+                 'Tex-latex-mode-hook
+                 'texmode-hook
+                 'context-mode-hook
+                 'texinfo-mode-hook
+                 'bibtex-mode-hook
+                 'clojure-mode-hook
+                 'clojurec-mode-hook
+                 'clojurescript-mode-hook
+                 'clojurex-mode-hook
+                 'sh-mode-hook
+                 'web-mode-hook
+                 ))
+    (add-hook hook (lambda ()
+                     (lsp-bridge-mode)))))
+
+
+
+;; For python and pyright
 (provide 'init-lsp)
