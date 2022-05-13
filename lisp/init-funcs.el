@@ -1237,8 +1237,7 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
   "Determine if DIR is a non-Git project."
   (catch 'ret
     (let ((pr-flags '((".project")
-                      ("go.mod" "Cargo.toml" "project.clj" "pom.xml" "package.json") ;; higher priority
-                      ("Makefile" "README.org" "README.md"))))
+                      )))
       (dolist (current-level pr-flags)
         (dolist (f current-level)
           (when-let ((root (locate-dominating-file dir f)))
