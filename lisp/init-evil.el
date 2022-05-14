@@ -52,6 +52,7 @@
     (dolist (m '(wdired-mode
                  occur-edit-mode
                  xref--xref-buffer-mode
+                 lsp-bridge-ref-mode
                  org-agenda-mode
                  org-super-agenda-mode))
       (add-to-list 'evil-normal-state-modes m))
@@ -337,6 +338,10 @@
       "p" 'org-pomodoro
       "t" 'org-todo
       "e" 'org-set-effort
+      ">" 'org-metaright
+      "<" 'org-metaleft
+      "J" 'org-metadown
+      "K" 'org-metaup
       "T" 'org-set-tags
       "I" 'org-clock-in
       "O" 'org-clock-out

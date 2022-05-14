@@ -248,6 +248,9 @@ object (e.g., within a comment).  In these case, you need to use
     (define-key org-mode-map (kbd "RET")
       'zilong/org-return)
 
+    (evil-define-key 'normal org-mode-map
+      "+" #'org-cycle-list-bullet)
+
 
     (setq org-complete-tags-always-offer-all-agenda-tags t)
 

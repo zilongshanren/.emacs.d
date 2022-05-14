@@ -45,8 +45,6 @@
 ;;   :hook
 ;;   (lsp-completion-mode . my/lsp-mode-setup-completion))
 
-(use-package web-mode
-  :ensure t)
 
 ;; (define-derived-mode genehack-vue-mode web-mode "ghVue"
 ;;     "A major mode derived from web-mode, for editing .vue files with LSP support.")
@@ -77,49 +75,109 @@
 ;;   (setq eldoc-echo-area-use-multiline-p nil))
 
 
-(when sys/macp
-  (add-to-list 'load-path "~/Github/lsp-bridge")
-  (setq lsp-bridge-python-command "/usr/local/bin/python3")
+(add-to-list 'load-path "~/Github/lsp-bridge")
+(setq lsp-bridge-python-command "/usr/local/bin/python3")
 
-  (require 'lsp-bridge)
+(require 'lsp-bridge)
 
-  (setq lsp-bridge-enable-log t)
+(setq lsp-bridge-enable-log nil)
 
-  (dolist (hook (list
-                 'c-mode-hook
-                 'c++-mode-hook
-                 'java-mode-hook
-                 'python-mode-hook
-                 'ruby-mode-hook
-                 'rust-mode-hook
-                 'elixir-mode-hook
-                 'go-mode-hook
-                 'haskell-mode-hook
-                 'haskell-literate-mode-hook
-                 'dart-mode-hook
-                 'scala-mode-hook
-                 'typescript-mode-hook
-                 'typescript-tsx-mode-hook
-                 'js2-mode-hook
-                 'js-mode-hook
-                 'rjsx-mode-hook
-                 'tuareg-mode-hook
-                 'latex-mode-hook
-                 'Tex-latex-mode-hook
-                 'texmode-hook
-                 'context-mode-hook
-                 'texinfo-mode-hook
-                 'bibtex-mode-hook
-                 'clojure-mode-hook
-                 'clojurec-mode-hook
-                 'clojurescript-mode-hook
-                 'clojurex-mode-hook
-                 'sh-mode-hook
-                 'web-mode-hook
-                 ))
-    (add-hook hook (lambda ()
-                     (lsp-bridge-mode)))))
+(setq lsp-bridge-lang-server-extension-list
+      '(
+        (("vue") . "volar")
+        (("html") . "vscode")
+        ))
 
+(dolist (hook (list
+               'c-mode-hook
+               'c++-mode-hook
+               'java-mode-hook
+               'css-mode-hook
+               'python-mode-hook
+               'ruby-mode-hook
+               'rust-mode-hook
+               'elixir-mode-hook
+               'go-mode-hook
+               'haskell-mode-hook
+               'haskell-literate-mode-hook
+               'dart-mode-hook
+               'scala-mode-hook
+               'typescript-mode-hook
+               'typescript-tsx-mode-hook
+               'js2-mode-hook
+               'js-mode-hook
+               'rjsx-mode-hook
+               'tuareg-mode-hook
+               'latex-mode-hook
+               'Tex-latex-mode-hook
+               'texmode-hook
+               'context-mode-hook
+               'texinfo-mode-hook
+               'bibtex-mode-hook
+               'clojure-mode-hook
+               'clojurec-mode-hook
+               'clojurescript-mode-hook
+               'clojurex-mode-hook
+               'sh-mode-hook
+               'web-mode-hook))
+  (add-hook hook (lambda ()
+                   (setq-local corfu-auto nil)
+                   (lsp-bridge-mode)
+                   ;; (lsp-bridge-mix-multi-backends)
+                   (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
+                   )))
+
+(global-set-key (kbd "C-c o m") 'lsp-bridge-find-references)
+(global-set-key (kbd "C-c o g") 'lsp-bridge-jump)
+(global-set-key (kbd "C-c o r") 'lsp-bridge-rename)
+(global-set-key (kbd "C-c o o") 'lsp-bridge-return-from-def)
+(global-set-key (kbd "C-c o d") 'lsp-bridge-lookup-documentation)
+
+
+;; 通过Cape融合不同的补全后端，比如lsp-bridge、 tabnine、 file、 dabbrev.
+;; (defun lsp-bridge-mix-multi-backends ()
+;;   (setq-local completion-category-defaults nil)
+;;   (setq-local completion-at-point-functions
+;;               (list
+;;                (cape-capf-buster (cape-super-capf
+;;                                   'lsp-bridge-capf
+;;                                   'cape-file
+;;                                   'cape-dabbrev)))))
+
+(use-package dumb-jump
+  :ensure t)
+
+;; make evil jump & jump back as expected
+(defun evil-set-jump-args (&rest ns) (evil-set-jump))
+(advice-add 'lsp-bridge-jump :before #'evil-set-jump-args)
+
+
+;; 融合 `lsp-bridge' `find-function' 以及 `dumb-jump' 的智能跳转
+(defun lsp-bridge-jump (_string position)
+  (interactive)
+  (cond
+   ((eq major-mode 'emacs-lisp-mode)
+    (let ((symb (function-called-at-point)))
+      (when symb
+        (find-function symb))))
+   (lsp-bridge-mode
+    (lsp-bridge-find-def))
+   (t
+    (require 'dumb-jump)
+    (dumb-jump-go))))
+
+(defun lsp-bridge-jump-back ()
+  (interactive)
+  (cond
+   (lsp-bridge-mode
+    (lsp-bridge-return-from-def))
+   (t
+    (require 'dumb-jump)
+    (dumb-jump-back))))
+
+(evil-define-key 'normal lsp-bridge-ref-mode-map
+  (kbd "RET") 'lsp-bridge-ref-open-file-and-stay
+  "q" 'lsp-bridge-ref-quit)
 
 
 (provide 'init-lsp)

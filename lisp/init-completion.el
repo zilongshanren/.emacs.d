@@ -45,6 +45,7 @@
     :init
     (setq corfu-cycle t)
     (setq corfu-auto t)
+
     (setq corfu-quit-at-boundary t)
     (setq corfu-quit-no-match t)
     (setq corfu-preview-current nil)
@@ -117,6 +118,7 @@
            ("C-c p &" . cape-sgml)
            ("C-c p r" . cape-rfc1345))
     :init
+    (setq cape-dabbrev-min-length 3)
     ;; Add `completion-at-point-functions', used by `completion-at-point'.
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-tex)
