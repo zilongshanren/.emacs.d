@@ -7,6 +7,14 @@
 - 使用vim快捷键和操作方式
 - 全面拥抱lsp（language server protocol），本项目目前使用eglot（后续准备切到lsp-bridge，由懒猫开发的多线程lsp前端）
   
+** 使用配置说明
+首先clone仓库，然后在仓库根目录运行以下命令更新submodule：
+
+#+begin_src bash
+git submodule init 
+git summodule update
+#+end_src
+  
 ** 安装外部依赖
 - fd (https://github.com/sharkdp/fd)  very fast!!
 - ripgrep (https://github.com/BurntSushi/ripgrep)  very very very fast!!!
