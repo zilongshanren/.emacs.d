@@ -1345,7 +1345,7 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
   (interactive)
   (if (eq major-mode #'org-mode)
       (call-interactively #'consult-org-heading)
-    (call-interactively #'imenu)))
+    (call-interactively #'consult-imenu)))
 
 (provide 'init-funcs)
 
