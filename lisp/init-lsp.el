@@ -83,7 +83,6 @@
                'c-mode-hook
                'c++-mode-hook
                'java-mode-hook
-               'css-mode-hook
                'python-mode-hook
                'ruby-mode-hook
                'rust-mode-hook
