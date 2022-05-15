@@ -24,5 +24,23 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package csharp-mode
+  :ensure t
+  :mode (("\\.cs\\'" . csharp-mode))
+  :config
+  (add-to-list 'compilation-error-regexp-alist-alist
+               '(my-csharp
+                 "^\\(.+\\)(\\([1-9][0-9]+\\),\\([0-9]+\\)): \\(?:\\(warning\\)\\|error\\)?"
+                 1 2 3 (4)))
+  (add-to-list 'compilation-error-regexp-alist 'my-csharp)
+  (defun my-csharp-repl ()
+    "Switch to the CSharpRepl buffer, creating it if necessary."
+    (interactive)
+    (if-let ((buf (get-buffer "*CSharpRepl*")))
+        (pop-to-buffer buf)
+      (when-let ((b (make-comint "CSharpRepl" "csharp")))
+        (switch-to-buffer-other-window b))))
+  (define-key csharp-mode-map (kbd "C-c C-z") 'my-csharp-repl))
+
 
 (provide 'init-csharp)

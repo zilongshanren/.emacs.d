@@ -64,10 +64,13 @@
 ;;   (js2-mode . eglot-ensure)
 ;;   (js-mode . eglot-ensure)
 ;;   (web-mode . eglot-ensure)
+;;   (csharp-mode . eglot-ensure)
 ;;   (python-mode . eglot-ensure)
 ;;   (genehack-vue-mode . eglot-ensure)
 ;;   :config
 ;;   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
+;;   (add-to-list 'eglot-server-programs
+;;                `(csharp-mode . ("~/Downloads/omnisharp-osx/run" "-lsp")))
 ;;   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
 
 ;;   (setq read-process-output-max (* 1024 1024))
@@ -108,6 +111,7 @@
                'clojurec-mode-hook
                'clojurescript-mode-hook
                'clojurex-mode-hook
+               'csharp-mode-hook
                'sh-mode-hook
                'web-mode-hook))
   (add-hook hook (lambda ()
@@ -117,12 +121,13 @@
                    (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
                    )))
 
-(global-set-key (kbd "C-c o m") 'lsp-bridge-find-references)
-(global-set-key (kbd "C-c o g") 'lsp-bridge-jump)
-(global-set-key (kbd "C-c o r") 'lsp-bridge-rename)
-(global-set-key (kbd "C-c o o") 'lsp-bridge-return-from-def)
-(global-set-key (kbd "C-c o d") 'lsp-bridge-lookup-documentation)
 
+(define-key evil-motion-state-map "gR" #'lsp-bridge-rename)
+(define-key evil-motion-state-map "gr" #'lsp-bridge-find-references)
+(define-key evil-normal-state-map "gi" #'lsp-bridge-find-impl)
+(define-key evil-motion-state-map "gd" #'lsp-bridge-jump)
+(define-key evil-motion-state-map "gs" #'lsp-bridge-restart-process)
+(define-key evil-normal-state-map "gh" #'lsp-bridge-lookup-documentation)
 
 ;; 通过Cape融合不同的补全后端，比如lsp-bridge、 tabnine、 file、 dabbrev.
 ;; (defun lsp-bridge-mix-multi-backends ()
@@ -145,7 +150,7 @@
 
 
 ;; 融合 `lsp-bridge' `find-function' 以及 `dumb-jump' 的智能跳转
-(defun lsp-bridge-jump (_string position)
+(defun lsp-bridge-jump ()
   (interactive)
   (cond
    ((eq major-mode 'emacs-lisp-mode)
@@ -176,6 +181,8 @@
   (when (functionp 'xref-show-definitions-completing-read)
     (setq xref-show-definitions-function #'xref-show-definitions-completing-read)
     (setq xref-show-xrefs-function #'xref-show-definitions-completing-read)))
+
+
 
 
 (provide 'init-lsp)
