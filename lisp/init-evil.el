@@ -294,7 +294,7 @@
       [["Find"
         ("f" "File" project-find-file)
         ("r" "Recentf" consult-recent-file)
-        ("s" "Search" consult-ripgrep)
+        ("s" "Search" project-find-regexp)
         ("d" "Dired" project-dired)
         ("b" "buffer" consult-project-buffer)]
        ["Progn"

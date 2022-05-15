@@ -108,7 +108,7 @@
                       nil
                       nil
                       t))
-	(general-emacs-define-key 'global [remap xref-find-references] 'consult-xref)
+
     (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
     (general-emacs-define-key 'global [remap apropos] 'consult-apropos))
 
