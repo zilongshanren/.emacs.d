@@ -148,8 +148,10 @@
   :ensure t)
 
 ;; make evil jump & jump back as expected
-(defun evil-set-jump-args (&rest ns) (evil-set-jump))
-(advice-add 'lsp-bridge-jump :before #'evil-set-jump-args)
+;; (defun evil-set-jump-args (&rest ns) (evil-set-jump))
+;; (advice-add 'lsp-bridge-jump :before #'evil-set-jump-args)
+(evil-add-command-properties #'lsp-bridge-jump :jump t)
+
 
 
 ;; 融合 `lsp-bridge' `find-function' 以及 `dumb-jump' 的智能跳转
