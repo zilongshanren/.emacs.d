@@ -786,6 +786,7 @@ holding contextual information."
                 ("C-c n a" . org-roam-alias-add)
                 ("C-c n l" . org-roam-buffer-toggle)))))
 
-
+(use-package org-roam-ui
+  :ensure t)
 
 (provide 'init-org)
