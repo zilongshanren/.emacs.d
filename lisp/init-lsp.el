@@ -75,18 +75,9 @@
 ;;   (setq eldoc-echo-area-use-multiline-p nil))
 
 
-(add-to-list 'load-path "~/Github/lsp-bridge")
-(setq lsp-bridge-python-command "/usr/local/bin/python3")
-
 (require 'lsp-bridge)
 
 (setq lsp-bridge-enable-log nil)
-
-(setq lsp-bridge-lang-server-extension-list
-      '(
-        (("vue") . "volar")
-        (("html") . "vscode")
-        ))
 
 (dolist (hook (list
                'c-mode-hook
