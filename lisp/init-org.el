@@ -792,4 +792,20 @@ holding contextual information."
 (use-package org-roam-ui
   :ensure t)
 
+(use-package consult-org-roam
+  :ensure nil
+  :init
+  (require 'consult-org-roam)
+  :custom
+  (consult-org-roam-grep-func #'consult-ripgrep)
+  :config
+  ;; Eventually suppress previewing for certain functions
+  (consult-customize
+   consult-org-roam-forward-links
+   :preview-key (kbd "s-."))
+  :bind
+  ("C-c n e" . consult-org-roam-forward-links)
+  ("C-c n b" . consult-org-roam-backlinks)
+  ("C-c n s" . consult-org-roam-search))
+
 (provide 'init-org)
