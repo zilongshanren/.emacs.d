@@ -327,10 +327,7 @@
 (use-package bind-map
   :ensure t)
 
-(if (not sys/win32p)
 (use-package spaceleader
-  :ensure nil
-  :quelpa (spaceleader :fetcher github :repo "mohkale/spaceleader")
   :init
   (progn
     (require 'spaceleader)
@@ -342,11 +339,11 @@
       "<" 'org-metaleft
       "J" 'org-metadown
       "K" 'org-metaup
-      "T" 'org-set-tags
+      "T" 'org-set-tags-command
       "I" 'org-clock-in
       "O" 'org-clock-out
       "P" 'org-set-property
-      "s" 'org-schedule))))
+      "s" 'org-schedule)))
 
 
 
