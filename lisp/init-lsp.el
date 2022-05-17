@@ -155,6 +155,8 @@
   (cond
    ((eq major-mode 'emacs-lisp-mode)
     (evil-goto-definition))
+   ((eq major-mode 'org-mode)
+    (org-agenda-open-link))
    (lsp-bridge-mode
     (lsp-bridge-find-def))
    (t
