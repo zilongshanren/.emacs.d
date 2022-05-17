@@ -177,6 +177,7 @@
          (setq rime-disable-predicates
                '(rime-predicate-evil-mode-p
                  rime-predicate-after-alphabet-char-p
+                 rime-predicate-punctuation-line-begin-p
                  rime-predicate-prog-in-code-p))
          (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
          (setq rime-show-candidate 'posframe)
