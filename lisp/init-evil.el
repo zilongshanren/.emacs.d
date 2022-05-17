@@ -328,6 +328,7 @@
   :ensure t)
 
 (use-package spaceleader
+  :ensure nil
   :init
   (progn
     (require 'spaceleader)
