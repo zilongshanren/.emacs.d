@@ -174,6 +174,10 @@
   (setq default-input-method "rime")
   :config
   (progn (set-face-attribute 'rime-default-face nil :foreground "#839496" :background "#073642")
+         (setq rime-disable-predicates
+               '(rime-predicate-evil-mode-p
+                 rime-predicate-after-alphabet-char-p
+                 rime-predicate-prog-in-code-p))
          (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
          (setq rime-show-candidate 'posframe)
          (setq rime-share-data-dir "~/Library/Rime")

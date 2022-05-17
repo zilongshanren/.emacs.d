@@ -564,7 +564,9 @@ object (e.g., within a comment).  In these case, you need to use
             ("b" "Blog Ideas" entry (file+headline org-agenda-file-note "Blog Ideas")
              "* TODO [#B] %?\n  %i\n %U"
              :empty-lines 1)
-            ("s" "Code Snippet" entry
+            ("s" "Slipbox" entry  (file "inbox.org")
+       "* %?\n")
+            ("S" "Code Snippet" entry
              (file org-agenda-file-code-snippet)
              "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
             ("w" "work" entry (file+headline org-agenda-file-work "Work")
@@ -775,13 +777,51 @@ holding contextual information."
 
 (use-package org-roam
   :after org
+  :init
+  (defun jethro/org-capture-slipbox ()
+    (interactive)
+    (org-capture nil "s"))
   :custom
   (org-roam-directory (file-truename org-directory))
   :config
-  (org-roam-setup)
+    (cl-defmethod org-roam-node-type ((node org-roam-node))
+    "Return the TYPE of NODE."
+    (condition-case nil
+        (file-name-nondirectory
+         (directory-file-name
+          (file-name-directory
+           (file-relative-name (org-roam-node-file node) org-roam-directory))))
+      (error "")))
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${type:20} ${title:*} " (propertize "${tags:40}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  (setq org-roam-dailies-directory "daily/")
+
+  (setq org-roam-capture-templates
+      '(("m" "main" plain
+         "%?"
+         :if-new (file+head "main/${slug}.org"
+                            "#+title: ${title}\n")
+         :immediate-finish t
+         :unnarrowed t)
+        ("r" "reference" plain "%?"
+         :if-new
+         (file+head "reference/${title}.org" "#+title: ${title}\n")
+         :immediate-finish t
+         :unnarrowed t)
+        ("a" "article" plain "%?"
+         :if-new
+         (file+head "articles/${title}.org" "#+title: ${title}\n#+filetags: :article:\n")
+         :immediate-finish t
+         :unnarrowed t)))
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol)
   :bind (("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
          ("C-c n r" . org-roam-node-random)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today)
          (:map org-mode-map
                (("C-c n i" . org-roam-node-insert)
                 ("C-c n o" . org-id-get-create)
