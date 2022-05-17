@@ -1145,30 +1145,26 @@ e.g. Sunday, September 17, 2000."
 
 ;;;###autoload
 (defun zilongshanren/helm-hotspots ()
-  "helm interface to my hotspots, which includes my locations,
-org-files and bookmarks"
   (interactive)
-  (helm :buffer "*helm: utities*"
-        :sources `(,(zilongshanren//hotspots-sources))))
+  (require 'consult)
+  (setq-local source '(("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
+                       ("RSS" . elfeed)
+                       ("Blog" . browse-hugo-maybe)
+                       ("Search" . (lambda () (call-interactively #'engine/search-google)))
+                       ("Random Todo" . org-random-entry)
+                       ("string edit" . separedit)
+                       ("Org Roam" . org-roam-find-file)
+                       ("Github" . (lambda() (helm-github-stars)))
+                       ("Prodigy" . (lambda() (prodigy)))
 
-;;;###autoload
-(defun zilongshanren//hotspots-sources ()
-  "Construct the helm sources for my hotspots"
-  `((name . "Mail and News")
-    (candidates . (("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
-                   ("RSS" . elfeed)
-                   ("Blog" . browse-hugo-maybe)
-                   ("Search" . (lambda () (call-interactively #'engine/search-google)))
-                   ("Random Todo" . org-random-entry)
-                   ("Org Roam" . org-roam-find-file)
-                   ("Github" . (lambda() (helm-github-stars)))
-                   ("Prodigy" . (lambda() (prodigy)))
-                   ("Calculator" . (lambda () (helm-calcul-expression)))
-                   ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
-                   ("Agenda" . (lambda () (org-agenda "" "a")))
-                   ("sicp" . (lambda() (browse-url "http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start")))))
-    (candidate-number-limit)
-    (action . (("Open" . (lambda (x) (funcall x)))))))
+                       ;;todo (calc-eval "(1+1)*3")
+                       ;; ("Calculator" . (lambda () (helm-calcul-expression)))
+                       ("Run current flie" . (lambda () (zilongshanren/run-current-file)))
+                       ("Agenda" . (lambda () (org-agenda "" "a")))
+                       ("sicp" . (lambda() (browse-url "http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-4.html#%_toc_start")))))
+  (let* ((result (consult--read (mapcar 'car source) :prompt "zilong's hotpot ")))
+    (when result
+      (funcall (cdr (assoc result source))))))
 
 (defun kill-other-buffers ()
     "Kill all other buffers."

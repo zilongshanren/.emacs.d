@@ -24,11 +24,6 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-(use-package helm
-  :ensure t
-  :commands (helm)
-  :config
-  (setq helm-debug nil))
 
 (use-package highlight-global
   :ensure nil
@@ -200,7 +195,7 @@
   (define-key prog-mode-map (kbd "C-c '") #'separedit)
   (define-key minibuffer-local-map (kbd "C-c '") #'separedit)
   (define-key help-mode-map (kbd "C-c '") #'separedit)
-;  (define-key helpful-mode-map (kbd "C-c '") #'separedit)
+
 
   ;; Default major-mode for edit buffer
   ;; can also be other mode e.g. ‘org-mode’.
