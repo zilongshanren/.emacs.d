@@ -246,7 +246,7 @@ object (e.g., within a comment).  In these case, you need to use
 
 
     (define-key org-mode-map (kbd "RET")
-      'zilong/org-return)
+                'zilong/org-return)
 
     (evil-define-key 'normal org-mode-map
       "+" #'org-cycle-list-bullet)
@@ -498,6 +498,10 @@ object (e.g., within a comment).  In these case, you need to use
     (setq org-plantuml-jar-path
           (expand-file-name "~/.doom.d/plantuml.jar"))
     (setq org-ditaa-jar-path "~/.doom.d/ditaa.jar")
+
+    (require 'org-protocol)
+    ;; https://chenzaichun.github.io/post/2021-10-04-org-roam-research-start/
+
 
     ;; https://github.com/hlissner/doom-emacs/blob/develop/docs/getting_started.org#configuring-doom
     ;; (org-babel-do-load-languages
