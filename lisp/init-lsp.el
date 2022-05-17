@@ -154,9 +154,7 @@
   (interactive)
   (cond
    ((eq major-mode 'emacs-lisp-mode)
-    (let ((symb (function-called-at-point)))
-      (when symb
-        (find-function symb))))
+    (evil-goto-definition))
    (lsp-bridge-mode
     (lsp-bridge-find-def))
    (t
