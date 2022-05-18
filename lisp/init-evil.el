@@ -5,8 +5,8 @@
 (use-package evil
   :init
   (setq evil-want-C-u-scroll t)
+  (setq evil-want-keybinding nil)
   (evil-mode)
-
 
   :config
   (progn
@@ -36,30 +36,6 @@
     (define-key evil-visual-state-map "p" 'evil-paste-after)
     (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
     (define-key evil-insert-state-map (kbd "C-;") 'flyspell-correct-previous)
-
-    ;; set evil init states
-    (dolist (m '(minibuffer-inactive-mode
-                 makey-key-mode
-                 prodigy-mode
-                 profiler-report-mode
-                 ag-mode
-                 diff-mode
-                 vc-svn-log-view-mode-map
-                 flycheck-error-list-mode
-                 git-rebase-mode))
-      (add-to-list 'evil-emacs-state-modes m))
-
-    (dolist (m '(wdired-mode
-                 occur-edit-mode
-                 xref--xref-buffer-mode
-                 lsp-bridge-ref-mode
-                 org-agenda-mode
-                 org-super-agenda-mode))
-      (add-to-list 'evil-normal-state-modes m))
-
-    (dolist (m '(eww-mode
-                 ))
-      (add-to-list 'evil-motion-state-modes m))
 
 
     ;;mimic "nzz" behaviou in vim
@@ -117,11 +93,6 @@
     (define-key evil-visual-state-map (kbd "mf") 'mc/mark-all-like-this-in-defun)
 
 
-    ;; in spacemacs, we always use evilify miscro state
-    (evil-add-hjkl-bindings prodigy-mode-map 'emacs)
-    (evil-add-hjkl-bindings package-menu-mode-map 'emacs)
-    (evil-add-hjkl-bindings vc-svn-log-view-mode-map 'emacs)
-    (evil-add-hjkl-bindings diff-mode-map 'emacs)
     ;; Don't move back the cursor one position when exiting insert mode
     (setq evil-move-cursor-back nil)
 
@@ -140,37 +111,13 @@
     (define-key evil-insert-state-map (kbd "C-z") 'evil-emacs-state)
 
 
+    ))
 
-    (add-hook 'xref--xref-buffer-mode-hook
-              (lambda ()
-                (evil-add-hjkl-bindings xref--xref-buffer-mode-map 'normal
-                  (kbd "RET") 'xref-goto-xref
-                  (kbd "q") 'quit-window)))
-
-    (add-hook 'profiler-report-mode-hook
-              (lambda ()
-                (evil-add-hjkl-bindings profiler-report-mode-map 'emacs
-                  (kbd "RET") 'profiler-report-find-entry
-                  (kbd "C-w") 'evil-window-map)))
-
-    (add-hook 'occur-mode-hook
-              (lambda ()
-                (evil-add-hjkl-bindings occur-mode-map 'emacs
-                  (kbd "/") 'evil-search-forward
-                  (kbd "n") 'evil-search-next
-                  (kbd "N") 'evil-search-previous
-                  (kbd "C-d") 'evil-scroll-down
-                  (kbd "C-u") 'evil-scroll-up)))
-
-    (add-hook 'occur-edit-mode-hook
-              (lambda ()
-                (evil-add-hjkl-bindings occur-edit-mode-map 'normal
-                  (kbd "/") 'evil-search-forward
-                  (kbd "n") 'evil-search-next
-                  (kbd "N") 'evil-search-previous
-                  (kbd "C-d") 'evil-scroll-down
-                  (kbd "C-u") 'evil-scroll-up)))))
-
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 (use-package undo-tree
   :init
@@ -323,6 +270,12 @@
 
   ;; (evilnc-default-hotkeys)
   )
+
+(use-package evil-snipe
+  :ensure t
+  :init
+  (evil-snipe-mode +1)
+  (evil-snipe-override-mode +1))
 
 (use-package bind-map
   :ensure t)
