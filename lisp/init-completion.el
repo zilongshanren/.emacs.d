@@ -56,6 +56,21 @@
     (global-corfu-mode)
     :hook (prog-mode . nasy/setup-corfu)
     :config
+    (defun corfu-enable-in-minibuffer ()
+      "Enable Corfu in the minibuffer if `completion-at-point' is bound."
+      (when (where-is-internal #'completion-at-point (list (current-local-map)))
+        ;; (setq-local corfu-auto nil) Enable/disable auto completion
+        (corfu-mode 1)))
+    (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
+
+    (defun corfu-move-to-minibuffer ()
+      (interactive)
+      (let ((completion-extra-properties corfu--extra)
+            completion-cycle-threshold completion-cycling)
+        (toggle-chinese-search)
+        (apply #'consult-completion-in-region completion-in-region--data)))
+    (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
+
     (define-key corfu-map (kbd "C-j") 'corfu-next)
     (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
