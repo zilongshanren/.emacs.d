@@ -31,8 +31,6 @@
     ;;   "<" 'beginning-of-buffer
     ;;   ">" 'end-of-buffer)
 
-    ;; (adjust-major-mode-keymap-with-evil "git-timemachine")
-    ;; (adjust-major-mode-keymap-with-evil "tabulated-list")
 
     (define-key evil-visual-state-map "p" 'evil-paste-after)
     (define-key evil-insert-state-map (kbd "C-r") 'evil-paste-from-register)
@@ -117,7 +115,10 @@
 (use-package evil-collection
   :ensure t
   :init
-  (evil-collection-init))
+  :config
+  (setq evil-collection-mode-list (remove 'lispy evil-collection-mode-list))
+  (evil-collection-init)
+  )
 
 (use-package undo-tree
   :init
