@@ -71,9 +71,6 @@
 (define-key global-map (kbd "s-e") 'rime-inline-ascii)
 (global-set-key (kbd "s-/") 'hippie-expand)
 
-;; (with-eval-after-load 'dired
-;;   (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
-
 
 ;; r aka remember
 (global-set-key (kbd "C-c r") 'org-capture)

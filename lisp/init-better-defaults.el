@@ -41,32 +41,6 @@
         (concat dired-omit-files "\\|^.DS_Store$\\|^.projectile$\\|\\.js\\.meta$\\|\\.meta$")))
 
 
-;; (use-package dirvish
-;;   :custom
-;;   (dirvish-bookmarks-alist
-;;    '(("h" "~/"                          "Home")
-;;      ("d" "~/Downloads/"                "Downloads")
-;;      ))
-;;   :config
-;;   (dirvish-override-dired-mode)
-;;   (dirvish-peek-mode)
-;;   (setq dirvish-attributes '(vscode-icon file-size))
-;;   :hook (dirvish-mode-hook . dirvish-toggle-fullscreen)
-;;   :bind
-;;   (:map dired-mode-map
-;;         ("SPC" . dirvish-show-history)
-;;         ("r"   . dirvish-roam)
-;;         ("b"   . dirvish-goto-bookmark)
-;;         ("f"   . dirvish-file-info-menu)
-;;         ("M-a" . dirvish-mark-actions-menu)
-;;         ("M-s" . dirvish-setup-menu)
-;;         ("M-f" . dirvish-toggle-fullscreen)
-;;         ([remap dired-summary] . dirvish-dispatch)
-;;         ([remap mode-line-other-buffer] . dirvish-other-buffer)))
-
-;; (use-package vscode-icon
-;;   :config
-;;   (push '("jpg" . "image") vscode-icon-file-alist))
 
 (use-package smartparens
   :init

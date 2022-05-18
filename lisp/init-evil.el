@@ -16,20 +16,6 @@
 
     (setq-default evil-ex-search-persistent-highlight nil)
 
-    ;; (evil-define-key 'normal dired-mode-map
-    ;;   (kbd "C-k") 'zilongshanren/dired-up-directory
-    ;;   ;; "<RET>" 'dired-find-alternate-file
-    ;;   "E" 'dired-toggle-read-only
-    ;;   "C" 'dired-do-copy
-    ;;   "<mouse-2>" 'my-dired-find-file
-    ;;   "`" 'dired-open-term
-    ;;   "gr" 'revert-buffer
-    ;;   "z" 'dired-get-size
-    ;;   "c" 'dired-copy-file-here
-    ;;   "f" 'consult-buffer
-    ;;   ")" 'dired-omit-mode
-    ;;   "<" 'beginning-of-buffer
-    ;;   ">" 'end-of-buffer)
 
 
     (define-key evil-visual-state-map "p" 'evil-paste-after)
@@ -125,7 +111,13 @@
   :config
   (setq evil-collection-mode-list (remove 'lispy evil-collection-mode-list))
   (evil-collection-init)
-  )
+
+  (evil-define-key 'normal dired-mode-map
+    (kbd "<RET>") 'dired-find-alternate-file
+    (kbd "C-k") 'dired-up-directory
+    "`" 'dired-open-term
+    "z" 'dired-get-size
+    ")" 'dired-omit-mode))
 
 (use-package undo-tree
   :init
