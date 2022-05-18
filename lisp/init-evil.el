@@ -116,6 +116,7 @@
     (kbd "<RET>") 'dired-find-alternate-file
     (kbd "C-k") 'dired-up-directory
     "`" 'dired-open-term
+    "o" 'dired-find-file-other-window
     "z" 'dired-get-size
     ")" 'dired-omit-mode))
 
