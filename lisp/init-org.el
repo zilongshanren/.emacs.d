@@ -793,7 +793,7 @@ holding contextual information."
            (file-relative-name (org-roam-node-file node) org-roam-directory))))
       (error "")))
   ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${type:20} ${title:*} " (propertize "${tags:40}" 'face 'org-tag)))
+    (setq org-roam-node-display-template (concat "${type:10} ${title:20} " (propertize "${tags:10}" 'face 'org-tag)))
   (org-roam-db-autosync-mode)
   (setq org-roam-dailies-directory "daily/")
 
