@@ -114,7 +114,7 @@
 
 (use-package evil-collection
   :ensure t
-  :init
+  :demand t
   :config
   (setq evil-collection-mode-list (remove 'lispy evil-collection-mode-list))
   (evil-collection-init)
