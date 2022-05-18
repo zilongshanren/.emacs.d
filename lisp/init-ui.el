@@ -54,4 +54,8 @@
 
 (set-face-attribute 'default nil :height 140)
 
+(use-package valign
+  :ensure t
+  :hook ((markdown-mode org-mode) . valign-mode))
+
 (provide 'init-ui)

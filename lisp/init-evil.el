@@ -112,6 +112,13 @@
 
     ))
 
+(use-package evil-anzu
+  :ensure t
+  :after evil
+  :demand t
+  :init
+  (global-anzu-mode t))
+
 (use-package evil-collection
   :ensure t
   :demand t

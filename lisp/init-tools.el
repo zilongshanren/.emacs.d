@@ -245,6 +245,20 @@
   (("<f9>" . distraction-free)))
 
 
+;; https://github.com/emacsorphanage/quickrun
+(use-package quickrun
+  :ensure t
+  :demand t
+  :init
+  (setq quickrun-option-cmd-alist '((:command . "g++")
+                                   (:exec    . ("%c -std=c++0x -o %n %s"
+                                                "%n apple orange melon"))
+                                   (:remove  . ("%n"))))
+)
+
+(use-package uuidgen
+  :ensure t
+  :commands (uuidgen))
 
 
 (setq tramp-adb-program "~/Downloads/platform-tools/adb")
