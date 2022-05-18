@@ -3,6 +3,7 @@
 (require 'init-funcs)
 
 (use-package evil
+  :ensure t
   :init
   (setq evil-want-C-u-scroll t)
   (setq evil-want-keybinding nil)
@@ -15,20 +16,20 @@
 
     (setq-default evil-ex-search-persistent-highlight nil)
 
-    (evil-define-key 'normal dired-mode-map
-      (kbd "C-k") 'zilongshanren/dired-up-directory
-      ;; "<RET>" 'dired-find-alternate-file
-      "E" 'dired-toggle-read-only
-      "C" 'dired-do-copy
-      "<mouse-2>" 'my-dired-find-file
-      "`" 'dired-open-term
-      "gr" 'revert-buffer
-      "z" 'dired-get-size
-      "c" 'dired-copy-file-here
-      "f" 'consult-buffer
-      ")" 'dired-omit-mode
-      "<" 'beginning-of-buffer
-      ">" 'end-of-buffer)
+    ;; (evil-define-key 'normal dired-mode-map
+    ;;   (kbd "C-k") 'zilongshanren/dired-up-directory
+    ;;   ;; "<RET>" 'dired-find-alternate-file
+    ;;   "E" 'dired-toggle-read-only
+    ;;   "C" 'dired-do-copy
+    ;;   "<mouse-2>" 'my-dired-find-file
+    ;;   "`" 'dired-open-term
+    ;;   "gr" 'revert-buffer
+    ;;   "z" 'dired-get-size
+    ;;   "c" 'dired-copy-file-here
+    ;;   "f" 'consult-buffer
+    ;;   ")" 'dired-omit-mode
+    ;;   "<" 'beginning-of-buffer
+    ;;   ">" 'end-of-buffer)
 
     ;; (adjust-major-mode-keymap-with-evil "git-timemachine")
     ;; (adjust-major-mode-keymap-with-evil "tabulated-list")
@@ -114,9 +115,8 @@
     ))
 
 (use-package evil-collection
-  :after evil
   :ensure t
-  :config
+  :init
   (evil-collection-init))
 
 (use-package undo-tree
