@@ -1242,7 +1242,7 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
   "Use `fd' to list files in DIR."
   (let* ((default-directory dir)
          (localdir (file-local-name (expand-file-name dir)))
-         (command (format "fd -H -t f -0 . %s -E .git -E '*.meta' -E StreamingAssets" localdir)))
+         (command (format "fd -H -t f -0 . %s -E .git -E *.meta -E StreamingAssets" localdir)))
     (project--remote-file-names
      (sort (split-string (shell-command-to-string command) "\0" t)
            #'string<))))
