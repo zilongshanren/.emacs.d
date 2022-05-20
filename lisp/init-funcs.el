@@ -68,7 +68,6 @@ Same as `replace-string C-q C-m RET RET'."
   (unless (minibuffer-window-active-p (selected-window))
     (revert-buffer t t)
     (message "Reverted this buffer")))
-(global-set-key (kbd "s-r") #'revert-this-buffer)
 
 (defun delete-this-file ()
   "Delete the current file, and kill the buffer."

@@ -87,6 +87,7 @@
 (global-set-key (kbd "C-h a") 'apropos)
 
 
+(global-set-key (kbd "s-r") #'revert-this-buffer)
 (global-set-key (kbd "s-d") 'zilongshanren/my-mc-mark-next-like-this)
 (global-set-key (kbd "C-c l") 'zilongshanren/insert-chrome-current-tab-url)
 

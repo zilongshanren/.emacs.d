@@ -208,7 +208,7 @@
   (use-package so-long
     :ensure nil
     :hook (after-init . global-so-long-mode)
-    :config (setq so-long-threshold 400)))
+    :config (setq so-long-threshold 4000)))
 
 ;; Misc
 (fset 'yes-or-no-p 'y-or-n-p)
