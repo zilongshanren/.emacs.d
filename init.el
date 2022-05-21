@@ -83,6 +83,14 @@
 ;; Without this comment Emacs25 adds (package-initialize) here
 (require 'init-package)
 
+(use-package benchmark-init
+  :ensure t
+  :demand t
+  :config
+  ;; To disable collection of benchmark data after init is done.
+  (add-hook 'after-init-hook 'benchmark-init/deactivate))
+
+
 ;; Core
 (require 'init-basic)
 (require 'init-completion)

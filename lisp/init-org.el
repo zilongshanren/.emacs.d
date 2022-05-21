@@ -821,12 +821,14 @@ holding contextual information."
                 ("C-c n l" . org-roam-buffer-toggle)))))
 
 (use-package org-roam-ui
-  :ensure t)
+  :ensure t
+  :commands org-roam-ui-mode
+  )
 
 (use-package consult-org-roam
   :ensure nil
   :init
-  (require 'consult-org-roam)
+  :commands consult-org-roam-forward-links
   :custom
   (consult-org-roam-grep-func #'consult-ripgrep)
   :config

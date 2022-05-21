@@ -144,7 +144,7 @@
       :kill-process-buffer-on-stop t)))
 
 (use-package pyim
-  :demand t
+  :ensure t
   :init
   (defun eh-orderless-regexp (orig_func component)
     (let ((result (funcall orig_func component)))
@@ -229,7 +229,9 @@
   :config
   (define-key protobuf-mode-map (kbd "RET") 'av/auto-indent-method-maybe))
 
-(require 'corfu-english-helper)
+(use-package corfu-english-helper
+  :ensure nil
+  :commands toggle-corfu-english-helper)
 
 (use-package olivetti
   :init
@@ -249,17 +251,20 @@
 ;; https://github.com/emacsorphanage/quickrun
 (use-package quickrun
   :ensure t
-  :demand t
+  :commands quickrun
   :init
   (setq quickrun-option-cmd-alist '((:command . "g++")
                                    (:exec    . ("%c -std=c++0x -o %n %s"
                                                 "%n apple orange melon"))
-                                   (:remove  . ("%n"))))
-)
+                                   (:remove  . ("%n")))))
 
 (use-package uuidgen
   :ensure t
   :commands (uuidgen))
+
+(use-package link-hint
+  :ensure t
+  :defer t)
 
 
 (setq tramp-adb-program "~/Downloads/platform-tools/adb")

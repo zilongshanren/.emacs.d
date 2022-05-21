@@ -105,6 +105,7 @@
   :init
   (global-anzu-mode t))
 
+
 (use-package evil-collection
   :ensure t
   :demand t
@@ -119,7 +120,11 @@
     "o" 'dired-find-file-other-window
     "s" 'dired-sort-toggle-or-edit
     "z" 'dired-get-size
-    ")" 'dired-omit-mode))
+    ")" 'dired-omit-mode)
+
+  (evil-define-key 'normal help-mode-map
+    "o" 'link-hint-open-link)
+  )
 
 (use-package undo-tree
   :init
