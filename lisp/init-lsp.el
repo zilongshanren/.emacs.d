@@ -79,8 +79,12 @@
 
 
 (require 'lsp-bridge)
-
+(require 'corfu-info)
+(require 'corfu-history)
+(require 'lsp-bridge-icon)
+(corfu-history-mode t)
 (setq lsp-bridge-enable-log nil)
+
 
 (dolist (hook (list
                'c-mode-hook
@@ -117,6 +121,7 @@
   (add-hook hook (lambda ()
                    (setq-local corfu-auto nil)
                    (lsp-bridge-mode)
+
                    ;; (lsp-bridge-mix-multi-backends)
                    (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
                    )))
