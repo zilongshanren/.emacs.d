@@ -30,7 +30,7 @@
       (append
        '(
          ("\\.js\\'" . js-mode)
-         ("\\.vue\\'" . web-mode)
+         ;; ("\\.vue\\'" . web-mode)
          ("\\.html\\'" . web-mode)
          )
        auto-mode-alist))
