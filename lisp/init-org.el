@@ -141,15 +141,6 @@ unwanted space when exporting org-mode to hugo markdown."
                 "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
         (ad-set-arg 1 fixed-contents)))
 
-    ;; disable < auto pair for org mode
-    ;; disable {} auto pairing in electric-pair-mode for web-mode
-    (electric-pair-mode t)
-    (add-hook
-     'org-mode-hook
-     (lambda ()
-       (setq-local electric-pair-inhibit-predicate
-                   `(lambda (c)
-                      (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
     (require 'org-tempo)
     ;; Allow multiple line Org emphasis markup.

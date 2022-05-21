@@ -226,7 +226,7 @@
 
 (use-package protobuf-mode
   :ensure t
-  :hook (protobuf-mode . disable-curly-bracket-electric-pair))
+  )
 
 (require 'corfu-english-helper)
 
