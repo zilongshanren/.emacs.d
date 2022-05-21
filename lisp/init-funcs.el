@@ -1242,7 +1242,7 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
   "Use `fd' to list files in DIR."
   (let* ((default-directory dir)
          (localdir (file-local-name (expand-file-name dir)))
-         (command (format "fd -H -t f -0 . %s -E .git -E *.meta -E StreamingAssets" localdir)))
+         (command (format "fd -H -t f -0 . %s -E .git -E \"*.meta\" -E StreamingAssets" localdir)))
     (project--remote-file-names
      (sort (split-string (shell-command-to-string command) "\0" t)
            #'string<))))
@@ -1341,6 +1341,24 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
   (if (eq major-mode #'org-mode)
       (call-interactively #'consult-org-heading)
     (call-interactively #'consult-imenu)))
+
+(defun av/auto-indent-method ()
+  "Automatically indent a method by adding two newlines.
+Puts point in the middle line as well as indent it by correct amount."
+  (interactive)
+  (newline-and-indent)
+  (newline-and-indent)
+  (forward-line -1)
+  (c-indent-line-or-region))
+
+(defun av/auto-indent-method-maybe ()
+  "Check if point is at a closing brace then auto indent."
+  (interactive)
+  (let ((char-at-point (char-after (point))))
+    (if (char-equal ?} char-at-point)
+        (av/auto-indent-method)
+      (newline-and-indent))))
+
 
 (provide 'init-funcs)
 

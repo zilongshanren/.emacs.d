@@ -226,7 +226,8 @@
 
 (use-package protobuf-mode
   :ensure t
-  )
+  :config
+  (define-key protobuf-mode-map (kbd "RET") 'av/auto-indent-method-maybe))
 
 (require 'corfu-english-helper)
 
