@@ -35,31 +35,32 @@
   :ensure t)
 
 
-(use-package org-super-agenda
-  :init
-  (require 'org-agenda)
-  (define-key org-agenda-keymap "j" #'org-agenda-next-line)
-  (define-key org-agenda-mode-map "j" #'org-agenda-next-line)
-  (define-key org-agenda-keymap "k" #'org-agenda-previous-line)
-  (define-key org-agenda-mode-map "k" #'org-agenda-previous-line)
+;; (use-package org-super-agenda
+;;   :init
+;;   (require 'org-agenda)
+;;   (define-key org-agenda-keymap "j" #'org-agenda-next-line)
+;;   (define-key org-agenda-mode-map "j" #'org-agenda-next-line)
+;;   (define-key org-agenda-keymap "k" #'org-agenda-previous-line)
+;;   (define-key org-agenda-mode-map "k" #'org-agenda-previous-line)
 
 
-  (setq org-super-agenda-groups
-        '((:name "Important"
-                 :priority "A")
-          (:name "Quick Picks"
-                 :effort< "0:30")
-          (:name "Next Items"
-                 :tag ("NEXT" "outbox"))
-          (:priority<= "B"
-                       :scheduled future)))
-  :config
-  (org-super-agenda-mode))
+;;   (setq org-super-agenda-groups
+;;         '((:name "Important"
+;;                  :priority "A")
+;;           (:name "Quick Picks"
+;;                  :effort< "0:30")
+;;           (:name "Next Items"
+;;                  :tag ("NEXT" "outbox"))
+;;           (:priority<= "B"
+;;                        :scheduled future)))
+;;   :config
+;;   (org-super-agenda-mode))
 
 (with-eval-after-load 'org-agenda
   ;; keybindings
- (evil-make-overriding-map org-agenda-mode-map 'normal)
-)
+  (evil-make-overriding-map org-agenda-mode-map 'normal)
+  (define-key org-agenda-mode-map "j" 'evil-next-line)
+  (define-key org-agenda-mode-map "k" 'evil-previous-line))
 
 (defun org-apperance-evil-hack ()
   (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)

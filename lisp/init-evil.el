@@ -113,6 +113,11 @@
   (setq evil-collection-mode-list (remove 'lispy evil-collection-mode-list))
   (evil-collection-init)
 
+   (cl-loop for (mode . state) in
+         '((org-agenda-mode . normal))
+         do (evil-set-initial-state mode state))
+
+
   (evil-define-key 'normal dired-mode-map
     (kbd "<RET>") 'dired-find-alternate-file
     (kbd "C-k") 'dired-up-directory
