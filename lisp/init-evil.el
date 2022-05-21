@@ -170,7 +170,7 @@
       "sp" 'consult-ripgrep
       "=" 'indent-buffer
       "oy" 'youdao-dictionary-search-at-point+
-      "oo" 'zilongshanren/helm-hotspots
+      "oo" 'zilongshanren/hotspots
       "TAB" 'spacemacs/alternate-buffer
       "hdf" 'describe-function
       "v" #'er/expand-region

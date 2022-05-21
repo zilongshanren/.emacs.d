@@ -1143,7 +1143,7 @@ e.g. Sunday, September 17, 2000."
     output-string))
 
 ;;;###autoload
-(defun zilongshanren/helm-hotspots ()
+(defun zilongshanren/hotspots ()
   (interactive)
   (require 'consult)
   (setq-local source '(("Calendar" . (lambda ()  (browse-url "https://www.google.com/calendar/render")))
@@ -1151,6 +1151,7 @@ e.g. Sunday, September 17, 2000."
                        ("Blog" . browse-hugo-maybe)
                        ("Search" . (lambda () (call-interactively #'engine/search-google)))
                        ("Random Todo" . org-random-entry)
+                       ("lsp bridge" . my/enable-lsp-bridge)
                        ("string edit" . separedit)
                        ("Org Roam" . org-roam-find-file)
                        ("Github" . (lambda() (helm-github-stars)))

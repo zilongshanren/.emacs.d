@@ -94,6 +94,7 @@
 
 
 (defun my/enable-lsp-bridge ()
+  (interactive)
   (progn
     (setq-local corfu-auto nil)
     (lsp-bridge-mode)
