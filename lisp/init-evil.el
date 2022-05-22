@@ -8,8 +8,11 @@
   (setq evil-want-C-u-scroll t)
   (setq evil-want-keybinding nil)
   (evil-mode)
+
+  ;; https://emacs.stackexchange.com/questions/46371/how-can-i-get-ret-to-follow-org-mode-links-when-using-evil-mode
   (with-eval-after-load 'evil-maps
     (define-key evil-motion-state-map (kbd "RET") nil))
+
   :config
   (progn
     (setcdr evil-insert-state-map nil)
