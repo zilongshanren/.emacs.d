@@ -493,6 +493,7 @@ object (e.g., within a comment).  In these case, you need to use
     (setq org-default-properties (cons "RESET_SUBTASKS" org-default-properties))
 
     ;; (add-hook 'org-after-todo-state-change-hook 'org-subtask-reset)
+    (setq org-return-follows-link t)
 
     (setq org-plantuml-jar-path
           (expand-file-name "~/.doom.d/plantuml.jar"))

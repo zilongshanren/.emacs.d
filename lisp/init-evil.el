@@ -8,7 +8,8 @@
   (setq evil-want-C-u-scroll t)
   (setq evil-want-keybinding nil)
   (evil-mode)
-
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "RET") nil))
   :config
   (progn
     (setcdr evil-insert-state-map nil)
