@@ -251,7 +251,7 @@
 ;; https://github.com/emacsorphanage/quickrun
 (use-package quickrun
   :ensure t
-  :commands quickrun
+  :commands (quickrun)
   :init
   (setq quickrun-option-cmd-alist '((:command . "g++")
                                    (:exec    . ("%c -std=c++0x -o %n %s"

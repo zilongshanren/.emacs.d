@@ -56,11 +56,16 @@
 ;;   :config
 ;;   (org-super-agenda-mode))
 
-(with-eval-after-load 'org-agenda
-  ;; keybindings
-  (evil-make-overriding-map org-agenda-mode-map 'normal)
-  (define-key org-agenda-mode-map "j" 'evil-next-line)
-  (define-key org-agenda-mode-map "k" 'evil-previous-line))
+(use-package evil-org
+  :ensure t
+  :init
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  :demand t
+  :after org
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
 
 (defun org-apperance-evil-hack ()
   (add-hook 'evil-insert-state-entry-hook #'org-appear-manual-start nil t)
@@ -685,7 +690,6 @@ See `org-capture-templates' for more information."
     (define-key org-mode-map (kbd "s-p") 'org-priority)
 
     (define-key evil-normal-state-map (kbd "C-c C-w") 'org-refile)
-    (define-key evil-normal-state-map (kbd "TAB") 'org-cycle)
 
     ;; hack for org headline toc
     (defun org-html-headline (headline contents info)
@@ -823,13 +827,13 @@ holding contextual information."
 
 (use-package org-roam-ui
   :ensure t
-  :commands org-roam-ui-mode
+  :commands (org-roam-ui-mode)
   )
 
 (use-package consult-org-roam
   :ensure nil
   :init
-  :commands consult-org-roam-forward-links
+  :commands (consult-org-roam-forward-links)
   :custom
   (consult-org-roam-grep-func #'consult-ripgrep)
   :config
