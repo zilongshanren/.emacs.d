@@ -26,13 +26,16 @@
 
 
 (use-package ox-hugo
-  :ensure t   ;Auto-install the package from Melpa
-  :pin melpa  ;`package-archives' should already have ("melpa" . "https://melpa.org/packages/")
-  :after ox)
+  :ensure t                             ;Auto-install the package from Melpa
+  :pin melpa ;`package-archives' should already have ("melpa" . "https://melpa.org/packages/")
+  :after ox
+  :commands org-hugo-export-to-md)
 
 
 (use-package org-pomodoro
-  :ensure t)
+  :ensure t
+  :commands org-pomodoro
+  :after org)
 
 
 ;; (use-package org-super-agenda
@@ -58,9 +61,7 @@
 
 (use-package evil-org
   :ensure t
-  :init
-  (add-hook 'org-mode-hook 'evil-org-mode)
-  :demand t
+  :hook (org-mode . evil-org-mode)
   :after org
   :config
   (require 'evil-org-agenda)
@@ -73,6 +74,7 @@
 
 (use-package org-appear
   :ensure t
+  :after org
   :hook (org-mode . org-appear-mode)
   :init
   (setq org-appear-trigger 'manual)
@@ -80,10 +82,10 @@
 
 (use-package org-superstar
   :ensure t
+  :after org
+  :hook (org-mode . org-superstar-mode)
   :config
-  (setq org-superstar-special-todo-items t)
-  (add-hook 'org-mode-hook (lambda ()
-                             (org-superstar-mode 1))))
+  (setq org-superstar-special-todo-items t))
 
 (with-eval-after-load 'org
   (progn
@@ -828,6 +830,7 @@ holding contextual information."
 (use-package org-roam-ui
   :ensure t
   :commands (org-roam-ui-mode)
+  :after org
   )
 
 (use-package consult-org-roam
