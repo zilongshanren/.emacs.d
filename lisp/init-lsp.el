@@ -70,11 +70,11 @@
 
               )
   :hook (eglot-managed-mode . (lambda () (flymake-mode -1)))
-  (css-mode . eglot-ensure)
-  (js2-mode . eglot-ensure)
-  (js-mode . eglot-ensure)
-  (web-mode . eglot-ensure)
-  (genehack-vue-mode . eglot-ensure)
+  ;; (css-mode . eglot-ensure)
+  ;; (js2-mode . eglot-ensure)
+  ;; (js-mode . eglot-ensure)
+  ;; (web-mode . eglot-ensure)
+  ;; (genehack-vue-mode . eglot-ensure)
   :config
   (setq eglot-send-changes-idle-time 0.2)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
