@@ -310,6 +310,7 @@
       "J" 'org-metadown
       "K" 'org-metaup
       "T" 'org-set-tags-command
+      "l" 'org-toggle-link-display
       "I" 'org-clock-in
       "O" 'org-clock-out
       "P" 'org-set-property
