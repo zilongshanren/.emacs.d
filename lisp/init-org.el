@@ -779,7 +779,6 @@ holding contextual information."
 
 
 (use-package org-roam
-  :after org
   :init
   (defun jethro/org-capture-slipbox ()
     (interactive)
