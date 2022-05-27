@@ -87,6 +87,10 @@
   :config
   (setq org-superstar-special-todo-items t))
 
+(use-package org
+  :ensure t
+  :pin gnu)
+
 (with-eval-after-load 'org
   (progn
     ;; If you intend to use org, it is recommended you change this!
@@ -245,7 +249,7 @@ object (e.g., within a comment).  In these case, you need to use
 
 
     (define-key org-mode-map (kbd "RET")
-                'zilong/org-return)
+      'zilong/org-return)
 
     (evil-define-key 'normal org-mode-map
       "+" #'org-cycle-list-bullet)
@@ -565,7 +569,7 @@ object (e.g., within a comment).  In these case, you need to use
              "* TODO [#B] %?\n  %i\n %U"
              :empty-lines 1)
             ("s" "Slipbox" entry  (file "inbox.org")
-       "* %?\n")
+             "* %?\n")
             ("S" "Code Snippet" entry
              (file org-agenda-file-code-snippet)
              "* %?\t%^g\n#+BEGIN_SRC %^{language}\n\n#+END_SRC")
@@ -828,6 +832,9 @@ holding contextual information."
                 ("C-c n E" . org-roam-extract-subtree)
                 ("C-c n a" . org-roam-alias-add)
                 ("C-c n l" . org-roam-buffer-toggle)))))
+
+(use-package org-contrib
+  :pin nongnu)
 
 (use-package org-roam-ui
   :ensure t
