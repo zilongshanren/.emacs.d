@@ -245,6 +245,7 @@
         ("e" "corfu english helper" toggle-corfu-english-helper)
         ("n" "line number" my-toggle-line-numbber)
         ("w" "writing" distraction-free)
+        ("l" "lsp bridge" my/enable-lsp-bridge)
         ]])
 
     ;; git keymaps stduent

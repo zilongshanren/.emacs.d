@@ -1360,6 +1360,9 @@ Puts point in the middle line as well as indent it by correct amount."
         (av/auto-indent-method)
       (newline-and-indent))))
 
+(defun zilongshanren/run-current-file ()
+  (interactive)
+  (quickrun))
 
 (provide 'init-funcs)
 
