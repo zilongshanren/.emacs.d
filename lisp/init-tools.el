@@ -145,6 +145,7 @@
 
 (use-package pyim
   :ensure t
+  :commands (pyim-cregexp-build)
   :init
   (defun eh-orderless-regexp (orig_func component)
     (let ((result (funcall orig_func component)))

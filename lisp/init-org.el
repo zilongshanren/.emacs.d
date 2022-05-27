@@ -825,7 +825,8 @@ holding contextual information."
                (("C-c n i" . org-roam-node-insert)
                 ("C-c n o" . org-id-get-create)
                 ("C-c n t" . org-roam-tag-add)
-                ("C-c n a" . org-roam-extract-subtree)
+                ("C-c n E" . org-roam-extract-subtree)
+                ("C-c n a" . org-roam-alias-add)
                 ("C-c n l" . org-roam-buffer-toggle)))))
 
 (use-package org-roam-ui
