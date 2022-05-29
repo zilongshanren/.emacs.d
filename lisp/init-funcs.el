@@ -1350,7 +1350,9 @@ Puts point in the middle line as well as indent it by correct amount."
   (newline-and-indent)
   (newline-and-indent)
   (forward-line -1)
-  (c-indent-line-or-region))
+  (if (eq major-mode 'rust-mode)
+      (rust-mode-indent-line)
+    (c-indent-line-or-region)))
 
 (defun av/auto-indent-method-maybe ()
   "Check if point is at a closing brace then auto indent."
