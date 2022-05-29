@@ -124,6 +124,7 @@
 (require 'init-csharp)
 ;; todo: typescript
 (require 'init-javascript)
+(require 'init-rust)
 ;;todo: c/c++, rust, python, shell
 
 ;; personal
