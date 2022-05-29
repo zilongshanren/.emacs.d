@@ -176,10 +176,10 @@
       "hh" 'zilongshanren/highlight-dwim
       "hc" 'zilongshanren/clearn-highlight
       "sj" 'my/imenu
-      "en" 'flycheck-next-error
+      "en" 'my-goto-next-error
       "ry" 'consult-yank-pop
-      "ep" 'flycheck-previous-error
-      "el" 'flycheck-list-errors
+      "ep" 'my-goto-previous-error
+      "el" 'my-list-errors
       "x" 'switch-to-scratch-buffer
       "sp" 'consult-ripgrep
       "=" 'indent-buffer

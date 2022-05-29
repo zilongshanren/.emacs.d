@@ -1364,6 +1364,24 @@ Puts point in the middle line as well as indent it by correct amount."
   (interactive)
   (quickrun))
 
+(defun my-goto-next-error ()
+  (interactive)
+  (if (bound-and-true-p flycheck-mode)
+      (flycheck-next-error)
+    (flymake-goto-next-error)))
+
+(defun my-goto-previous-error ()
+  (interactive)
+  (if (bound-and-true-p flycheck-mode)
+      (flycheck-previous-error)
+    (flymake-goto-prev-error)))
+
+(defun my-list-errors ()
+  (interactive)
+  (if (bound-and-true-p flycheck-mode)
+      (flycheck-list-errors)
+    (flymake-diagnostic-buffer)))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
