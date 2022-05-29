@@ -68,8 +68,7 @@
               ("C-c l o" . eglot-code-action-organize-imports)
               ("C-c l f" . eglot-format)
               ("C-c l d" . eldoc)
-
-              )
+              ("s-<return>" . eglot-code-actions))
   :hook
   ;; (css-mode . eglot-ensure)
   ;; (js2-mode . eglot-ensure)

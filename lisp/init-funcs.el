@@ -1382,6 +1382,13 @@ Puts point in the middle line as well as indent it by correct amount."
       (flycheck-list-errors)
     (flymake-show-buffer-diagnostics)))
 
+(defun file-notify-rm-all-watches ()
+  "Remove all existing file notification watches from Emacs."
+  (interactive)
+  (maphash
+   (lambda (key _value)
+     (file-notify-rm-watch key))
+   file-notify-descriptors))
 
 (provide 'init-funcs)
 
