@@ -1382,6 +1382,7 @@ Puts point in the middle line as well as indent it by correct amount."
       (flycheck-list-errors)
     (flymake-show-buffer-diagnostics)))
 
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

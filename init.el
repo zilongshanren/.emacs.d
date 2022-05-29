@@ -106,7 +106,7 @@
 (require 'init-org)
 (require 'init-git)
 (require 'init-ctags)
-(require 'init-flycheck)
+(require 'init-syntaxcheck)
 (require 'init-snippets)
 
 (require 'init-lsp)
