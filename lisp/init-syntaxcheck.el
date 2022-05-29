@@ -86,10 +86,10 @@ See URL `https://github.com/zaach/jsonlint'."
       (flycheck-sanitize-errors (flycheck-increment-error-columns errors)))
     :modes json-mode))
 
-(use-package posframe
-  :ensure t)
+
 (use-package flymake-posframe
   :ensure nil
   :hook (flymake-mode . flymake-posframe-mode))
+
 
 (provide 'init-syntaxcheck)
