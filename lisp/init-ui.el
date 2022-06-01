@@ -36,15 +36,7 @@
       `((buffer-file-name "%f" "%b")
         ,(format " - GNU Emacs %s" emacs-version)))
 
-(use-package popwin
-  :ensure t
-  :init
-  (popwin-mode t)
-  (push "*lispy-help*" popwin:special-display-config))
 
-(use-package window-numbering
-  :init
-  (window-numbering-mode 1))
 
 (use-package doom-themes
   :init

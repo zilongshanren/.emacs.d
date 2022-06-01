@@ -100,6 +100,7 @@
 (require 'init-evil)
 ;; uis
 (require 'init-ui)
+(require 'init-window)
 (require 'init-better-defaults)
 
 ;; Tools
