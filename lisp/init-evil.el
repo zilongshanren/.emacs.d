@@ -105,6 +105,7 @@
 (use-package evil-anzu
   :ensure t
   :after evil
+  :diminish
   :demand t
   :init
   (global-anzu-mode t))
@@ -136,6 +137,7 @@
   )
 
 (use-package undo-tree
+  :diminish
   :init
   (global-undo-tree-mode 1)
   (setq undo-tree-auto-save-history nil)
@@ -291,6 +293,7 @@
 
 (use-package evil-snipe
   :ensure t
+  :diminish
   :init
   (evil-snipe-mode +1)
   (evil-snipe-override-mode +1))

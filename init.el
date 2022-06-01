@@ -117,16 +117,16 @@
 ;; init-prog.el
 (require 'init-web)
 (require 'init-gpu)
-;; init-persp.el
+(require 'init-persp)
 
 
 ;; Languages
-;; todo: clojure
 (require 'init-lisp)
 (require 'init-csharp)
 (require 'init-javascript)
 (require 'init-rust)
-;;todo: c/c++, rust, python
+;;todo: c/c++,  python
+;; todo: clojure
 
 ;; personal
 (require 'init-keybindings)

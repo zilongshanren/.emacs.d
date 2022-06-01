@@ -74,6 +74,7 @@
 (use-package yaml-mode)
 
 (use-package dtrt-indent
+  :diminish
   :hook (prog-mode . dtrt-indent-mode))
 
 

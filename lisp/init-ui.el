@@ -50,4 +50,9 @@
   :ensure t
   :hook ((markdown-mode org-mode) . valign-mode))
 
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
 (provide 'init-ui)

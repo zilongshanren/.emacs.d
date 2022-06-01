@@ -27,7 +27,7 @@
 
 (use-package window-numbering
   :init
-  (window-numbering-mode 1))
+  :hook (after-init . window-numbering-mode))
 
 ;; Restore old window configurations
 (use-package winner
@@ -51,7 +51,7 @@
   :commands popper-group-by-directory
   :bind (:map popper-mode-map
               ("s-`" . popper-toggle-latest)
-              ("s-<tab>"   . popper-cycle)
+              ("s-o"   . popper-cycle)
               ("M-`" . popper-toggle-type))
   :hook (emacs-startup . popper-mode)
   :init
