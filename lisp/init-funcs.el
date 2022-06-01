@@ -1397,6 +1397,12 @@ Puts point in the middle line as well as indent it by correct amount."
      (file-notify-rm-watch key))
    file-notify-descriptors))
 
+(defun my/jump-to-last-layout ()
+  "Open the previously selected layout, if it exists."
+  (interactive)
+  (persp-switch persp-last-persp-name))
+
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
