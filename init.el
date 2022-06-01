@@ -113,20 +113,20 @@
 (require 'init-lsp)
 
 ;; Frameworks
-;; todo: yaml
+;; yaml init , shell etc
+;; init-prog.el
 (require 'init-web)
-;; todo: layout, project
-
 (require 'init-gpu)
+;; init-persp.el
+
 
 ;; Languages
 ;; todo: clojure
 (require 'init-lisp)
 (require 'init-csharp)
-;; todo: typescript
 (require 'init-javascript)
 (require 'init-rust)
-;;todo: c/c++, rust, python, shell
+;;todo: c/c++, rust, python
 
 ;; personal
 (require 'init-keybindings)
