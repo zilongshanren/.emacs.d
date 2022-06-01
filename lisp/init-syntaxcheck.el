@@ -1,4 +1,4 @@
-;;; init-flycheck.el -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-syntaxcheck.el -*- lexical-binding: t no-byte-compile: t -*-
 
 ;; Copyright (C) 2021-2022 zilongshanren
 
@@ -86,4 +86,10 @@ See URL `https://github.com/zaach/jsonlint'."
       (flycheck-sanitize-errors (flycheck-increment-error-columns errors)))
     :modes json-mode))
 
-(provide 'init-flycheck)
+
+(use-package flymake-posframe
+  :ensure nil
+  :hook (flymake-mode . flymake-posframe-mode))
+
+
+(provide 'init-syntaxcheck)

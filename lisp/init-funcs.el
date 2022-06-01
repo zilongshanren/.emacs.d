@@ -1350,7 +1350,9 @@ Puts point in the middle line as well as indent it by correct amount."
   (newline-and-indent)
   (newline-and-indent)
   (forward-line -1)
-  (c-indent-line-or-region))
+  (if (eq major-mode 'rust-mode)
+      (rust-mode-indent-line)
+    (c-indent-line-or-region)))
 
 (defun av/auto-indent-method-maybe ()
   "Check if point is at a closing brace then auto indent."
@@ -1363,6 +1365,32 @@ Puts point in the middle line as well as indent it by correct amount."
 (defun zilongshanren/run-current-file ()
   (interactive)
   (quickrun))
+
+(defun my-goto-next-error ()
+  (interactive)
+  (if (bound-and-true-p flycheck-mode)
+      (flycheck-next-error)
+    (flymake-goto-next-error)))
+
+(defun my-goto-previous-error ()
+  (interactive)
+  (if (bound-and-true-p flycheck-mode)
+      (flycheck-previous-error)
+    (flymake-goto-prev-error)))
+
+(defun my-list-errors ()
+  (interactive)
+  (if (bound-and-true-p flycheck-mode)
+      (flycheck-list-errors)
+    (flymake-show-buffer-diagnostics)))
+
+(defun file-notify-rm-all-watches ()
+  "Remove all existing file notification watches from Emacs."
+  (interactive)
+  (maphash
+   (lambda (key _value)
+     (file-notify-rm-watch key))
+   file-notify-descriptors))
 
 (provide 'init-funcs)
 

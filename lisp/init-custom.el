@@ -51,7 +51,9 @@
                ,(cons "melpa" (concat proto "://mirrors.bfsu.edu.cn/elpa/melpa/"))))
       ,(cons 'emacs-china
              `(,(cons "gnu"   (concat proto "://elpa.zilongshanren.com/gnu/"))
-               ,(cons "melpa" (concat proto "://elpa.zilongshanren.com/melpa/"))))
+               ,(cons "melpa" (concat proto "://elpa.zilongshanren.com/melpa/"))
+               ,(cons "nongnu" (concat proto "://elpa.zilongshanren.com/nongnu/"))
+               ))
       ,(cons 'netease
              `(,(cons "gnu"   (concat proto "://mirrors.163.com/elpa/gnu/"))
                ,(cons "melpa" (concat proto "://mirrors.163.com/elpa/melpa/"))))

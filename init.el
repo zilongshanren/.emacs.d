@@ -29,7 +29,7 @@
 
 ;; part of the code are from Centaur emacs
 ;;; Code:
-
+(require 'cl)
 
 (when (version< emacs-version "25.1")
   (error "This requires Emacs 25.1 and above!"))
@@ -107,7 +107,7 @@
 (require 'init-org)
 (require 'init-git)
 (require 'init-ctags)
-(require 'init-flycheck)
+(require 'init-syntaxcheck)
 (require 'init-snippets)
 
 (require 'init-lsp)
@@ -125,6 +125,7 @@
 (require 'init-csharp)
 ;; todo: typescript
 (require 'init-javascript)
+(require 'init-rust)
 ;;todo: c/c++, rust, python, shell
 
 ;; personal
