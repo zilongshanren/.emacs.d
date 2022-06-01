@@ -195,7 +195,8 @@
       "gs" 'magit-status
       "gd" 'vc-diff
       "gg" 'xref-find-definitions
-      "gr" 'xref-find-references)
+      "gr" 'xref-find-references
+      "l" 'my/layout-command)
 
 
     (use-package transient
@@ -235,6 +236,15 @@
         ("r" "revert buffer" revert-buffer)
         ("d" "kill this buffer" kill-this-buffer)]])
     ;; workspace keymaps
+    (transient-define-prefix my/layout-command
+      "Layout"
+      [["Find"
+        ("l" "switch layout" persp-frame-switch)
+        ("TAB" "switch last layout" my/jump-to-last-layout)]
+       ["CRUD"
+        ("s" "save layout" persp-save-frame)
+        ("ba" "add buffer" persp-add-buffer)
+        ("br" "remove buffer" persp-remove-buffer)]])
 
     ;; window keymaps
 

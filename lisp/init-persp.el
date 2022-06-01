@@ -30,7 +30,23 @@
   :hook ((after-init . persp-mode)
          (persp-mode . persp-load-frame)
          (kill-emacs . persp-save-frame))
+  :init
+  (setq spacemacs--last-selected-layout nil)
   :config
+  (defun my/save-persp-name (arg1 arg2)
+    (setq spacemacs--last-selected-layout persp-last-persp-name))
+
+  (defun my/jump-to-last-layout ()
+    "Open the previously selected layout, if it exists."
+    (interactive)
+    (unless (eq 'non-existent
+                (gethash spacemacs--last-selected-layout
+                         *persp-hash* 'non-existent))
+      (persp-switch spacemacs--last-selected-layout)))
+
+
+  (advice-add 'persp-activate :before 'my/save-persp-name)
+
   ;; Save and load frame parameters (size & position)
   (defvar persp-frame-file (expand-file-name "persp-frame" persp-save-dir)
     "File of saving frame parameters.")
@@ -91,7 +107,9 @@
 
     (defun my-persp-after-load-state (&rest _)
       (setq persp-state-loaded t))
+
     (advice-add #'persp-load-state-from-file :after #'my-persp-after-load-state)
+
     (add-hook 'emacs-startup-hook
               (lambda ()
                 (add-hook 'find-file-hook #'my-persp-after-load-state)))
@@ -123,8 +141,7 @@
 
   ;; Don't save persp configs in `recentf'
   (with-eval-after-load 'recentf
-    (push persp-save-dir recentf-exclude))
-  )
+    (push persp-save-dir recentf-exclude)))
 
 
 (provide 'init-persp)
