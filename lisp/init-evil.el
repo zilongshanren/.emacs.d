@@ -228,6 +228,7 @@
         ("f" "open current buffer directory" my-open-current-directory)]
        ["CRUD"
         ("k" "kill buffer" kill-buffer)
+        ("y" "copy buffer name" copy-buffer-name)
         ("K" "kill all other buffer" kill-other-buffers)
         ("r" "revert buffer" revert-buffer)
         ("d" "kill this buffer" kill-this-buffer)]])

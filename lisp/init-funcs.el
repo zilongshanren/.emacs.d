@@ -112,6 +112,11 @@ Same as `replace-string C-q C-m RET RET'."
         (message "Copied '%s'" filename))
     (warn "Current buffer is not attached to a file!")))
 
+(defun copy-buffer-name ()
+  "Copy name of the current buffer."
+  (interactive)
+  (kill-new (buffer-name)))
+
 ;; Browse URL
 (defun zilongshanren-webkit-browse-url (url &optional pop-buffer new-session)
   "Browse url with webkit and switch or pop to the buffer.
