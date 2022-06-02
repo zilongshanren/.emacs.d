@@ -33,7 +33,7 @@
   :init
   (setq spacemacs--last-selected-layout nil)
   :config
-  (defun my/save-persp-name (arg1 arg2)
+  (defun my/save-persp-name (&rest _)
     (setq spacemacs--last-selected-layout persp-last-persp-name))
 
   (defun my/jump-to-last-layout ()

@@ -95,18 +95,15 @@
 
 (use-package general
   :init
-  ;; (with-eval-after-load 'evil
-  ;; ;; (general-add-hook 'after-init-hook
-  ;; ;;                   (lambda (&rest _)
-  ;; ;;                     (when-let ((messages-buffer (get-buffer "*Messages*")))
-  ;; ;;                       (with-current-buffer messages-buffer
-  ;; ;;                         (evil-normalize-keymaps)
-  ;; ;;                         (evil-leader-mode 1)
-  ;; ;;                         )))
-  ;; ;;                   nil
-  ;; ;;                   nil
-  ;; ;;                   t)
-  ;;   )
+  (with-eval-after-load 'evil
+    (general-add-hook 'after-init-hook
+                      (lambda (&rest _)
+                        (when-let ((messages-buffer (get-buffer "*Messages*")))
+                          (with-current-buffer messages-buffer
+                            (evil-normalize-keymaps))))
+                      nil
+                      nil
+                      t))
 
   (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
   (general-emacs-define-key 'global [remap apropos] 'consult-apropos)
@@ -231,6 +228,34 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "i" 'my/project-info
     "a" 'project-remember-projects-under
     "x" 'project-forget-project)
+
+  (general-create-definer global-leader
+    :keymaps 'override
+    :states '(emacs normal hybrid motion visual operator)
+    :prefix ","
+    "" '(:ignore t :which-key (lambda (arg) `(,(cadr (split-string (car arg) " ")) . ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
+
+  ;; mode specific major key
+  (global-leader
+    :major-modes
+    '(org-mode t)
+    ;;and the keymaps:
+    :keymaps
+    '(org-mode-map)
+      "p" 'org-pomodoro
+      "t" 'org-todo
+      "e" 'org-set-effort
+      ">" 'org-metaright
+      "<" 'org-metaleft
+      "J" 'org-metadown
+      "K" 'org-metaup
+      "T" 'org-set-tags-command
+      "l" 'org-toggle-link-display
+      "I" 'org-clock-in
+      "O" 'org-clock-out
+      "P" 'org-set-property
+      "s" 'org-schedule)
+
   )
 
 (provide 'init-keybindings)

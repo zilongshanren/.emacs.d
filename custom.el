@@ -16,6 +16,7 @@
      . 0)
     (("#2b3d48" "#46D9FF" "brightcyan")
      . 20)))
+ '(ignored-local-variable-values '((eval progn (pp-buffer) (indent-buffer))))
  '(jdee-db-active-breakpoint-face-colors (cons "#1B2229" "#51afef"))
  '(jdee-db-requested-breakpoint-face-colors (cons "#1B2229" "#98be65"))
  '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
