@@ -178,11 +178,11 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     )
 
   (+general-global-menu! "layout" "l"
-    "l" 'persp-frame-switch
-    "TAB" 'my/jump-to-last-layout
+    "l" 'persp-switch
+    "L" 'persp-state-load
+    "TAB" 'persp-switch-last
     "A" 'persp-add-buffer
-    "s" 'persp-load-state-from-file
-    "S" 'persp-save-state-to-file
+    "s" 'persp-state-save
     "b" 'persp-switch-to-buffer
     "R" 'persp-remove-buffer
     "k" 'persp-kill)
