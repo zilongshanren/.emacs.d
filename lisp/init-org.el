@@ -544,7 +544,7 @@ object (e.g., within a comment).  In these case, you need to use
     (setq org-agenda-file-code-snippet (expand-file-name "snippet.org" org-agenda-dir))
     (setq org-default-notes-file (expand-file-name "gtd.org" org-agenda-dir))
     (setq org-agenda-file-blogposts (expand-file-name "all-posts.org" org-agenda-dir))
-    (setq org-agenda-files (list org-agenda-dir))
+    (setq org-agenda-files (list org-agenda-file-gtd org-agenda-file-journal org-agenda-file-blogposts org-agenda-file-work org-agenda-file-note org-agenda-file-code-snippet))
 
     ;; C-n for the next org agenda item
     (define-key org-agenda-mode-map (kbd "C-p") 'org-agenda-previous-item)
