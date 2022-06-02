@@ -32,7 +32,7 @@
   (setq persp-state-default-file (expand-file-name ".cache/zilong" user-emacs-directory))
   (setq persp-show-modestring 'header)
   (persp-mode)
-  )
+  (add-hook 'kill-emacs-hook #'persp-state-save))
 
 
 (provide 'init-persp)
