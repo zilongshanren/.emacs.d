@@ -238,10 +238,11 @@
     (transient-define-prefix my/layout-command
       "Layout"
       [["Find"
-        ("l" "switch layout" persp-frame-switch)
-        ("TAB" "switch last layout" my/jump-to-last-layout)]
+        ("l" "save layout" my/jump-to-last-layout)
+        ("s" "switch layout" persp-frame-switch)
+        ;; ("TAB" "switch last layout" my/jump-to-last-layout)
+        ]
        ["CRUD"
-        ("s" "save layout" persp-save-frame)
         ("A" "add buffer" persp-add-buffer)
         ("b" "list buffer" persp-switch-to-buffer)
         ("R" "remove buffer" persp-remove-buffer)]])
