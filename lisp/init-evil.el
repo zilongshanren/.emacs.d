@@ -143,154 +143,6 @@
   (setq undo-tree-auto-save-history nil)
   (evil-set-undo-system 'undo-tree))
 
-
-(use-package evil-leader
-  :init
-  (setq evil-leader/in-all-states t)
-  (global-evil-leader-mode t)
-  (setq evil-leader/non-normal-prefix "C-")
-  (setq evil-leader/no-prefix-mode-rx '("magit-.*-mode" "gnus-.*-mode"))
-  (evil-leader/set-leader "SPC")
-
-
-  (evil-leader/set-key
-    "<SPC>" 'execute-extended-command)
-
-  :config
-  (progn
-
-    (evil-leader/set-key
-      "f" 'my/file-command
-      "b" 'my/buffer-command
-      "u" 'universal-argument
-      "p" 'my/project-command
-      "0" 'select-window-0
-      "1" 'select-window-1
-      "2" 'select-window-2
-      "3" 'select-window-3
-      "w" 'my/window-command
-      ":" 'execute-extended-command
-      "'" 'vertico-repeat
-      "t" 'my/toggle-command
-      "qq" 'save-buffers-kill-terminal
-      "hh" 'zilongshanren/highlight-dwim
-      "hc" 'zilongshanren/clearn-highlight
-      "sj" 'my/imenu
-      "en" 'my-goto-next-error
-      "ry" 'consult-yank-pop
-      "ep" 'my-goto-previous-error
-      "el" 'my-list-errors
-      "x" 'switch-to-scratch-buffer
-      "sp" 'consult-ripgrep
-      "=" 'indent-buffer
-      "oy" 'youdao-dictionary-search-at-point+
-      "oo" 'zilongshanren/hotspots
-      "TAB" 'spacemacs/alternate-buffer
-      "hdf" 'describe-function
-      "v" #'er/expand-region
-      "hdv" 'describe-variable
-      "hdk" 'describe-key
-      "gs" 'magit-status
-      "gd" 'vc-diff
-      "gg" 'xref-find-definitions
-      "gr" 'xref-find-references
-      "l" 'my/layout-command)
-
-
-    (use-package transient
-      :ensure t
-      :demand t)
-    ;; file keymaps
-    (transient-define-prefix my/file-command
-      "Files"
-      [["Find"
-        ("f" "find-file" find-file)
-        ("r" "find recent file" consult-recent-file)
-        ("L" "locate file" consult-locate)
-        ("d" "open directory" consult-dir)
-        ("ed" "find emacs init file" open-my-init-file)]
-       ["CRUD"
-        ("s" "Save" save-buffer)
-        ("S" "save all files" save-some-buffers)
-        ("j" "Dired jump" dired-jump)
-        ("y" "Copy Filename" copy-file-name)
-        ("R" "Rename" my/rename-current-buffer-file)
-        ("k" "Delete" my/delete-file-and-buffer)
-        ("!" "Exec shell" my/exec-shell-on-buffer)
-        ]])
-
-    ;; buffer keymap
-    (transient-define-prefix my/buffer-command
-      "Buffer"
-      [["Find"
-        ("b" "switch buffer" switch-to-buffer)
-        ("s" "switch to scratch buffer" create-scratch-buffer)
-        ("i" "switch to ibuffer" ibuffer)
-        ("f" "open current buffer directory" my-open-current-directory)]
-       ["CRUD"
-        ("k" "kill buffer" kill-buffer)
-        ("y" "copy buffer name" copy-buffer-name)
-        ("K" "kill all other buffer" kill-other-buffers)
-        ("r" "revert buffer" revert-buffer)
-        ("d" "kill this buffer" kill-this-buffer)]])
-
-    ;; workspace keymaps
-    (transient-define-prefix my/layout-command
-      "Layout"
-      [["Find"
-        ("l" "switch layout" persp-frame-switch)
-        ("TAB" "switch last layout" my/jump-to-last-layout)]
-       ["CRUD"
-        ("s" "save layout" persp-save-frame)
-        ("A" "add buffer" persp-add-buffer)
-        ("b" "list buffer" persp-switch-to-buffer)
-        ("R" "remove buffer" persp-remove-buffer)]])
-
-    ;; window keymaps
-    (transient-define-prefix my/window-command
-      "Window"
-      [
-       ["CRUD"
-        ("/" "split right" split-window-right)
-        ("-" "split down" split-window-below)
-        ("m" "delete other windows" delete-other-windows)
-        ("u" "winner undo" winner-undo)]])
-
-    ;; toggle keymaps
-    (transient-define-prefix my/toggle-command
-      "Toggle"
-      [["Tools"
-        ("s" "syntax checher" flycheck-mode)
-        ("S" "spell checher" flyspell-prog-mode)
-        ("e" "corfu english helper" toggle-corfu-english-helper)
-        ("n" "line number" my-toggle-line-numbber)
-        ("w" "writing" distraction-free)
-        ("l" "lsp bridge" my/enable-lsp-bridge)
-        ]])
-
-    ;; project keymaps
-    (transient-define-prefix my/project-command
-      "Project"
-      [["Find"
-        ("f" "File" project-find-file)
-        ("r" "Recentf" consult-recent-file)
-        ("s" "Search" project-find-regexp)
-        ("d" "Dired" project-dired)
-        ("b" "buffer" consult-project-buffer)]
-       ["Progn"
-        ("e" "Eshell" project-eshell)
-        ("m" "Makefile" my/project-run-makefile-target)
-        ("c" "Compile" project-compile)
-        ("t" "ciTre" my/project-citre)
-        ]
-       ["Manage"
-        ("p" "Project" project-switch-project)
-        ("i" "Info" my/project-info)
-        ("a" "Add" project-remember-projects-under)
-        ("x" "Xelete" project-forget-project)]])
-
-    ))
-
 (use-package evil-surround
   :ensure t
   :init
@@ -311,28 +163,28 @@
   (evil-snipe-mode +1)
   (evil-snipe-override-mode +1))
 
-(use-package bind-map
-  :ensure t)
+;; (use-package bind-map
+;;   :ensure t)
 
-(use-package spaceleader
-  :ensure nil
-  :init
-  (progn
-    (require 'spaceleader)
-    (leader-set-keys-for-major-mode 'org-mode
-      "p" 'org-pomodoro
-      "t" 'org-todo
-      "e" 'org-set-effort
-      ">" 'org-metaright
-      "<" 'org-metaleft
-      "J" 'org-metadown
-      "K" 'org-metaup
-      "T" 'org-set-tags-command
-      "l" 'org-toggle-link-display
-      "I" 'org-clock-in
-      "O" 'org-clock-out
-      "P" 'org-set-property
-      "s" 'org-schedule)))
+;; (use-package spaceleader
+;;   :ensure nil
+;;   :init
+;;   (progn
+;;     (require 'spaceleader)
+;;     (leader-set-keys-for-major-mode 'org-mode
+;;       "p" 'org-pomodoro
+;;       "t" 'org-todo
+;;       "e" 'org-set-effort
+;;       ">" 'org-metaright
+;;       "<" 'org-metaleft
+;;       "J" 'org-metadown
+;;       "K" 'org-metaup
+;;       "T" 'org-set-tags-command
+;;       "l" 'org-toggle-link-display
+;;       "I" 'org-clock-in
+;;       "O" 'org-clock-out
+;;       "P" 'org-set-property
+;;       "s" 'org-schedule)))
 
 
 

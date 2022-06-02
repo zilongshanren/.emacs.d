@@ -94,20 +94,143 @@
 
 
 (use-package general
-	:init
-    (with-eval-after-load 'evil
-    (general-add-hook 'after-init-hook
-                      (lambda (&rest _)
-                        (when-let ((messages-buffer (get-buffer "*Messages*")))
-                          (with-current-buffer messages-buffer
-                            (evil-normalize-keymaps)
-                            (evil-leader-mode 1)
-                            )))
-                      nil
-                      nil
-                      t))
+  :init
+  ;; (with-eval-after-load 'evil
+  ;; ;; (general-add-hook 'after-init-hook
+  ;; ;;                   (lambda (&rest _)
+  ;; ;;                     (when-let ((messages-buffer (get-buffer "*Messages*")))
+  ;; ;;                       (with-current-buffer messages-buffer
+  ;; ;;                         (evil-normalize-keymaps)
+  ;; ;;                         (evil-leader-mode 1)
+  ;; ;;                         )))
+  ;; ;;                   nil
+  ;; ;;                   nil
+  ;; ;;                   t)
+  ;;   )
 
-    (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
-    (general-emacs-define-key 'global [remap apropos] 'consult-apropos))
+  (general-emacs-define-key 'global [remap imenu] 'consult-imenu)
+  (general-emacs-define-key 'global [remap apropos] 'consult-apropos)
+
+  (general-create-definer global-definer
+    :keymaps 'override
+    :states '(insert emacs normal hybrid motion visual operator)
+    :prefix "SPC"
+    :non-normal-prefix "C-SPC")
+
+  (global-definer
+    "!" 'shell-command
+    ":" 'eval-expression
+    "SPC" 'execute-extended-command
+    "x" 'switch-to-scratch-buffer
+    "TAB" 'spacemacs/alternate-buffer
+    "'" 'vertico-repeat
+    "=" 'indent-buffer
+    "u" 'universal-argument
+    "v" 'er/expand-region
+    "0" 'select-window-0
+    "1" 'select-window-1
+    "2" 'select-window-2
+    "3" 'select-window-3
+    "hdf" 'describe-function
+    "hdv" 'describe-variable
+    "hdk" 'describe-key
+    "qq" 'save-buffers-kill-terminal
+    "hh" 'zilongshanren/highlight-dwim
+    "hc" 'zilongshanren/clearn-highlight
+    "sj" 'my/imenu
+    "en" 'my-goto-next-error
+    "ry" 'consult-yank-pop
+    "ep" 'my-goto-previous-error
+    "el" 'my-list-errors
+    "sp" 'consult-ripgrep
+    "oy" 'youdao-dictionary-search-at-point+
+    "oo" 'zilongshanren/hotspots
+    "gs" 'magit-status
+    "gd" 'vc-diff
+    "gg" 'xref-find-definitions
+    "gr" 'xref-find-references)
+
+
+  (defmacro +general-global-menu! (name infix-key &rest body)
+    "Create a definer named +general-global-NAME wrapping global-definer.
+Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY."
+    (declare (indent 2))
+    `(progn
+       (general-create-definer ,(intern (concat "+general-global-" name))
+         :wrapping global-definer
+         :prefix-map ',(intern (concat "+general-global-" name "-map"))
+         :infix ,infix-key
+         :wk-full-keys nil
+         "" '(:ignore t :which-key ,name))
+       (,(intern (concat "+general-global-" name))
+        ,@body)))
+
+  (+general-global-menu! "buffer" "b"
+    "d" 'kill-current-buffer
+    "b" '(switch-to-buffer :which-key "switch buffer")
+    "p" 'previous-buffer
+    "R" 'rename-buffer
+    "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
+          :which-key "messages-buffer")
+    "n" 'next-buffer
+    "i" 'ibuffer
+    "f" 'my-open-current-directory
+    "k" 'kill-buffer
+    "y" 'copy-buffer-name
+    "K" 'kill-other-buffers
+    )
+
+  (+general-global-menu! "layout" "l"
+    "l" 'persp-frame-switch
+    "TAB" 'my/jump-to-last-layout
+    "A" 'persp-add-buffer
+    "b" 'persp-switch-to-buffer
+    "R" 'persp-remove-buffer
+    "k" 'persp-kill)
+
+  (+general-global-menu! "file" "f"
+    "f" 'find-file
+    "r" 'consult-recent-file
+    "L" 'consult-locate
+    "d" 'consult-dir
+    "ed" 'open-my-init-file
+    "s" 'save-buffer
+    "S" 'save-some-buffers
+    "j"  'dired-jump
+    "y" 'copy-file-name
+    "R" 'my/rename-current-buffer-file
+    "k" 'my/delete-file-and-buffer
+    "!" 'my/exec-shell-on-buffer)
+
+  (+general-global-menu! "window" "w"
+    "/" 'split-window-right
+    "-" 'split-window-below
+    "m" 'delete-other-windows
+    "u" 'winner-undo
+    "z" 'winner-redo)
+
+  (+general-global-menu! "toggle" "t"
+    "s" 'flycheck-mode
+    "S" 'flyspell-prog-mode
+    "e" 'toggle-corfu-english-helper
+    "n" 'my-toggle-line-numbber
+    "w" 'distraction-free
+    "l" 'my/enable-lsp-bridge)
+
+  (+general-global-menu! "project" "p"
+    "f" 'project-find-file
+    "r" 'consult-recent-file
+    "s" 'project-find-regexp
+    "d" 'project-dired
+    "b" 'consult-project-buffer
+    "e" 'project-eshell
+    "m" 'my/project-run-makefile-target
+    "c" 'project-compile
+    "t" 'my/project-citre
+    "p" 'project-switch-project
+    "i" 'my/project-info
+    "a" 'project-remember-projects-under
+    "x" 'project-forget-project)
+  )
 
 (provide 'init-keybindings)
