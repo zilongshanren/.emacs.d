@@ -181,6 +181,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "l" 'persp-frame-switch
     "TAB" 'my/jump-to-last-layout
     "A" 'persp-add-buffer
+    "s" 'persp-load-state-from-file
     "b" 'persp-switch-to-buffer
     "R" 'persp-remove-buffer
     "k" 'persp-kill)
