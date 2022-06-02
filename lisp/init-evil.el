@@ -243,8 +243,9 @@
         ("TAB" "switch last layout" my/jump-to-last-layout)]
        ["CRUD"
         ("s" "save layout" persp-save-frame)
-        ("ba" "add buffer" persp-add-buffer)
-        ("br" "remove buffer" persp-remove-buffer)]])
+        ("A" "add buffer" persp-add-buffer)
+        ("b" "list buffer" persp-switch-to-buffer)
+        ("R" "remove buffer" persp-remove-buffer)]])
 
     ;; window keymaps
 
