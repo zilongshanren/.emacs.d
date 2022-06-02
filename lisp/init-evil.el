@@ -268,10 +268,6 @@
         ("l" "lsp bridge" my/enable-lsp-bridge)
         ]])
 
-    ;; git keymaps stduent
-
-    ;; search keymaps
-
     ;; project keymaps
     (transient-define-prefix my/project-command
       "Project"
