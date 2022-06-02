@@ -168,12 +168,10 @@
       "1" 'select-window-1
       "2" 'select-window-2
       "3" 'select-window-3
-      "w/" 'split-window-right
-      "w-" 'split-window-below
+      "w" 'my/window-command
       ":" 'execute-extended-command
       "'" 'vertico-repeat
       "t" 'my/toggle-command
-      "wm" 'delete-other-windows
       "qq" 'save-buffers-kill-terminal
       "hh" 'zilongshanren/highlight-dwim
       "hc" 'zilongshanren/clearn-highlight
@@ -235,6 +233,7 @@
         ("K" "kill all other buffer" kill-other-buffers)
         ("r" "revert buffer" revert-buffer)
         ("d" "kill this buffer" kill-this-buffer)]])
+
     ;; workspace keymaps
     (transient-define-prefix my/layout-command
       "Layout"
@@ -248,9 +247,16 @@
         ("R" "remove buffer" persp-remove-buffer)]])
 
     ;; window keymaps
+    (transient-define-prefix my/window-command
+      "Window"
+      [
+       ["CRUD"
+        ("/" "split right" split-window-right)
+        ("-" "split down" split-window-below)
+        ("m" "delete other windows" delete-other-windows)
+        ("u" "winner undo" winner-undo)]])
 
     ;; toggle keymaps
-
     (transient-define-prefix my/toggle-command
       "Toggle"
       [["Tools"
