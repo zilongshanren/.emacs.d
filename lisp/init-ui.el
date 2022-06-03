@@ -44,7 +44,7 @@
       (load-theme 'doom-solarized-light)
     (load-theme 'doom-tomorrow-night)))
 
-(set-face-attribute 'default nil :height 140)
+(set-face-attribute 'default nil :height 150)
 
 (use-package valign
   :ensure t
@@ -53,6 +53,9 @@
 
 (use-package doom-modeline
   :ensure t
+  :custom-face
+  (mode-line ((t (:height 0.9))))
+  (mode-line-inactive ((t (:height 0.9))))
   :hook (after-init . doom-modeline-mode))
 
 (provide 'init-ui)

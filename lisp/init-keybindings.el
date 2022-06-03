@@ -263,6 +263,16 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "+" 'org-increase-number-at-point
     "-" 'org-decrease-number-at-point)
 
+    (global-leader
+      :major-modes
+      '(org-agenda-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(org-agenda-mode-map)
+      "d" 'org-agenda-day-view
+      "w" 'org-agenda-week-view)
+
+
   )
 
 (provide 'init-keybindings)

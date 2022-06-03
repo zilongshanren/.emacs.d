@@ -833,7 +833,9 @@ holding contextual information."
                 ("C-c n l" . org-roam-buffer-toggle)))))
 
 (use-package org-contrib
-  :pin nongnu)
+  :pin nongnu
+  :init
+  (require 'org-checklist))
 
 (use-package org-roam-ui
   :ensure t

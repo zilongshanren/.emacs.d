@@ -1074,32 +1074,7 @@ e.g. Sunday, September 17, 2000."
     (previous-line 2)
     (org-edit-src-code)))
 
-(defun org-reset-subtask-state-subtree ()
-  "Reset all subtasks in an entry subtree."
-  (interactive "*")
-  (if (org-before-first-heading-p)
-      (error "Not inside a tree")
-    (save-excursion
-      (save-restriction
-        (org-narrow-to-subtree)
-        (org-show-subtree)
-        (goto-char (point-min))
-        (beginning-of-line 2)
-        (narrow-to-region (point) (point-max))
-        (org-map-entries
-         '(when (member (org-get-todo-state) org-done-keywords)
-            (org-todo (car org-todo-keywords))))))))
 
-(defun org-reset-subtask-state-maybe ()
-  "Reset all subtasks in an entry if the `RESET_SUBTASKS' property is set"
-  (interactive "*")
-  (if (org-entry-get (point) "RESET_SUBTASKS")
-      (org-reset-subtask-state-subtree)))
-
-(defun org-subtask-reset ()
-  (when (member org-state org-done-keywords) ;; org-state dynamically bound in org.el/org-todo
-    (org-reset-subtask-state-maybe)
-    (org-update-statistics-cookies t)))
 
 (defun zilong/org-summary-todo (n-done n-not-done)
   "Switch entry to DONE when all subentries are done, to TODO otherwise."
