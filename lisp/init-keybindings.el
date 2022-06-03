@@ -270,7 +270,11 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
       :keymaps
       '(org-agenda-mode-map)
       "d" 'org-agenda-day-view
-      "w" 'org-agenda-week-view)
+      "w" 'org-agenda-week-view
+      "," 'org-agenda-priority
+      "e" 'org-agenda-set-effort
+      ":" 'org-agenda-set-tags
+      "T" 'org-agenda-show-tags)
 
 
   )
