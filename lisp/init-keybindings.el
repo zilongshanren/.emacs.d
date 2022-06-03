@@ -132,6 +132,7 @@
     "hdv" 'describe-variable
     "hdk" 'describe-key
     "qq" 'save-buffers-kill-terminal
+    "qR" 'restart-emacs
     "hh" 'zilongshanren/highlight-dwim
     "hc" 'zilongshanren/clearn-highlight
     "sj" 'my/imenu
