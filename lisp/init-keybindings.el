@@ -166,6 +166,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
   (+general-global-menu! "buffer" "b"
     "d" 'kill-current-buffer
     "b" '(switch-to-buffer :which-key "switch buffer")
+    "B" '(consult-buffer :which-key "consult buffer")
     "p" 'previous-buffer
     "R" 'rename-buffer
     "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
@@ -215,7 +216,8 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "e" 'toggle-corfu-english-helper
     "n" 'my-toggle-line-numbber
     "w" 'distraction-free
-    "l" 'my/enable-lsp-bridge)
+    "l" 'my/enable-lsp-bridge
+    "k" '+toggle-keycast)
 
   (+general-global-menu! "project" "p"
     "f" 'project-find-file

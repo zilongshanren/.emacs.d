@@ -267,6 +267,20 @@
   :ensure t
   :defer t)
 
+(use-package keycast
+  :ensure t
+  :commands (+toggle-keycast)
+  :config
+  (defun +toggle-keycast()
+    (interactive)
+    (if (member '("" keycast-mode-line " ") global-mode-string)
+        (progn (setq global-mode-string (delete '("" keycast-mode-line " ") global-mode-string))
+               (remove-hook 'pre-command-hook 'keycast--update)
+               (message "Keycast OFF"))
+      (add-to-list 'global-mode-string '("" keycast-mode-line " "))
+      (add-hook 'pre-command-hook 'keycast--update t)
+      (message "Keycast ON"))))
+
 
 (setq tramp-adb-program "~/Downloads/platform-tools/adb")
 (provide 'init-tools)
