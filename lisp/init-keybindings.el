@@ -244,19 +244,21 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     ;;and the keymaps:
     :keymaps
     '(org-mode-map)
-      "p" 'org-pomodoro
-      "t" 'org-todo
-      "e" 'org-set-effort
-      ">" 'org-metaright
-      "<" 'org-metaleft
-      "J" 'org-metadown
-      "K" 'org-metaup
-      "T" 'org-set-tags-command
-      "l" 'org-toggle-link-display
-      "I" 'org-clock-in
-      "O" 'org-clock-out
-      "P" 'org-set-property
-      "s" 'org-schedule)
+    "p" 'org-pomodoro
+    "t" 'org-todo
+    "e" 'org-set-effort
+    ">" 'org-metaright
+    "<" 'org-metaleft
+    "J" 'org-metadown
+    "K" 'org-metaup
+    "T" 'org-set-tags-command
+    "l" 'org-toggle-link-display
+    "I" 'org-clock-in
+    "O" 'org-clock-out
+    "P" 'org-set-property
+    "s" 'org-schedule
+    "+" 'org-increase-number-at-point
+    "-" 'org-decrease-number-at-point)
 
   )
 
