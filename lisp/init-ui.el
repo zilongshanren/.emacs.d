@@ -54,8 +54,8 @@
 (use-package doom-modeline
   :ensure t
   :custom-face
-  (mode-line ((t (:height 0.9))))
-  (mode-line-inactive ((t (:height 0.9))))
+  (mode-line ((t (:height 0.95))))
+  (mode-line-inactive ((t (:height 0.95))))
   :hook (after-init . doom-modeline-mode))
 
 (provide 'init-ui)

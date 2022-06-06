@@ -263,7 +263,8 @@
 (show-paren-mode t)
 
 (use-package restart-emacs
-  :ensure t)
+  :ensure t
+  :commands (restart-emacs))
 
 (provide 'init-basic)
 

@@ -835,6 +835,7 @@ holding contextual information."
 (use-package org-contrib
   :pin nongnu
   :init
+  :after org
   (require 'org-checklist))
 
 (use-package org-roam-ui
