@@ -40,6 +40,8 @@
 
 (use-package symbol-overlay)
 
+(use-package markdown-mode)
+
 
 (use-package visual-regexp
   :defer
