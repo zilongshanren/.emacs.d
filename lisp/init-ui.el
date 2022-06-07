@@ -53,6 +53,8 @@
 
 (use-package doom-modeline
   :ensure t
+  :init
+  (setq doom-modeline-minor-modes t)
   :custom-face
   (mode-line ((t (:height 0.95))))
   (mode-line-inactive ((t (:height 0.95))))

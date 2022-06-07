@@ -217,7 +217,8 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "n" 'my-toggle-line-numbber
     "w" 'distraction-free
     "l" 'my/enable-lsp-bridge
-    "k" '+toggle-keycast)
+    "k" '+toggle-keycast
+    "c" 'global-corfu-mode)
 
   (+general-global-menu! "project" "p"
     "f" 'project-find-file

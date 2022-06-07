@@ -90,15 +90,13 @@
 (require 'lsp-bridge)
 (require 'corfu-info)
 (require 'corfu-history)
-(require 'lsp-bridge-icon)
-(corfu-history-mode t)
 (setq lsp-bridge-enable-log nil)
 
 
 (defun my/enable-lsp-bridge ()
   (interactive)
   (progn
-    (setq-local corfu-auto nil)
+    (global-corfu-mode -1)
     (lsp-bridge-mode)
 
     (setq-local evil-goto-definition-functions '(lsp-bridge-jump))

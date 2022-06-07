@@ -75,6 +75,7 @@
     (define-key corfu-map (kbd "C-k") 'corfu-previous))
 
   (use-package corfu-doc
+    :defer t
     :init
     ;; (add-hook 'corfu-mode-hook #'corfu-doc-mode)
     (define-key corfu-map (kbd "s-d") #'corfu-doc-toggle)
