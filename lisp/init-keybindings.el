@@ -196,6 +196,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "d" 'consult-dir
     "ed" 'open-my-init-file
     "s" 'save-buffer
+    "w" 'sudo-edit
     "S" 'save-some-buffers
     "j"  'dired-jump
     "y" 'copy-file-name
@@ -214,6 +215,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "s" 'flycheck-mode
     "S" 'flyspell-prog-mode
     "e" 'toggle-corfu-english-helper
+    "r" 'read-only-mode
     "n" 'my-toggle-line-numbber
     "w" 'distraction-free
     "l" 'my/enable-lsp-bridge

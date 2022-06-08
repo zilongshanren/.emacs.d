@@ -284,6 +284,8 @@
       (add-hook 'pre-command-hook 'keycast--update t)
       (message "Keycast ON"))))
 
+(use-package sudo-edit
+  :ensure t)
 
 (setq tramp-adb-program "~/Downloads/platform-tools/adb")
 (provide 'init-tools)
