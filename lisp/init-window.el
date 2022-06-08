@@ -61,6 +61,7 @@
           "\\*Compile-Log\\*"
           "\\*Completions\\*"
           "\\*Warnings\\*"
+          "\\*Flymake diagnostics.*\\*"
           "\\*Async Shell Command\\*"
           "\\*Apropos\\*"
           "\\*Backtrace\\*"
