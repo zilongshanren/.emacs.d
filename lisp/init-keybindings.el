@@ -58,7 +58,7 @@
       (global-set-key (kbd "s-v") 'yank)
       (global-set-key (kbd "s-z") 'undo)
       (global-set-key (kbd "s-l") 'goto-line)
-      (global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
+      ;; (global-set-key (kbd "s-q") 'save-buffers-kill-emacs)
       (global-set-key (kbd "s-a") 'mark-whole-buffer)
       (global-set-key (kbd "s-s") 'save-buffer)))
 
@@ -265,7 +265,9 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "P" 'org-set-property
     "s" 'org-schedule
     "+" 'org-increase-number-at-point
-    "-" 'org-decrease-number-at-point)
+    "-" 'org-decrease-number-at-point
+    "n" 'org-narrow-to-subtree
+    "w" 'widen)
 
     (global-leader
       :major-modes

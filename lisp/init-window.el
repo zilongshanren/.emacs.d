@@ -64,6 +64,7 @@
           "\\*Async Shell Command\\*"
           "\\*Apropos\\*"
           "\\*Backtrace\\*"
+          "\\*prodigy\\*"
           "\\*Calendar\\*"
           "\\*Embark Actions\\*"
           "\\*Finder\\*"
@@ -117,7 +118,7 @@
              (propertize " " 'face 'mode-line-emphasis)))))
 
   (setq popper-echo-dispatch-actions t)
-  (setq popper-group-function #'popper-group-by-directory)
+  (setq popper-group-function nil)
   :config
   (popper-echo-mode 1)
 
