@@ -260,6 +260,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "K" 'org-metaup
     "T" 'org-set-tags-command
     "l" 'org-toggle-link-display
+    "L" 'org-toggle-inline-images
     "I" 'org-clock-in
     "O" 'org-clock-out
     "P" 'org-set-property

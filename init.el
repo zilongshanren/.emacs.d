@@ -96,6 +96,7 @@
 (require 'init-completion)
 
 (require 'init-tools)
+(require 'init-writing)
 
 (require 'init-evil)
 ;; uis
