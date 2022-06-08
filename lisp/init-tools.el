@@ -287,5 +287,10 @@
 (use-package sudo-edit
   :ensure t)
 
+(when (or sys/mac-x-p sys/linux-x-p (daemonp))
+  (use-package  vterm
+    :ensure t
+    ))
+
 (setq tramp-adb-program "~/Downloads/platform-tools/adb")
 (provide 'init-tools)

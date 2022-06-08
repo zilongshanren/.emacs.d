@@ -128,6 +128,7 @@
     "1" 'select-window-1
     "2" 'select-window-2
     "3" 'select-window-3
+    ";" 'vterm
     "hdf" 'describe-function
     "hdv" 'describe-variable
     "hdk" 'describe-key
