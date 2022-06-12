@@ -118,6 +118,7 @@
 ;; (set-default-coding-systems 'utf-8)
 ;; (set-buffer-file-coding-system 'utf-8)
 ;; (set-clipboard-coding-system 'utf-8)
+;; https://emacs-china.org/t/windows-openwithemacs/21353
 (set-file-name-coding-system 'gbk)
 ;; (set-keyboard-coding-system 'utf-8)
 ;; (set-terminal-coding-system 'utf-8)
