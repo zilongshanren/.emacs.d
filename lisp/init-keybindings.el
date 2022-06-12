@@ -268,6 +268,8 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "+" 'org-increase-number-at-point
     "-" 'org-decrease-number-at-point
     "n" 'org-narrow-to-subtree
+    "dc" 'org-download-clipboard
+    "ds" 'org-download-screenshot
     "w" 'widen)
 
     (global-leader

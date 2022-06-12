@@ -855,4 +855,17 @@ holding contextual information."
   ("C-c n b" . consult-org-roam-backlinks)
   ("C-c n s" . consult-org-roam-search))
 
+(use-package org-download
+  ;; :ensure-system-package (pngpaste . "brew install pngpaste")
+  :ensure t
+  :demand t
+  :after org
+  :config
+  (add-hook 'dired-mode-hook 'org-download-enable)
+  (setq-default org-download-heading-lvl nil
+                org-download-image-dir "./img"
+                ;; org-download-screenshot-method "screencapture -i %s"
+                org-download-screenshot-method "pngpaste %s"
+                org-download-screenshot-file (expand-file-name "screenshot.jpg" temporary-file-directory)))
+
 (provide 'init-org)
