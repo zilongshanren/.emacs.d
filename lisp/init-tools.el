@@ -52,8 +52,8 @@
   :commands (vr/select-replace vr/select-query-replace)
   :init
   (progn
-    (define-key global-map (kbd "C-c r") 'vr/replace)
-    (define-key global-map (kbd "C-c q") 'vr/query-replace)))
+    (define-key global-map (kbd "C-c C-r") 'vr/replace)
+    (define-key global-map (kbd "C-c C-q") 'vr/query-replace)))
 
 (use-package discover-my-major
   :defer t
