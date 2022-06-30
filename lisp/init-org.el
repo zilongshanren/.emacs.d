@@ -36,6 +36,8 @@
 (use-package org-super-agenda
   :after org
   :init
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+  (define-key org-super-agenda-header-map (kbd "q") 'org-agenda-quit)
   (setq org-super-agenda-groups
         '((:name "Important"
                  :priority "A")
@@ -46,9 +48,7 @@
           (:priority<= "B"
                        :scheduled future)))
   (add-hook 'org-agenda-mode-hook
-            'org-super-agenda-mode)
-  :config
-  (setq org-super-agenda-header-map org-agenda-mode-map))
+            'org-super-agenda-mode))
 
 (use-package evil-org
   :ensure t
