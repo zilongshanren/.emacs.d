@@ -144,6 +144,7 @@
     "sp" 'consult-ripgrep
     "oy" 'youdao-dictionary-search-at-point+
     "oo" 'zilongshanren/hotspots
+    "or" 'org-roam-node-find
     "gs" 'magit-status
     "gd" 'vc-diff
     "gg" 'xref-find-definitions
