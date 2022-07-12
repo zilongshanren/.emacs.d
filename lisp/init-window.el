@@ -72,6 +72,7 @@
           "\\*Kill Ring\\*"
           "\\*Embark Export:.*\\*"
           bookmark-bmenu-mode
+          lsp-bridge-ref-mode
           comint-mode
           compilation-mode
           help-mode helpful-mode

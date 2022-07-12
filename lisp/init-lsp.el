@@ -96,10 +96,11 @@
 (defun my/enable-lsp-bridge ()
   (interactive)
   (progn
-    (global-corfu-mode -1)
+    (corfu-mode -1)
     (lsp-bridge-mode)
 
     (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
+    (setq acm-candidate-match-function 'orderless-flex)
 
     (define-key evil-motion-state-map "gR" #'lsp-bridge-rename)
     (define-key evil-motion-state-map "gr" #'lsp-bridge-find-references)
@@ -107,6 +108,15 @@
     (define-key evil-motion-state-map "gd" #'lsp-bridge-jump)
     (define-key evil-motion-state-map "gs" #'lsp-bridge-restart-process)
     (define-key evil-normal-state-map "gh" #'lsp-bridge-lookup-documentation)
+    (define-key evil-normal-state-map "gn" #'lsp-bridge-jump-to-next-diagnostic)
+    (define-key evil-normal-state-map "gp" #'lsp-bridge-jump-to-prev-diagnostic)
+    (define-key evil-normal-state-map "ga" #'lsp-bridge-code-action)
+    (define-key evil-normal-state-map "ge" #'lsp-bridge-list-diagnostics)
+
+    (define-key lsp-bridge-mode-map (kbd "s-j") 'lsp-bridge-popup-documentation-scroll-down)
+    (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
+    (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
+    (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
     ))
 
 
