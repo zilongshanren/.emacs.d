@@ -92,6 +92,8 @@
 (use-package ispell
   :ensure nil
   :init
+  (if sys/win32p
+      (setq ispell-program-name "aspell"))
   (dolist (hook '(text-mode-hook))
     (add-hook hook (lambda () (flyspell-mode 1))))
   (ispell-change-dictionary "american" t))
