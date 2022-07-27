@@ -907,5 +907,4 @@ holding contextual information."
   :hook ((org-present-mode . dw/org-present-hook)
          (org-present-mode-quit . dw/org-present-quit-hook)))
 
-;; https://github.com/turbana/emacs-config/blob/2003077c60ffabd3b48835727af8953fc37067f7/README.org#zetian
 (provide 'init-org)
