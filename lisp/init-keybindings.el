@@ -129,7 +129,7 @@
     "2" 'select-window-2
     "3" 'select-window-3
     ";" 'vterm
-    "`" 'multi-vterm
+    "`" 'multi-vterm-project
     "hdf" 'describe-function
     "hdv" 'describe-variable
     "hdk" 'describe-key
