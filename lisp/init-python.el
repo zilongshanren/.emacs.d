@@ -1,4 +1,4 @@
-;;; init-snippets.el -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-python.el -*- lexical-binding: t no-byte-compile: t -*-
 
 ;; Copyright (C) 2021-2022 zilongshanren
 
@@ -25,14 +25,5 @@
 ;;
 
 
-(use-package yasnippet
-  :ensure t
-  :hook (prog-mode . yas-minor-mode)
-  :init
-  :config)
 
-(use-package yasnippet-snippets
-  :ensure t
-  :after yasnippet)
-
-(provide 'init-snippets)
+(provide 'init-python)

@@ -126,8 +126,7 @@
 (require 'init-csharp)
 (require 'init-javascript)
 (require 'init-rust)
-;;todo: c/c++,  python
-;; todo: clojure
+(require 'init-python)
 
 ;; personal
 (require 'init-keybindings)
