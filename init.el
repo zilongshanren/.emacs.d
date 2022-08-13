@@ -127,6 +127,7 @@
 (require 'init-javascript)
 (require 'init-rust)
 (require 'init-python)
+(require 'init-c)
 
 ;; personal
 (require 'init-keybindings)
