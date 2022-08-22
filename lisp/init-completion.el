@@ -12,12 +12,13 @@
 
 
 
-(when (not (display-graphic-p))
+(when (display-graphic-p)
   (use-package company
     :init
     (setq company-minimum-prefix-length 1)
     (setq company-idle-delay 0)
-    (global-company-mode t))
+    ;; (global-company-mode t)
+    )
 
   (use-package company-flx
     :after (company)
