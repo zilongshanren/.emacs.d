@@ -174,10 +174,15 @@
   :ensure t
   :commands (quickrun)
   :init
-  (setq quickrun-option-cmd-alist '((:command . "g++")
-                                   (:exec    . ("%c -std=c++0x -o %n %s"
-                                                "%n apple orange melon"))
-                                   (:remove  . ("%n")))))
+  (quickrun-add-command "c++/c1z"
+    '((:command . "g++")
+      (:exec . ("%c -std=c++1z %o -o %e %s"
+                "%e %a"))
+      (:remove . ("%e")))
+    :default "c++")
+  (quickrun-add-command "python"
+    '((:command . "python3"))
+    :default "python"))
 
 (use-package uuidgen
   :ensure t

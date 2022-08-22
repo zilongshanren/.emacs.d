@@ -140,6 +140,7 @@
     "sj" 'my/imenu
     "en" 'my-goto-next-error
     "ry" 'consult-yank-pop
+    "R" 'zilongshanren/run-current-file
     "ep" 'my-goto-previous-error
     "el" 'my-list-errors
     "sp" 'consult-ripgrep
