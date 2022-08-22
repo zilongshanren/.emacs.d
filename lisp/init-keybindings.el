@@ -289,6 +289,13 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
       ":" 'org-agenda-set-tags
       "T" 'org-agenda-show-tags)
 
+    (global-leader
+      :major-modes
+      '(python-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(python-mode-map)
+      "e" 'live-py-set-version)
 
   )
 
