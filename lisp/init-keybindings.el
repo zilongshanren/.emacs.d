@@ -223,7 +223,8 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "w" 'distraction-free
     "l" 'my/enable-lsp-bridge
     "k" '+toggle-keycast
-    "c" 'global-corfu-mode)
+    "c" 'global-corfu-mode
+    "m" 'consult-minor-mode-menu)
 
   (+general-global-menu! "project" "p"
     "f" 'project-find-file
