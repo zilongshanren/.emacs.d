@@ -130,7 +130,13 @@
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (setq cape-dabbrev-check-other-buffers nil)
     (add-to-list 'completion-at-point-functions #'cape-keyword)
-    ))
+    (defun my/eglot-capf ()
+      (setq-local completion-at-point-functions
+                  (list (cape-super-capf
+                         #'eglot-completion-at-point
+                         (cape-company-to-capf #'company-yasnippet)))))
+
+    (add-hook 'eglot-managed-mode-hook #'my/eglot-capf)))
 
 
 
