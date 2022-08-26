@@ -128,6 +128,7 @@
 (require 'init-rust)
 (require 'init-python)
 (require 'init-c)
+(require 'init-elixir)
 
 ;; personal
 (require 'init-keybindings)
