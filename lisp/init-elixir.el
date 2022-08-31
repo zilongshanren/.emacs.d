@@ -36,12 +36,13 @@
       '(elixir-mode-map)
       "=" 'elixir-format))
 
-(require 'eglot)
 
-;; This is optional. It automatically runs `M-x eglot` for you whenever you are in `elixir-mode`
-(add-hook 'elixir-mode-hook 'eglot-ensure)
-
-;; Make sure to edit the path appropriately, use the .bat script instead for Windows
-(add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
+(use-package inf-elixir
+  :ensure t
+  :bind (("C-c i i" . 'inf-elixir)
+         ("C-c i p" . 'inf-elixir-project)
+         ("C-c i l" . 'inf-elixir-send-line)
+         ("C-c i r" . 'inf-elixir-send-region)
+         ("C-c i b" . 'inf-elixir-send-buffer)))
 
 (provide 'init-elixir)

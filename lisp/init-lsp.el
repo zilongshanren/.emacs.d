@@ -81,6 +81,8 @@
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
+
 
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)

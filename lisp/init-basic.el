@@ -269,6 +269,8 @@
   :ensure t
   :commands (restart-emacs))
 
+(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
+
 (provide 'init-basic)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
