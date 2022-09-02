@@ -292,7 +292,19 @@
   :hook (after-init . marginalia-mode)
   :init
   :config
-  )
+  (defun marginalia-annotate-command (cand)
+    "Annotate command CAND with its documentation string.
+Similar to `marginalia-annotate-symbol', but does not show symbol class."
+    (when-let* ((sym (intern-soft cand))
+                (mode (if (boundp sym)
+                          sym
+                        (lookup-minor-mode-from-indicator cand))))
+      (concat
+       (if (and (boundp mode) (symbol-value mode))
+           (propertize " On" 'face 'marginalia-on)
+         (propertize " Off" 'face 'marginalia-off))
+       (marginalia-annotate-binding cand)
+       (marginalia--documentation (marginalia--function-doc sym))))))
 
 
 (use-package embark-consult
@@ -306,7 +318,6 @@
 (use-package wgrep
   :commands wgrep-change-to-wgrep-mode
   :config (setq wgrep-auto-save-buffer t))
-
 
 
 
