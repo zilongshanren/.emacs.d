@@ -12,12 +12,13 @@
 
 
 
-(when (not (display-graphic-p))
+(when (display-graphic-p)
   (use-package company
     :init
     (setq company-minimum-prefix-length 1)
     (setq company-idle-delay 0)
-    (global-company-mode t))
+    ;; (global-company-mode t)
+    )
 
   (use-package company-flx
     :after (company)
@@ -130,7 +131,13 @@
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
     (setq cape-dabbrev-check-other-buffers nil)
     (add-to-list 'completion-at-point-functions #'cape-keyword)
-    ))
+    (defun my/eglot-capf ()
+      (setq-local completion-at-point-functions
+                  (list (cape-super-capf
+                         #'eglot-completion-at-point
+                         (cape-company-to-capf #'company-yasnippet)))))
+
+    (add-hook 'eglot-managed-mode-hook #'my/eglot-capf)))
 
 
 

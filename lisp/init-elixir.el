@@ -1,4 +1,4 @@
-;;; init-snippets.el -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-elixir.el -*- lexical-binding: t no-byte-compile: t -*-
 
 ;; Copyright (C) 2021-2022 zilongshanren
 
@@ -24,24 +24,25 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-
-(use-package yasnippet
+(use-package elixir-mode
   :ensure t
-  :hook (prog-mode . yas-minor-mode)
-  :init
+  :defer t
   :config
-  (setq hippie-expand-try-functions-list
-        '(yas/hippie-try-expand
-          try-complete-file-name-partially
-          try-expand-all-abbrevs
-          try-expand-dabbrev
-          try-expand-dabbrev-all-buffers
-          try-expand-dabbrev-from-kill
-          try-complete-lisp-symbol-partially
-          try-complete-lisp-symbol)))
+    (global-leader
+      :major-modes
+      '(elixir-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(elixir-mode-map)
+      "=" 'elixir-format))
 
-(use-package yasnippet-snippets
+
+(use-package inf-elixir
   :ensure t
-  :after yasnippet)
+  :bind (("C-c i i" . 'inf-elixir)
+         ("C-c i p" . 'inf-elixir-project)
+         ("C-c i l" . 'inf-elixir-send-line)
+         ("C-c i r" . 'inf-elixir-send-region)
+         ("C-c i b" . 'inf-elixir-send-buffer)))
 
-(provide 'init-snippets)
+(provide 'init-elixir)

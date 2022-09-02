@@ -140,6 +140,7 @@
     "sj" 'my/imenu
     "en" 'my-goto-next-error
     "ry" 'consult-yank-pop
+    "R" 'zilongshanren/run-current-file
     "ep" 'my-goto-previous-error
     "el" 'my-list-errors
     "sp" 'consult-ripgrep
@@ -288,6 +289,13 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
       ":" 'org-agenda-set-tags
       "T" 'org-agenda-show-tags)
 
+    (global-leader
+      :major-modes
+      '(python-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(python-mode-map)
+      "e" 'live-py-set-version)
 
   )
 
