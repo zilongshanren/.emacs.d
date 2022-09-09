@@ -1344,7 +1344,7 @@ Puts point in the middle line as well as indent it by correct amount."
 
 (defun zilongshanren/run-current-file ()
   (interactive)
-  (quickrun))
+  (quickrun-shell))
 
 (defun my-goto-next-error ()
   (interactive)
