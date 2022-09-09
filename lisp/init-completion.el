@@ -298,8 +298,7 @@
 (use-package marginalia
   :hook (after-init . marginalia-mode)
   :init
-  :config
-  )
+  :config)
 
 
 (use-package embark-consult
@@ -313,7 +312,6 @@
 (use-package wgrep
   :commands wgrep-change-to-wgrep-mode
   :config (setq wgrep-auto-save-buffer t))
-
 
 
 
