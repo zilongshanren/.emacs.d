@@ -90,8 +90,6 @@
 
 
 (require 'lsp-bridge)
-(require 'corfu-info)
-(require 'corfu-history)
 (setq lsp-bridge-enable-log nil)
 
 
