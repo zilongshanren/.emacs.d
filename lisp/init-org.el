@@ -24,7 +24,113 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package svg-tag-mode
+  :ensure t
+  :hook (org-mode . svg-tag-mode)
+  :config
+  (defun mk/svg-checkbox-empty ()
+    (let* ((svg (svg-create 14 14)))
+      (svg-rectangle svg 0 0 14 14 :fill 'white :rx 2 :stroke-width 2.5 :stroke-color 'black)
+      (svg-image svg :ascent 'center)))
 
+  (defun mk/svg-checkbox-filled ()
+    (let* ((svg (svg-create 14 14)))
+      (svg-rectangle svg 0 0 14 14 :fill "#FFFFFF" :rx 2)
+      (svg-polygon svg '((5.5 . 11) (12 . 3.5) (11 . 2) (5.5 . 9) (1.5 . 5) (1 . 6.5))
+                   :stroke-color 'black :stroke-width 1 :fill 'black)
+      (svg-image svg :ascent 'center)))
+  (defun mk/svg-checkbox-toggle ()
+    (interactive)
+    (save-excursion
+      (let* ((start-pos (line-beginning-position))
+             (end-pos (line-end-position))
+             (text (buffer-substring-no-properties start-pos end-pos))
+             (case-fold-search t)       ; Let X and x be the same in search
+             )
+        (beginning-of-line)
+        (cond ((string-match-p "\\[X\\]" text)
+               (progn
+                 (re-search-forward "\\[X\\]" end-pos)
+                 (replace-match "[ ]")))
+              ((string-match-p "\\[ \\]" text)
+               (progn
+                 (search-forward "[ ]" end-pos)
+                 (replace-match "[X]")))))))
+
+  (defun svg-progress-percent (value)
+    (svg-image (svg-lib-concat
+                (svg-lib-progress-bar (/ (string-to-number value) 100.0)
+                                      nil :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                (svg-lib-tag (concat value "%")
+                             nil :stroke 0 :margin 0)) :ascent 'center))
+
+  (defun svg-progress-count (value)
+    (let* ((seq (mapcar #'string-to-number (split-string value "/")))
+           (count (float (car seq)))
+           (total (float (cadr seq))))
+      (svg-image (svg-lib-concat
+                  (svg-lib-progress-bar (/ count total) nil
+                                        :margin 0 :stroke 2 :radius 3 :padding 2 :width 11)
+                  (svg-lib-tag value nil
+                               :stroke 0 :margin 0)) :ascent 'center)))
+
+  (defconst date-re "[0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\}")
+  (defconst time-re "[0-9]\\{2\\}:[0-9]\\{2\\}")
+  (defconst day-re "[A-Za-z]\\{3\\}")
+  (defconst day-time-re (format "\\(%s\\)? ?\\(%s\\)?" day-re time-re))
+
+  (setq svg-tag-tags
+        `(
+          ;; Task priority
+          ("\\[#[A-Z]\\]" . ((lambda (tag)
+                               (svg-tag-make tag :face 'org-priority
+                                             :beg 2 :end -1 :margin 0))))
+
+          ;; Progress
+          ("\\(\\[[0-9]\\{1,3\\}%\\]\\)" . ((lambda (tag)
+                                              (svg-progress-percent (substring tag 1 -2)))))
+          ("\\(\\[[0-9]+/[0-9]+\\]\\)" . ((lambda (tag)
+                                            (svg-progress-count (substring tag 1 -1)))))
+
+          ;; Checkbox
+          ("\\[ \\]" . ((lambda (_tag) (mk/svg-checkbox-empty))
+                        (lambda () (interactive) (mk/svg-checkbox-toggle))
+                        "Click to toggle."))
+          ("\\(\\[[Xx]\\]\\)" . ((lambda (_tag) (mk/svg-checkbox-filled))
+                                 (lambda () (interactive) (mk/svg-checkbox-toggle))
+                                 "Click to toggle."))
+
+          ;; Active date (with or without day name, with or without time)
+          (,(format "\\(<%s>\\)" date-re) .
+           ((lambda (tag)
+              (svg-tag-make tag :beg 1 :end -1 :margin 0))))
+          (,(format "\\(<%s \\)%s>" date-re day-time-re) .
+           ((lambda (tag)
+              (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0))))
+          (,(format "<%s \\(%s>\\)" date-re day-time-re) .
+           ((lambda (tag)
+              (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0))))
+
+          ;; Inactive date  (with or without day name, with or without time)
+          (,(format "\\(\\[%s\\]\\)" date-re) .
+           ((lambda (tag)
+              (svg-tag-make tag :beg 1 :end -1 :margin 0 :face 'org-date))))
+          (,(format "\\(\\[%s \\)%s\\]" date-re day-time-re) .
+           ((lambda (tag)
+              (svg-tag-make tag :beg 1 :inverse nil :crop-right t :margin 0 :face 'org-date))))
+          (,(format "\\[%s \\(%s\\]\\)" date-re day-time-re) .
+           ((lambda (tag)
+              (svg-tag-make tag :end -1 :inverse t :crop-left t :margin 0 :face 'org-date))))
+
+          ;; Keywords
+          ("TODO" . ((lambda (tag) (svg-tag-make tag :height 0.8 :inverse t
+                                                 :face 'org-todo :margin 0 :radius 5))))
+          ("WORK" . ((lambda (tag) (svg-tag-make tag :height 0.8
+                                                 :face 'org-todo :margin 0 :radius 5))))
+          ("DONE" . ((lambda (tag) (svg-tag-make tag :height 0.8 :inverse t
+                                                 :face 'org-done :margin 0 :radius 5))))
+
+          ("FIXME\\b" . ((lambda (tag) (svg-tag-make "FIXME" :face 'org-todo :inverse t :margin 0 :crop-right t)))))))
 
 
 (use-package org-pomodoro
@@ -361,6 +467,7 @@ object (e.g., within a comment).  In these case, you need to use
                                ;; keybinding for editing source code blocks
                                (when (featurep 'company)
                                  (company-mode -1))
+                               (svg-tag-mode 1)
                                ;; keybinding for inserting code blocks
                                (local-set-key (kbd "C-c i s")
                                               'zilongshanren/org-insert-src-block)))
