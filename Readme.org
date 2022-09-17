@@ -4,7 +4,7 @@
 emacs-mac port
 #+begin_src sh
 brew tap railwaycat/emacsmacport
-brew reinstall emacs-mac --with-librsvg --with-no-title-bars --with-imagemagick --with-dbus
+brew install emacs-mac --with-rsvg --with-no-title-bars --with-imagemagick --with-dbus
 #+end_src
 ** 配置理念
 
