@@ -287,7 +287,8 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
       "," 'org-agenda-priority
       "e" 'org-agenda-set-effort
       ":" 'org-agenda-set-tags
-      "T" 'org-agenda-show-tags)
+      "T" 'org-agenda-show-tags
+      "p" 'org-pomodoro)
 
     (global-leader
       :major-modes
