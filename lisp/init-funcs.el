@@ -1385,6 +1385,12 @@ Puts point in the middle line as well as indent it by correct amount."
             (replace-match " "))))
     (print "This function operates on a region")))
 
+(defun my-project-imenu()
+      (interactive)
+      (if (bound-and-true-p eglot--managed-mode)
+          (call-interactively 'consult-eglot-symbols) ;; 第三方包consult-eglot
+        (call-interactively 'consult-imenu-multi))) ;; consult-imenu.el里有
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

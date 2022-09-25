@@ -9,9 +9,6 @@
 
 
 
-
-
-
 (when (display-graphic-p)
   (use-package company
     :init
