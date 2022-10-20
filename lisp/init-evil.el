@@ -119,8 +119,9 @@
   (evil-collection-init)
 
    (cl-loop for (mode . state) in
-         '((org-agenda-mode . normal))
-         do (evil-set-initial-state mode state))
+            '((org-agenda-mode . normal)
+              (Custom-mode . emacs))
+            do (evil-set-initial-state mode state))
 
 
   (evil-define-key 'normal dired-mode-map

@@ -858,10 +858,17 @@ holding contextual information."
   :after org
   :config
   (add-hook 'dired-mode-hook 'org-download-enable)
+  (when sys/macp
+    (setq org-download-screenshot-method "pngpaste %s"))
+  (when sys/win32p
+    (setq org-download-screenshot-method "convert clipboard: %s"))
+  (defun org-download-annotate-default (link)
+    "Annotate LINK with the time of download."
+    (make-string 0 ?\s))
+
   (setq-default org-download-heading-lvl nil
                 org-download-image-dir "./img"
                 ;; org-download-screenshot-method "screencapture -i %s"
-                org-download-screenshot-method "pngpaste %s"
                 org-download-screenshot-file (expand-file-name "screenshot.jpg" temporary-file-directory)))
 
 (defun dw/org-present-prepare-slide ()
