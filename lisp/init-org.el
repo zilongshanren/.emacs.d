@@ -967,6 +967,7 @@ holding contextual information."
   (add-hook 'dired-mode-hook 'org-download-enable)
   (when sys/macp
     (setq org-download-screenshot-method "pngpaste %s"))
+  ;; https://imagemagick.org/script/download.php#windows  ImageMagick-7.1.0-portable-Q16-HDRI-x86.zip
   (when sys/win32p
     (setq org-download-screenshot-method "convert clipboard: %s"))
   (defun org-download-annotate-default (link)
