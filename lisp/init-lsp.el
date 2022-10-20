@@ -88,10 +88,12 @@
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
   (setq eldoc-echo-area-use-multiline-p nil))
 
+(use-package consult-eglot
+  :ensure t
+  :defer t)
+
 
 (require 'lsp-bridge)
-(require 'corfu-info)
-(require 'corfu-history)
 (setq lsp-bridge-enable-log nil)
 
 

@@ -250,4 +250,7 @@
 	(evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)))
 
 (setq tramp-adb-program "/Applications/Unity/Hub/Editor/2021.3.4f1c1/PlaybackEngines/AndroidPlayer/SDK/platform-tools/adb")
+
+
+
 (provide 'init-tools)
