@@ -959,12 +959,12 @@ holding contextual information."
   ("C-c n s" . consult-org-roam-search))
 
 (use-package org-download
-  ;; :ensure-system-package (pngpaste . "brew install pngpaste")
   :ensure t
   :demand t
   :after org
   :config
   (add-hook 'dired-mode-hook 'org-download-enable)
+  ;; :ensure-system-package (pngpaste . "brew install pngpaste")
   (when sys/macp
     (setq org-download-screenshot-method "pngpaste %s"))
   ;; https://imagemagick.org/script/download.php#windows  ImageMagick-7.1.0-portable-Q16-HDRI-x86.zip

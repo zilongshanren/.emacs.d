@@ -62,7 +62,11 @@ https://github.com/npm/cli/issues/4234
 
 *** TODO C/C++
 
-*** 功能介绍（建设中。。。）
+*** org protocol 
+
+#+begin_src javascript
+javascript:location.href='org-protocol://capture?template=x&url=%27+encodeURIComponent(location.href)+%27&title=%27+encodeURIComponent(document.title)+%27&body=%27+encodeURIComponent(function(){var%20html%20=%20%22%22;var%20sel%20=%20window.getSelection();if%20(sel.rangeCount)%20{var%20container%20=%20document.createElement(%22div%22);for%20(var%20i%20=%200,%20len%20=%20sel.rangeCount;%20i%20%3C%20len;%20++i)%20{container.appendChild(sel.getRangeAt(i).cloneContents());}html%20=%20container.innerHTML;}var%20dataDom%20=%20document.createElement(%27div%27);dataDom.innerHTML%20=%20html;dataDom.querySelectorAll(%27a%27).forEach(function(item,%20idx)%20{console.log(%27find%20a%20link%27);var%20url%20=%20new%20URL(item.href,%20window.location.href).href;var%20content%20=%20item.innerText;item.innerText%20=%20%27[[%27+url+%27][%27+content+%27]]%27;});[%27p%27,%20%27h1%27,%20%27h2%27,%20%27h3%27,%20%27h4%27].forEach(function(tag,%20idx){dataDom.querySelectorAll(tag).forEach(function(item,%20index)%20{var%20content%20=%20item.innerHTML.trim();if%20(content.length%20%3E%200)%20{item.innerHTML%20=%20content%20+%20%27&#13;&#10;';}});});return%20dataDom.innerText.trim();}())
+#+end_src
 
 ** 其他配置
 - [[https://github.com/seagle0128/.emacs.d][Centuar Emacs]]
