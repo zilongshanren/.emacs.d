@@ -26,7 +26,11 @@
  '(pdf-view-midnight-colors (cons "#bbc2cf" "#282c34"))
  '(rustic-ansi-faces
    ["#282c34" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
- '(safe-local-variable-values '((eval progn (pp-buffer) (indent-buffer))))
+ '(safe-local-variable-values
+   '((encoding . utf-8)
+     (eval progn
+           (pp-buffer)
+           (indent-buffer))))
  '(vc-annotate-background "#282c34")
  '(vc-annotate-color-map
    (list
@@ -55,4 +59,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(mode-line ((t (:height 0.95))))
+ '(mode-line-inactive ((t (:height 0.95)))))

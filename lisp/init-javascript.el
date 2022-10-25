@@ -26,7 +26,9 @@
 
 (use-package json-mode
   :init
-  (add-to-list 'auto-mode-alist '("Puffer" . json-mode))
+  ;; https://www.emacswiki.org/emacs/AutoModeAlist
+  ;; \\' means the end of the file
+  (add-to-list 'auto-mode-alist '("Puffer\\'" . json-mode))
   :hook (json-mode . flycheck-mode)
   :config)
 
