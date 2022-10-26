@@ -102,6 +102,7 @@
           "\\*quickrun\\*$"
           "\\*tldr\\*$"
           "\\*vc-.*\\*$"
+          "\\*eldoc\\*"
           "^\\*elfeed-entry\\*$"
           "^\\*macro expansion\\**"
 
