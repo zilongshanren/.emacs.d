@@ -71,6 +71,7 @@
           "\\*Finder\\*"
           "\\*Kill Ring\\*"
           "\\*Embark Export:.*\\*"
+          "\\*Edit Annotation.*\\*"
           bookmark-bmenu-mode
           lsp-bridge-ref-mode
           comint-mode

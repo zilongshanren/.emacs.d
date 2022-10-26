@@ -47,6 +47,11 @@
   :config
   (pdf-tools-install-noverify))
 
+(use-package org-noter
+  :ensure t
+  :init
+  )
+
 (use-package saveplace-pdf-view
   :demand t
   :after pdf-tools
