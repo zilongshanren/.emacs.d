@@ -25,6 +25,8 @@
 ;;
 
 (use-package dart-mode
-  :ensure t)
+  :ensure t
+  :init
+  (define-key dart-mode-map (kbd "RET") 'av/auto-indent-method-maybe))
 
 (provide 'init-dart)
