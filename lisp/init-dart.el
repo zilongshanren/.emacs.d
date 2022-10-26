@@ -1,4 +1,4 @@
-;;; init-reading.el -*- lexical-binding: t no-byte-compile: t -*-
+;;; init-dart.el -*- lexical-binding: t no-byte-compile: t -*-
 
 ;; Copyright (C) 2021-2022 zilongshanren
 
@@ -24,38 +24,7 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
-(use-package olivetti
-  :init
-  (setq olivetti-body-width nil)
-  :config
-  (defun distraction-free ()
-    "Distraction-free writing environment"
-    (interactive)
-    (if (equal olivetti-mode nil)
-        (olivetti-mode t)
-      (progn
-        (olivetti-mode 0))))
-  :bind
-  (("<f9>" . distraction-free)))
-
-(use-package pdf-tools
-  :ensure t
-  :demand t
-  :init
-  (progn
-    (setq-default pdf-view-display-size 'fit-page))
-  :config
-  (pdf-tools-install-noverify))
-
-(use-package org-noter
-  :ensure t
-  :init
-  (setq-default org-noter-always-create-frame nil)
-  )
-
-(use-package saveplace-pdf-view
-  :demand t
-  :after pdf-tools
+(use-package dart-mode
   :ensure t)
 
-(provide 'init-reading)
+(provide 'init-dart)

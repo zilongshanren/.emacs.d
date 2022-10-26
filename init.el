@@ -129,6 +129,7 @@
 (require 'init-rust)
 (require 'init-python)
 (require 'init-c)
+(require 'init-dart)
 (require 'init-elixir)
 
 ;; personal

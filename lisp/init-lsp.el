@@ -76,6 +76,7 @@
   ;; (web-mode . eglot-ensure)
   ;; (genehack-vue-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
+  (dart-mode . eglot-ensure)
   :config
   (setq eglot-send-changes-idle-time 0.2)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
