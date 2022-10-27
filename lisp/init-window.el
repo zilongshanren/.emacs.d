@@ -72,6 +72,7 @@
           "\\*Kill Ring\\*"
           "\\*Embark Export:.*\\*"
           "\\*Edit Annotation.*\\*"
+          "\\*Flutter\\*"
           bookmark-bmenu-mode
           lsp-bridge-ref-mode
           comint-mode
