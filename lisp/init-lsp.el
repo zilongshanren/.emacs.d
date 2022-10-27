@@ -76,7 +76,8 @@
   ;; (web-mode . eglot-ensure)
   ;; (genehack-vue-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
-  (dart-mode . eglot-ensure)
+  ;; disable for performance issue, specially for peek framework definition
+  ;; (dart-mode . eglot-ensure)
   :config
   (setq eglot-send-changes-idle-time 0.2)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
