@@ -24,9 +24,18 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+
+(use-package flutter
+  :after dart-mode
+  :bind (:map dart-mode-map
+              ("s-r" . #'flutter-run-or-hot-reload))
+  :custom
+  (flutter-sdk-path "/Applications/flutter/"))
+
 (use-package dart-mode
   :ensure t
-  :init
+  :hook (dart-mode . flutter-test-mode)
+  :config
   (define-key dart-mode-map (kbd "RET") 'av/auto-indent-method-maybe))
 
 (provide 'init-dart)
