@@ -28,9 +28,9 @@
 (use-package flutter
   :after dart-mode
   :bind (:map dart-mode-map
-              ("s-r" . #'flutter-run-or-hot-reload))
+              ("s-r" . #'flutter-hot-reload))
   :custom
-  (flutter-sdk-path "/Applications/flutter/"))
+  (flutter-sdk-path "/Users/lionqu/flutter/"))
 
 (use-package dart-mode
   :ensure t
