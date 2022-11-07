@@ -1391,6 +1391,11 @@ Puts point in the middle line as well as indent it by correct amount."
           (call-interactively 'consult-eglot-symbols) ;; 第三方包consult-eglot
         (call-interactively 'consult-imenu-multi))) ;; consult-imenu.el里有
 
+(defun my-auto-scroll-hack ()
+  (set (make-local-variable 'window-point-insertion-type) t))
+
+(add-hook 'shell-mode-hook 'my-auto-scroll-hack)
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
