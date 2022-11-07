@@ -38,7 +38,9 @@
                     ('hi-blue-b . 0)))))
 
 
-(use-package symbol-overlay)
+(use-package symbol-overlay
+  :init
+  (define-key symbol-overlay-map (kbd "h") 'nil))
 
 (use-package markdown-mode)
 
