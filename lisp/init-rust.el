@@ -27,7 +27,14 @@
 (use-package rust-mode
   :hook (rust-mode . my/rust-compile)
   :config
-  (setq rust-format-on-save t)
+  (setq rust-format-on-save nil)
+  (global-leader
+    :major-modes
+    '(rust-mode t)
+    ;;and the keymaps:
+    :keymaps
+    '(rust-mode-map)
+    "=" 'rust-format-buffer)
   (define-key rust-mode-map (kbd "RET") 'av/auto-indent-method-maybe)
   (defun my/rust-compile ()
     (setq-local compile-command "cargo check --color never --tests")))

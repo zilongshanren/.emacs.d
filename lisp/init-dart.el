@@ -36,6 +36,13 @@
   :ensure t
   :hook (dart-mode . flutter-test-mode)
   :config
+  (global-leader
+    :major-modes
+    '(dart-mode t)
+    ;;and the keymaps:
+    :keymaps
+    '(dart-mode-map)
+    "r" 'flutter-run-or-hot-reload)
   (define-key dart-mode-map (kbd "RET") 'av/auto-indent-method-maybe))
 
 (provide 'init-dart)

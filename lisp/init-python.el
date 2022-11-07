@@ -35,6 +35,13 @@
   ;; Disable readline based native completion
   (setq python-shell-completion-native-enable nil)
   :config
+  (global-leader
+    :major-modes
+    '(python-mode t)
+    ;;and the keymaps:
+    :keymaps
+    '(python-mode-map)
+    "e" 'live-py-set-version)
   (setq python-shell-interpreter "python3")
 
   ;; Live Coding in Python
