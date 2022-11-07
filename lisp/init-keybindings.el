@@ -298,6 +298,13 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
       '(python-mode-map)
       "e" 'live-py-set-version)
 
+    (global-leader
+      :major-modes
+      '(dart-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(dart-mode-map)
+      "r" 'flutter-run-or-hot-reload)
   )
 
 (provide 'init-keybindings)

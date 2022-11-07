@@ -102,19 +102,6 @@
   :ensure nil
   :commands toggle-corfu-english-helper)
 
-(use-package olivetti
-  :init
-  (setq olivetti-body-width nil)
-  :config
-  (defun distraction-free ()
-    "Distraction-free writing environment"
-    (interactive)
-    (if (equal olivetti-mode nil)
-        (olivetti-mode t)
-      (progn
-        (olivetti-mode 0))))
-  :bind
-  (("<f9>" . distraction-free)))
 
 
 (use-package ox-hugo

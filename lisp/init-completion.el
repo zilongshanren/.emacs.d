@@ -126,6 +126,9 @@
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-tex)
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+    (require 'kind-all-the-icons)
+    (add-to-list 'corfu-margin-formatters
+                 #'kind-all-the-icons-margin-formatter)
     (setq cape-dabbrev-check-other-buffers nil)
     (add-to-list 'completion-at-point-functions #'cape-keyword)
     (defun my/eglot-capf ()
@@ -135,6 +138,8 @@
                          (cape-company-to-capf #'company-yasnippet)))))
 
     (add-hook 'eglot-managed-mode-hook #'my/eglot-capf)))
+
+
 
 
 

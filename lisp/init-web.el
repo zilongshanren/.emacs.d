@@ -71,7 +71,9 @@
 )
 
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :ensure t
+  )
 
 (use-package dtrt-indent
   :diminish

@@ -71,6 +71,8 @@
           "\\*Finder\\*"
           "\\*Kill Ring\\*"
           "\\*Embark Export:.*\\*"
+          "\\*Edit Annotation.*\\*"
+          "\\*Flutter\\*"
           bookmark-bmenu-mode
           lsp-bridge-ref-mode
           comint-mode
@@ -101,6 +103,7 @@
           "\\*quickrun\\*$"
           "\\*tldr\\*$"
           "\\*vc-.*\\*$"
+          "\\*eldoc\\*"
           "^\\*elfeed-entry\\*$"
           "^\\*macro expansion\\**"
 
