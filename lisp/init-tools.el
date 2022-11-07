@@ -39,7 +39,7 @@
 
 
 (use-package symbol-overlay
-  :init
+  :config
   (define-key symbol-overlay-map (kbd "h") 'nil))
 
 (use-package markdown-mode)
