@@ -346,7 +346,7 @@ object (e.g., within a comment).  In these case, you need to use
 
 
     (define-key org-mode-map (kbd "RET")
-      'zilong/org-return)
+                'zilong/org-return)
 
     (evil-define-key 'normal org-mode-map
       "+" #'org-cycle-list-bullet)
@@ -646,6 +646,48 @@ object (e.g., within a comment).  In these case, you need to use
 
     ;; C-n for the next org agenda item
     (define-key org-agenda-mode-map (kbd "C-p") 'org-agenda-previous-item)
+
+    ;; mode specific major key
+    (global-leader
+      :major-modes
+      '(org-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(org-mode-map)
+      "p" 'org-pomodoro
+      "t" 'org-todo
+      "e" 'org-set-effort
+      ">" 'org-metaright
+      "<" 'org-metaleft
+      "J" 'org-metadown
+      "K" 'org-metaup
+      "T" 'org-set-tags-command
+      "l" 'org-toggle-link-display
+      "L" 'org-toggle-inline-images
+      "I" 'org-clock-in
+      "O" 'org-clock-out
+      "P" 'org-set-property
+      "s" 'org-schedule
+      "+" 'org-increase-number-at-point
+      "-" 'org-decrease-number-at-point
+      "n" 'org-narrow-to-subtree
+      "dc" 'org-download-clipboard
+      "ds" 'org-download-screenshot
+      "w" 'widen)
+
+    (global-leader
+      :major-modes
+      '(org-agenda-mode t)
+      ;;and the keymaps:
+      :keymaps
+      '(org-agenda-mode-map)
+      "d" 'org-agenda-day-view
+      "w" 'org-agenda-week-view
+      "," 'org-agenda-priority
+      "e" 'org-agenda-set-effort
+      ":" 'org-agenda-set-tags
+      "T" 'org-agenda-show-tags
+      "p" 'org-pomodoro)
 
 
     (with-eval-after-load 'org-agenda
