@@ -45,7 +45,9 @@
   (progn
     (setq-default pdf-view-display-size 'fit-page))
   :config
-  (pdf-tools-install-noverify))
+  (pdf-tools-install-noverify)
+  (define-key pdf-annot-minor-mode-map (kbd "C-c C-y") 'youdao-dictionary-search-async)
+  )
 
 (use-package org-noter
   :ensure t
