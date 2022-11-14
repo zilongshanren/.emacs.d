@@ -35,7 +35,7 @@
                  rime-predicate-punctuation-line-begin-p
                  rime-predicate-prog-in-code-p))
          (setq rime-librime-root (expand-file-name "librime/dist" user-emacs-directory))
-         (setq rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-mac/emacs-28.1-mac-9.0/include")
+         (setq rime-emacs-module-header-root "/opt/homebrew/Cellar/emacs-mac/emacs-28.2-mac-9.1/include/")
          (setq rime-show-candidate 'posframe)
          (setq rime-share-data-dir "~/Library/Rime")
          (setq rime-user-data-dir "~/Library/Rime")
