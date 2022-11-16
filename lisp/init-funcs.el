@@ -1398,6 +1398,10 @@ Puts point in the middle line as well as indent it by correct amount."
 
 (add-hook 'shell-mode-hook 'my-auto-scroll-hack)
 
+(defun delete-all-empty-lines ()
+  (interactive)
+  (flush-lines "^$"))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
