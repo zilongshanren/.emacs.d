@@ -132,6 +132,7 @@
     "o" 'dired-find-file-other-window
     "s" 'dired-sort-toggle-or-edit
     "z" 'dired-get-size
+    "!" 'zilongshanren/do-shell-and-copy-to-kill-ring
     ")" 'dired-omit-mode)
 
   (evil-define-key 'normal help-mode-map

@@ -469,6 +469,17 @@ Position the cursor at its beginning, according to the current mode."
         (dired-find-alternate-file)
       (dired-find-file-other-window))))
 
+(defun zilongshanren/do-shell-and-copy-to-kill-ring (command &optional arg file-list)
+  (interactive
+   (let ((files (dired-get-marked-files t current-prefix-arg)))
+     (list
+      (dired-read-shell-command "! on %s: " current-prefix-arg files)
+      current-prefix-arg
+      files)))
+  (dired-do-shell-command command arg file-list)
+  (with-current-buffer "*Shell Command Output*"
+    (kill-new (car (split-string (buffer-substring (point-min) (point-max)))))))
+
 (defun zilongshanren/dired-do-command (command)
   "Run COMMAND on marked files. Any files not already open will be opened.
 After this command has been run, any buffers it's modified will remain
