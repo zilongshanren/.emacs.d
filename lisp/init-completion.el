@@ -51,6 +51,7 @@
     (setq corfu-max-width 100)
     (setq corfu-auto-delay 0.2)
     (setq corfu-auto-prefix 1)
+    (setq corfu-on-exact-match nil)
     (global-corfu-mode)
     :hook (prog-mode . nasy/setup-corfu)
     :config
