@@ -297,6 +297,7 @@
 
   (define-key embark-file-map (kbd "E") #'consult-directory-externally)
   (define-key embark-file-map (kbd "U") #'consult-snv-unlock)
+  (define-key embark-file-map (kbd "H") #'my-calculate-file-md5)
   )
 
 

@@ -478,7 +478,7 @@ Position the cursor at its beginning, according to the current mode."
       files)))
   (dired-do-shell-command command arg file-list)
   (with-current-buffer "*Shell Command Output*"
-    (kill-new (car (split-string (buffer-substring (point-min) (point-max)))))))
+    (kill-new (buffer-substring (point-min) (point-max)))))
 
 (defun zilongshanren/dired-do-command (command)
   "Run COMMAND on marked files. Any files not already open will be opened.
@@ -974,6 +974,10 @@ e.g. Sunday, September 17, 2000."
   (interactive)
   (consult-directory-externally default-directory))
 
+(defun my-calculate-file-md5 (file)
+  (interactive "fOpen file: ")
+  (kill-new (secure-hash 'md5 (with-temp-buffer (insert-file-contents (expand-file-name file))
+                                                (buffer-string)))))
 
 (defun consult-snv-unlock (file)
   "unlock svn file lock forcelly"
