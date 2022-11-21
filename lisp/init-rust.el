@@ -46,12 +46,12 @@
   (defun my/cargo-test-current ()
     (interactive)
     (setenv "RUST_LOG" "debug")
+    (setq shell-command-switch "-ic")
     (cargo-process-current-test))
   :bind (:map rust-mode-map
          (("C-c C-t" . my/cargo-test-current)))
   :custom ((cargo-process--command-current-test "test --color never")
-           (cargo-process--enable-rust-backtrace t)
-           (cargo-process--command-flags "--  --nocapture")))
+           (cargo-process--enable-rust-backtrace t)))
 
 (use-package rust-playground
   :defer t
