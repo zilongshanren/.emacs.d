@@ -75,6 +75,12 @@
   (define-key iedit-mode-keymap (kbd "M-h") 'iedit-restrict-function)
   (define-key iedit-mode-keymap (kbd "M-i") 'iedit-restrict-current-line))
 
+(use-package evil-multiedit
+  :ensure t
+  :commands (evil-multiedit-default-keybinds)
+  :init
+  (evil-multiedit-default-keybinds))
+
 (use-package expand-region
   :config
   (defadvice er/prepare-for-more-expansions-internal
@@ -103,7 +109,7 @@
        '("e" (lambda ()
                (interactive)
                (call-interactively
-                'iedit-mode)))
+                'evil-multiedit-match-all)))
        new-bindings)
       (cl-pushnew
        '("f" (lambda ()
@@ -117,9 +123,7 @@
                (call-interactively
                 'consult-line)))
        new-bindings)
-      (setq ad-return-value (cons new-msg new-bindings))))
-
-  )
+      (setq ad-return-value (cons new-msg new-bindings)))))
 
 (use-package prodigy
   :commands (prodigy)
