@@ -1417,6 +1417,19 @@ Puts point in the middle line as well as indent it by correct amount."
   (interactive)
   (flush-lines "^$"))
 
+(defun replace-element-in-list (elem-src elem-dst ls &optional times comparison-fn)
+  (setq times (or times (length ls)))
+  (mapcar
+   (lambda (item)
+     (cond
+      ((and (> times 0)
+            (funcall (or comparison-fn #'eq) item elem-src))
+       (cl-decf times)
+       elem-dst)
+      (t
+       item)))
+   ls))
+
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

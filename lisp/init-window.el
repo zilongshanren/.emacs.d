@@ -33,7 +33,25 @@
   :ensure t)
 
 (use-package resize-window
-  :ensure t)
+  :ensure t
+  :init
+  (defvar resize-window-dispatch-alist
+    '((?n resize-window--enlarge-down " Resize - Expand down" t)
+      (?p resize-window--enlarge-up " Resize - Expand up" t)
+      (?f resize-window--enlarge-horizontally " Resize - horizontally" t)
+      (?b resize-window--shrink-horizontally " Resize - shrink horizontally" t)
+      (?r resize-window--reset-windows " Resize - reset window layout" nil)
+      (?w resize-window--cycle-window-positive " Resize - cycle window" nil)
+      (?W resize-window--cycle-window-negative " Resize - cycle window" nil)
+      (?2 split-window-below " Split window horizontally" nil)
+      (?3 split-window-right " Slit window vertically" nil)
+      (?0 resize-window--delete-window " Delete window" nil)
+      (?K resize-window--kill-other-windows " Kill other windows (save state)" nil)
+      (?y resize-window--restore-windows " (when state) Restore window configuration" nil)
+      (?? resize-window--display-menu " Resize - display menu" nil))
+    "List of actions for `resize-window-dispatch-default.
+Main data structure of the dispatcher with the form:
+\(char function documentation match-capitals\)"))
 
 ;; Restore old window configurations
 (use-package winner
