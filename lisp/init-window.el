@@ -32,6 +32,9 @@
 (use-package es-windows
   :ensure t)
 
+(use-package resize-window
+  :ensure t)
+
 ;; Restore old window configurations
 (use-package winner
   :ensure nil
