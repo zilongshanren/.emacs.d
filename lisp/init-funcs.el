@@ -871,9 +871,7 @@ open and unsaved."
 ;;;###autoload
 (defun zilongshanren/my-mc-mark-next-like-this ()
   (interactive)
-  (if (region-active-p)
-      (mc/mark-next-like-this 1)
-    (er/expand-region 1)))
+  (er/expand-region 1))
 
 
 ;;;###autoload

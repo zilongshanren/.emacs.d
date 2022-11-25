@@ -76,10 +76,6 @@
     (define-key minibuffer-local-map (kbd "C-w") 'evil-delete-backward-word)
 
     (define-key evil-visual-state-map (kbd "C-r") 'zilongshanren/evil-quick-replace)
-    (define-key evil-visual-state-map (kbd "mn") 'mc/mark-next-like-this)
-    (define-key evil-visual-state-map (kbd "mp") 'mc/mark-previous-like-this)
-    (define-key evil-visual-state-map (kbd "ma") 'mc/mark-all-like-this)
-    (define-key evil-visual-state-map (kbd "mf") 'mc/mark-all-like-this-in-defun)
 
 
     ;; Don't move back the cursor one position when exiting insert mode
