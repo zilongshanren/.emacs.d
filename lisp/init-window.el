@@ -29,6 +29,9 @@
   :init
   :hook (after-init . window-numbering-mode))
 
+(use-package es-windows
+  :ensure t)
+
 ;; Restore old window configurations
 (use-package winner
   :ensure nil
