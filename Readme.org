@@ -6,6 +6,19 @@ emacs-mac port
 brew tap railwaycat/emacsmacport
 brew install emacs-mac --with-rsvg --with-no-title-bars --with-imagemagick --with-dbus
 #+end_src
+** 安装依赖（Mac)
+安装 gnu tools
+#+begin_src sh
+brew install coreutils
+# Make all GNU flavor commands available, may override same-name BSD flavor commands
+# For x86 Mac
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:${MANPATH}"
+
+# For M1 Mac
+export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:${PATH}"
+export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
+#+end_src
 ** 配置理念
 
 - 尽可能不引入多余的 package，尽量使用 Emacs 内置的 package

@@ -40,6 +40,11 @@
   (setq dired-omit-files
         (concat dired-omit-files "\\|^.DS_Store$\\|^.projectile$\\|\\.js\\.meta$\\|\\.meta$")))
 
+(use-package dired-quick-sort
+  :ensure t
+  :init
+  (setq insert-directory-program "/opt/homebrew/opt/coreutils/libexec/gnubin/ls")
+  (dired-quick-sort-setup))
 
 
 (use-package smartparens

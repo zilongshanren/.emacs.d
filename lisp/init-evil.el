@@ -126,7 +126,7 @@
     (kbd "C-k") 'dired-up-directory
     "`" 'dired-open-term
     "o" 'dired-find-file-other-window
-    "s" 'dired-sort-toggle-or-edit
+    "s" 'hydra-dired-quick-sort/body
     "z" 'dired-get-size
     "!" 'zilongshanren/do-shell-and-copy-to-kill-ring
     ")" 'dired-omit-mode)
