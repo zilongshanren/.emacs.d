@@ -114,23 +114,28 @@
     (define-key evil-normal-state-map "gi" #'lsp-bridge-find-impl)
     (define-key evil-motion-state-map "gd" #'lsp-bridge-jump)
     (define-key evil-motion-state-map "gs" #'lsp-bridge-restart-process)
-    (define-key evil-normal-state-map "gh" #'lsp-bridge-lookup-documentation)
-    (define-key evil-normal-state-map "gn" #'lsp-bridge-jump-to-next-diagnostic)
-    (define-key evil-normal-state-map "gp" #'lsp-bridge-jump-to-prev-diagnostic)
+    (define-key evil-normal-state-map "gh" #'lsp-bridge-popup-documentation)
+    (define-key evil-normal-state-map "gn" #'lsp-bridge-diagnostic-jump-next)
+    (define-key evil-normal-state-map "gp" #'lsp-bridge-diagnostic-jump-prev)
     (define-key evil-normal-state-map "ga" #'lsp-bridge-code-action)
-    (define-key evil-normal-state-map "ge" #'lsp-bridge-list-diagnostics)
+    (define-key evil-normal-state-map "ge" #'lsp-bridge-diagnostic-list)
 
     (define-key lsp-bridge-mode-map (kbd "s-j") 'lsp-bridge-popup-documentation-scroll-down)
     (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
     (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
     (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
 
+    (setq lsp-bridge-signature-show-function 'lsp-bridge-signature-posframe)
+
     (add-hook 'lispy-mode-hook 'disable-lispy-keys)
     (defun disable-lispy-keys ()
       (interactive)
       (unbind-key "RET" lispy-mode-map-lispy)
-      (unbind-key "C-k" lispy-mode-map-lispy)
-      (unbind-key "C-j" lispy-mode-map-lispy))
+      (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
+      (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
+      ;; (unbind-key "C-k" lispy-mode-map-lispy)
+      ;; (unbind-key "C-j" lispy-mode-map-lispy)
+      )
 
     (setq acm-continue-commands '(nil ignore universal-argument universal-argument-more digit-argument
                                       self-insert-command org-self-insert-command
