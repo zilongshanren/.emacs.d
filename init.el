@@ -95,11 +95,12 @@
 (require 'init-basic)
 (require 'init-completion)
 
+(require 'init-evil)
+
 (require 'init-tools)
 (require 'init-writing)
 (require 'init-reading)
 
-(require 'init-evil)
 ;; uis
 (require 'init-ui)
 (require 'init-window)

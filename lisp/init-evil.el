@@ -2,11 +2,13 @@
 
 (require 'init-funcs)
 
+
+
 (use-package evil
   :ensure t
   :init
-  (setq evil-want-C-u-scroll t)
   (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
   (evil-mode)
 
   ;; https://emacs.stackexchange.com/questions/46371/how-can-i-get-ret-to-follow-org-mode-links-when-using-evil-mode
@@ -44,16 +46,16 @@
     (define-key evil-visual-state-map (kbd "y") 'my-evil-yank)
 
     (define-key evil-normal-state-map
-                (kbd "Y") 'zilongshanren/yank-to-end-of-line)
+      (kbd "Y") 'zilongshanren/yank-to-end-of-line)
 
     (define-key evil-normal-state-map (kbd "[ SPC") (lambda () (interactive) (evil-insert-newline-above) (forward-line)))
     (define-key evil-normal-state-map (kbd "] SPC") (lambda () (interactive) (evil-insert-newline-below) (forward-line -1)))
 
     (define-key evil-normal-state-map (kbd "g[")
-                (lambda () (interactive) (beginning-of-defun)))
+      (lambda () (interactive) (beginning-of-defun)))
 
     (define-key evil-normal-state-map (kbd "g]")
-                (lambda () (interactive) (end-of-defun)))
+      (lambda () (interactive) (end-of-defun)))
 
     (define-key evil-normal-state-map (kbd "[ b") 'previous-buffer)
     (define-key evil-normal-state-map (kbd "] b") 'next-buffer)
