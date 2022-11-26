@@ -978,11 +978,11 @@ holding contextual information."
   :after org
   (require 'org-checklist))
 
-(use-package org-roam-ui
-  :ensure t
-  :commands (org-roam-ui-mode)
-  :after org
-  )
+;; (use-package org-roam-ui
+;;   :ensure t
+;;   :commands (org-roam-ui-mode)
+;;   :after org
+;;   )
 
 (use-package consult-org-roam
   :ensure nil

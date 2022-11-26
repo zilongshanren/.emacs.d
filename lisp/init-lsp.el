@@ -124,18 +124,20 @@
     (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
     (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
     (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
-    (define-key lispy-mode-map-lispy (kbd "RET") 'nil)
-    (define-key lispy-mode-map-lispy (kbd "C-j") 'nil)
-    (define-key lispy-mode-map-lispy (kbd "C-k") 'nil)
+
+    (add-hook 'lispy-mode-hook 'disable-lispy-keys)
+    (defun disable-lispy-keys ()
+      (interactive)
+      (unbind-key "RET" lispy-mode-map-lispy)
+      (unbind-key "C-k" lispy-mode-map-lispy)
+      (unbind-key "C-j" lispy-mode-map-lispy))
 
     (setq acm-continue-commands '(nil ignore universal-argument universal-argument-more digit-argument
-        self-insert-command org-self-insert-command
-        ;; Avoid flashing completion menu when backward delete char
-        grammatical-edit-backward-delete backward-delete-char-untabify
-        python-indent-dedent-line-backspace delete-backward-char hungry-delete-backward
-        "\\`acm-" "\\`scroll-other-window"))
-
-    ))
+                                      self-insert-command org-self-insert-command
+                                      ;; Avoid flashing completion menu when backward delete char
+                                      grammatical-edit-backward-delete backward-delete-char-untabify
+                                      python-indent-dedent-line-backspace delete-backward-char hungry-delete-backward
+                                      "\\`acm-" "\\`scroll-other-window"))))
 
 
 (my/enable-lsp-bridge)
