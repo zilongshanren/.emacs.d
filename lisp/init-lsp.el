@@ -56,54 +56,55 @@
   (define-key evil-motion-state-map "gh" #'eldoc)
   (define-key evil-normal-state-map "ga" #'eglot-code-actions))
 
-(use-package eglot
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
-  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  (advice-add 'eglot-ensure :after 'my-eglot-keybindgs)
-  :bind (:map eglot-mode-map
-              ("C-c l a" . eglot-code-actions)
-              ("C-c l r" . eglot-rename)
-              ("C-c l o" . eglot-code-action-organize-imports)
-              ("C-c l f" . eglot-format)
-              ("C-c l d" . eldoc)
-              ("s-<return>" . eglot-code-actions))
-  :hook
-  ;; (css-mode . eglot-ensure)
-  ;; (js2-mode . eglot-ensure)
-  ;; (js-mode . eglot-ensure)
-  ;; (web-mode . eglot-ensure)
-  ;; (genehack-vue-mode . eglot-ensure)
-  (rust-mode . eglot-ensure)
-  ;; disable for performance issue, specially for peek framework definition
-  ;; (dart-mode . eglot-ensure)
-  :config
-  (setq eglot-send-changes-idle-time 0.2)
-  (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
-  (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
-  (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
+;; (use-package eglot
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
+;;   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+;;   (advice-add 'eglot-ensure :after 'my-eglot-keybindgs)
+;;   :bind (:map eglot-mode-map
+;;               ("C-c l a" . eglot-code-actions)
+;;               ("C-c l r" . eglot-rename)
+;;               ("C-c l o" . eglot-code-action-organize-imports)
+;;               ("C-c l f" . eglot-format)
+;;               ("C-c l d" . eldoc)
+;;               ("s-<return>" . eglot-code-actions))
+;;   :hook
+;;   ;; (css-mode . eglot-ensure)
+;;   ;; (js2-mode . eglot-ensure)
+;;   ;; (js-mode . eglot-ensure)
+;;   ;; (web-mode . eglot-ensure)
+;;   ;; (genehack-vue-mode . eglot-ensure)
+;;   (rust-mode . eglot-ensure)
+;;   ;; disable for performance issue, specially for peek framework definition
+;;   ;; (dart-mode . eglot-ensure)
+;;   :config
+;;   (setq eglot-send-changes-idle-time 0.2)
+;;   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
+;;   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
+;;   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
+;;   (add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
 
 
-  (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities)
-  (setq eldoc-echo-area-use-multiline-p nil))
+;;   (setq read-process-output-max (* 1024 1024))
+;;   (push :documentHighlightProvider eglot-ignored-server-capabilities)
+;;   (setq eldoc-echo-area-use-multiline-p nil))
 
-(use-package consult-eglot
-  :ensure t
-  :defer t)
+;; (use-package consult-eglot
+;;   :ensure t
+;;   :defer t)
 
 
 (require 'lsp-bridge)
 (setq lsp-bridge-enable-log nil)
+(global-lsp-bridge-mode)
 
 
 (defun my/enable-lsp-bridge ()
   (interactive)
   (progn
-    (corfu-mode -1)
-    (lsp-bridge-mode)
+    ;; (corfu-mode -1)
+    ;; (lsp-bridge-mode)
 
     (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
     (setq acm-candidate-match-function 'orderless-flex)
@@ -123,7 +124,21 @@
     (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
     (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
     (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
+    (define-key lispy-mode-map-lispy (kbd "RET") 'nil)
+    (define-key lispy-mode-map-lispy (kbd "C-j") 'nil)
+    (define-key lispy-mode-map-lispy (kbd "C-k") 'nil)
+
+    (setq acm-continue-commands '(nil ignore universal-argument universal-argument-more digit-argument
+        self-insert-command org-self-insert-command
+        ;; Avoid flashing completion menu when backward delete char
+        grammatical-edit-backward-delete backward-delete-char-untabify
+        python-indent-dedent-line-backspace delete-backward-char hungry-delete-backward
+        "\\`acm-" "\\`scroll-other-window"))
+
     ))
+
+
+(my/enable-lsp-bridge)
 
 
 (use-package dumb-jump

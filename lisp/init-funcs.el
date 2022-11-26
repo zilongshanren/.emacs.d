@@ -1363,21 +1363,31 @@ Puts point in the middle line as well as indent it by correct amount."
 
 (defun my-goto-next-error ()
   (interactive)
-  (if (bound-and-true-p flycheck-mode)
-      (flycheck-next-error)
-    (flymake-goto-next-error)))
+  (cond (flycheck-mode
+         (flycheck-next-error))
+        (lsp-bridge-mode
+         (lsp-bridge-diagnostic-jump-next))
+        (t
+         (flymake-goto-next-error))))
 
 (defun my-goto-previous-error ()
   (interactive)
-  (if (bound-and-true-p flycheck-mode)
-      (flycheck-previous-error)
-    (flymake-goto-prev-error)))
+  (cond
+   (lsp-bridge-mode
+    (lsp-bridge-jump-to-prev-diagnostic))
+   (flycheck-mode
+    (flycheck-previous-error))
+   (t
+    (flymake-goto-prev-error))))
 
 (defun my-list-errors ()
   (interactive)
-  (if (bound-and-true-p flycheck-mode)
-      (flycheck-list-errors)
-    (flymake-show-buffer-diagnostics)))
+  (cond (flycheck-mode
+         (flycheck-list-errors))
+        (lsp-bridge-mode
+         (lsp-bridge-diagnostic-list))
+        (t
+         (flymake-show-buffer-diagnostics))))
 
 (defun file-notify-rm-all-watches ()
   "Remove all existing file notification watches from Emacs."
