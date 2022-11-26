@@ -221,7 +221,11 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "d" 'esw/delete-window
     "=" 'balance-windows-area
     "r" 'esw/move-window
-    "x" 'resize-window)
+    "x" 'resize-window
+    "H" 'buf-move-left
+    "L" 'buf-move-right
+    "J" 'buf-move-down
+    "K" 'buf-move-up)
 
   (+general-global-menu! "toggle" "t"
     "s" 'flycheck-mode

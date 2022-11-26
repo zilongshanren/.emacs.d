@@ -32,6 +32,9 @@
 (use-package es-windows
   :ensure t)
 
+(use-package buffer-move
+  :ensure t)
+
 (use-package resize-window
   :ensure t
   :init
