@@ -1363,21 +1363,34 @@ Puts point in the middle line as well as indent it by correct amount."
 
 (defun my-goto-next-error ()
   (interactive)
-  (if (bound-and-true-p flycheck-mode)
-      (flycheck-next-error)
-    (flymake-goto-next-error)))
+  (cond (flycheck-mode
+         (flycheck-next-error))
+        (lsp-bridge-mode
+         (lsp-bridge-diagnostic-jump-next))
+        (flymake-mode
+         (flymake-goto-next-error))
+        (t (message "no syntax checker enabled"))))
 
 (defun my-goto-previous-error ()
   (interactive)
-  (if (bound-and-true-p flycheck-mode)
-      (flycheck-previous-error)
-    (flymake-goto-prev-error)))
+  (cond
+   (lsp-bridge-mode
+    (lsp-bridge-jump-to-prev-diagnostic))
+   (flycheck-mode
+    (flycheck-previous-error))
+   (flymake-mode
+    (flymake-goto-prev-error))
+   (t (message "no syntax checker enabled"))))
 
 (defun my-list-errors ()
   (interactive)
-  (if (bound-and-true-p flycheck-mode)
-      (flycheck-list-errors)
-    (flymake-show-buffer-diagnostics)))
+  (cond (flycheck-mode
+         (flycheck-list-errors))
+        (lsp-bridge-mode
+         (lsp-bridge-diagnostic-list))
+        (flymake-mode
+         (flymake-show-buffer-diagnostics))
+        (t (message "no syntax checker enabled"))))
 
 (defun file-notify-rm-all-watches ()
   "Remove all existing file notification watches from Emacs."

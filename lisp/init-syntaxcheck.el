@@ -24,6 +24,10 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package flymake
+  :ensure nil
+  :demand t)
+
 (use-package flycheck
   :ensure t
   :config
