@@ -245,12 +245,15 @@
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
 
+(when sys/macp
+  (setq find-program "/opt/homebrew/bin/fd"))
+
 (define-abbrev-table 'global-abbrev-table '(
-					    ;; signature
-					    ("8zl" "zilongshanren")
-					    ;; Microsoft
-					    ("8ms" "Microsoft")
-					    ))
+					                        ;; signature
+					                        ("8zl" "zilongshanren")
+					                        ;; Microsoft
+					                        ("8ms" "Microsoft")
+					                        ))
 
 (setq-default split-height-threshold nil)
 ;; prevent dired window split 3 columns
