@@ -53,6 +53,8 @@
     (setq corfu-auto-prefix 1)
     (setq corfu-on-exact-match nil)
     (global-corfu-mode)
+    (corfu-popupinfo-mode)
+
     :hook (prog-mode . nasy/setup-corfu)
     :config
     ;; (defun corfu-enable-in-minibuffer ()
@@ -71,16 +73,13 @@
     (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
 
     (define-key corfu-map (kbd "C-j") 'corfu-next)
-    (define-key corfu-map (kbd "C-k") 'corfu-previous))
-
-  (use-package corfu-doc
-    :defer t
-    :init
-    ;; (add-hook 'corfu-mode-hook #'corfu-doc-mode)
-    (define-key corfu-map (kbd "s-d") #'corfu-doc-toggle)
-    (define-key corfu-map (kbd "s-p") #'corfu-doc-scroll-down) ;; corfu-next
-    (define-key corfu-map (kbd "s-n") #'corfu-doc-scroll-up)   ;; corfu-previous
+    (define-key corfu-map (kbd "C-k") 'corfu-previous)
+    (setq corfu-popupinfo-delay 0.4)
+    (define-key corfu-map (kbd "s-d") 'corfu-popupinfo-toggle)
+    (define-key corfu-map (kbd "s-p") #'corfu-popupinfo-scroll-down) ;; corfu-next
+    (define-key corfu-map (kbd "s-n") #'corfu-popupinfo-scroll-up) ;; corfu-previous
     )
+
 
   ;; Use dabbrev with Corfu!
   (use-package dabbrev
