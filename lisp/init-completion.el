@@ -75,6 +75,8 @@
     (define-key corfu-map (kbd "C-j") 'corfu-next)
     (define-key corfu-map (kbd "C-k") 'corfu-previous)
     (setq corfu-popupinfo-delay 0.4)
+    (setq corfu-popupinfo-max-width 120)
+    (setq corfu-popupinfo-max-height 40)
     (define-key corfu-map (kbd "s-d") 'corfu-popupinfo-toggle)
     (define-key corfu-map (kbd "s-p") #'corfu-popupinfo-scroll-down) ;; corfu-next
     (define-key corfu-map (kbd "s-n") #'corfu-popupinfo-scroll-up) ;; corfu-previous
