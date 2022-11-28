@@ -133,6 +133,10 @@
     "!" 'zilongshanren/do-shell-and-copy-to-kill-ring
     ")" 'dired-omit-mode)
 
+  (when sys/win32p
+    (evil-define-key 'normal dired-mode-map
+      "s" 'dired-sort-toggle-or-edit))
+
   (evil-define-key 'normal help-mode-map
     "o" 'link-hint-open-link)
   )

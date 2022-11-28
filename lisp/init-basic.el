@@ -245,8 +245,9 @@
 ;; turn on abbrev mode globally
 (setq-default abbrev-mode t)
 
-(when sys/macp
-  (setq find-program "/opt/homebrew/bin/fd"))
+(if sys/macp
+    (setq find-program "/opt/homebrew/bin/fd")
+  (setq find-program "fd"))
 
 (define-abbrev-table 'global-abbrev-table '(
 					                        ;; signature
