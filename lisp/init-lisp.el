@@ -43,4 +43,10 @@
     ;; look at interactive functions.
     (global-set-key (kbd "C-h C") #'helpful-command)))
 
+(use-package elisp-demos
+  :ensure
+  :init
+  (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
+
 (provide 'init-lisp)
