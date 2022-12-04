@@ -22,90 +22,20 @@
 ;; along with this program; see the file COPYING.  If not, write to
 ;; the Free Software Foundation, Inc., 51 Franklin Street, Fifth
 ;; Floor, Boston, MA 02110-1301, USA.
-;;
-
-;; (use-package lsp-mode
-;;   :custom
-;;   (lsp-completion-provider :none) ;; we use Corfu!
-
-;;   :init
-;;   (defun my/orderless-dispatch-flex-first (_pattern index _total)
-;;     (and (eq index 0) 'orderless-flex))
-
-;;   (defun my/lsp-mode-setup-completion ()
-;;     (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
-;;           '(orderless-flex)))
-
-;;   ;; Optionally configure the first word as flex filtered.
-;;   (add-hook 'orderless-style-dispatchers #'my/orderless-dispatch-flex-first nil 'local)
-
-;;   ;; Optionally configure the cape-capf-buster.
-;;   (setq-local completion-at-point-functions (list (cape-capf-buster #'lsp-completion-at-point)))
-
-;;   :hook
-;;   (lsp-completion-mode . my/lsp-mode-setup-completion))
 
 
-(define-derived-mode genehack-vue-mode web-mode "ghVue"
-    "A major mode derived from web-mode, for editing .vue files with LSP support.")
-
-(defun my-eglot-keybindgs ()
-  (define-key evil-motion-state-map "gR" #'eglot-rename)
-  (define-key evil-motion-state-map "gr" #'xref-find-references)
-  (define-key evil-normal-state-map "gi" #'eglot-find-implementation)
-  (define-key evil-motion-state-map "gh" #'eldoc)
-  (define-key evil-normal-state-map "ga" #'eglot-code-actions))
-
-(use-package eglot
-  :ensure t
-  :init
-  (add-to-list 'auto-mode-alist '("\\.vue\\'" . genehack-vue-mode))
-  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  (advice-add 'eglot-ensure :after 'my-eglot-keybindgs)
-  :bind (:map eglot-mode-map
-              ("C-c l a" . eglot-code-actions)
-              ("C-c l r" . eglot-rename)
-              ("C-c l o" . eglot-code-action-organize-imports)
-              ("C-c l f" . eglot-format)
-              ("C-c l d" . eldoc)
-              ("s-<return>" . eglot-code-actions))
-  :hook
-  ;; (css-mode . eglot-ensure)
-  ;; (js2-mode . eglot-ensure)
-  ;; (js-mode . eglot-ensure)
-  ;; (web-mode . eglot-ensure)
-  ;; (genehack-vue-mode . eglot-ensure)
-  (rust-mode . eglot-ensure)
-  ;; disable for performance issue, specially for peek framework definition
-  ;; (dart-mode . eglot-ensure)
-  :config
-  (setq eglot-send-changes-idle-time 0.2)
-  (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
-  (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
-  (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
-
-
-  (setq read-process-output-max (* 1024 1024))
-  (push :documentHighlightProvider eglot-ignored-server-capabilities)
-  (setq eldoc-echo-area-use-multiline-p nil))
-
-(use-package consult-eglot
-  :ensure t
-  :defer t)
 
 
 (require 'lsp-bridge)
 (setq lsp-bridge-enable-log nil)
-
+(global-lsp-bridge-mode)
 
 (defun my/enable-lsp-bridge ()
   (interactive)
   (progn
-    (corfu-mode -1)
-    (lsp-bridge-mode)
+    ;; (corfu-mode -1)
+    ;; (lsp-bridge-mode)
 
-    (setq-local evil-goto-definition-functions '(lsp-bridge-jump))
     (setq acm-candidate-match-function 'orderless-flex)
 
     (define-key evil-motion-state-map "gR" #'lsp-bridge-rename)
@@ -123,8 +53,17 @@
     (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
     (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
     (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
+
+    (setq acm-continue-commands '(nil ignore universal-argument universal-argument-more digit-argument
+                                      self-insert-command org-self-insert-command
+                                      ;; Avoid flashing completion menu when backward delete char
+                                      grammatical-edit-backward-delete backward-delete-char-untabify
+                                      python-indent-dedent-line-backspace delete-backward-char hungry-delete-backward
+                                      "\\`acm-" "\\`scroll-other-window"))
+
     ))
 
+(add-hook 'lsp-bridge-mode-hook 'my/enable-lsp-bridge)
 
 (use-package dumb-jump
   :ensure t)
@@ -142,6 +81,8 @@
   (cond
    ((eq major-mode 'emacs-lisp-mode)
     (evil-goto-definition))
+   ((eq major-mode 'lisp-interaction-mode)
+    (evil-goto-definition))
    ((eq major-mode 'org-mode)
     (org-agenda-open-link))
    (lsp-bridge-mode
@@ -150,14 +91,6 @@
     (require 'dumb-jump)
     (dumb-jump-go))))
 
-(defun lsp-bridge-jump-back ()
-  (interactive)
-  (cond
-   (lsp-bridge-mode
-    (lsp-bridge-return-from-def))
-   (t
-    (require 'dumb-jump)
-    (dumb-jump-back))))
 
 (evil-define-key 'normal lsp-bridge-ref-mode-map
   (kbd "RET") 'lsp-bridge-ref-open-file-and-stay

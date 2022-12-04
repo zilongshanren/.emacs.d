@@ -6,6 +6,8 @@
   :init
   :config
   (lispy-define-key lispy-mode-map "e" 'eval-last-sexp)
+
+
   )
 
 (use-package lispyville
