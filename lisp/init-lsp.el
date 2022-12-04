@@ -51,6 +51,7 @@
 
     (define-key lsp-bridge-mode-map (kbd "s-j") 'lsp-bridge-popup-documentation-scroll-down)
     (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
+
     (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
     (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
 
@@ -60,6 +61,10 @@
                                       grammatical-edit-backward-delete backward-delete-char-untabify
                                       python-indent-dedent-line-backspace delete-backward-char hungry-delete-backward
                                       "\\`acm-" "\\`scroll-other-window"))
+    ;; make acm key mapping the highest precedence
+    (setq acm-map-alist (assoc 'acm-mode minor-mode-map-alist))
+    (assq-delete-all 'acm-mode minor-mode-map-alist)
+    (add-to-list 'minor-mode-map-alist acm-map-alist)
 
     ))
 
