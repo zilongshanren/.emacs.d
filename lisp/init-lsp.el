@@ -76,6 +76,7 @@
   ;; (web-mode . eglot-ensure)
   ;; (genehack-vue-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
+  (elixir-mode . eglot-ensure)
   ;; disable for performance issue, specially for peek framework definition
   ;; (dart-mode . eglot-ensure)
   :config

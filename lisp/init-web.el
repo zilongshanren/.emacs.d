@@ -32,6 +32,7 @@
          ("\\.js\\'" . js-mode)
          ;; ("\\.vue\\'" . web-mode)
          ("\\.html\\'" . web-mode)
+         ("\\.html.eex\\'" . web-mode)
          )
        auto-mode-alist))
 
@@ -43,6 +44,9 @@
 (use-package web-mode
   :ensure t
   )
+
+(use-package emmet-mode
+  :ensure t)
 
 ;; config for web mode
 (defun my-web-mode-indent-setup ()
