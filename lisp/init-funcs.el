@@ -461,13 +461,6 @@ Position the cursor at its beginning, according to the current mode."
   (interactive "fCopy file: ")
   (copy-file file default-directory))
 
-(defun my-dired-find-file ()
-  "Open buffer in another window"
-  (interactive)
-  (let ((filename (dired-get-filename nil t)))
-    (if (car (file-attributes filename))
-        (dired-find-alternate-file)
-      (dired-find-file-other-window))))
 
 (defun zilongshanren/do-shell-and-copy-to-kill-ring (command &optional arg file-list)
   (interactive
@@ -1175,9 +1168,6 @@ e.g. Sunday, September 17, 2000."
   (interactive (list (read-from-minibuffer "" (format-time-string "%Y-%m-%d %H:%M:%S" (current-time)))))
   (message (kill-new (format-time-string "%s" (seconds-to-time (org-time-string-to-time date))))))
 
-(defun switch-to-scratch-buffer ()
-  (interactive)
-  (switch-to-buffer (startup--get-buffer-create-scratch)))
 
 (defun vc-print-log-internal (backend files working-revision
                                       &optional is-start-revision limit)
@@ -1440,6 +1430,15 @@ Puts point in the middle line as well as indent it by correct amount."
       (t
        item)))
    ls))
+
+(defun my-find-file (orig-fun &rest args)
+  (let* ((filename (car args))
+         (directory (file-name-directory filename)))
+    (if (not (file-directory-p directory))
+        (make-directory directory t))
+    (apply orig-fun args)))
+
+(advice-add 'find-file :around 'my-find-file)
 
 (provide 'init-funcs)
 

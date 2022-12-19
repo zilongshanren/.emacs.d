@@ -101,7 +101,7 @@
     "!" 'shell-command
     ":" 'eval-expression
     "SPC" 'execute-extended-command
-    "x" 'switch-to-scratch-buffer
+    "x" 'scratch-buffer
     "TAB" 'spacemacs/alternate-buffer
     "'" 'vertico-repeat
     "=" 'indent-buffer

@@ -49,8 +49,8 @@
     (define-key evil-normal-state-map "ga" #'lsp-bridge-code-action)
     (define-key evil-normal-state-map "ge" #'lsp-bridge-diagnostic-list)
 
-    (define-key lsp-bridge-mode-map (kbd "s-j") 'lsp-bridge-popup-documentation-scroll-down)
-    (define-key lsp-bridge-mode-map (kbd "s-k") 'lsp-bridge-popup-documentation-scroll-up)
+    (define-key acm-mode-map (kbd "s-j") 'acm-doc-scroll-up)
+    (define-key acm-mode-map (kbd "s-k") 'acm-doc-scroll-down)
 
     (define-key acm-mode-map (kbd "C-j") 'acm-select-next)
     (define-key acm-mode-map (kbd "C-k") 'acm-select-prev)
