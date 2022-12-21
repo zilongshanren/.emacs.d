@@ -1078,10 +1078,10 @@ e.g. Sunday, September 17, 2000."
             "octave" "oz" "plantuml" "R" "sass" "screen" "sql" "awk" "ditaa"
             "haskell" "latex" "lisp" "matlab" "ocaml" "org" "perl" "ruby"
             "scheme" "sqlite")))
-     (list (ido-completing-read "Source code type: " src-code-types))))
+     (list (completing-read "Source code type: " src-code-types))))
   (progn
     (newline-and-indent)
-    (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+    (insert (format "#+BEGIN_SRC %s :results output\n" src-code-type))
     (newline-and-indent)
     (insert "#+END_SRC\n")
     (previous-line 2)
