@@ -169,7 +169,10 @@
   (evil-snipe-override-mode +1))
 
 
-
+(use-package evil-matchit
+  :ensure
+  :init
+  (global-evil-matchit-mode 1))
 
 
 (provide 'init-evil)

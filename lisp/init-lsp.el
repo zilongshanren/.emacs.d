@@ -70,11 +70,11 @@
               ("C-c l d" . eldoc)
               ("s-<return>" . eglot-code-actions))
   :hook
-  ;; (css-mode . eglot-ensure)
-  ;; (js2-mode . eglot-ensure)
-  ;; (js-mode . eglot-ensure)
-  ;; (web-mode . eglot-ensure)
-  ;; (genehack-vue-mode . eglot-ensure)
+  (css-mode . eglot-ensure)
+  (js2-mode . eglot-ensure)
+  (js-mode . eglot-ensure)
+  (web-mode . eglot-ensure)
+  (genehack-vue-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
   (elixir-mode . eglot-ensure)
   ;; disable for performance issue, specially for peek framework definition

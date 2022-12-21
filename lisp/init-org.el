@@ -346,7 +346,7 @@ object (e.g., within a comment).  In these case, you need to use
 
 
     (define-key org-mode-map (kbd "RET")
-                'zilong/org-return)
+      'zilong/org-return)
 
     (evil-define-key 'normal org-mode-map
       "+" #'org-cycle-list-bullet)
@@ -606,20 +606,22 @@ object (e.g., within a comment).  In these case, you need to use
 
 
     ;; https://github.com/hlissner/doom-emacs/blob/develop/docs/getting_started.org#configuring-doom
-    ;; (org-babel-do-load-languages
-    ;;  'org-babel-load-languages
-    ;;  '((perl . t)
-    ;;    (ruby . t)
-    ;;    (shell . t)
-    ;;    (dot . t)
-    ;;    (typescript . t)
-    ;;    (js . t)
-    ;;    (latex .t)
-    ;;    (python . t)
-    ;;    (emacs-lisp . t)
-    ;;    (plantuml . t)
-    ;;    (C . t)
-    ;;    (ditaa . t)))
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((perl . t)
+       (ruby . t)
+       (shell . t)
+       (dot . t)
+       ;; (typescript . t)
+       (js . t)
+       (latex .t)
+       (python . t)
+       (emacs-lisp . t)
+       (plantuml . t)
+       (C . t)
+       (ditaa . t)))
+
+    (setq org-babel-python-command "python3")
 
     (progn
 
