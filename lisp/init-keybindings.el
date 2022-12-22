@@ -105,6 +105,8 @@
     "TAB" 'spacemacs/alternate-buffer
     "'" 'vertico-repeat
     "=" 'indent-buffer
+    "+" 'text-scale-increase
+    "-" 'text-scale-decrease
     "u" 'universal-argument
     "v" 'er/expand-region
     "0" 'select-window-0

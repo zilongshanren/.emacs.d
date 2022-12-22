@@ -463,6 +463,11 @@ object (e.g., within a comment).  In these case, you need to use
 
     (setq org-tags-match-list-sublevels nil)
 
+    (setq org-image-actual-width nil)
+
+    (plist-put org-format-latex-options :scale 1.5)
+
+
     (add-hook 'org-mode-hook (lambda ()
                                ;; keybinding for editing source code blocks
                                (when (featurep 'company)
@@ -623,6 +628,35 @@ object (e.g., within a comment).  In these case, you need to use
 
     (setq org-babel-python-command "python3")
 
+    ;; Make sure rustic gets activated in the org-src block and add the original file's source code.
+    (defun org-babel-edit-prep:c (babel-info)
+      (interactive)
+      ;; This gets the second item in the "babel-info" list, which holds the code in the original src block
+      (setq-local src-code (nth 1 babel-info))
+      (setq-local buffer-file-name (expand-file-name (->> babel-info caddr (alist-get :tangle))))
+      (setq-local buffer-src-code (replace-regexp-in-string src-code "" (my-read-file-to-string (buffer-file-name))))
+      (goto-char (point-max))
+      (insert buffer-src-code)
+      (narrow-to-region (point-min) (+ (point-min) (length src-code)))
+      (c++-mode)
+      (org-src-mode))
+
+    (defun my-delete-hidden-text ()
+      "Remove all text that would be revealed by a call to `widen'"
+      (-let [p-start (point-max)]
+        (widen)
+        (delete-region p-start (point-max))))
+
+    (define-advice org-edit-src-exit
+      (:before (&rest _args) remove-src-block)
+      (when (eq major-mode 'c++-mode)
+        (my-delete-hidden-text)))
+
+    (define-advice org-edit-src-save
+      (:before (&rest _args) remove-src-block)
+      (when (eq major-mode 'c++-mode)
+        (my-delete-hidden-text)))
+
     (progn
 
       (use-package cal-china-x
@@ -663,7 +697,7 @@ object (e.g., within a comment).  In these case, you need to use
       "<" 'org-metaleft
       "J" 'org-metadown
       "K" 'org-metaup
-      "T" 'org-set-tags-command
+      "Ts" 'org-set-tags-command
       "l" 'org-toggle-link-display
       "L" 'org-toggle-inline-images
       "I" 'org-clock-in
@@ -675,6 +709,7 @@ object (e.g., within a comment).  In these case, you need to use
       "n" 'org-narrow-to-subtree
       "dc" 'org-download-clipboard
       "ds" 'org-download-screenshot
+      "Tl" 'org-latex-preview
       "w" 'widen)
 
     (global-leader

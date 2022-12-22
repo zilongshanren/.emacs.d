@@ -77,12 +77,14 @@
   (genehack-vue-mode . eglot-ensure)
   (rust-mode . eglot-ensure)
   (elixir-mode . eglot-ensure)
+  (c++-mode . eglot-ensure)
   ;; disable for performance issue, specially for peek framework definition
   ;; (dart-mode . eglot-ensure)
   :config
   (setq eglot-send-changes-idle-time 0.2)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
+  (add-to-list 'eglot-server-programs '((c-mode . c++-mode) ("clangd" "--std=c++17")))
   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
 
