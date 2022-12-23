@@ -84,14 +84,44 @@
   (setq eglot-send-changes-idle-time 0.2)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
-  (add-to-list 'eglot-server-programs '((c-mode . c++-mode) ("clangd" "--std=c++17")))
+  (add-to-list 'eglot-server-programs '(c++-mode . ("clangd" "--enable-config")))
   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(elixir-mode "~/elixir-ls-1.13-25.0/language_server.sh"))
+
 
 
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
   (setq eldoc-echo-area-use-multiline-p nil))
+
+  (cl-defmacro eglot-org-babel-enable (lang)
+    "Support LANG in org source code block."
+    (cl-check-type lang string)
+    (let* ((edit-pre (intern (format "org-babel-edit-prep:%s" lang)))
+           (intern-pre (intern (format "eglot--%s" (symbol-name edit-pre)))))
+      `(progn
+         (defun ,intern-pre (info)
+           (let ((file-name (->> info caddr (alist-get :file))))
+             (unless file-name
+               (setq file-name (concat default-directory (if (string= ,lang "C") "org-src-babel.c" "org-src-babel.cpp")))
+               (write-region (point-min) (point-max) file-name))
+             (setq buffer-file-name file-name)
+             (eglot-ensure)))
+         (put ',intern-pre 'function-documentation
+              (format "Enable lsp-bridge-mode in the buffer of org source block (%s)."
+                      (upcase ,lang)))
+         (if (fboundp ',edit-pre)
+             (advice-add ',edit-pre :after ',intern-pre)
+           (progn
+             (defun ,edit-pre (info)
+               (,intern-pre info))
+             (put ',edit-pre 'function-documentation
+                  (format "Prepare local buffer environment for org source block (%s)."
+                          (upcase ,lang))))))))
+
+  (with-eval-after-load 'org
+    (dolist (lang '("C" "C++"))
+      (eval `(eglot-org-babel-enable ,lang))))
 
 (use-package consult-eglot
   :ensure t
