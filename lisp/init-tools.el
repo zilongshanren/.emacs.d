@@ -259,6 +259,9 @@
 
 (setq tramp-adb-program "/Users/lionqu/Library/Android/sdk/platform-tools/adb")
 
-
+(use-package ws-butler
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook #'ws-butler-mode))
 
 (provide 'init-tools)
