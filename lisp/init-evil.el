@@ -119,6 +119,7 @@
    (cl-loop for (mode . state) in
             '((org-agenda-mode . normal)
               (Custom-mode . emacs)
+              (eshell-mode . emacs)
               (makey-key-mode . motion))
             do (evil-set-initial-state mode state))
 
