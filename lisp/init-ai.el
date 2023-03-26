@@ -1,4 +1,5 @@
 
+
 (use-package org-ai
   :commands (org-ai-mode)
   :init
@@ -7,5 +8,6 @@
   ;; if you are using yasnippet and want `ai` snippets
   (org-ai-install-yasnippets))
 
+(require 'mind-wave)
 
 (provide 'init-ai)
