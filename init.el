@@ -135,6 +135,8 @@
 
 ;; personal
 (require 'init-keybindings)
+;; ai
+(require 'init-ai)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
 (put 'dired-find-alternate-file 'disabled nil)

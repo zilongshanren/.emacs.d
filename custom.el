@@ -53,6 +53,8 @@
     (cons 340 "#5B6268")
     (cons 360 "#5B6268")))
  '(vc-annotate-very-old-color nil)
+ '(warning-suppress-log-types '(((tar link))))
+ '(warning-suppress-types '(((tar link))))
  '(zilongshanren-package-archives 'emacs-china))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
