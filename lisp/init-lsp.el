@@ -162,9 +162,6 @@
 
 (use-package dumb-jump
   :ensure t
-  :bind (("s-g o" . dumb-jump-go-other-window)
-         ("s-g g" . dumb-jump-go)
-         ("s-g b" . dumb-jump-back))
   :config (setq dumb-jump-selector 'completion-read))
 
 ;; make evil jump & jump back as expected
