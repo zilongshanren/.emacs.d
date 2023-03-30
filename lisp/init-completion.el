@@ -241,10 +241,6 @@
    consult-line-start-from-top t)
 
 
-  (consult-customize
-   consult-ripgrep consult-git-grep consult-grep
-   consult-bookmark consult-recent-file
-   :preview-key (kbd "C-SPC"))
 
   (consult-customize
    consult-theme

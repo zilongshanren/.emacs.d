@@ -10,4 +10,11 @@
 
 (require 'mind-wave)
 
+(require 'chatgpt-shell)
+
+(setq chatgpt-shell-openai-key
+      (plist-get (car (auth-source-search :host "api.openai.com"))
+                 :secret))
+
+
 (provide 'init-ai)
