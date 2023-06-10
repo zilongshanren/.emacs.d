@@ -107,9 +107,8 @@ Main data structure of the dispatcher with the form:
           help-mode helpful-mode
           tabulated-list-mode
           Buffer-menu-mode
-          occur-mode
           gnus-article-mode devdocs-mode
-          grep-mode occur-mode rg-mode deadgrep-mode ag-mode pt-mode
+          grep-mode  rg-mode deadgrep-mode ag-mode pt-mode
           ivy-occur-mode ivy-occur-grep-mode
           process-menu-mode list-environment-mode cargo-process-mode
           youdao-dictionary-mode osx-dictionary-mode fanyi-mode
@@ -148,6 +147,7 @@ Main data structure of the dispatcher with the form:
              (propertize " " 'face 'mode-line-emphasis)
              (all-the-icons-octicon "pin" :height 0.9 :v-adjust 0.0 :face 'mode-line-emphasis)
              (propertize " " 'face 'mode-line-emphasis)))))
+
 
   (setq popper-echo-dispatch-actions t)
   (setq popper-group-function nil)
