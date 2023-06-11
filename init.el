@@ -137,6 +137,9 @@
 (require 'init-keybindings)
 ;; ai
 (require 'init-ai)
+
+;; programming
+(require 'init-programming)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init.el ends here
 (put 'dired-find-alternate-file 'disabled nil)
