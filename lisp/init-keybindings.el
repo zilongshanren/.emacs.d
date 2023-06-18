@@ -124,13 +124,11 @@
     "qR" 'restart-emacs
     "hh" 'zilongshanren/highlight-dwim
     "hc" 'zilongshanren/clearn-highlight
-    "sj" 'my/imenu
     "en" 'my-goto-next-error
     "ry" 'consult-yank-pop
     "R" 'zilongshanren/run-current-file
     "ep" 'my-goto-previous-error
     "el" 'my-list-errors
-    "sp" 'consult-ripgrep
     "oy" 'youdao-dictionary-search-at-point+
     "oo" 'zilongshanren/hotspots
     "or" 'org-roam-node-find
@@ -141,6 +139,12 @@
     "gm" 'consult-mark
     "gM" 'consult-global-mark
     )
+
+  (+general-global-menu! "search" "s"
+    "j" 'my/imenu
+    "p" 'consult-ripgrep
+    "k" 'consult-keep-lines
+    "f" 'consult-focus-lines)
 
 
   (+general-global-menu! "buffer" "b"
