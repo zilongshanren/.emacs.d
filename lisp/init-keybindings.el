@@ -142,8 +142,7 @@
 
   (+general-global-menu! "buffer" "b"
     "d" 'kill-current-buffer
-    "b" '(switch-to-buffer :which-key "switch buffer")
-    "B" '(consult-buffer :which-key "consult buffer")
+    "b" '(consult-buffer :which-key "consult buffer")
     "p" 'previous-buffer
     "R" 'rename-buffer
     "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
@@ -157,14 +156,15 @@
     )
 
   (+general-global-menu! "layout" "l"
-    "l" 'persp-switch
-    "L" 'persp-state-load
-    "TAB" 'persp-switch-last
-    "A" 'persp-add-buffer
-    "s" 'persp-state-save
-    "b" 'persp-switch-to-buffer
-    "R" 'persp-remove-buffer
-    "k" 'persp-kill)
+    "l" 'tabspaces-switch-or-create-workspace
+    "L" 'tabspaces-restore-session
+    "s" 'tabspaces-save-session
+    "B" 'tabspaces-switch-buffer-and-tab
+    "b" 'tabspaces-switch-to-buffer
+    "R" 'tab-rename
+    "TAB" 'tab-bar-switch-to-recent-tab
+    "r" 'tabspaces-remove-current-buffer
+    "k" 'tabspaces-close-workspace)
 
   (+general-global-menu! "file" "f"
     "f" 'find-file
