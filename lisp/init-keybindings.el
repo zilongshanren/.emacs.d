@@ -158,6 +158,8 @@
   (+general-global-menu! "layout" "l"
     "l" 'tabspaces-switch-or-create-workspace
     "L" 'tabspaces-restore-session
+    "p" 'tabspaces-open-or-create-project-and-workspace
+    "f" 'tabspaces-project-switch-project-open-file
     "s" 'tabspaces-save-session
     "B" 'tabspaces-switch-buffer-and-tab
     "b" 'tabspaces-switch-to-buffer
