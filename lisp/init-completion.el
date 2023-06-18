@@ -231,6 +231,7 @@
 
   :config
   (global-set-key (kbd "M-y") 'consult-yank-pop)
+  (global-set-key [remap goto-line] 'consult-goto-line)
   (setq ;; consult-project-root-function #'doom-project-root
    consult-narrow-key "<"
    consult-line-numbers-widen t

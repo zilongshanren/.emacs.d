@@ -32,10 +32,7 @@
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always))
 
-(use-package goto-line-preview
-  :ensure
-  :init
-  (global-set-key [remap goto-line] 'goto-line-preview))
+
 
 
 
