@@ -137,7 +137,10 @@
     "gs" 'magit-status
     "gd" 'vc-diff
     "gg" 'xref-find-definitions
-    "gr" 'xref-find-references)
+    "gr" 'xref-find-references
+    "gm" 'consult-mark
+    "gM" 'consult-global-mark
+    )
 
 
   (+general-global-menu! "buffer" "b"
