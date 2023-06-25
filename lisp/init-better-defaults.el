@@ -48,7 +48,9 @@
   (use-package dired-quick-sort
     :ensure t
     :init
-    (setq insert-directory-program "/opt/homebrew/opt/coreutils/libexec/gnubin/ls")
+    (if (string-match-p "x86_64" system-configuration)
+        (setq insert-directory-program "/usr/local/opt/coreutils/libexec/gnubin/ls")
+      (setq insert-directory-program "/opt/homebrew/opt/coreutils/libexec/gnubin/ls"))
     (dired-quick-sort-setup)))
 
 
