@@ -1,6 +1,6 @@
 ;;; init.el -*- lexical-binding: t no-byte-compile: t -*-
 
-;; Copyright (C) 2021-2023 zilongshanren
+;; Copyright (C) 2021-2022 zilongshanren
 
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/emacs.d
@@ -270,7 +270,7 @@
 (show-paren-mode t)
 
 (use-package tar-mode
-  :ensure t)
+  :ensure nil)
 
 (use-package restart-emacs
   :ensure t
