@@ -269,6 +269,9 @@
 
 (show-paren-mode t)
 
+(use-package tar-mode
+  :ensure t)
+
 (use-package restart-emacs
   :ensure t
   :commands (restart-emacs))

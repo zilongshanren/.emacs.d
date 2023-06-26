@@ -1177,7 +1177,7 @@ e.g. Sunday, September 17, 2000."
 
 (defun switch-to-scratch-buffer ()
   (interactive)
-  (switch-to-buffer (startup--get-buffer-create-scratch)))
+  (scratch-buffer))
 
 (defun vc-print-log-internal (backend files working-revision
                                       &optional is-start-revision limit)

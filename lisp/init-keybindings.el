@@ -236,4 +236,9 @@
 
   )
 
+
+(global-set-key (kbd "<f5>") 'gud-run)
+(global-set-key (kbd "<f9>") 'gud-break)
+(setq gdb-many-windows t)
+(setq gdb-show-main t)
 (provide 'init-keybindings)

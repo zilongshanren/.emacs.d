@@ -8,7 +8,7 @@
   ;; if you are using yasnippet and want `ai` snippets
   (org-ai-install-yasnippets))
 
-(require 'mind-wave)
+;; (require 'mind-wave)
 
 (require 'chatgpt-shell)
 
