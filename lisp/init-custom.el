@@ -45,7 +45,9 @@
          (proto (if no-ssl "http" "http")))
     `(,(cons 'melpa
              `(,(cons "gnu"   (concat proto "://elpa.gnu.org/packages/"))
-               ,(cons "melpa" (concat proto "://melpa.org/packages/"))))
+               ,(cons "melpa" (concat proto "://melpa.org/packages/"))
+               ,(cons "nongnu" (concat proto "://elpa.nongnu.org/nongnu/"))
+               ))
       ,(cons 'bfsu
              `(,(cons "gnu"   (concat proto "://mirrors.bfsu.edu.cn/elpa/gnu/"))
                ,(cons "melpa" (concat proto "://mirrors.bfsu.edu.cn/elpa/melpa/"))))

@@ -150,6 +150,7 @@
   (+general-global-menu! "buffer" "b"
     "d" 'kill-current-buffer
     "b" '(consult-buffer :which-key "consult buffer")
+    "B" 'switch-to-buffer
     "p" 'previous-buffer
     "R" 'rename-buffer
     "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
@@ -159,8 +160,7 @@
     "f" 'my-open-current-directory
     "k" 'kill-buffer
     "y" 'copy-buffer-name
-    "K" 'kill-other-buffers
-    )
+    "K" 'kill-other-buffers)
 
   (+general-global-menu! "layout" "l"
     "l" 'tabspaces-switch-or-create-workspace
