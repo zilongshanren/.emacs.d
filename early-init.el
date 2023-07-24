@@ -1,6 +1,6 @@
 ;;; early-init.el --- Early initialization. -*- lexical-binding: t -*-
 
-;; Copyright (C) 2021-2022 zilongshanren
+;; Copyright (C) 2021-2023 zilongshanren
 
 ;; Author: zilongshanren <guanghui8827@gmail.com>
 ;; URL: https://github.com/zilongshanren/emacs.d
