@@ -32,8 +32,8 @@
          ("\\.js\\'" . js-mode)
          ;; ("\\.vue\\'" . web-mode)
          ("\\.html\\'" . web-mode)
-         ("\\.html.eex\\'" . web-mode)
-         )
+         ("\\.wxml\\'" . web-mode)
+         ("\\.html.eex\\'" . web-mode))
        auto-mode-alist))
 
 (use-package typescript-mode

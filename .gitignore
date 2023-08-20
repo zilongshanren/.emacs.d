@@ -25,3 +25,4 @@ tramp
 eshell/history
 eshell/lastdir
 tabsession.el
+elixir-ls
