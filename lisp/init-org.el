@@ -681,7 +681,18 @@ object (e.g., within a comment).  In these case, you need to use
       "dc" 'org-download-clipboard
       "ds" 'org-download-screenshot
       "Tl" 'org-latex-preview
-      "w" 'widen)
+      "w" 'widen
+      "of" 'org-roam-node-find
+      "og" 'org-roam-graph
+      "os" 'org-roam-db-sync
+      "or" 'org-roam-node-random
+      "oc" 'org-roam-capture
+      "oi" 'org-roam-node-insert
+      "ot" 'org-roam-tag-add
+      "oa" 'org-roam-alias-add
+      "oT" 'org-roam-buffer-toggle
+      "oe" 'org-roam-extract-subtree
+      "oI" 'org-id-get-create)
 
     (global-leader
       :major-modes
