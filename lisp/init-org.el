@@ -626,6 +626,10 @@ object (e.g., within a comment).  In these case, you need to use
        (C . t)
        (ditaa . t)))
 
+    (setq org-babel-default-header-args:cpp
+      '((:eval . "never-export")
+        (:flags . "-std=c++11")))
+
     (setq org-babel-python-command "python3")
 
     (progn
