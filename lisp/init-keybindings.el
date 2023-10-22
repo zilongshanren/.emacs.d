@@ -129,7 +129,7 @@
     "R" 'zilongshanren/run-current-file
     "ep" 'my-goto-previous-error
     "el" 'my-list-errors
-    "oy" 'youdao-dictionary-search-at-point+
+    "oy" 'my/eudic
     "oo" 'zilongshanren/hotspots
     "or" 'org-roam-node-find
     "gs" 'magit-status
@@ -137,8 +137,7 @@
     "gg" 'xref-find-definitions
     "gr" 'xref-find-references
     "gm" 'consult-mark
-    "gM" 'consult-global-mark
-    )
+    "gM" 'consult-global-mark)
 
   (+general-global-menu! "search" "s"
     "j" 'my/imenu

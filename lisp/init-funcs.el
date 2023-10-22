@@ -1455,6 +1455,50 @@ Puts point in the middle line as well as indent it by correct amount."
 (defun org-babel-edit-prep:C (info)
   "")
 
+;; Compilation for gcc / g++
+(defun ramz/code-compile ()
+  (interactive)
+  (unless (file-exists-p "Makefile")
+    (set (make-local-variable 'compile-command)
+	 (let ((file (file-name-nondirectory buffer-file-name)))
+	   (format "%s -o %s %s"
+		   (if  (equal (file-name-extension file) "cpp") "g++" "gcc" )
+		   (file-name-sans-extension file)
+		   file)))
+    (compile compile-command)))
+
+
+;; Run the compiled file
+(defun ramz/run-code ()
+  (interactive)
+  (set 'run-command
+       (if (equal (file-name-extension (file-name-nondirectory buffer-file-name)) "rb")
+	   (format "ruby %s" (file-name-nondirectory buffer-file-name))
+	 (format "./%s" (file-name-sans-extension (file-name-nondirectory buffer-file-name)))))
+  (async-shell-command run-command))
+
+
+(defun my/eudic (&optional read)
+  "Translate with eudic.
+eudic program must set auto translate words in clipboard."
+  (interactive "P")
+  (let* ((default-word (if (member major-mode '(doc-view-mode pdf-view-mode))
+                           nil
+                         (if mark-active
+                             (buffer-substring-no-properties (region-beginning) (region-end))
+                           (current-word))))
+         (word (if read nil default-word))
+         (old (car kill-ring)))
+    (when (= 0 (length word))
+      (setq word (read-string (concat "Translate Words: ") default-word)))
+    ;; Put into kill-ring for eudic translate words in clipboard.
+    (kill-new word)
+    (shell-command "open /Applications/Eudb_en_free.app")
+    ;; Recover kill-ring later.
+    (run-with-timer 1 nil (lambda (word old)
+                            (if (equal word (car kill-ring))
+                                (kill-new old)))
+                    word old)))
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

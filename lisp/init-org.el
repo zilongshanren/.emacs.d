@@ -627,8 +627,25 @@ object (e.g., within a comment).  In these case, you need to use
        (ditaa . t)))
 
     (setq org-babel-default-header-args:cpp
-      '((:eval . "never-export")
-        (:flags . "-std=c++11")))
+          '((:eval . "never-export")
+            (:flags . "-std=c++11")))
+
+    (advice-add 'org-babel-C-execute
+                :filter-args
+                (defun sloth/org-babel-C-execute/filter-args (args)
+                  (when-let* ((params (cadr args))
+                              (stdin (cdr (assoc :stdin params)))
+                              (res (org-babel-ref-resolve stdin))
+                              (stdin (org-babel-temp-file "c-stdin-")))
+                    (with-temp-file stdin (insert res))
+                    (let* ((cmdline (assoc :cmdline params))
+                           (cmdline-val (or (cdr cmdline) "")))
+                      (when cmdline (setq params (delq cmdline params)))
+                      (setq params
+                            (cons (cons :cmdline (concat cmdline-val " <" stdin))
+                                  params))
+                      (setf (cadr args) params)))
+                  args))
 
     (setq org-babel-python-command "python3")
 
