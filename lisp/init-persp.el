@@ -81,8 +81,8 @@
   (tabspaces-remove-to-default t)
   (tabspaces-include-buffers '("*scratch*"))
   ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t)
+  ;; (tabspaces-session t)
+  ;; (tabspaces-session-auto-restore t)
   :config
   ;; Filter Buffers for Consult-Buffer
 
