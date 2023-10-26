@@ -138,8 +138,7 @@ Main data structure of the dispatcher with the form:
           "\\*Gofmt Errors\\*$" "\\*Go Test\\*$" godoc-mode
           "\\*docker-containers\\*" "\\*docker-images\\*" "\\*docker-networks\\*" "\\*docker-volumes\\*"
           "\\*prolog\\*" inferior-python-mode inf-ruby-mode swift-repl-mode
-          "\\*rustfmt\\*$" rustic-compilation-mode rustic-cargo-clippy-mode
-          rustic-cargo-outdated-mode rustic-cargo-test-moed))
+          "\\*rustfmt\\*$" rustic-compilation-mode rustic-cargo-clippy-mode))
 
   (when (display-grayscale-p)
     (setq popper-mode-line

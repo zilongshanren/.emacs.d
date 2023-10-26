@@ -8,7 +8,7 @@
  '(ansi-color-names-vector
    ["#282c34" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
  '(custom-safe-themes
-   '("51c71bb27bdab69b505d9bf71c99864051b37ac3de531d91fdad1598ad247138" "4f1d2476c290eaa5d9ab9d13b60f2c0f1c8fa7703596fa91b235db7f99a9441b" "3319c893ff355a88b86ef630a74fad7f1211f006d54ce451aab91d35d018158f" "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" default))
+   '("7964b513f8a2bb14803e717e0ac0123f100fb92160dcf4a467f530868ebaae3e" "51c71bb27bdab69b505d9bf71c99864051b37ac3de531d91fdad1598ad247138" "4f1d2476c290eaa5d9ab9d13b60f2c0f1c8fa7703596fa91b235db7f99a9441b" "3319c893ff355a88b86ef630a74fad7f1211f006d54ce451aab91d35d018158f" "835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" "4b0e826f58b39e2ce2829fab8ca999bcdc076dec35187bf4e9a4b938cb5771dc" "7a7b1d475b42c1a0b61f3b1d1225dd249ffa1abb1b7f726aec59ac7ca3bf4dae" default))
  '(exwm-floating-border-color "#191b20")
  '(fci-rule-color "#5B6268")
  '(highlight-tail-colors
@@ -22,7 +22,7 @@
  '(jdee-db-spec-breakpoint-face-colors (cons "#1B2229" "#3f444a"))
  '(objed-cursor-color "#ff6c6b")
  '(package-selected-packages
-   '(gcmh company hungry-delete swiper counsel smartparens lispy lispyville magit js2-mode consult nodejs-repl exec-path-from-shell citre monokai-theme popwin org-pomodoro yasnippet evil vertico consult-projectile evil-leader window-numbering evil-surround evil-nerd-commenter which-key js2-refactor lsp-mode csharp-mode eglot json-mode flycheck))
+   '(gcmh company hungry-delete swiper counsel smartparens lispy lispyville magit js2-mode consult nodejs-repl exec-path-from-shell citre monokai-theme popwin org-pomodoro yasnippet evil vertico consult-projectile evil-leader window-numbering evil-surround evil-nerd-commenter which-key js2-refactor lsp-mode  eglot json-mode flycheck))
  '(pdf-view-midnight-colors (cons "#bbc2cf" "#282c34"))
  '(rustic-ansi-faces
    ["#282c34" "#ff6c6b" "#98be65" "#ECBE7B" "#51afef" "#c678dd" "#46D9FF" "#bbc2cf"])
@@ -55,7 +55,7 @@
  '(vc-annotate-very-old-color nil)
  '(warning-suppress-log-types '(((tar link))))
  '(warning-suppress-types '(((tar link)) ((tar link)) ((tar link))))
- '(zilongshanren-package-archives 'melpa))
+ '(zilongshanren-package-archives 'emacs-china))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
