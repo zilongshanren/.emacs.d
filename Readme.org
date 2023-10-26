@@ -1,11 +1,17 @@
 * 简介
 
 ** Emacs 版本
-emacs-mac port
+*** 版本要求 emacs-mac port 29
 #+begin_src sh
 brew tap railwaycat/emacsmacport
-brew install emacs-mac --with-rsvg --with-no-title-bars --with-imagemagick --with-dbus
+brew install emacs-mac --with-rsvg  --with-imagemagick --with-dbus
 #+end_src
+
+*** 拷贝到 Application 目录，这里使用的是 Alias （M1 芯片）
+#+begin_src sh
+osascript -e 'tell application "Finder" to make alias file to POSIX file "/opt/homebrew/opt/emacs-mac/Emacs.app" at POSIX file "/Applications"'
+#+end_src
+其他系统可以参考：https://github.com/railwaycat/homebrew-emacsmacport/blob/master/docs/emacs-start-helpers.md
 ** 安装依赖（Mac)
 安装 gnu tools
 #+begin_src sh
