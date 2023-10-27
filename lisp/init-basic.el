@@ -107,9 +107,9 @@
 ;; Explicitly set the prefered coding systems to avoid annoying prompt
 ;; from emacs (especially on Microsoft Windows)
 
-
-(set-language-environment 'chinese-gbk)
-(prefer-coding-system 'utf-8-auto)
+;; will cause emacs-mac consult-ripgrep not working
+;; (set-language-environment 'chinese-gbk)
+;; (prefer-coding-system 'utf-8-auto)
 
 ;; (prefer-coding-system 'utf-8)
 ;; (setq locale-coding-system 'utf-8)
