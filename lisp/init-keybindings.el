@@ -239,4 +239,15 @@
 (global-set-key (kbd "<f9>") 'gud-break)
 (setq gdb-many-windows t)
 (setq gdb-show-main t)
+
+(evil-define-key 'normal dired-mode-map
+  (kbd "<RET>") 'dired-find-alternate-file
+  (kbd "C-k") 'dired-up-directory
+  "`" 'dired-open-term
+  "o" 'dired-find-file-other-window
+  "s" 'hydra-dired-quick-sort/body
+  "z" 'dired-get-size
+  "!" 'zilongshanren/do-shell-and-copy-to-kill-ring
+  ")" 'dired-omit-mode)
+
 (provide 'init-keybindings)
