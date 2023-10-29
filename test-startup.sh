@@ -1,6 +1,5 @@
 #!/bin/sh -e
 echo "Attempting startup..."
-export HOME="/home/runner/work/.emacs.d";
 mkdir -p $HOME/.emacs.d/elpa/gnupg && gpg --homedir $HOME/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40;
 emacs -q --batch \
         --eval "(message \"Testing...\")" \
