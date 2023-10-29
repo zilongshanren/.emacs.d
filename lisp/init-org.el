@@ -190,8 +190,6 @@
 
 (with-eval-after-load 'org
   (progn
-    ;; If you intend to use org, it is recommended you change this!
-    (setq org-directory "~/org-notes/")
 
     (setq org-startup-indented t
           org-pretty-entities t

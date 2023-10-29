@@ -31,6 +31,9 @@
 
 ;;; Code:
 
+;; If you intend to use org, it is recommended you change this!
+(setq org-directory "~/org-notes/")
+
 (defconst zilongshanren-homepage
   "https://github.com/zilongshanren/emacs.d"
   "The Github page of Zilongshanren Emacs.")
