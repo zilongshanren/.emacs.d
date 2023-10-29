@@ -1,5 +1,5 @@
 * 简介
-[[https://github.com/zilongshanren/emacs.d/actions][file:https://github.com/zilongshanren/emacs.d/workflows/CI/badge.svg]]
+[[https://github.com/zilongshanren/.emacs.d/actions][file:https://github.com/zilongshanren/.emacs.d/workflows/CI/badge.svg]]
 
 
 ** Emacs 版本
