@@ -55,7 +55,7 @@
  '(vc-annotate-very-old-color nil)
  '(warning-suppress-log-types '(((tar link))))
  '(warning-suppress-types '(((tar link)) ((tar link)) ((tar link))))
- '(zilongshanren-package-archives 'emacs-china))
+ '(zilongshanren-package-archives 'melpa))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
