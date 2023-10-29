@@ -39,6 +39,7 @@
 
 
 (use-package doom-themes
+  :ensure t
   :init
   (if (display-graphic-p)
       (load-theme 'doom-solarized-light)
@@ -61,9 +62,10 @@
   :hook (after-init . doom-modeline-mode))
 
 (use-package visual-fill-column
+  :ensure t
   :init
   ;; Configure fill width
-(setq visual-fill-column-width 110
-      visual-fill-column-center-text t))
+  (setq visual-fill-column-width 110
+        visual-fill-column-center-text t))
 
 (provide 'init-ui)
