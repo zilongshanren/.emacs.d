@@ -213,7 +213,6 @@
     "r" 'read-only-mode
     "n" 'my-toggle-line-numbber
     "w" 'distraction-free
-    "l" 'my/enable-lsp-bridge
     "k" '+toggle-keycast
     "c" 'global-corfu-mode
     "m" 'consult-minor-mode-menu)

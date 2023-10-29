@@ -1144,7 +1144,6 @@ e.g. Sunday, September 17, 2000."
                        ("Blog" . browse-hugo-maybe)
                        ("Search" . (lambda () (call-interactively #'engine/search-google)))
                        ("Random Todo" . org-random-entry)
-                       ("lsp bridge" . my/enable-lsp-bridge)
                        ("string edit" . separedit)
                        ("Org Roam" . org-roam-find-file)
                        ("Github" . (lambda() (helm-github-stars)))
@@ -1365,8 +1364,6 @@ Puts point in the middle line as well as indent it by correct amount."
   (interactive)
   (cond (flycheck-mode
          (flycheck-next-error))
-        (lsp-bridge-mode
-         (lsp-bridge-diagnostic-jump-next))
         (flymake-mode
          (flymake-goto-next-error))
         (t (message "no syntax checker enabled"))))
@@ -1374,8 +1371,6 @@ Puts point in the middle line as well as indent it by correct amount."
 (defun my-goto-previous-error ()
   (interactive)
   (cond
-   (lsp-bridge-mode
-    (lsp-bridge-jump-to-prev-diagnostic))
    (flycheck-mode
     (flycheck-previous-error))
    (flymake-mode
@@ -1386,8 +1381,6 @@ Puts point in the middle line as well as indent it by correct amount."
   (interactive)
   (cond (flycheck-mode
          (flycheck-list-errors))
-        (lsp-bridge-mode
-         (lsp-bridge-diagnostic-list))
         (flymake-mode
          (flymake-show-buffer-diagnostics))
         (t (message "no syntax checker enabled"))))

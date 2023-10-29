@@ -101,7 +101,6 @@ Main data structure of the dispatcher with the form:
           "\\*Edit Annotation.*\\*"
           "\\*Flutter\\*"
           bookmark-bmenu-mode
-          lsp-bridge-ref-mode
           comint-mode
           compilation-mode
           help-mode helpful-mode

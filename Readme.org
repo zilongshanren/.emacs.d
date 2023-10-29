@@ -30,7 +30,7 @@ export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:${MANPATH}"
 - 尽可能不引入多余的 package，尽量使用 Emacs 内置的 package
 - 如果能写一个 function 解决，则不引用 package
 - 使用 vim 快捷键和操作方式
-- 全面拥抱 lsp（language server protocol），本项目目前使用 eglot（后续准备切到 lsp-bridge，由懒猫开发的多线程 lsp 前端）
+- 全面拥抱 lsp（language server protocol），本项目目前使用 eglot
   
 ** 使用配置说明
 首先 clone 仓库，然后在仓库根目录运行以下命令更新 submodule：
