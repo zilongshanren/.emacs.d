@@ -1,6 +1,5 @@
 #!/bin/sh -e
 echo "Attempting startup..."
-mkdir -p $HOME/.emacs.d/elpa/gnupg && gpg --homedir $HOME/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40;
 emacs -q --batch \
         --eval "(message \"Testing...\")" \
         --eval "(let ((early-init-file (locate-user-emacs-file \"early-init.el\"))
