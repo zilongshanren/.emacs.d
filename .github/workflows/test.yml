@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    paths-ignore:
+    - '**.org'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        emacs_version:
+          - 29.1
+          - release-snapshot
+          - snapshot
+        include:
+          - os: macos-latest
+            emacs_version: 29.1
+    steps:
+    - uses: purcell/setup-emacs@master
+      with:
+        version: ${{ matrix.emacs_version }}
+
+    - uses: actions/checkout@v2
+    - name: Check startup
+      run: ./test-startup.sh
