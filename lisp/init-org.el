@@ -961,6 +961,7 @@ holding contextual information."
 
 
 (use-package org-roam
+  :if (file-exists-p org-directory)
   :init
   (defun jethro/org-capture-slipbox ()
     (interactive)
