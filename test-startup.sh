@@ -1,11 +1,13 @@
 #!/bin/sh -e
 echo "Attempting startup..."
-export HOME="/home/runner/work/.emacs.d"; \
-emacs -q --batch \
-        --eval "(message \"Testing...\")" \
-        --eval "(let ((early-init-file (locate-user-emacs-file \"early-init.el\"))
-                (user-init-file (locate-user-emacs-file \"init.el\")))
-            (and (>= emacs-major-version 27) (load early-init-file))
-            (load user-init-file))" \
-                --eval "(message \"Testing...done\")"
+${EMACS:=emacs} -nw --batch \
+                --eval '(progn
+                        (defvar url-show-status)
+                        (let ((debug-on-error t)
+                              (url-show-status nil)
+                              (user-emacs-directory default-directory)
+                              (user-init-file (expand-file-name "init.el"))
+                              (load-path (delq default-directory load-path)))
+                           (load-file user-init-file)
+                           (run-hooks (quote after-init-hook))))'
 echo "Startup successful"
