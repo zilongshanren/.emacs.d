@@ -1,5 +1,6 @@
 #!/bin/sh -e
 echo "Attempting startup..."
+export HOME="/home/runner/work/.emacs.d";
 ${EMACS:=emacs} -nw --batch \
                 --eval '(progn
                         (defvar url-show-status)
