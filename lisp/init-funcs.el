@@ -315,16 +315,16 @@ This issue has been addressed in 28."
   "Get the URL of the active tab of the first window"
   (interactive)
   (let ((result (do-applescript
-		 (concat
-		  "set frontmostApplication to path to frontmost application\n"
-		  "tell application \"Google Chrome\"\n"
-		  "	set theUrl to get URL of active tab of first window\n"
-		  "	set theResult to (get theUrl) \n"
-		  "end tell\n"
-		  "activate application (frontmostApplication as text)\n"
-		  "set links to {}\n"
-		  "copy theResult to the end of links\n"
-		  "return links as string\n"))))
+		         (concat
+		          "set frontmostApplication to path to frontmost application\n"
+		          "tell application \"Google Chrome\"\n"
+		          "	set theUrl to get URL of active tab of first window\n"
+		          "	set theResult to (get theUrl) \n"
+		          "end tell\n"
+		          "activate application (frontmostApplication as text)\n"
+		          "set links to {}\n"
+		          "copy theResult to the end of links\n"
+		          "return links as string\n"))))
     (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
 
 
@@ -530,9 +530,9 @@ parameters."
   (interactive)
   (if (use-region-p)
       (apply consult-line-function
-        (buffer-substring (region-beginning) (region-end)) rest)
-      (apply consult-line-function
-             rest)))
+             (buffer-substring (region-beginning) (region-end)) rest)
+    (apply consult-line-function
+           rest)))
 
 
 
@@ -810,24 +810,24 @@ open and unsaved."
 
 ;;;###autoload
 (defun ora-ediff-files ()
-      (interactive)
-      (let ((files (dired-get-marked-files))
-            (wnd (current-window-configuration)))
-        (if (<= (length files) 2)
-            (let ((file1 (car files))
-                  (file2 (if (cdr files)
-                             (cadr files)
-                           (read-file-name
-                            "file: "
-                            (dired-dwim-target-directory)))))
-              (if (file-newer-than-file-p file1 file2)
-                  (ediff-files file2 file1)
-                (ediff-files file1 file2))
-              (add-hook 'ediff-after-quit-hook-internal
-                        (lambda ()
-                          (setq ediff-after-quit-hook-internal nil)
-                          (set-window-configuration wnd))))
-          (error "no more than 2 files should be marked"))))
+  (interactive)
+  (let ((files (dired-get-marked-files))
+        (wnd (current-window-configuration)))
+    (if (<= (length files) 2)
+        (let ((file1 (car files))
+              (file2 (if (cdr files)
+                         (cadr files)
+                       (read-file-name
+                        "file: "
+                        (dired-dwim-target-directory)))))
+          (if (file-newer-than-file-p file1 file2)
+              (ediff-files file2 file1)
+            (ediff-files file1 file2))
+          (add-hook 'ediff-after-quit-hook-internal
+                    (lambda ()
+                      (setq ediff-after-quit-hook-internal nil)
+                      (set-window-configuration wnd))))
+      (error "no more than 2 files should be marked"))))
 
 ;;;###autoload
 (defun ffap-hexl-mode ()
@@ -1159,11 +1159,11 @@ e.g. Sunday, September 17, 2000."
       (funcall (cdr (assoc result source))))))
 
 (defun kill-other-buffers ()
-    "Kill all other buffers."
-    (interactive)
-    (mapc 'kill-buffer
-          (delq (current-buffer)
-                (cl-remove-if-not 'buffer-file-name (buffer-list)))))
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer
+        (delq (current-buffer)
+              (cl-remove-if-not 'buffer-file-name (buffer-list)))))
 
 (defun timestamp-to-date (seconds)
   (interactive "n")
@@ -1296,22 +1296,22 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
 
- (defun my/rename-current-buffer-file ()
-    "Renames current buffer and file it is visiting."
-    (interactive)
-    (let ((name (buffer-name))
-          (filename (buffer-file-name)))
-      (if (not (and filename (file-exists-p filename)))
-          (error "Buffer '%s' is not visiting a file!" name)
-        (let ((new-name (read-file-name "New name: " filename)))
-          (if (get-buffer new-name)
-              (error "A buffer named '%s' already exists!" new-name)
-            (rename-file filename new-name 1)
-            (rename-buffer new-name)
-            (set-visited-file-name new-name)
-            (set-buffer-modified-p nil)
-            (message "File '%s' successfully renamed to '%s'"
-                     name (file-name-nondirectory new-name)))))))
+(defun my/rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
 
 (defun my/delete-file-and-buffer ()
   "Kill the current buffer and delete the file it is visiting."
@@ -1325,9 +1325,9 @@ earlier revisions.  Show up to LIMIT entries (non-nil means unlimited)."
           (message "Deleted file %s" filename)
           (kill-buffer))))))
 
-  (defun my/exec-shell-on-buffer (shell-command-text)
-    (interactive "MShell command: ")
-    (shell-command (format "%s %s" shell-command-text (shell-quote-argument buffer-file-name))))
+(defun my/exec-shell-on-buffer (shell-command-text)
+  (interactive "MShell command: ")
+  (shell-command (format "%s %s" shell-command-text (shell-quote-argument buffer-file-name))))
 
 (defun my/imenu ()
   (interactive)
@@ -1407,10 +1407,10 @@ Puts point in the middle line as well as indent it by correct amount."
     (print "This function operates on a region")))
 
 (defun my-project-imenu()
-      (interactive)
-      (if (bound-and-true-p eglot--managed-mode)
-          (call-interactively 'consult-eglot-symbols) ;; 第三方包consult-eglot
-        (call-interactively 'consult-imenu-multi))) ;; consult-imenu.el里有
+  (interactive)
+  (if (bound-and-true-p eglot--managed-mode)
+      (call-interactively 'consult-eglot-symbols) ;; 第三方包consult-eglot
+    (call-interactively 'consult-imenu-multi))) ;; consult-imenu.el里有
 
 (defun my-auto-scroll-hack ()
   (set (make-local-variable 'window-point-insertion-type) t))
@@ -1453,11 +1453,11 @@ Puts point in the middle line as well as indent it by correct amount."
   (interactive)
   (unless (file-exists-p "Makefile")
     (set (make-local-variable 'compile-command)
-	 (let ((file (file-name-nondirectory buffer-file-name)))
-	   (format "%s -o %s %s"
-		   (if  (equal (file-name-extension file) "cpp") "g++" "gcc" )
-		   (file-name-sans-extension file)
-		   file)))
+	     (let ((file (file-name-nondirectory buffer-file-name)))
+	       (format "%s -o %s %s"
+		           (if  (equal (file-name-extension file) "cpp") "g++" "gcc" )
+		           (file-name-sans-extension file)
+		           file)))
     (compile compile-command)))
 
 
@@ -1466,8 +1466,8 @@ Puts point in the middle line as well as indent it by correct amount."
   (interactive)
   (set 'run-command
        (if (equal (file-name-extension (file-name-nondirectory buffer-file-name)) "rb")
-	   (format "ruby %s" (file-name-nondirectory buffer-file-name))
-	 (format "./%s" (file-name-sans-extension (file-name-nondirectory buffer-file-name)))))
+	       (format "ruby %s" (file-name-nondirectory buffer-file-name))
+	     (format "./%s" (file-name-sans-extension (file-name-nondirectory buffer-file-name)))))
   (async-shell-command run-command))
 
 
@@ -1492,6 +1492,35 @@ eudic program must set auto translate words in clipboard."
                             (if (equal word (car kill-ring))
                                 (kill-new old)))
                     word old)))
+
+(defun my/org-agenda-calculate-efforts (limit)
+  "Sum the efforts of scheduled entries up to LIMIT in the
+        agenda buffer."
+  (when limit
+    (let (total)
+      (save-excursion
+        (while (< (point) limit)
+          (when (member (org-get-at-bol 'type) '("scheduled" "past-scheduled"))
+            (push (org-entry-get (org-get-at-bol 'org-hd-marker) "Effort") total))
+          (forward-line)))
+      (org-duration-from-minutes
+       (cl-reduce #'+
+                  (mapcar #'org-duration-to-minutes
+                          (cl-remove-if-not 'identity total)))))))
+
+(defun my/org-agenda-insert-efforts ()
+  "Insert the efforts for each day inside the agenda buffer."
+  (save-excursion
+    (let (pos)
+      (while (setq pos (text-property-any
+                        (point) (point-max) 'org-agenda-date-header t))
+        (goto-char pos)
+        (end-of-line)
+        (insert-and-inherit (concat " ("
+                                    (my/org-agenda-calculate-efforts
+                                     (next-single-property-change (point) 'day))
+                                    ")"))
+        (forward-line)))))
 (provide 'init-funcs)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
