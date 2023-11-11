@@ -82,6 +82,7 @@
   ;; (dart-mode . eglot-ensure)
   :config
   (setq eglot-send-changes-idle-time 0.2)
+  (setq eldoc-echo-area-use-multiline-p nil)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
   (add-to-list 'eglot-server-programs '(rust-mode "rust-analyzer"))
   (add-to-list 'eglot-server-programs '(c++-mode . ("clangd" "--enable-config")))

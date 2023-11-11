@@ -60,6 +60,12 @@
   :after pdf-tools
   :ensure t)
 
+(use-package nov
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode)))
+
+
 ;; (use-package dictionary-overlay
 ;;   :demand t
 ;;   :ensure nil)
