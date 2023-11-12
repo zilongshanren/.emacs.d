@@ -119,7 +119,6 @@
 
 ;; Frameworks
 ;; yaml init , shell etc
-;; init-prog.el
 (require 'init-web)
 (require 'init-gpu)
 (require 'init-persp)
@@ -133,6 +132,7 @@
 (require 'init-c)
 (require 'init-dart)
 (require 'init-elixir)
+(require 'init-haskell)
 
 ;; personal
 (require 'init-keybindings)

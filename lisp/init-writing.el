@@ -119,4 +119,7 @@
                          (lambda ()
                            (setq-local pangu-spacing-real-insert-separtor t)))))
 
+
+(use-package markdown-mode)
+
 (provide 'init-writing)

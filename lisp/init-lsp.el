@@ -78,6 +78,7 @@
   (rust-mode . eglot-ensure)
   (elixir-mode . eglot-ensure)
   (c++-mode . eglot-ensure)
+  (typescript-mode . eglot-ensure)
   ;; disable for performance issue, specially for peek framework definition
   ;; (dart-mode . eglot-ensure)
   :config
@@ -89,7 +90,18 @@
   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs '(elixir-mode "~/.emacs.d/elixir-ls/release/language_server.sh"))
 
+  (cl-defmethod project-root ((project (head eglot-project)))
+    (cdr project))
 
+  (defun my-project-try-tsconfig-json (dir)
+    (when-let* ((found (locate-dominating-file dir "tsconfig.json")))
+      (cons 'eglot-project found)))
+
+  (add-hook 'project-find-functions
+            'my-project-try-tsconfig-json nil nil)
+
+  (add-to-list 'eglot-server-programs
+               '((typescript-mode) "typescript-language-server" "--stdio"))
 
   (setq read-process-output-max (* 1024 1024))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)

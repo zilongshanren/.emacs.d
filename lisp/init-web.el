@@ -36,10 +36,6 @@
          ("\\.html.eex\\'" . web-mode))
        auto-mode-alist))
 
-(use-package typescript-mode
-  :ensure t)
-;; (use-package vue-mode
-;;   :ensure t)
 
 (use-package web-mode
   :ensure t

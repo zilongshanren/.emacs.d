@@ -193,17 +193,14 @@
 
     (setq org-startup-indented t
           org-pretty-entities t
-          org-hide-emphasis-markers t
+          org-hide-emphasis-markers nil
+          org-fontify-emphasized-text nil
+          org-link-descriptive nil
+          org-fontify-quote-and-verse-blocks t
           org-startup-with-inline-images t
           org-image-actual-width '(300))
 
-    (defun my-org-font-lock-remove-checkboxes (keywords)
-      "Remove checkbox highlighting from the given font-lock KEYWORDS."
-      (let ((checkbox-regexp (rx (seq line-start (0+ blank) "[" (group (any "X ")) "]"))))
-        (setq keywords (delete (assoc checkbox-regexp keywords) keywords)))
-      keywords)
 
-    (add-hook 'org-font-lock-set-keywords-hook #'my-org-font-lock-remove-checkboxes)
 
     (setq org-ellipsis "⤵")
 
