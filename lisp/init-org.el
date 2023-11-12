@@ -197,6 +197,14 @@
           org-startup-with-inline-images t
           org-image-actual-width '(300))
 
+    (defun my-org-font-lock-remove-checkboxes (keywords)
+      "Remove checkbox highlighting from the given font-lock KEYWORDS."
+      (let ((checkbox-regexp (rx (seq line-start (0+ blank) "[" (group (any "X ")) "]"))))
+        (setq keywords (delete (assoc checkbox-regexp keywords) keywords)))
+      keywords)
+
+    (add-hook 'org-font-lock-set-keywords-hook #'my-org-font-lock-remove-checkboxes)
+
     (setq org-ellipsis "⤵")
 
 
@@ -344,7 +352,7 @@ object (e.g., within a comment).  In these case, you need to use
 
 
     (define-key org-mode-map (kbd "RET")
-      'zilong/org-return)
+                'zilong/org-return)
 
     (evil-define-key 'normal org-mode-map
       "+" #'org-cycle-list-bullet)
