@@ -26,3 +26,5 @@ eshell/history
 eshell/lastdir
 tabsession.el
 elixir-ls
+/nov-places
+/tree-sitter/
