@@ -46,6 +46,7 @@
              (css-mode        . css-ts-mode)
              (java-mode       . java-ts-mode)
              (javascript-mode . js-ts-mode)
+             (json-mode . json-ts-mode)
              (js-json-mode    . json-ts-mode)
              (python-mode     . python-ts-mode)
              (ruby-mode       . ruby-ts-mode)

@@ -144,7 +144,6 @@ Main data structure of the dispatcher with the form:
           '(:eval
             (concat
              (propertize " " 'face 'mode-line-emphasis)
-             (all-the-icons-octicon "pin" :height 0.9 :v-adjust 0.0 :face 'mode-line-emphasis)
              (propertize " " 'face 'mode-line-emphasis)))))
 
   (setq popper-echo-dispatch-actions t)

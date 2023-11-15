@@ -4,28 +4,6 @@
 ;;
 ;;; Packages
 
-(use-package all-the-icons
-  :ensure t)
-
-
-
-(when (display-graphic-p)
-  (use-package company
-    :init
-    (setq company-minimum-prefix-length 1)
-    (setq company-idle-delay 0)
-    ;; (global-company-mode t)
-    )
-
-  (use-package company-flx
-    :after (company)
-    :init
-    (company-flx-mode 1))
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "M-n") nil)
-    (define-key company-active-map (kbd "M-p") nil)
-    (define-key company-active-map (kbd "C-j") #'company-select-next)
-    (define-key company-active-map (kbd "C-k") #'company-select-previous)))
 
 (defun nasy/orderless-dispatch-flex-first (_pattern index _total)
   "orderless-flex for corfu."
@@ -128,9 +106,6 @@
     (add-to-list 'completion-at-point-functions #'cape-file)
     (add-to-list 'completion-at-point-functions #'cape-tex)
     (add-to-list 'completion-at-point-functions #'cape-dabbrev)
-    (require 'kind-all-the-icons)
-    (add-to-list 'corfu-margin-formatters
-                 #'kind-all-the-icons-margin-formatter)
     (setq cape-dabbrev-check-other-buffers nil)
     (add-to-list 'completion-at-point-functions #'cape-keyword)
     (defun my/eglot-capf ()

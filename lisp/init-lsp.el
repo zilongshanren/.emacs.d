@@ -27,7 +27,7 @@
 
 
 (define-derived-mode genehack-vue-mode web-mode "ghVue"
-    "A major mode derived from web-mode, for editing .vue files with LSP support.")
+  "A major mode derived from web-mode, for editing .vue files with LSP support.")
 
 (defun my-eglot-keybindgs ()
   (define-key evil-motion-state-map "gR" #'eglot-rename)
@@ -35,6 +35,7 @@
   (define-key evil-normal-state-map "gi" #'eglot-find-implementation)
   (define-key evil-motion-state-map "gh" #'eldoc)
   (define-key evil-normal-state-map "ga" #'eglot-code-actions))
+
 
 (use-package eglot
   :ensure t
@@ -52,60 +53,44 @@
   :config
   (setq eglot-send-changes-idle-time 0.2)
   (setq eldoc-echo-area-use-multiline-p nil)
+  (setq eglot-connect-timeout 120)
   (add-to-list 'eglot-server-programs '(genehack-vue-mode "vls"))
-  (add-to-list 'eglot-server-programs '(rust-ts-mode "rust-analyzer"))
-  (add-to-list 'eglot-server-programs '(c++-ts-mode . ("clangd" "--enable-config")))
   (add-to-list 'eglot-server-programs '(web-mode . ("vscode-html-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(elixir-ts-mode "~/.emacs.d/elixir-ls/release/language_server.sh"))
 
-  (add-to-list 'eglot-server-programs
-   '((js-mode js-ts-mode tsx-ts-mode typescript-ts-mode typescript-mode)
-     "typescript-language-server" "--stdio"
-     :initializationOptions
-     (:preferences
-      (
-       :includeInlayParameterNameHints
-       "all"
-       :includeInlayParameterNameHintsWhenArgumentMatchesName t
-       :includeInlayFunctionParameterTypeHints t
-       :includeInlayVariableTypeHints t
-       :includeInlayVariableTypeHintsWhenTypeMatchesName t
-       :includeInlayPRopertyDeclarationTypeHints t
-       :includeInlayFunctionLikeReturnTypeHints t
-       :includeInlayEnumMemberValueHints t))))
 
   (setq read-process-output-max (* 1024 1024))
+  (setq eglot-ignored-server-capabilities '(:inlayHintProvider))
   (push :documentHighlightProvider eglot-ignored-server-capabilities)
   (setq eldoc-echo-area-use-multiline-p nil))
 
-  (cl-defmacro eglot-org-babel-enable (lang)
-    "Support LANG in org source code block."
-    (cl-check-type lang string)
-    (let* ((edit-pre (intern (format "org-babel-edit-prep:%s" lang)))
-           (intern-pre (intern (format "eglot--%s" (symbol-name edit-pre)))))
-      `(progn
-         (defun ,intern-pre (info)
-           (let ((file-name (->> info caddr (alist-get :file))))
-             (unless file-name
-               (setq file-name (concat default-directory (if (string= ,lang "C") "org-src-babel.c" "org-src-babel.cpp")))
-               (write-region (point-min) (point-max) file-name))
-             (setq buffer-file-name file-name)
-             (eglot-ensure)))
-         (put ',intern-pre 'function-documentation
-              (format "Enable eglot mode in the buffer of org source block (%s)."
-                      (upcase ,lang)))
-         (if (fboundp ',edit-pre)
-             (advice-add ',edit-pre :after ',intern-pre)
-           (progn
-             (defun ,edit-pre (info)
-               (,intern-pre info))
-             (put ',edit-pre 'function-documentation
-                  (format "Prepare local buffer environment for org source block (%s)."
-                          (upcase ,lang))))))))
+(cl-defmacro eglot-org-babel-enable (lang)
+  "Support LANG in org source code block."
+  (cl-check-type lang string)
+  (let* ((edit-pre (intern (format "org-babel-edit-prep:%s" lang)))
+         (intern-pre (intern (format "eglot--%s" (symbol-name edit-pre)))))
+    `(progn
+       (defun ,intern-pre (info)
+         (let ((file-name (->> info caddr (alist-get :file))))
+           (unless file-name
+             (setq file-name (concat default-directory (if (string= ,lang "C") "org-src-babel.c" "org-src-babel.cpp")))
+             (write-region (point-min) (point-max) file-name))
+           (setq buffer-file-name file-name)
+           (eglot-ensure)))
+       (put ',intern-pre 'function-documentation
+            (format "Enable eglot mode in the buffer of org source block (%s)."
+                    (upcase ,lang)))
+       (if (fboundp ',edit-pre)
+           (advice-add ',edit-pre :after ',intern-pre)
+         (progn
+           (defun ,edit-pre (info)
+             (,intern-pre info))
+           (put ',edit-pre 'function-documentation
+                (format "Prepare local buffer environment for org source block (%s)."
+                        (upcase ,lang))))))))
 
-  (with-eval-after-load 'org
-    (dolist (lang '("C" "C++"))
-      (eval `(eglot-org-babel-enable ,lang))))
+(with-eval-after-load 'org
+  (dolist (lang '("C" "C++"))
+    (eval `(eglot-org-babel-enable ,lang))))
 
 (use-package consult-eglot
   :ensure t
