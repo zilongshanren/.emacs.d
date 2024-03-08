@@ -4,6 +4,8 @@
 ;;
 ;;; Packages
 
+(use-package company
+  :ensure t)
 
 (defun nasy/orderless-dispatch-flex-first (_pattern index _total)
   "orderless-flex for corfu."
@@ -110,7 +112,7 @@
     (add-to-list 'completion-at-point-functions #'cape-keyword)
     (defun my/eglot-capf ()
       (setq-local completion-at-point-functions
-                  (list (cape-super-capf
+                  (list (cape-capf-super
                          #'eglot-completion-at-point
                          (cape-company-to-capf #'company-yasnippet)))))
 
