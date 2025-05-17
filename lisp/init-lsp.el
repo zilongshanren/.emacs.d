@@ -111,9 +111,9 @@
     (setq xref-show-xrefs-function #'xref-show-definitions-completing-read)))
 
 
-(use-package eglot-booster
-	:after eglot
-	:config	(eglot-booster-mode))
+;; use local package
+(require 'eglot-booster)
+(eglot-booster-mode t)
 
 (use-package dape
   :preface
@@ -124,7 +124,7 @@
   :hook
   ;; Save breakpoints on quit
   ((kill-emacs . dape-breakpoint-save)
-  ;; Load breakpoints on startup
+   ;; Load breakpoints on startup
    (after-init . dape-breakpoint-load))
 
   :init

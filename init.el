@@ -29,6 +29,8 @@
 
 ;; part of the code are from Centaur emacs
 ;;; Code:
+
+
 (require 'cl)
 
 (setq package-check-signature nil)
@@ -115,8 +117,8 @@
 (require 'init-syntaxcheck)
 (require 'init-snippets)
 
-;; (require 'init-lsp)
-(require 'init-lspbridge)
+(require 'init-lsp)
+;(require 'init-lspbridge)
 
 ;; Frameworks
 ;; yaml init , shell etc
