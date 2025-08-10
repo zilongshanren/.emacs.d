@@ -3,5 +3,5 @@
 # key: imw
 # --
 
-#+ATTR_HTML: :width ${1:800px}
+#+ATTR_HTML: :width ${1:400px}
 $0

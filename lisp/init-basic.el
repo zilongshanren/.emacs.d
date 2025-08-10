@@ -68,6 +68,7 @@
 
   ;; Don't ping things that look like domain names.
   (setq ffap-machine-p-known 'reject)
+  (setenv "PATH" (concat "/opt/homebrew/bin:" (getenv "PATH")))
 
   (if sys/win32p
       (progn
