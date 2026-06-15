@@ -52,10 +52,23 @@
   :hook ((markdown-mode org-mode) . valign-mode))
 
 
+;; doom-modeline configured to mirror robbyrussell zsh PS1:
+;;   shows: buffer/file name (cwd), git branch + dirty state
 (use-package doom-modeline
   :ensure t
   :init
+  ;; Show the current directory name, matching PS1's cyan cwd segment
+  (setq doom-modeline-buffer-file-name-style 'truncate-upto-project)
+  ;; Show git branch + dirty indicator, matching PS1's yellow git segment
+  (setq doom-modeline-vcs-max-length 24)
+  ;; Show minor modes as PS1 shows extra shell context
   (setq doom-modeline-minor-modes t)
+  ;; Always show the buffer encoding (shell uses UTF-8 by default)
+  (setq doom-modeline-buffer-encoding t)
+  ;; Show the current working directory in the modeline
+  (setq doom-modeline-percent-position nil)
+  ;; Display the exit code / process status, matching PS1's ➜ color (green/red)
+  (setq doom-modeline-check-simple-format t)
   :custom-face
   (mode-line ((t (:height 0.95))))
   (mode-line-inactive ((t (:height 0.95))))

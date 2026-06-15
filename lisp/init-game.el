@@ -1,3 +1,5 @@
+;;; init-game.el --- -*- lexical-binding: t; -*-
+
 (use-package gdscript-mode
   :ensure t
   :hook (gdscript-mode . eglot-ensure)
@@ -17,5 +19,11 @@
       '(gdscript-mode-map)
       "rr" 'gdscript-godot-run-project
       "=" 'gdscript-format-buffer)))
+
+(require 'glsl-mode)
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
+
 
 (provide 'init-game)

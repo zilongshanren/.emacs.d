@@ -1,3 +1,5 @@
+;;; init-lspbridge.el --- -*- lexical-binding: t; -*-
+
 (require 'lsp-bridge)
 (require 'yasnippet)
 (yas-global-mode 1)
