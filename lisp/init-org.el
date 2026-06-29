@@ -24,6 +24,10 @@
 ;; Floor, Boston, MA 02110-1301, USA.
 ;;
 
+(use-package org
+  :ensure t
+  :pin gnu)
+
 (use-package svg-tag-mode
   :ensure t
   :hook (org-mode . svg-tag-mode)
@@ -183,10 +187,6 @@
   :hook (org-mode . org-superstar-mode)
   :config
   (setq org-superstar-special-todo-items t))
-
-(use-package org
-  :ensure t
-  :pin gnu)
 
 (with-eval-after-load 'org
   (progn

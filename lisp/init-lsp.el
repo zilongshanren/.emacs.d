@@ -113,7 +113,8 @@
 
 ;; use local package
 (require 'eglot-booster)
-(eglot-booster-mode t)
+(when (executable-find "emacs-lsp-booster")
+  (eglot-booster-mode t))
 
 (use-package dape
   :preface
